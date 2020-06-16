@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates</title>
+    {{> css}}
+    {{{_sections.css}}}
+</head>
+
+<body>
+    <header>
+        {{> header}}
+    </header>
+
+    <body>
+        {{{body}}}
+
+    </body>
+    <footer>
+        {{> footer}}
+    </footer>
+
+    {{> script}}
+    {{{_sections.js}}}
+</body>
+
+</html>

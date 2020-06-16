@@ -1,0 +1,28 @@
+{
+  "name": "node-express-handlebars-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon -e js,sass index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-handlebars": "^4.0.4",
+    "express-handlebars-sections": "^1.0.1",
+    "express-session": "^1.17.1",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.0"
+  },
+  "devDependencies": {
+    "node-sass-middleware": "^0.11.0",
+    "nodemon": "^2.0.4",
+    "reload": "^3.0.4"
+  }
+}
