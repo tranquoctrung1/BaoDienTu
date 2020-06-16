@@ -45,6 +45,10 @@ app.use(
   "/popper",
   express.static(`${__dirname}/node_modules/popper.js/dist/umd`)
 );
+app.use(
+  "/font",
+  express.static(`${__dirname}/node_modules/@fortawesome/fontawesome-free`)
+);
 //app.use('/reload', express.static(`${__dirname}/node_modules/reload/lib`))
 
 // use sass-midleware
