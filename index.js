@@ -11,7 +11,6 @@ require("express-async-errors");
 const app = express();
 
 // call router
-
 const port = 3000;
 
 app.use(express.json()); // for parsing application/json
@@ -57,7 +56,6 @@ app.use(
     src: __dirname + "/public", //where the sass files are
     dest: __dirname + "/public", //where css should go
     debug: true, // obvious
-    outputStyle: "compressed",
   })
 );
 

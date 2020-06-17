@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -e js,sass index.js"
+    "start": "nodemon -e js,sass,hbs index.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "express-handlebars-sections": "^1.0.1",
     "express-session": "^1.17.1",
     "jquery": "^3.5.1",
+    "node-sass": "^4.14.1",
     "popper.js": "^1.16.0"
   },
   "devDependencies": {
