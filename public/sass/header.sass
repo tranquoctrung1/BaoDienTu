@@ -1,0 +1,145 @@
+header
+	// mobile
+	.navbar
+		padding: 0 10px
+		a.nav-link
+			font-weight: bold
+			color: #b2bec3
+		div.nav-link
+			display: none
+		.form-inline
+			.form-control
+				width: 100%
+		// laptop
+		@media only screen and (min-width: 1023px)
+			.navbar-nav
+				.nav-item
+					position: relative
+					margin: 0 10px
+					&::before
+						display: block
+						content: ''
+
+						position: absolute
+						bottom: 0
+						left: 0
+
+						width: 0
+						height: 2px
+
+						background: #2d3436
+
+						transition: all .5s ease-in-out
+					&:hover
+						&::before
+							width: 80%
+					.nav-link
+						transition: all .5s ease-in-out
+
+				div.nav-link
+					display: block
+					i
+						cursor: pointer
+			.form-inline
+				overflow: hidden
+				.form-control
+					transform: translateX(150%)
+
+					transition: all .5s ease-in-out
+					&.active
+						transform: translateX(0)
+	section.categories-header
+		border-top: 1px solid rgba(0,0,0,.2)
+		border-bottom: 1px solid rgba(0,0,0,.2)
+		.container
+			.row
+				.col
+					nav
+						display: flex
+						justify-content: center
+						align-items: center
+						.hamberger-area
+							margin: 0
+							.hamberger-button
+								cursor: pointer
+								.bar
+									width: 30px
+									height: 2px
+
+									background: #333
+
+									margin: 6px 0
+
+									transition: 0.5s all ease-in-out
+								&.change
+									.bar
+										&.one
+											transform: rotate(-45deg) translate( -3px, 6px)
+										&.two
+											opacity: 0
+										&.three
+											transform: rotate(45deg) translate(-6px, -8px)
+						.top-ten
+							margin: 0
+							li
+								display: inline-block
+
+								list-style-type: none
+
+								margin: 5px
+								a
+									font-weight: bold
+
+									color: rgba(0,0,0,.5)
+
+									text-decoration: none
+
+									transition: all .5s ease-in-out
+								&:hover
+									a
+										color: rgba(0,0,0,.7)
+						// laptop
+						@media only screen and (max-width: 768px)
+							.top-ten
+								display: none
+		.container-fluid.all-categories
+			background: #0e0e1d
+			display: none
+			padding-top: 30px
+			padding-bottom: 40px
+			.row
+				.col-md-3
+					margin: 10px 0
+					nav.nav
+						display: flex
+						justify-content: center
+						align-items: center
+						ul.nav__ul
+							margin: 0
+							padding: 0
+							span.nav__ul__separate
+								color: red
+								font-weight: bolder
+								font-size: 25px
+
+								margin-right: 5px
+							a.nav__ul__category
+								color: #f7f7f7
+
+								font-weight: bolder
+								font-size: 20px
+
+								text-decoration: none
+							li.nav__ul__li
+								list-style-type: none
+
+								margin-left: 10px
+								a.nav__ul__sub-category
+									color: #c7c7c7
+
+									text-decoration: none
+
+									transition: all .5s ease-in-out
+								&:hover
+									a.nav__ul__sub-category
+										color: #24AEE4
