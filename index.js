@@ -25,7 +25,7 @@ app.engine(
     partialsDir: "views/_partials",
     extname: ".hbs",
     helpers: {
-      sections: hbs_sections(),
+      section: hbs_sections(),
       foo: function () {
         return "foo";
       },
@@ -48,7 +48,7 @@ app.use(
   "/font",
   express.static(`${__dirname}/node_modules/@fortawesome/fontawesome-free`)
 );
-//app.use('/reload', express.static(`${__dirname}/node_modules/reload/lib`))
+app.use("/reload", express.static(`${__dirname}/node_modules/reload/lib`));
 
 // use sass-midleware
 app.use(
