@@ -21,23 +21,19 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <title>Templates</title>
+    <title>{{{_sections.title}}}</title>
     {{> css}}
     {{{_sections.css}}}
 </head>
 
 <body>
-    <header>
-        {{> header}}
-    </header>
+    {{> header}}
 
     <body>
         {{{body}}}
 
     </body>
-    <footer>
-        {{> footer}}
-    </footer>
+    {{> footer}}
 
     {{> script}}
     {{{_sections.js}}}
