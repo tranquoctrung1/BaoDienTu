@@ -48,7 +48,9 @@ app.use(
   "/font",
   express.static(`${__dirname}/node_modules/@fortawesome/fontawesome-free`)
 );
-app.use("/reload", express.static(`${__dirname}/node_modules/reload/lib`));
+
+app.use("/owl", express.static(`${__dirname}/node_modules/owl.carousel/dist`));
+// app.use("/reload", express.static(`${__dirname}/node_modules/reload/lib`));
 
 // use sass-midleware
 app.use(
