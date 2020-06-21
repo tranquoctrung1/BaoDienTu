@@ -71,6 +71,10 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+//list post
+app.get("/list", (req, res) => {
+  res.render('listPost');
+});
 // defaul error handler
 
 // page not found

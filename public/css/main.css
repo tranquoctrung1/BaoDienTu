@@ -1,20 +1,3 @@
-.home-page .pagination {
-  width: 300px;
-  text-alight: center;
-  margin: auto; }
-  .home-page .pagination .pagination-content {
-    width: 400px;
-    margin-left: 50px; }
-    .home-page .pagination .pagination-content a {
-      display: block;
-      color: maroon;
-      float: left;
-      padding: 8px 16px;
-      text-decoration: none;
-      transition: background-color .3s; }
-      .home-page .pagination .pagination-content a:hover {
-        background-color: #ddd; }
-
 .home-page .hostest-posting, .home-page .most-view, .home-page .newest, .home-page .top-ten {
   margin: 20px 0; }
   .home-page .hostest-posting .hostest-posting__title, .home-page .hostest-posting .most-view__title, .home-page .hostest-posting .newest__title, .home-page .hostest-posting .top-ten__title, .home-page .most-view .hostest-posting__title, .home-page .most-view .most-view__title, .home-page .most-view .newest__title, .home-page .most-view .top-ten__title, .home-page .newest .hostest-posting__title, .home-page .newest .most-view__title, .home-page .newest .newest__title, .home-page .newest .top-ten__title, .home-page .top-ten .hostest-posting__title, .home-page .top-ten .most-view__title, .home-page .top-ten .newest__title, .home-page .top-ten .top-ten__title {
@@ -92,8 +75,44 @@
   .home-page .most-view .container .row .owl-carousel .owl-nav button.owl-prev span, .home-page .newest .container .row .owl-carousel .owl-nav button.owl-prev span, .home-page .top-ten .container .row .owl-carousel .owl-nav button.owl-prev span {
     left: -10px; }
 
-.f {
-  font-size: 20px; }
+.home-page .most-view .container {
+  position: relative; }
+  .home-page .most-view .container .row .item .card {
+    margin: 10px;
+    border: 0;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    transition: all .5s ease-in-out; }
+    .home-page .most-view .container .row .item .card .card-img {
+      width: 100%;
+      height: 100%; }
+    .home-page .most-view .container .row .item .card .card-title {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all .5s ease-in-out; }
+    .home-page .most-view .container .row .item .card .card-text {
+      font-size: 15px; }
+    .home-page .most-view .container .row .item .card:hover {
+      box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
+      .home-page .most-view .container .row .item .card:hover .card-title {
+        color: red; }
+
+.home-page .pagination {
+  width: 300px;
+  text-alight: center;
+  margin: auto; }
+  .home-page .pagination .pagination-content {
+    width: 400px;
+    margin-left: 50px; }
+    .home-page .pagination .pagination-content a {
+      display: block;
+      color: maroon;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s; }
+      .home-page .pagination .pagination-content a:hover {
+        background-color: #ddd; }
 
 header .navbar {
   padding: 0 10px; }
