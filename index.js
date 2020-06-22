@@ -66,10 +66,19 @@ app.use("/", express.static(path.join(__dirname, "public")));
 
 // use router
 // app.use('/login', login);
+// app.use('/newsDetails', require('./router/newsDetails.route'));
 
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+app.get("/newsDetails", (req, res) => {
+  res.render('vwNews/NewsDetails');
+});
+
+
+
+
 
 // defaul error handler
 
