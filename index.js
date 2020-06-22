@@ -11,6 +11,9 @@ require("express-async-errors");
 const app = express();
 
 // call router
+const Home = require("./router/home.route");
+
+
 const port = 3000;
 
 app.use(express.json()); // for parsing application/json
@@ -65,17 +68,12 @@ app.use(
 app.use("/", express.static(path.join(__dirname, "public")));
 
 // use router
-// app.use('/login', login);
+app.use('/', Home);
 // app.use('/newsDetails', require('./router/newsDetails.route'));
-
-app.get("/", (req, res) => {
-  res.render("index");
-});
 
 app.get("/newsDetails", (req, res) => {
   res.render('vwNews/NewsDetails');
 });
-
 
 
 
