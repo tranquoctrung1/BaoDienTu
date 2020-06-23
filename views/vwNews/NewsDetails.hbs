@@ -14,11 +14,31 @@
         </div>
         <div class="card text-left mt-md-3 mb-md-3">
             <div class="card-header">
-                Comments
+                Comment:
+            </div>
+            <div class="form-group col px-md-5 mt-md-3 mb-md-3">
+                <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
+                <button type="submit" class="btn btn-primary mt-md-3">
+                    {{!-- <i class="fa fa-plane" aria-hidden="true"></i> --}}
+                    Send
+                </button>
             </div>
             <img class="card-img-top" src="holder.js/100px180/" alt="">
-            <div class="col px-md-5 mt-md-3 mb-md-3">
-                <div class="p-3 border mt-md-3">
+            {{#each this.comment}}
+            <div class="col px-md-5 mb-md-3">
+                    
+                <div class="p-3 border">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img src="/images/lion.jpg" class="img-thumbnail">
+                        </div>
+                        <div class="col-sm-10">
+                            <h5 class="card-name" id="username" name="username">{{UserName}}</h5>
+                            <p class="card-text" id="txtComment" name="txtComment">{{Comment}}</p>
+                        </div>
+                    </div>
+                </div>
+                {{!-- <div class="p-3 border mt-md-3">
                     <div class="row">
                         <div class="col-sm-2">
                             <img src="/images/lion.jpg" class="img-thumbnail">
@@ -28,19 +48,9 @@
                             <p class="card-text">Comment Content</p>
                         </div>
                     </div>
-                </div>
-                <div class="p-3 border mt-md-3">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <img src="/images/lion.jpg" class="img-thumbnail">
-                        </div>
-                        <div class="col-sm-10">
-                            <h5 class="card-name">User Name</h5>
-                            <p class="card-text">Comment Content</p>
-                        </div>
-                    </div>
-                </div>
+                </div> --}}
             </div>
+            {{/each}}
         </div>
     </div>
     <div class="col-sm-3">

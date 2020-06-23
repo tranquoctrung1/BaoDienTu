@@ -1,3 +1,3 @@
-module.exports.loadnewsDetails = function (req, res) {
-  res.render();
-};
+// module.exports.loadnewsDetails = function (req, res) {
+//   res.render();
+// };

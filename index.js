@@ -72,11 +72,21 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/newsDetails", (req, res) => {
-  res.render('vwNews/NewsDetails');
-});
+app.get('/newsDetails', require('./router/newsDetails.route'));
 
+// app.get("/newsDetails", (req, res) => {
+//   // res.render('vwNews/NewsDetails');
 
+//   const list = [
+//     { UserName: 1, Comment: 'Laptop' },
+//     { UserName: 2, Comment: 'Smartphone' },
+//     { UserName: 3, Comment: 'Tablet' },
+//   ];
+
+//   res.render('vwNews/NewsDetails',{
+//       comment: list
+//   })
+// });
 
 
 
