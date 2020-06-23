@@ -71,7 +71,6 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use('/', Home);
 // app.use('/newsDetails', require('./router/newsDetails.route'));
 
-<<<<<<< HEAD
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -80,11 +79,6 @@ app.get('/newsDetails', require('./router/newsDetails.route'));
 
 // app.get("/newsDetails", (req, res) => {
 //   // res.render('vwNews/NewsDetails');
-=======
-app.get("/newsDetails", (req, res) => {
-  res.render('vwNews/NewsDetails');
-});
->>>>>>> 5caf3b63768e76778672b61908151333c0ad8bec
 
 //   const list = [
 //     { UserName: 1, Comment: 'Laptop' },
