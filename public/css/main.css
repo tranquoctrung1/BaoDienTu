@@ -107,6 +107,9 @@
   .col-sm-3 .card {
     margin-right: 15px; }
 
+.abstract img {
+  width: 500px; }
+
 header .navbar {
   padding: 0 10px; }
   header .navbar a.nav-link {
