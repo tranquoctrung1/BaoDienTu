@@ -1,3 +1,3 @@
 module.exports.loadhome = function (req, res) {
-  res.render();
+  res.render('index');
 };

@@ -11,6 +11,9 @@ require("express-async-errors");
 const app = express();
 
 // call router
+const Home = require("./router/home.route");
+
+
 const port = 3000;
 
 app.use(express.json()); // for parsing application/json
@@ -65,9 +68,10 @@ app.use(
 app.use("/", express.static(path.join(__dirname, "public")));
 
 // use router
-// app.use('/login', login);
+app.use('/', Home);
 // app.use('/newsDetails', require('./router/newsDetails.route'));
 
+<<<<<<< HEAD
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -76,6 +80,11 @@ app.get('/newsDetails', require('./router/newsDetails.route'));
 
 // app.get("/newsDetails", (req, res) => {
 //   // res.render('vwNews/NewsDetails');
+=======
+app.get("/newsDetails", (req, res) => {
+  res.render('vwNews/NewsDetails');
+});
+>>>>>>> 5caf3b63768e76778672b61908151333c0ad8bec
 
 //   const list = [
 //     { UserName: 1, Comment: 'Laptop' },
@@ -87,7 +96,6 @@ app.get('/newsDetails', require('./router/newsDetails.route'));
 //       comment: list
 //   })
 // });
-
 
 
 // defaul error handler
