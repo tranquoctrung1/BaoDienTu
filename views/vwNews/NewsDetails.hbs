@@ -1,27 +1,27 @@
 <div class="row">
     <div class="col-sm-1"></div>
     <div class="col-sm-8">
-        <h2>Chuyện gì sẽ xảy ra sau ‘Tomb Raider: Huyền thoại bắt đầu’?</h2>
-        <b>Author</b>&nbsp;<a>Post DateTime</a><br>
+        <h2>{{this.title}}</h2>
+        <b>{{this.author}}</b>&nbsp;&nbsp;<a>|&nbsp;{{this.postDateTime}}</a><br>
         <i class="fa fa-eye" aria-hidden="true"> 23 -</i>&ensp;<i class="fas fa-thumbs-up"> 456</i>
         <div class="abstract">
             <br><img src="/images/lion.jpg"><br>
-            <b>Năm 2018, “Tomb Raider” với sự tham gia của Alicia Vikander nhận được phản hồi tích cực nhất định 
-                từ phía khán giả. Hậu truyện đang được lên kế hoạch ra mắt trong năm 2021.</b>
+            <b>{{this.abstract}}</b>
         </div>
         <br>
         <div class="content">
-            <p>Theo Digital Spy, phần tiếp thep của Tomb Raider sẽ có sự tham gia của Ben Wheatley 
-                trong vai trò đạo diễn, thay thế cho Roar Uthaug từ phần trước.
-            Biên kịch Amy Jump, vợ của Bean Wheatley, đảm nhận việc xây dựng kịch bản cho bộ phim do 
-            nữ diễn viên chính thủ vai Lara Croft - Alicia Vikander - rất thích những sản phẩm của bà.
-            Tên tuổi của Ben Wheatley được cộng đồng hâm mộ điện ảnh biết đến qua những bộ phim cult 
-            (những tác phẩm dành cho một nhóm khán giả nhất định và khó được đón nhận bởi đông đảo đại chúng) 
-            như Kill List (2011) và High Rise (2015). Cả hai đều được xây dựng từ kịch bản chấp bút bởi Amy Jump.
+            <p>{{this.content}}
             </p>
         </div>
+        <button type="submit" class="btn btn-primary mb-md-3">
+            <i class="fas fa-thumbs-up"></i>
+            Like
+        </button>
         <div>
-            List tag
+            {{#each this.tag}}
+            <i class="fa fa-tag">
+                {{tag}}&nbsp;
+            </i>{{/each}}
         </div>
         <div class="card text-left mt-md-3 mb-md-3">
             <div class="card-header">
@@ -29,9 +29,9 @@
             </div>
             <div class="form-group col px-md-5 mt-md-3 mb-md-3">
                 <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
-                <button type="submit" class="btn btn-primary mt-md-3">
-                    {{!-- <i class="fa fa-plane" aria-hidden="true"></i> --}}
+                <button type="submit" class="btn btn-success mt-md-3">
                     Send
+                    <i class="fa fa-plane" aria-hidden="true"></i>
                 </button>
             </div>
             <img class="card-img-top" src="holder.js/100px180/" alt="">
