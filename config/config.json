@@ -4,8 +4,8 @@
     "port": 3306,
     "user": "root",
     "password": "",
-    "database": "qlbh",
-    "connectionLimit": 50
+    "database": "baodientu",
+    "connectionLimit": 100
   },
   "pagination": {
     "limit": 10
