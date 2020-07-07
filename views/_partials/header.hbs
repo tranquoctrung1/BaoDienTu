@@ -32,16 +32,9 @@
                 <div class="col">
                     <nav>
                         <ul class="top-ten">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/">Home </a></li>
-                            <li><a href="/">Home </a></li>
-                            <li><a href="/">Home </a></li>
-                            <li><a href="/">Home </a></li>
-                            <li><a href="/">Home </a></li>
-                            <li><a href="/">Home </a></li>
-                            <li><a href="/">Home </a></li>
-                            <li><a href="/">Home </a></li>
-                            <li><a href="/">Home </a></li>
+                            {{#each topTenCategory}}
+                            <li><a href="/{{CatID}}">{{CatName}}</a></li>
+                            {{/each}}
                         </ul>
                         <div class="mr-auto"></div>
                         <ul class="hamberger-area"><span class="hamberger-button" id="hamberger-button">
@@ -55,141 +48,19 @@
         </div>
         <div class="container-fluid all-categories">
             <div class="row">
+                {{#each catAndSubCat}}
                 <div class="col-md-3">
                     <nav class="nav">
                         <ul class="nav__ul"><span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
+                                href="/{{catid}}">{{catname}}</a>
+                            {{#each subCatData}}
+                            <li class="nav__ul__li"> <a class="nav__ul__sub-category"
+                                    href="/{{catchild_id}}">{{catchildname}}</a></li>
+                            {{/each}}
                         </ul>
                     </nav>
                 </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home </a>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-md-3">
-                    <nav class="nav">
-                        <ul class="nav__ul"> <span class="nav__ul__separate">/</span><a class="nav__ul__category"
-                                href="/">Home</a>
-                            <li class="nav__ul__li"> <a class="nav__ul__sub-category" href="/">Home</a></li>
-                            <li class="nav__ul__li"><a class="nav__ul__sub-category" href="/">Home</a></li>
-                        </ul>
-                    </nav>
-                </div>
+                {{/each}}
             </div>
         </div>
     </section>

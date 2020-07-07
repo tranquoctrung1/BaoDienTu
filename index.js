@@ -6,6 +6,7 @@ const sass = require("node-sass-middleware");
 const reload = require("reload");
 const session = require("express-session");
 const hbs_sections = require("express-handlebars-sections");
+const moment = require("moment");
 require("express-async-errors");
 
 const app = express();
@@ -13,6 +14,9 @@ const app = express();
 // call router
 const Home = require("./router/home.route");
 
+// call middleware
+const topTenCategory = require("./middlewares/topTenCategory.middleware");
+const catAndSubCat = require("./middlewares/allCatAndSubCat.middleware");
 
 const port = 3000;
 
@@ -31,6 +35,9 @@ app.engine(
       section: hbs_sections(),
       foo: function () {
         return "foo";
+      },
+      formatDate: function (date) {
+        return moment(date).format("DD/MM/YYYY");
       },
     },
   })
@@ -67,16 +74,17 @@ app.use(
 // use static file
 app.use("/", express.static(path.join(__dirname, "public")));
 
+// use middleware
+app.use(topTenCategory.loadTopTenCategory);
+app.use(catAndSubCat.loadCatAndSubCat);
+
 // use router
-app.use('/', Home);
+app.use("/", Home);
 // app.use('/newsDetails', require('./router/newsDetails.route'));
 
 app.get("/newsDetails", (req, res) => {
-  res.render('vwNews/NewsDetails');
+  res.render("vwNews/NewsDetails");
 });
-
-
-
 
 // defaul error handler
 
@@ -97,6 +105,6 @@ server.listen(port, () => {
   console.log(`App is running on port ${port}`);
 });
 
-reload(app).then(() => {
-  console.log("Page reloaded!");
-});
+// reload(app).then(() => {
+//   console.log("Page reloaded!");
+// });
