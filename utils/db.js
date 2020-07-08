@@ -1,6 +1,6 @@
 // db
-const mysql = require('mysql');
-const config = require('../config/default.json');
+const mysql = require("mysql");
+const config = require("../config/config.json");
 
 const pool = mysql.createPool(config.mysql);
 
@@ -54,7 +54,8 @@ module.exports = {
         resolve(results);
       });
     });
-  }
+  },
+
 
   // load: function (sql, fn_done, fn_fail) {
   //   pool.query(sql, function (error, results, fields) {

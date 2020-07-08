@@ -1,10 +1,17 @@
 {
-    "mysql": {
-      "host": "localhost",
-      "port": 3306,
-      "user": "root",
-      "password": "",
-      "database": "baodientu_db",
-      "connectionLimit": 50
-    }
+  "mysql": {
+    "host": "localhost",
+    "port": 3306,
+    "user": "root",
+    "password": "",
+    "database": "baodientu_db",
+    "connectionLimit": 100
+  },
+  "pagination": {
+    "limit": 10
+  },
+  "authentication": {
+    "saltRounds": 10
   }
+}
+
