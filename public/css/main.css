@@ -93,6 +93,9 @@
 .abstract img {
   width: 500px; }
 
+.picture img {
+  width: 100%; }
+
 header .navbar {
   padding: 0 10px; }
   header .navbar a.nav-link {

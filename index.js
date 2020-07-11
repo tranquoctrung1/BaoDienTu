@@ -13,6 +13,7 @@ const app = express();
 
 // call router
 const Home = require("./router/home.route");
+const News = require("./router/newsDetails.route");
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
@@ -80,12 +81,7 @@ app.use(catAndSubCat.loadCatAndSubCat);
 
 // use router
 app.use("/", Home);
-app.use('/newsDetails', require('./router/newsDetails.route'));
-
-
-app.get("/newsDetails", (req, res) => {
-  res.render("vwNews/NewsDetails");
-});
+app.use('/newsDetails', News);
 
 // defaul error handler
 
