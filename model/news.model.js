@@ -15,13 +15,13 @@ module.exports = {
     );
   },
   singleNewsDetails: function (NewsId) {
-    return db.load(`SELECT n.NewsTitle, n.Author, n.DatePost, n.View, n.Like, n.Abstract, n.Content from ${TBL_NEWS} n  WHERE NewsID = '${NewsId}'`);
+    return db.load(`SELECT n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content from ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID WHERE NewsID = '${NewsId}'`);
   },
   loadTagNews: function(NewsId){
     return db.load(`SELECT t.TagName FROM ${TBL_TAG_OF_NEWS} ton INNER JOIN ${TBL_TAG} t on ton.tagID = t.tagID WHERE ton.NewsID = ${NewsId}`)
   },
   loadCmt: function(NewsId){
-    return db.load(`SELECT u.UserName, cmt.content FROM ${TBL_COMMENT} cmt INNER join ${TBL_NEWS} n on cmt.NewsID = n.NewsID INNER join ${TBL_USER} u on cmt.userID = u.UserID WHERE n.NewsID = ${NewsId}`)
+    return db.load(`SELECT u.UserName, cmt.content, cmt.datetime FROM ${TBL_COMMENT} cmt INNER join ${TBL_NEWS} n on cmt.NewsID = n.NewsID INNER join ${TBL_USER} u on cmt.userID = u.UserID WHERE n.NewsID = ${NewsId}`)
   },
   loadFiveRelatedPosts: function(NewsId, quantity) {
     return db.load(

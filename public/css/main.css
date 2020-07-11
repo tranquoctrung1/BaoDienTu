@@ -111,6 +111,9 @@
     .col-sm-3 .card:hover .card-title {
       color: red; }
 
+.viewandlike {
+  color: blue; }
+
 header .navbar {
   padding: 0 10px; }
   header .navbar a.nav-link {

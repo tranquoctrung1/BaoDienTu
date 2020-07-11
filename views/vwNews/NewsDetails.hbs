@@ -2,14 +2,15 @@
     <div class="col-sm-1"></div>
     <div class="col-sm-8">
         {{#each NewsDetails}}
-            <h2>{{NewsTitle}}</h2>
-            <b>{{Author}}</b>&nbsp;&nbsp;<a>|&nbsp;{{DatePost}}</a><br>
-            <i class="fa fa-eye" aria-hidden="true"> {{View}} -</i>&ensp;<i class="fas fa-thumbs-up">{{Like}}</i>
+            <h1>{{NewsTitle}}</h1>
+            <b>Tác giả: {{Name}}</b>&nbsp;&nbsp;<a>|&nbsp;{{formatDate DatePost}}</a><br>
+            <b>
+                Lượt xem <i class="fa fa-eye" aria-hidden="true"> {{View}} -</i>&ensp;Lượt thích <i class="far fa-thumbs-up"> {{Like}}</i>
+            </b>
             <div class="abstract">
-                {{!-- <br><img src="/images/lion.jpg"><br> --}}
+                <br>
                 <b>{{Abstract}}</b>
             </div>
-            <br>
             <div class="content">
                 <p>{{{Content}}}
                 </p>
@@ -20,10 +21,10 @@
                 Like
             </button>
             <div>
+                <i class="fas fa-tags"></i>
                 {{#each TagOfNews}}
-                <i class="fa fa-tag">
-                    {{TagName}}&nbsp;
-                </i>{{/each}}
+                <span class="d-inline p-2 bg-secondary text-white rounded-pill">{{TagName}}</span>
+                {{/each}}
             </div>
             <div class="card text-left mt-md-3 mb-md-3">
                 <div class="card-header">
@@ -47,6 +48,7 @@
                             <div class="col-sm-10">
                                 <h5 class="card-name" id="username" name="username">{{UserName}}</h5>
                                 <p class="card-text" id="txtComment" name="txtComment">{{content}}</p>
+                                <p class="text-secondary">{{DateTime}}</span>
                             </div>
                         </div>
                     </div>
@@ -67,38 +69,5 @@
             </div>
         </div>
         {{/each}}
-        {{!-- <div class="card mt-md-3 mb-md-3">
-            <img src="/images/lion.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card mt-md-3 mb-md-3">
-            <img src="/images/lion.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card mt-md-3 mb-md-3">
-            <img src="/images/lion.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card mt-md-3 mb-md-3">
-            <img src="/images/lion.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div> --}}
-        
     </div>
 </div>
