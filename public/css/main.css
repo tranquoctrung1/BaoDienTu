@@ -4,7 +4,7 @@
     text-transform: uppercase;
     font-weight: bold;
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 40px;
     position: relative; }
     .home-page .hostest-posting .hostest-posting__title::before, .home-page .hostest-posting .most-view__title::before, .home-page .hostest-posting .newest__title::before, .home-page .hostest-posting .top-ten__title::before, .home-page .most-view .hostest-posting__title::before, .home-page .most-view .most-view__title::before, .home-page .most-view .newest__title::before, .home-page .most-view .top-ten__title::before, .home-page .newest .hostest-posting__title::before, .home-page .newest .most-view__title::before, .home-page .newest .newest__title::before, .home-page .newest .top-ten__title::before, .home-page .top-ten .hostest-posting__title::before, .home-page .top-ten .most-view__title::before, .home-page .top-ten .newest__title::before, .home-page .top-ten .top-ten__title::before {
       display: block;
@@ -20,7 +20,8 @@
 .home-page .container .row .col-md-6 .card {
   border: 0;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-  transition: all .5s ease-in-out; }
+  transition: all .5s ease-in-out;
+  height: 200px; }
   .home-page .container .row .col-md-6 .card .card-img {
     width: 100%;
     height: 100%; }
@@ -37,31 +38,32 @@
     .home-page .container .row .col-md-6 .card:hover .card-title {
       color: red; }
 
-.home-page .most-view .container, .home-page .newest .container, .home-page .top-ten .container {
+.home-page .most-view .container, .home-page .newest .container {
   position: relative; }
-  .home-page .most-view .container .row .owl-carousel .item .card, .home-page .newest .container .row .owl-carousel .item .card, .home-page .top-ten .container .row .owl-carousel .item .card {
+  .home-page .most-view .container .row .owl-carousel .item .card, .home-page .newest .container .row .owl-carousel .item .card {
     margin: 10px;
     border: 0;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    transition: all .5s ease-in-out; }
-    .home-page .most-view .container .row .owl-carousel .item .card .card-img, .home-page .newest .container .row .owl-carousel .item .card .card-img, .home-page .top-ten .container .row .owl-carousel .item .card .card-img {
+    transition: all .5s ease-in-out;
+    height: 200px; }
+    .home-page .most-view .container .row .owl-carousel .item .card .card-img, .home-page .newest .container .row .owl-carousel .item .card .card-img {
       width: 100%;
       height: 100%; }
-    .home-page .most-view .container .row .owl-carousel .item .card .card-title, .home-page .newest .container .row .owl-carousel .item .card .card-title, .home-page .top-ten .container .row .owl-carousel .item .card .card-title {
+    .home-page .most-view .container .row .owl-carousel .item .card .card-title, .home-page .newest .container .row .owl-carousel .item .card .card-title {
       text-transform: uppercase;
       font-weight: bold;
       font-size: 16px;
       transition: all .5s ease-in-out; }
-    .home-page .most-view .container .row .owl-carousel .item .card .card-text, .home-page .newest .container .row .owl-carousel .item .card .card-text, .home-page .top-ten .container .row .owl-carousel .item .card .card-text {
+    .home-page .most-view .container .row .owl-carousel .item .card .card-text, .home-page .newest .container .row .owl-carousel .item .card .card-text {
       text-transform: uppercase;
       font-size: 15px; }
-    .home-page .most-view .container .row .owl-carousel .item .card:hover, .home-page .newest .container .row .owl-carousel .item .card:hover, .home-page .top-ten .container .row .owl-carousel .item .card:hover {
+    .home-page .most-view .container .row .owl-carousel .item .card:hover, .home-page .newest .container .row .owl-carousel .item .card:hover {
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
-      .home-page .most-view .container .row .owl-carousel .item .card:hover .card-title, .home-page .newest .container .row .owl-carousel .item .card:hover .card-title, .home-page .top-ten .container .row .owl-carousel .item .card:hover .card-title {
+      .home-page .most-view .container .row .owl-carousel .item .card:hover .card-title, .home-page .newest .container .row .owl-carousel .item .card:hover .card-title {
         color: red; }
-  .home-page .most-view .container .row .owl-carousel .owl-dots .owl-dot.active span, .home-page .newest .container .row .owl-carousel .owl-dots .owl-dot.active span, .home-page .top-ten .container .row .owl-carousel .owl-dots .owl-dot.active span {
+  .home-page .most-view .container .row .owl-carousel .owl-dots .owl-dot.active span, .home-page .newest .container .row .owl-carousel .owl-dots .owl-dot.active span {
     background: #0f0f1d; }
-  .home-page .most-view .container .row .owl-carousel .owl-nav button span, .home-page .newest .container .row .owl-carousel .owl-nav button span, .home-page .top-ten .container .row .owl-carousel .owl-nav button span {
+  .home-page .most-view .container .row .owl-carousel .owl-nav button span, .home-page .newest .container .row .owl-carousel .owl-nav button span {
     padding: 10px;
     font-size: 20px;
     font-weight: bold;
@@ -70,10 +72,36 @@
     position: absolute;
     top: 40%;
     transform: translate(-50%, -50%); }
-  .home-page .most-view .container .row .owl-carousel .owl-nav button.owl-next span, .home-page .newest .container .row .owl-carousel .owl-nav button.owl-next span, .home-page .top-ten .container .row .owl-carousel .owl-nav button.owl-next span {
+  .home-page .most-view .container .row .owl-carousel .owl-nav button.owl-next span, .home-page .newest .container .row .owl-carousel .owl-nav button.owl-next span {
     right: -40px; }
-  .home-page .most-view .container .row .owl-carousel .owl-nav button.owl-prev span, .home-page .newest .container .row .owl-carousel .owl-nav button.owl-prev span, .home-page .top-ten .container .row .owl-carousel .owl-nav button.owl-prev span {
+  .home-page .most-view .container .row .owl-carousel .owl-nav button.owl-prev span, .home-page .newest .container .row .owl-carousel .owl-nav button.owl-prev span {
     left: -10px; }
+
+.home-page .top-ten .container .row {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .home-page .top-ten .container .row .card {
+    margin: 10px;
+    border: 0;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    transition: all .5s ease-in-out;
+    height: 200px; }
+    .home-page .top-ten .container .row .card .card-img {
+      width: 100%;
+      height: 100%; }
+    .home-page .top-ten .container .row .card .card-title {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all .5s ease-in-out; }
+    .home-page .top-ten .container .row .card .card-text {
+      text-transform: uppercase;
+      font-size: 15px; }
+    .home-page .top-ten .container .row .card:hover {
+      box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
+      .home-page .top-ten .container .row .card:hover .card-title {
+        color: red; }
 
 .f {
   font-size: 20px; }
