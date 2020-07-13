@@ -4,7 +4,7 @@
     "port": 3306,
     "user": "root",
     "password": "",
-    "database": "baodientu",
+    "database": "baodientu_db",
     "connectionLimit": 100
   },
   "pagination": {
@@ -14,3 +14,4 @@
     "saltRounds": 10
   }
 }
+
