@@ -45,9 +45,11 @@ Home
 	</section>
 	<section class="most-view">
 		<h5 class="most-view__title"> Bài viết xem nhiều nhất </h5>
+		{{#if listViewsNewsLength}}
 		<div class="container">
 			<div class="row">
 				<div class="owl-carousel owl-theme">
+					{{#each listViewsNews}}
 					<div class="item">
 						<div class="card mb-3" style="max-width: 540px;">
 							<div class="row no-gutters">
@@ -56,167 +58,31 @@ Home
 								</div>
 								<div class="col-md-8">
 									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
+										<h5 class="card-title">{{NewsTitle}} </h5>
+										<p class="card-text">{{CatName}} - {{CatChildName}}</p>
+										<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small>
+										</p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					{{/each}}
 				</div>
 			</div>
 		</div>
+		{{#else}}
+		<div>Không có dữ liệu</div>
+		{{/else}}
+		{{/if}}
 	</section>
 	<section class="newest">
 		<h5 class="newest__title"> Bài viết mới nhất </h5>
+		{{#if listMostSoonNewsLength}}
 		<div class="container">
 			<div class="row">
 				<div class="owl-carousel owl-theme">
+					{{#each listMostSoonNews}}
 					<div class="item">
 						<div class="card mb-3" style="max-width: 540px;">
 							<div class="row no-gutters">
@@ -225,324 +91,40 @@ Home
 								</div>
 								<div class="col-md-8">
 									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
+										<h5 class="card-title">{{NewsTitle}} </h5>
+										<p class="card-text">{{CatName}} - {{CatChildName}}</p>
+										<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small>
+										</p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					{{/each}}
 				</div>
 			</div>
 		</div>
+		{{#else}}
+		<div>Không có dữ liệu</div>
+		{{/else}}
+		{{/if}}
 	</section>
+	{{#if listMostSoonNewsLength}}
+	{{#each listMostSoonNews}}
 	<section class="top-ten">
-		<h5 class="top-ten__title"> Top 10 bài viết mới nhất </h5>
+		<h5 class="top-ten__title"> {{CatName}} </h5>
 		<div class="container">
 			<div class="row">
-				<div class="owl-carousel owl-theme">
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
+				<div class="card mb-3" style="max-width: 540px;">
+					<div class="row no-gutters">
+						<div class="col-md-4">
+							<img src="/images/logo.png" class="card-img" alt="image posting">
 						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" style="max-width: 540px;">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<h5 class="card-title">Hành trình phá án đầy cam go của đội cứu hỏa </h5>
-										<p class="card-text">Cứu hỏa</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-									</div>
-								</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								<h5 class="card-title">{{NewsTitle}} </h5>
+								<p class="card-text">{{CatName}} - {{CatChildName}}</p>
+								<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small></p>
 							</div>
 						</div>
 					</div>
@@ -550,4 +132,9 @@ Home
 			</div>
 		</div>
 	</section>
+	{{/each}}
+	{{#else}}
+	<div>Không có dữ liệu</div>
+	{{/else}}
+	{{/if}}
 </main>
