@@ -3,11 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const getWriter = require("../controller/getWriter.controller");
-// router.get('/', getWriter.loadWriter);
-router.get('/', function (req, res) {
-    res.render('vwWriter/Writer');
-})
-
+router.get('/', getWriter.loadWriter);
 
 // router.get('/', async function (req, res) {
 //   res.render('vwWriter/Writer');

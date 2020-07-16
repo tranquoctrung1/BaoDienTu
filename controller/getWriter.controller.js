@@ -1,11 +1,13 @@
-// const writerModel = require("../model/writer.model");
+const writerModel = require("../model/writer.model");
 
-// module.exports.loadNewsDetails = async function (req, res) {
-//   // const id = req.params.id;
+module.exports.loadWriter = async function (req, res) {
+  // const id = req.params.id;
 
-//   // const NewsDetails = await writerModel.singleNewsDetails(id);
+  const LoadListPost = await writerModel.loadListPost();
+  // const NewPost = await writerModel.addNewPost(req.body);
 
-//   res.render("vwWriter/Writer", {
-//     // NewsDetails,
-//   });
-// };
+  res.render("vwWriter/Writer", {
+    LoadListPost,
+    // NewPost,
+  });
+};

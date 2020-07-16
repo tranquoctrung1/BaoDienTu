@@ -35,63 +35,93 @@
 <br>
 <div class="row">
   <br>
-  <div class="col-md-9">
-    <form method="post" novalidate enctype="multipart/form-data">
-      <div class="card">
-        <div class="card-header">
-          Add New Page
-        </div>
-        <div class="card-body">
-          <div class="form-group">
-            Title: <input id="newsTilte" name="newsTilte" type="text"><br><br>
-            {{!-- Avatar --}}
-            Avatar:
-            <div class="file-loading">
-              <input id="avatar" name="avatar" type="file" multiple>
-            </div>
-            <label for=""></label>
-            <textarea name="FullDes" id="txtFullDes" class="form-control" cols="30" rows="10"></textarea>
-          </div>
-        </div>
-        <div class="card-footer">
-          <button type="submit" class="btn btn-lg btn-success btn-block">
-            <i class="fa fa-check" aria-hidden="true"></i>
-            Submit
-          </button>
-        </div>
-      </div>
-      {{!-- <div class="card">
-          <div class="card-header">
-            WYSIWYG HTML Editor
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <label for=""></label>
-              <textarea name="FullDes" id="txtFullDes" class="form-control" cols="30" rows="10"></textarea>
-            </div>
-          </div>
-          <div class="card-footer">
-            <button type="submit" class="btn btn-lg btn-success btn-block">
-              <i class="fa fa-check" aria-hidden="true"></i>
-              Submit
-            </button>
-          </div>
-      </div> --}}
-    </form>
+  <div class="col-md-2">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-newpost-tab" data-toggle="pill" href="#v-pills-newpost" role="tab" aria-controls="v-pills-newpost" aria-selected="true">New Post</a>
+      <a class="nav-link" id="v-pills-listpost-tab" data-toggle="pill" href="#v-pills-listpost" role="tab" aria-controls="v-pills-listpost" aria-selected="false">List Post</a>
+    </div>
   </div>
-  <div class="col-md-3">
-    <div class="dropdown mr-1">
-      <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-        Chuyên mục
-      </button>
-      <div class="dropdown-menu"  aria-labelledby="dropdownMenuOffset">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+  <div class="col-md-10">
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-newpost" role="tabpanel" aria-labelledby="v-pills-newpost-tab">
+        <form method="post" novalidate action="" enctype="multipart/form-data">
+          <div class="card">
+            <div class="card-header">
+              Add New Page
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-9">
+                    Title: &nbsp;<input id="newsTilte" name="Tilte" type="text"><br>
+                    Avatar:
+                    <div class="file-loading">
+                      <input id="avatar" name="avatar" type="file" multiple>
+                    </div>
+                    <label for=""></label>
+                    <textarea name="FullDes" id="txtFullDes" class="form-control" cols="30" rows="10"></textarea>
+                  </div>
+                  <div class="col-3">
+                    Author: &nbsp;<br><input type="number" id="txtUserName" name="Author"><br>
+                    Date Post: &nbsp;<input type="datetime" id="txtDatePost" name="DatePost"><br>
+                    CatChild: &nbsp;<input type="number" id="txtCatChild" name="CatChild_ID"><br>
+                  </div>
+                </div>
+                <br>
+                {{!-- Avatar --}}
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-lg btn-success btn-block">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                Post Now
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="tab-pane fade" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab">
+        <div class="row">
+          <div class="col-11">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between">
+                <h4>List Post</h4>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Abstract</th>
+                    <th scope="col">&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each LoadListPost}}
+                  <tr>
+                    <td>{{NewsID}}</td>
+                    <td scope="row" class="text-left">{{NewsTitle}}</td>
+                    <td scope="row" class="text-left">{{Abstract}}</td>
+                    <td class="text-right">
+                      <a class="btn btn-primary btn-sm" href="javascript:;" role="button">
+                        <i class="fa fa-pencil" aria-hidden="true">edit</i>
+                      </a>
+                      <a class="btn btn-danger btn-sm" href="javascript:;" role="button">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              <div class="card-footer text-muted">
+                Footer
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
 
