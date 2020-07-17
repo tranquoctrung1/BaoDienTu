@@ -50,26 +50,47 @@
               Add New Page
             </div>
             <div class="card-body">
-              <div class="form-group">
                 <div class="row">
                   <div class="col-9">
-                    Title: &nbsp;<input id="newsTilte" name="Tilte" type="text"><br>
-                    Avatar:
-                    <div class="file-loading">
-                      <input id="avatar" name="avatar" type="file" multiple>
+                    <div class="form-group">
+                      <label for="txtNewsID">News ID: </label>
+                      <input id="txtNewsID" name="NewsID" class="form-control" type="text" readonly>
                     </div>
-                    <label for=""></label>
-                    <textarea name="FullDes" id="txtFullDes" class="form-control" cols="30" rows="10"></textarea>
+                    <div class="form-group">
+                      <label for="txtNewsTitle">Title: </label>
+                      <input id="txtNewsTitle" name="NewsTitle" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="txtAvatar">Avatar: </label>
+                      <div class="file-loading">
+                        <input id="avatar" name="avatar" type="file" multiple>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="txtAbstract">Abstract:</label>
+                      <textarea name="Abstract" id="txtAbstract" class="form-control" cols="30" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="txtContent">Content:</label>
+                      <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10"></textarea>
+                    </div>
                   </div>
                   <div class="col-3">
-                    Author: &nbsp;<br><input type="number" id="txtUserName" name="Author"><br>
-                    Date Post: &nbsp;<input type="datetime" id="txtDatePost" name="DatePost"><br>
-                    CatChild: &nbsp;<input type="number" id="txtCatChild" name="CatChild_ID"><br>
+                    <div class="form-group">
+                      <label for="txtAuthor">Author: </label>
+                      <input id="txtAuthor" name="Author" class="form-control" type="number">
+                    </div>
+                    <div class="form-group">
+                      <label for="txtDatePost">Date Post: </label>
+                      <input id="txtDatePost" name="DatePost" class="form-control" type="datetime">
+                    </div>
+                    <div class="form-group">
+                      <label for="txtCatChild">CatChild: </label>
+                      <input id="txtCatChild" name="CatChild_ID" class="form-control" type="number">
+                    </div>
                   </div>
                 </div>
                 <br>
-                {{!-- Avatar --}}
-              </div>
             </div>
             <div class="card-footer">
               <button type="submit" class="btn btn-lg btn-success btn-block">
@@ -104,7 +125,7 @@
                     <td scope="row" class="text-left">{{Abstract}}</td>
                     <td class="text-right">
                       <a class="btn btn-primary btn-sm" href="javascript:;" role="button">
-                        <i class="fa fa-pencil" aria-hidden="true">edit</i>
+                        <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                       </a>
                       <a class="btn btn-danger btn-sm" href="javascript:;" role="button">
                         <i class="fa fa-trash" aria-hidden="true"></i>

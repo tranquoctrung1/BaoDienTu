@@ -1,9 +1,29 @@
 const express = require('express');
 // const multer = require('multer');
 const router = express.Router();
+const writerModel = require("../model/writer.model");
 
 const getWriter = require("../controller/getWriter.controller");
 router.get('/', getWriter.loadWriter);
+router.post('/', getWriter.loadWriter);
+
+router.post('/', async function (req, res){
+    const entity = {
+        NewsID: req.body.NewsID,
+        NewsTitle: req.body.NewsTitle,
+        Author: req.body.Author,
+        DatePost: req.body.DatePost,
+        CatChild_ID: req.body.CatChild_ID,
+        Abstract: req.body.Abstract,
+        Content: req.body.Content,
+        Like,
+        View,
+        Status: 4,
+    }
+
+    await writerModel.addNewPost(entity);
+    res.render('wWriter/Writer');
+});
 
 // router.get('/', async function (req, res) {
 //   res.render('vwWriter/Writer');
