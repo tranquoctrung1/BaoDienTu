@@ -13,6 +13,7 @@ const app = express();
 
 // call router
 const Home = require("./router/home.route");
+const ListPost = require('./router/listPost.route');
 const News = require("./router/newsDetails.route");
 
 // call middleware
@@ -82,7 +83,7 @@ app.use(catAndSubCat.loadCatAndSubCat);
 // use router
 app.use("/", Home);
 app.use('/newsDetails', News);
-
+app.use('/list', ListPost);
 // defaul error handler
 
 // page not found

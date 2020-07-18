@@ -43,3 +43,4 @@ module.exports.loadhome = async function (req, res) {
     listMostSoonNewsLength,
   });
 };
+
