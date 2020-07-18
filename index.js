@@ -14,6 +14,7 @@ const app = express();
 // call router
 const Home = require("./router/home.route");
 const ListPost = require('./router/listPost.route');
+const News = require("./router/newsDetails.route");
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
@@ -38,7 +39,7 @@ app.engine(
         return "foo";
       },
       formatDate: function (date) {
-        return moment(date).format("DD/MM/YYYY");
+        return moment(date).format("DD/MM/YYYY HH:mm:ss");
       },
     },
   })
@@ -81,7 +82,7 @@ app.use(catAndSubCat.loadCatAndSubCat);
 
 // use router
 app.use("/", Home);
-
+app.use('/newsDetails', News);
 app.use('/list', ListPost);
 // defaul error handler
 
