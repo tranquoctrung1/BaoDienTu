@@ -14,9 +14,11 @@ Những bài viết mới nhất
 
 <main class="home-page">
 	<section class="most-view">
-		<h5 class="most-view__title"> Mới nhất </h5>
+		<h5 class="most-view__title"> Danh sách bài viết </h5>
+		{{#if topFourNewsFamousLength}}
 		<div class="container">
 			<div class="row">
+				{{#each topFourNewsFamous}}
 				<div class="section-contents ">
 					<div class="item">
 						<div class="card mb-3" >
@@ -26,74 +28,39 @@ Những bài viết mới nhất
 								</div>
 								<div class="col-md-8">
 									<div class="card-body">
-										<h5 class="card-title">Điều ít biết về những tờ báo chữ Quốc ngữ đầu tiên ở Bắc Kỳ </h5>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-										<p class="card-text">
-											Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure placeat iste
-											aperiam deserunt ratione natus odit quia, eius voluptates explicabo dolorem
-											velit beatae alias cupiditate dolore reiciendis id architecto soluta.
-										</p>
+										<h5 class="card-title">{{NewsTitle}}</h5>
+										<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small></p>
+										<p class="card-text">{{Abstract}}</p>
+										<p class="card-text">{{CatName}} - {{CatChildName}}</p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="item">
-						<div class="card mb-3">
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<p class="card-title">
-											<a href="#">Điều ít biết về những tờ báo chữ Quốc ngữ đầu tiên ở Bắc Kỳ</a>
-										</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-										<p class="card-text">
-											Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure placeat iste
-											aperiam deserunt ratione natus odit quia, eius voluptates explicabo dolorem
-											velit beatae alias cupiditate dolore reiciendis id architecto soluta.
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card mb-3" >
-							<div class="row no-gutters">
-								<div class="col-md-4">
-									<img src="/images/logo.png" class="card-img" alt="image posting">
-								</div>
-								<div class="col-md-8">
-									<div class="card-body">
-										<p class="card-title">
-											<a href="#">Điều ít biết về những tờ báo chữ Quốc ngữ đầu tiên ở Bắc Kỳ</a>
-										</p>
-										<p class="card-text"><small class="text-muted">19/06/2020</small></p>
-										<p class="card-text">
-											Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure placeat iste
-											aperiam deserunt ratione natus odit quia, eius voluptates explicabo dolorem
-											velit beatae alias cupiditate dolore reiciendis id architecto soluta.
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+				{{/each}}	
 					<div class="pagination">
 						<div class="pagination-content">
 							<a href="#">&laquo;</a>
+							<a href="#">&lt;</a>
 							<a href="#">1</a>
 							<a href="#">2</a>
-							<a href="#">3</a>
+							<a href="#">3</a>							
+							<a href="#">&gt;</a>
 							<a href="#">&raquo;</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		</div>
+		{{#else}}
+		<div>Không có dữ liệu</div>
+		{{/else}}
+		{{/if}}
 	</section>
 </main>
+
+
+
+
+
+

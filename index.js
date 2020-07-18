@@ -6,11 +6,19 @@ const sass = require("node-sass-middleware");
 const reload = require("reload");
 const session = require("express-session");
 const hbs_sections = require("express-handlebars-sections");
+const moment = require("moment");
 require("express-async-errors");
 
 const app = express();
 
 // call router
+const Home = require("./router/home.route");
+const ListPost = require('./router/listPost.route');
+
+// call middleware
+const topTenCategory = require("./middlewares/topTenCategory.middleware");
+const catAndSubCat = require("./middlewares/allCatAndSubCat.middleware");
+
 const port = 3000;
 
 app.use(express.json()); // for parsing application/json
@@ -28,6 +36,9 @@ app.engine(
       section: hbs_sections(),
       foo: function () {
         return "foo";
+      },
+      formatDate: function (date) {
+        return moment(date).format("DD/MM/YYYY");
       },
     },
   })
@@ -64,17 +75,14 @@ app.use(
 // use static file
 app.use("/", express.static(path.join(__dirname, "public")));
 
+// use middleware
+app.use(topTenCategory.loadTopTenCategory);
+app.use(catAndSubCat.loadCatAndSubCat);
+
 // use router
-// app.use('/login', login);
+app.use("/", Home);
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-//list post
-app.get("/list", (req, res) => {
-  res.render('listPost');
-});
+app.use('/list', ListPost);
 // defaul error handler
 
 // page not found
@@ -94,6 +102,6 @@ server.listen(port, () => {
   console.log(`App is running on port ${port}`);
 });
 
-reload(app).then(() => {
-  console.log("Page reloaded!");
-});
+// reload(app).then(() => {
+//   console.log("Page reloaded!");
+// });
