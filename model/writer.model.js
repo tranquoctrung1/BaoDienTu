@@ -30,4 +30,10 @@ module.exports = {
   Edit_loadCatChild: function(NewsID){
     return db.load(`SELECT cc.CatChild_ID, cc.CatChildName FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE NewsID = ${NewsID}`);
   },
+  delPost: function (id) {
+    const condition = {
+      NewsID: id
+    }
+    return db.del(TBL_NEWS, condition);
+  },
 }

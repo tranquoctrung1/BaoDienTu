@@ -62,3 +62,8 @@ module.exports.editWriter = async function (req, res) {
       Edit_LoadCatChild,
   });
 };
+
+module.exports.delPost = async function(req, res){
+  await writerModel.delPost(req.body.NewsID);
+  res.redirect('/Writer');
+}

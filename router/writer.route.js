@@ -18,5 +18,6 @@ const getWriter = require("../controller/getWriter.controller");
 router.get('/', getWriter.loadWriter);
 router.post('/', upload.single("Avatar"), getWriter.postWriter);
 router.get('/Edit/:id', getWriter.editWriter);
+router.post('/del', getWriter.delPost);
 
 module.exports = router;

@@ -49,8 +49,6 @@
   <div class="col-md-10">
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-newpost" role="tabpanel" aria-labelledby="v-pills-newpost-tab">
-        <div class="row">
-          <div class="col-11">
             <form method="post" novalidate action="" enctype="multipart/form-data">
               <div class="card">
                 <div class="card-header">
@@ -109,12 +107,8 @@
                 </div>
               </div>
             </form>
-          </div>
-        </div>
       </div>
       <div class="tab-pane fade" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab">
-        <div class="row">
-          <div class="col-11">
             <div class="card">
               <div class="card-header d-flex justify-content-between">
                 <h4>Danh sách bài đăng</h4>
@@ -125,7 +119,7 @@
                     <th scope="col" class="text-center">#</th>
                     <th scope="col">Tiêu đề</th>
                     <th scope="col">Nội dung ngắn</th>
-                    <th scope="col">&nbsp;</th>
+                    <th scope="col">Tùy chọn</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -134,13 +128,13 @@
                     <td>{{NewsID}}</td>
                     <td scope="row" class="text-left">{{NewsTitle}}</td>
                     <td scope="row" class="text-left">{{Abstract}}</td>
-                    <td class="text-right">
+                    <td scope="row" class="text-left">
                       <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
                         <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                       </a>
-                      <a class="btn btn-danger btn-sm" href="javascript:;" role="button">
+                      {{!-- <a class="btn btn-danger btn-sm" href="/Writer/del" role="button">
                         <i class="fa fa-trash" aria-hidden="true"></i>
-                      </a>
+                      </a> --}}
                     </td>
                   </tr>
                   {{/each}}
@@ -150,8 +144,6 @@
                 Footer
               </div>
             </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

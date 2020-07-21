@@ -49,9 +49,11 @@
   <div class="col-md-10">
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-editpost" role="tabpanel" aria-labelledby="v-pills-editpost-tab">
-        <div class="row">
-          <div class="col-11">
             <form method="post" novalidate action="" enctype="multipart/form-data">
+              <button type="submit" class="btn btn-danger" title="Remove News" formaction="/Writer/del">
+                <i class="fa fa-trash" aria-hidden="true"> Delete</i>
+              </button>
+              <br><br>
               <div class="card">
                 <div class="card-header">
                   <h4>Sửa bài viết</h4>
@@ -109,8 +111,6 @@
                 </div>
               </div>
             </form>
-          </div>
-        </div>
       </div>
     </div>
   </div>
