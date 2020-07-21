@@ -1,23 +1,28 @@
 {{#section 'css'}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css">
+<style>
+    .hidden{display:none;}
+</style>
 {{/section}}
 
 {{#section 'js'}}
-<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+{{!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --}}
+<script src="https://cdn.tiny.cloud/1/8jbstsesvb079hdfufswb0btf1ud4bteqgpfco77q6t8z88h/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/themes/fa/theme.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/locales/vi.min.js"></script>
-
-
 <script>
   tinymce.init({
     selector: '#txtContent',
+    content_css: '//www.tiny.cloud/css/codepen.min.css',
     height: 450,
-    plugins: 'paste image link autolink lists table media',
-    menubar: false,
+    plugins: 'paste image link autolink lists table media code responsivefilemanager',
+    menubar: true,
     toolbar: [
-      'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media',
-    ],
+      'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link media image',
+    ],  
+    images_upload_url: 'postAcceptor.php',
+    automatic_uploads: false,
   });
 </script>
 
@@ -66,11 +71,13 @@
                         </div>
                         <div class="form-group">
                           <label for="txtAbstract">Nội dung ngắn:</label>
-                          <textarea name="Abstract" id="txtAbstract" class="form-control" cols="30" rows="3"></textarea>
+                          {{!-- <textarea name="Abstract" id="txtAbstract" class="form-control" cols="30" rows="3"></textarea> --}}
+                          <input name="Abstract" id="txtAbstract" class="form-control" type="text">
                         </div>
                         <div class="form-group">
                           <label for="txtContent">Nội dung chi tiết:</label>
                           <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10"></textarea>
+
                         </div>
                       </div>
                       <div class="col-3">

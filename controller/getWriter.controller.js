@@ -24,6 +24,7 @@ module.exports.postWriter = async function (req, res) {
   // req.body.HinhDaiDien = req.file.filename;
   // console.log(req.body.Avatar);
   // console.log(req.file.filename);
+  console.log(req.body.Content);
   var today = new Date();
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
   var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
