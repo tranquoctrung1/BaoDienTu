@@ -20,5 +20,14 @@ module.exports = {
   },
   loadCatChild: function(){
     return db.load(`SELECT * FROM ${TBL_SUBCATEGORY}`);
-  }
+  },
+  Edit_loadNews: function(NewsID){
+    return db.load(`SELECT * FROM ${TBL_NEWS} WHERE NewsID = ${NewsID}`);
+  },
+  Edit_loadAuthor: function(NewsID){
+    return db.load(`SELECT u.UserID, u.Name FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID WHERE n.NewsID = ${NewsID}`)
+  },
+  Edit_loadCatChild: function(NewsID){
+    return db.load(`SELECT cc.CatChild_ID, cc.CatChildName FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE NewsID = ${NewsID}`);
+  },
 }

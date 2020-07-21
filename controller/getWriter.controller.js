@@ -48,3 +48,17 @@ module.exports.postWriter = async function (req, res) {
 
   res.redirect("/Writer");
 }
+
+module.exports.editWriter = async function (req, res) {
+  const id = req.params.id;
+
+  const LoadEditNews = await writerModel.Edit_loadNews(id);
+  const Edit_LoadAuthor = await writerModel.Edit_loadAuthor(id);
+  const Edit_LoadCatChild = await writerModel.Edit_loadCatChild(id);
+
+    res.render("vwWriter/Edit", {
+      LoadEditNews,
+      Edit_LoadAuthor,
+      Edit_LoadCatChild,
+  });
+};

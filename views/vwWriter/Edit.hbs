@@ -42,26 +42,27 @@
   <br>
   <div class="col-md-2">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-newpost-tab" data-toggle="pill" href="#v-pills-newpost" role="tab" aria-controls="v-pills-newpost" aria-selected="true">Viết bài mới</a>
-      <a class="nav-link" id="v-pills-listpost-tab" data-toggle="pill" href="#v-pills-listpost" role="tab" aria-controls="v-pills-listpost" aria-selected="false">Danh sách bài viết</a>
+      <a class="nav-link active" id="v-pills-editpost-tab" data-toggle="pill" href="#v-pills-editpost" role="tab" aria-controls="v-pills-editpost" aria-selected="true">Sửa bài viết</a>
     </div>
   </div>
+  
   <div class="col-md-10">
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-newpost" role="tabpanel" aria-labelledby="v-pills-newpost-tab">
+      <div class="tab-pane fade show active" id="v-pills-editpost" role="tabpanel" aria-labelledby="v-pills-editpost-tab">
         <div class="row">
           <div class="col-11">
             <form method="post" novalidate action="" enctype="multipart/form-data">
               <div class="card">
                 <div class="card-header">
-                  <h4>Thêm bài mới</h4>
+                  <h4>Sửa bài viết</h4>
                 </div>
                 <div class="card-body">
                     <div class="row">
                       <div class="col-9">
+                        {{#each LoadEditNews}}
                         <div class="form-group">
                           <label for="txtNewsTitle">Tiêu đề: </label>
-                          <input id="txtNewsTitle" name="NewsTitle" class="form-control" type="text">
+                          <input id="txtNewsTitle" name="NewsTitle" class="form-control" type="text" value="{{NewsTitle}}">
                         </div>
                         <div class="form-group">
                           <label for="txtAvatar">Ảnh đại diện bài viết: </label>
@@ -72,27 +73,26 @@
                         <div class="form-group">
                           <label for="txtAbstract">Nội dung ngắn:</label>
                           {{!-- <textarea name="Abstract" id="txtAbstract" class="form-control" cols="30" rows="3"></textarea> --}}
-                          <input name="Abstract" id="txtAbstract" class="form-control" type="text">
+                          <input name="Abstract" id="txtAbstract" class="form-control" type="text" value="{{Abstract}}">
                         </div>
                         <div class="form-group">
                           <label for="txtContent">Nội dung chi tiết:</label>
-                          <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10"></textarea>
-
+                          <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10" aria-valuemax="{{{Content}}}"></textarea>
                         </div>
+                        {{/each}}
                       </div>
                       <div class="col-3">
                         <div class="form-group">
                           <label for="txtAuthor">Tác giả: </label>
-                          <select class="custom-select" id="txtAuthor" name="Author">
-                            {{#each LoadAuthor}}
-                            <option value="{{UserID}}">{{UserName}}</option>
-                            {{/each}}
-                          </select>
+                          {{#each Edit_LoadAuthor}}
+                            <input id="txtAuthor" name="Author" class="form-control" type="text" value="{{Name}}" readonly>
+                          {{/each}}
                         </div>
                         <div class="form-group">
                           <label for="txtCatChild">Chuyên mục con: </label>
                           <select class="custom-select" id="txtCatChild" name="CatChild_ID">
-                            {{#each LoadCatChild}}
+                            {{!-- <option selected>Open this select menu</option> --}}
+                            {{#each Edit_LoadCatChild}}
                             <option value="{{CatChild_ID}}">{{CatChildName}}</option>
                             {{/each}}
                           </select>
@@ -104,52 +104,11 @@
                 <div class="card-footer">
                   <button type="submit" class="btn btn-lg btn-success btn-block">
                     <i class="fa fa-check" aria-hidden="true"></i>
-                    Đăng ngay
+                    Cập nhật
                   </button>
                 </div>
               </div>
             </form>
-          </div>
-        </div>
-      </div>
-      <div class="tab-pane fade" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab">
-        <div class="row">
-          <div class="col-11">
-            <div class="card">
-              <div class="card-header d-flex justify-content-between">
-                <h4>Danh sách bài đăng</h4>
-              </div>
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col" class="text-center">#</th>
-                    <th scope="col">Tiêu đề</th>
-                    <th scope="col">Nội dung ngắn</th>
-                    <th scope="col">&nbsp;</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each LoadListPost}}
-                  <tr>
-                    <td>{{NewsID}}</td>
-                    <td scope="row" class="text-left">{{NewsTitle}}</td>
-                    <td scope="row" class="text-left">{{Abstract}}</td>
-                    <td class="text-right">
-                      <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
-                        <i class="fa fa-pencil-alt" aria-hidden="true"></i>
-                      </a>
-                      <a class="btn btn-danger btn-sm" href="javascript:;" role="button">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-              <div class="card-footer text-muted">
-                Footer
-              </div>
-            </div>
           </div>
         </div>
       </div>
