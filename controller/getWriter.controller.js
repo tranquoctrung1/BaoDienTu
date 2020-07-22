@@ -50,20 +50,29 @@ module.exports.postWriter = async function (req, res) {
 }
 
 module.exports.editWriter = async function (req, res) {
-  const id = req.params.id;
+  const id = +req.params.id || -1;
 
   const LoadEditNews = await writerModel.Edit_loadNews(id);
-  const Edit_LoadAuthor = await writerModel.Edit_loadAuthor(id);
-  const Edit_LoadCatChild = await writerModel.Edit_loadCatChild(id);
+  const news = LoadEditNews[0];
 
+  // const Edit_LoadAuthor = await writerModel.Edit_loadAuthor(id);
+  const Edit_LoadCatChild = await writerModel.loadCatChild();
+  
     res.render("vwWriter/Edit", {
-      LoadEditNews,
-      Edit_LoadAuthor,
+      // LoadEditNews,
+      news,
+      // Edit_LoadAuthor,
       Edit_LoadCatChild,
   });
 };
 
-module.exports.delPost = async function(req, res){
-  await writerModel.delPost(req.body.NewsID);
-  res.redirect('/Writer');
+module.exports.DelPost = async function(req, res){
+  const DelPost = await writerModel.del(req.body.NewsID);
+  console.log(req.params.NewsID);
+  res.redirect("/Writer");
+}
+
+module.exports.UpdatePost = async function(req, res){
+  const DelPost = await writerModel.patch(req.body);
+  res.redirect("/Writer");
 }

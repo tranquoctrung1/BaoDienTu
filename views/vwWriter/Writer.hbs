@@ -42,13 +42,13 @@
   <br>
   <div class="col-md-2">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-newpost-tab" data-toggle="pill" href="#v-pills-newpost" role="tab" aria-controls="v-pills-newpost" aria-selected="true">Viết bài mới</a>
-      <a class="nav-link" id="v-pills-listpost-tab" data-toggle="pill" href="#v-pills-listpost" role="tab" aria-controls="v-pills-listpost" aria-selected="false">Danh sách bài viết</a>
+      <a class="nav-link active" id="v-pills-listpost-tab" data-toggle="pill" href="#v-pills-listpost" role="tab" aria-controls="v-pills-listpost" aria-selected="false">Danh sách bài viết</a>
+      <a class="nav-link" id="v-pills-newpost-tab" data-toggle="pill" href="#v-pills-newpost" role="tab" aria-controls="v-pills-newpost" aria-selected="true">Viết bài mới</a>
     </div>
   </div>
   <div class="col-md-10">
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-newpost" role="tabpanel" aria-labelledby="v-pills-newpost-tab">
+      <div class="tab-pane fade" id="v-pills-newpost" role="tabpanel" aria-labelledby="v-pills-newpost-tab">
             <form method="post" novalidate action="" enctype="multipart/form-data">
               <div class="card">
                 <div class="card-header">
@@ -108,7 +108,9 @@
               </div>
             </form>
       </div>
-      <div class="tab-pane fade" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab">
+      <div class="tab-pane fade show active" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab">
+          <form method="POST">
+
             <div class="card">
               <div class="card-header d-flex justify-content-between">
                 <h4>Danh sách bài đăng</h4>
@@ -117,21 +119,22 @@
                 <thead>
                   <tr>
                     <th scope="col" class="text-center">#</th>
-                    <th scope="col">Tiêu đề</th>
-                    <th scope="col">Nội dung ngắn</th>
-                    <th scope="col">Tùy chọn</th>
+                    <th scope="col" class="text-center">Tiêu đề</th>
+                    <th scope="col" class="text-center">Nội dung ngắn</th>
+                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  {{#each LoadListPost}}
+                  {{#each this.LoadListPost}}
                   <tr>
-                    <td>{{NewsID}}</td>
-                    <td scope="row" class="text-left">{{NewsTitle}}</td>
-                    <td scope="row" class="text-left">{{Abstract}}</td>
-                    <td scope="row" class="text-left">
+                    <th scope="row">{{NewsID}}</th>
+                    <td>{{NewsTitle}}</td>
+                    <td>{{Abstract}}</td>
+                    <td>
                       <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
                         <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                       </a>
+
                       {{!-- <a class="btn btn-danger btn-sm" href="/Writer/del" role="button">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                       </a> --}}
@@ -144,6 +147,7 @@
                 Footer
               </div>
             </div>
+          </form>
       </div>
     </div>
   </div>

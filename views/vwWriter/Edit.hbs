@@ -49,11 +49,8 @@
   <div class="col-md-10">
     <div class="tab-content" id="v-pills-tabContent">
       <div class="tab-pane fade show active" id="v-pills-editpost" role="tabpanel" aria-labelledby="v-pills-editpost-tab">
-            <form method="post" novalidate action="" enctype="multipart/form-data">
-              <button type="submit" class="btn btn-danger" title="Remove News" formaction="/Writer/del">
-                <i class="fa fa-trash" aria-hidden="true"> Delete</i>
-              </button>
-              <br><br>
+            {{!-- <form method="post" novalidate enctype="multipart/form-data"> --}}
+            <form method="post">
               <div class="card">
                 <div class="card-header">
                   <h4>Sửa bài viết</h4>
@@ -61,39 +58,39 @@
                 <div class="card-body">
                     <div class="row">
                       <div class="col-9">
-                        {{#each LoadEditNews}}
                         <div class="form-group">
-                          <label for="txtNewsTitle">Tiêu đề: </label>
-                          <input id="txtNewsTitle" name="NewsTitle" class="form-control" type="text" value="{{NewsTitle}}">
+                          <label for="txtNewsID">NewsID: </label>
+                          <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}" readonly>
                         </div>
                         <div class="form-group">
+                          <label for="txtNewsTitle">Tiêu đề: </label>
+                          <input id="txtNewsTitle" name="NewsTitle" class="form-control" type="text" value="{{this.news.NewsTitle}}">
+                        </div>
+                        {{!-- <div class="form-group">
                           <label for="txtAvatar">Ảnh đại diện bài viết: </label>
                           <div class="file-loading">
                             <input id="avatar" name="Avatar" type="file" multiple>
                           </div>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                           <label for="txtAbstract">Nội dung ngắn:</label>
                           {{!-- <textarea name="Abstract" id="txtAbstract" class="form-control" cols="30" rows="3"></textarea> --}}
-                          <input name="Abstract" id="txtAbstract" class="form-control" type="text" value="{{Abstract}}">
+                          <input name="Abstract" id="txtAbstract" class="form-control" type="text" value="{{this.news.Abstract}}">
                         </div>
                         <div class="form-group">
                           <label for="txtContent">Nội dung chi tiết:</label>
-                          <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10" aria-valuemax="{{{Content}}}"></textarea>
+                          <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10" aria-valuemax="{{{this.news.Content}}}"></textarea>
                         </div>
-                        {{/each}}
                       </div>
                       <div class="col-3">
                         <div class="form-group">
                           <label for="txtAuthor">Tác giả: </label>
-                          {{#each Edit_LoadAuthor}}
-                            <input id="txtAuthor" name="Author" class="form-control" type="text" value="{{Name}}" readonly>
-                          {{/each}}
+                            <input id="txtAuthor" class="form-control" type="text" value="{{this.news.Name}}" readonly>
                         </div>
                         <div class="form-group">
                           <label for="txtCatChild">Chuyên mục con: </label>
                           <select class="custom-select" id="txtCatChild" name="CatChild_ID">
-                            {{!-- <option selected>Open this select menu</option> --}}
+                            <option selected value="{{this.news.CatChild_ID}}">{{this.news.CatChildName}}</option>
                             {{#each Edit_LoadCatChild}}
                             <option value="{{CatChild_ID}}">{{CatChildName}}</option>
                             {{/each}}
@@ -104,9 +101,17 @@
                     <br>
                 </div>
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-lg btn-success btn-block">
+                  <a class="btn btn-primary" href="/Writer" role="button" title="Back to List">
+                    <i class="fa fa-backward" aria-hidden="true"></i>
+                    Quay trở lại
+                  </a>
+                  <button type="submit" class="btn btn-success " formaction="/Writer/update">
                     <i class="fa fa-check" aria-hidden="true"></i>
                     Cập nhật
+                  </button>
+                  <button type="submit" class="btn btn-danger" title="Remove News" formaction="/Writer/del">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    Xóa bài viết
                   </button>
                 </div>
               </div>
