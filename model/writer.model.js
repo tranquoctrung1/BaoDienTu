@@ -56,4 +56,16 @@ module.exports = {
   addTag: function(entity){
     return db.add(TBL_TAG_OF_NEWS, entity);
   },
+  daduocduyetvachoxuatban: function(){
+    return db.load(`SELECT * FROM ${TBL_NEWS} wHERE Status = 1`)
+  },
+  daxuatban: function(){
+    return db.load(`SELECT * FROM ${TBL_NEWS} wHERE Status = 2`)
+  },
+  bituchoi: function(){
+    return db.load(`SELECT * FROM ${TBL_NEWS} wHERE Status = 3`)
+  },
+  chuaduocduyet: function(){
+    return db.load(`SELECT * FROM ${TBL_NEWS} wHERE Status = 4`)
+  },
 }

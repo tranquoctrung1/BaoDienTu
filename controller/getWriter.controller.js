@@ -10,11 +10,19 @@ module.exports.loadWriter = async function (req, res) {
   
   const LoadAuthor = await writerModel.loadAuthor();
   const LoadCatChild = await writerModel.loadCatChild();
+  const daduocduyetvachoxuatban = await writerModel.daduocduyetvachoxuatban();
+  const daxuatban = await writerModel.daxuatban();
+  const bituchoi = await writerModel.bituchoi();
+  const chuaduocduyet = await writerModel.chuaduocduyet();
 
     res.render("vwWriter/Writer", {
     LoadListPost,
     LoadAuthor,
     LoadCatChild,
+    daduocduyetvachoxuatban,
+    daxuatban,
+    bituchoi,
+    chuaduocduyet,
   });
   // res.redirect('/');
 };
