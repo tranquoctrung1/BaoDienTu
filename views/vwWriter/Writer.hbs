@@ -26,6 +26,8 @@
   });
 </script>
 
+
+
 <script>
   $('#avatar').fileinput({
     theme: 'fa',
@@ -48,6 +50,7 @@
   </div>
   <div class="col-md-10">
     <div class="tab-content" id="v-pills-tabContent">
+      {{!-- <div class="tab-pane fade show active" id="v-pills-newpost" role="tabpanel" aria-labelledby="v-pills-newpost-tab"> --}}
       <div class="tab-pane fade" id="v-pills-newpost" role="tabpanel" aria-labelledby="v-pills-newpost-tab">
             <form method="post" novalidate action="" enctype="multipart/form-data">
               <div class="card">
@@ -75,8 +78,11 @@
                         <div class="form-group">
                           <label for="txtContent">Nội dung chi tiết:</label>
                           <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10"></textarea>
-
                         </div>
+                        {{!-- <div class="form-group">
+                          <label for="txtTag">Gắn nhãn:</label>
+                          <input name="TagID" id="txtTag" class="form-control" type="text">
+                        </div> --}}
                       </div>
                       <div class="col-3">
                         <div class="form-group">
@@ -108,9 +114,9 @@
               </div>
             </form>
       </div>
+      {{!-- <div class="tab-pane fade" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab"> --}}
       <div class="tab-pane fade show active" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab">
           <form method="POST">
-
             <div class="card">
               <div class="card-header d-flex justify-content-between">
                 <h4>Danh sách bài đăng</h4>
@@ -121,7 +127,9 @@
                     <th scope="col" class="text-center">#</th>
                     <th scope="col" class="text-center">Tiêu đề</th>
                     <th scope="col" class="text-center">Nội dung ngắn</th>
-                    <th scope="col"></th>
+                    <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Premium</th>
+                    <th scope="col">Tùy chỉnh</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -130,14 +138,15 @@
                     <th scope="row">{{NewsID}}</th>
                     <td>{{NewsTitle}}</td>
                     <td>{{Abstract}}</td>
+                    <td>{{formatDate DatePost}}</td>
+                    <td>{{IsPremium}}</td>
                     <td>
                       <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
                         <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                       </a>
-
-                      {{!-- <a class="btn btn-danger btn-sm" href="/Writer/del" role="button">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                      </a> --}}
+                      <a class="btn btn-success btn-sm" href="/Writer/AddTag/{{NewsID}}" role="button">
+                        Thêm <i class="fa fa-tags" aria-hidden="true"></i>
+                      </a>
                     </td>
                   </tr>
                   {{/each}}

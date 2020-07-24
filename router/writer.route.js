@@ -20,5 +20,7 @@ router.post('/', upload.single("Avatar"), getWriter.postWriter);
 router.get('/Edit/:id', getWriter.editWriter);
 router.post('/del', getWriter.DelPost);
 router.post('/update', getWriter.UpdatePost);
+router.get('/AddTag/:id', getWriter.LoadAddTag);
+router.post('/addtag', getWriter.addTag);
 
 module.exports = router;

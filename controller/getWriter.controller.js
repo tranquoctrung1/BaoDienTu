@@ -1,5 +1,6 @@
 const writerModel = require("../model/writer.model");
 const multer = require('multer');
+const { loadTag } = require("../model/writer.model");
 
 module.exports.loadWriter = async function (req, res) {
   // const id = req.params.id;
@@ -24,11 +25,12 @@ module.exports.postWriter = async function (req, res) {
   // req.body.HinhDaiDien = req.file.filename;
   // console.log(req.body.Avatar);
   // console.log(req.file.filename);
-  console.log(req.body.Content);
+  // console.log(req.body.Content);
   var today = new Date();
   var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
   var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
   var dateTime = date+" "+time;
+
   const entity = {
     NewsID: req.body.NewsID,
     NewsTitle: req.body.NewsTitle,
@@ -44,6 +46,7 @@ module.exports.postWriter = async function (req, res) {
     IsPremium: 0,
     IsDel: 0,
   }
+  console.log(entity);
   const NewPost = await writerModel.addNewPost(entity);
 
   res.redirect("/Writer");
@@ -75,4 +78,36 @@ module.exports.DelPost = async function(req, res){
 module.exports.UpdatePost = async function(req, res){
   const DelPost = await writerModel.patch(req.body);
   res.redirect("/Writer");
+}
+
+module.exports.LoadAddTag = async function(req, res){
+  const id = +req.params.id || -1;
+
+  const LoadNews = await writerModel.loadNews(id);
+  const news = LoadNews[0];
+
+  const TagOfNews = await writerModel.loadTagNews(id);
+  const LoadTag = await loadTag();
+
+      res.render("vwWriter/AddTag", {
+      news,
+      TagOfNews,
+      LoadTag,
+
+  });
+
+}
+
+module.exports.addTag = async function(req, res){
+  const entity = {
+    NewsID: req.body.NewsID,
+    TagID: req.body.TagID,
+  }
+
+  console.log(entity);
+  const AddTag = await writerModel.addTag(entity);
+  var url = "/Writer/AddTag/" + req.body.NewsID;
+  console.log(url);
+
+  res.redirect(url);
 }

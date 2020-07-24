@@ -4,8 +4,8 @@ const db = require("../utils/db");
 const TBL_SUBCATEGORY = "category_child";
 const TBL_NEWS = "news";
 // const TBL_COMMENT = "comment";
-// const TBL_TAG_OF_NEWS = "tag_of_news";
-// const TBL_TAG = "tag";
+const TBL_TAG_OF_NEWS = "tag_of_news";
+const TBL_TAG = "tag";
 const TBL_USER = "user";
 
 module.exports = {
@@ -43,5 +43,17 @@ module.exports = {
     }
     delete entity.NewsID;
     return db.patch(TBL_NEWS, entity, condition);
+  },
+  loadNews: function(NewsID){
+    return db.load(`SELECT * FROM ${TBL_NEWS} wHERE NewsID = ${NewsID}`);
+  },
+  loadTagNews: function(NewsId){
+    return db.load(`SELECT t.TagName FROM ${TBL_TAG_OF_NEWS} ton INNER JOIN ${TBL_TAG} t on ton.tagID = t.tagID WHERE ton.NewsID = ${NewsId}`)
+  },
+  loadTag: function(){
+    return db.load(`SELECT * FROM ${TBL_TAG}`);
+  },
+  addTag: function(entity){
+    return db.add(TBL_TAG_OF_NEWS, entity);
   },
 }
