@@ -309,3 +309,7 @@ footer {
       font-size: 20px; }
       footer .container .col-md-4 a:hover {
         color: #444; }
+
+.List_avatar {
+  width: 70px;
+  height: 70px; }

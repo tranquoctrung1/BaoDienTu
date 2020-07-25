@@ -15,6 +15,7 @@ const app = express();
 const Home = require("./router/home.route");
 const ListPost = require('./router/listPost.route');
 const News = require("./router/newsDetails.route");
+const Writer = require("./router/writer.route");
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
@@ -83,7 +84,15 @@ app.use(catAndSubCat.loadCatAndSubCat);
 // use router
 app.use("/", Home);
 app.use('/newsDetails', News);
+
+app.use('/Writer', Writer);
+
+// app.get('/Writer', function (req, res){
+//   res.render('vwWriter/Writer.hbs');
+// })
+
 app.use('/list', ListPost);
+
 // defaul error handler
 
 // page not found
