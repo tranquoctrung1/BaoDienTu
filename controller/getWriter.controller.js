@@ -7,6 +7,7 @@ module.exports.loadWriter = async function (req, res) {
 
   const LoadListPost = await writerModel.loadListPost();
   console.log(req.body)
+  // const loadTagNews = await writerModel.loadTagNews(req.body.NewsID);
   
   const LoadAuthor = await writerModel.loadAuthor();
   const LoadCatChild = await writerModel.loadCatChild();

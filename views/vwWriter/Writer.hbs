@@ -129,9 +129,10 @@
                       <table class="table table-hover">
                         <thead>
                           <tr>
+                            <th scope="col" class="text-center" hidden>NewsID</th>
                             <th scope="col" class="text-center">Avatar</th>
                             <th scope="col" class="text-center">Tiêu đề</th>
-                            <th scope="col" class="text-center">Danh sách nhãn</th>
+                            {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                             <th scope="col" class="text-center">Ngày đăng</th>
                             <th scope="col" class="text-center">Nội dung tóm tắt</th>
                             <th scope="col">Tùy chỉnh</th>
@@ -140,9 +141,14 @@
                         <tbody>
                           {{#each this.LoadListPost}}
                           <tr>
+                            <td hidden>
+                              <input id="txtNewsID" class="form-control" type="text" value="{{NewsID}}" readonly>
+                            </td>
                             <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
                             <td>{{NewsTitle}}</td>
-                            <td>DsNhãn</td>
+                            {{!-- <td>
+                              TagName
+                            </td> --}}
                             <td>{{formatDate DatePost}}</td>
                             <td>{{Abstract}}</td>
                             <td>
@@ -158,7 +164,6 @@
                         </tbody>
                       </table>
                 <div class="card-footer text-muted">
-                  
                 </div>
               </div>
             </form>
@@ -174,10 +179,10 @@
                     <tr>
                       <th scope="col" class="text-center">Avatar</th>
                       <th scope="col" class="text-center">Tiêu đề</th>
-                      <th scope="col" class="text-center">Danh sách nhãn</th>
+                      {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                       <th scope="col" class="text-center">Ngày đăng</th>
                       <th scope="col" class="text-center">Nội dung tóm tắt</th>
-                      <th scope="col">Tùy chỉnh</th>
+                      <th scope="col" hidden>Tùy chỉnh</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -185,10 +190,10 @@
                     <tr>
                       <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
                       <td>{{NewsTitle}}</td>
-                      <td>DsNhãn</td>
+                      {{!-- <td>DsNhãn</td> --}}
                       <td>{{formatDate DatePost}}</td>
                       <td>{{Abstract}}</td>
-                      <td>
+                      <td hidden>
                         <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
                           <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                         </a>
@@ -217,10 +222,10 @@
                     <tr>
                       <th scope="col" class="text-center">Avatar</th>
                       <th scope="col" class="text-center">Tiêu đề</th>
-                      <th scope="col" class="text-center">Danh sách nhãn</th>
+                      {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                       <th scope="col" class="text-center">Ngày đăng</th>
                       <th scope="col" class="text-center">Nội dung tóm tắt</th>
-                      <th scope="col">Tùy chỉnh</th>
+                      <th scope="col" hidden>Tùy chỉnh</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -228,10 +233,10 @@
                     <tr>
                       <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
                       <td>{{NewsTitle}}</td>
-                      <td>DsNhãn</td>
+                      {{!-- <td>DsNhãn</td> --}}
                       <td>{{formatDate DatePost}}</td>
                       <td>{{Abstract}}</td>
-                      <td>
+                      <td hidden>
                         <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
                           <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                         </a>
@@ -260,7 +265,7 @@
                     <tr>
                       <th scope="col" class="text-center">Avatar</th>
                       <th scope="col" class="text-center">Tiêu đề</th>
-                      <th scope="col" class="text-center">Danh sách nhãn</th>
+                      {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                       <th scope="col" class="text-center">Ngày đăng</th>
                       <th scope="col" class="text-center">Nội dung tóm tắt</th>
                       <th scope="col">Tùy chỉnh</th>
@@ -271,7 +276,7 @@
                     <tr>
                       <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
                       <td>{{NewsTitle}}</td>
-                      <td>DsNhãn</td>
+                      {{!-- <td>DsNhãn</td> --}}
                       <td>{{formatDate DatePost}}</td>
                       <td>{{Abstract}}</td>
                       <td>
@@ -303,7 +308,7 @@
                     <tr>
                       <th scope="col" class="text-center">Avatar</th>
                       <th scope="col" class="text-center">Tiêu đề</th>
-                      <th scope="col" class="text-center">Danh sách nhãn</th>
+                      {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                       <th scope="col" class="text-center">Ngày đăng</th>
                       <th scope="col" class="text-center">Nội dung tóm tắt</th>
                       <th scope="col">Tùy chỉnh</th>
@@ -314,7 +319,7 @@
                     <tr>
                       <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
                       <td>{{NewsTitle}}</td>
-                      <td>DsNhãn</td>
+                      {{!-- <td>DsNhãn</td> --}}
                       <td>{{formatDate DatePost}}</td>
                       <td>{{Abstract}}</td>
                       <td>
@@ -335,7 +340,6 @@
               </div>
             </form>
         </div>
-
       </div>
     </div>
   </div>

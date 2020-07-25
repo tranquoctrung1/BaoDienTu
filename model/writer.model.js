@@ -11,6 +11,7 @@ const TBL_USER = "user";
 module.exports = {
   loadListPost: function() {
     return db.load(`SELECT * FROM ${TBL_NEWS}`);
+    // return db.load(`SELECT * FROM ${TBL_NEWS} n JOIN ${TBL_TAG_OF_NEWS} ton ON n.NewsID = ton.NewsID JOIN ${TBL_TAG} t ON ton.TagID = t.TagID`);
   },
   addNewPost: function(entity){
     return db.add(TBL_NEWS, entity);
