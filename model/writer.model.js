@@ -68,4 +68,11 @@ module.exports = {
   chuaduocduyet: function(){
     return db.load(`SELECT * FROM ${TBL_NEWS} wHERE Status = 4`)
   },
+  updateAvatar: function(entity){
+    const condition = {
+      NewsID: entity.NewsID
+    }
+    delete entity.NewsID;
+    return db.patch(TBL_NEWS, entity, condition);
+  },
 }

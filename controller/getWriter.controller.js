@@ -84,8 +84,20 @@ module.exports.DelPost = async function(req, res){
 }
 
 module.exports.UpdatePost = async function(req, res){
-  const DelPost = await writerModel.patch(req.body);
-  res.redirect("/Writer");
+  await writerModel.patch(req.body);
+   res.redirect("/Writer");
+}
+
+module.exports.updateAvatar = async function(req, res){
+  console.log(req.body);
+  const entity = {
+    NewsID: req.body.NewsID,
+    Avatar: req.file.filename,
+  }
+  console.log(entity);
+  await writerModel.updateAvatar(entity);
+  var url = "/Writer/Edit/" + req.body.NewsID;
+  res.redirect(url);
 }
 
 module.exports.LoadAddTag = async function(req, res){
