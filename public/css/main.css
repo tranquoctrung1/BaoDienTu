@@ -103,8 +103,44 @@
       .home-page .top-ten .container .row .card:hover .card-title {
         color: red; }
 
-.f {
-  font-size: 20px; }
+.home-page .most-view .container {
+  position: relative; }
+  .home-page .most-view .container .row .item .card {
+    margin: 10px;
+    border: 0;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    transition: all .5s ease-in-out; }
+    .home-page .most-view .container .row .item .card .card-img {
+      width: 100%;
+      height: 100%; }
+    .home-page .most-view .container .row .item .card .card-title {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 20px;
+      transition: all .5s ease-in-out; }
+    .home-page .most-view .container .row .item .card .card-text {
+      font-size: 15px; }
+    .home-page .most-view .container .row .item .card:hover {
+      box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
+      .home-page .most-view .container .row .item .card:hover .card-title {
+        color: red; }
+
+.home-page .pagination {
+  width: 400px;
+  text-alight: center;
+  margin: auto; }
+  .home-page .pagination .pagination-content {
+    width: 400px;
+    margin-left: 50px; }
+    .home-page .pagination .pagination-content a {
+      display: block;
+      color: maroon;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s; }
+      .home-page .pagination .pagination-content a:hover {
+        background-color: #ddd; }
 
 .avatar {
   width: 120px;
