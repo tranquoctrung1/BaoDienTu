@@ -15,3 +15,16 @@ module.exports.loadNewsDetails = async function (req, res) {
     FiveRelatedPosts,
   });
 };
+
+module.exports.patch = async function(req, res){
+  const entity = {
+    NewsID: req.body.NewsID,
+    Like: parseInt(req.body.Like) + 1,
+  }
+  // console.log(entity);
+  await newsModel.patch(entity);
+  var url = "/newsDetails/" + req.body.NewsID;
+  // console.log(url);
+
+  res.redirect(url);
+}

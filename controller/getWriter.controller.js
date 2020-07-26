@@ -126,7 +126,7 @@ module.exports.addTag = async function(req, res){
   }
 
   console.log(entity);
-  const AddTag = await writerModel.addTag(entity);
+  await writerModel.addTag(entity);
   var url = "/Writer/AddTag/" + req.body.NewsID;
   console.log(url);
 
