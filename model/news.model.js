@@ -70,5 +70,5 @@ module.exports = {
     }
     delete entity.NewsID;
     return db.patch(TBL_NEWS, entity, condition);
-  }
+  },
 }

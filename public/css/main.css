@@ -190,6 +190,12 @@
     text-align: center;
     background: #b2bec3; }
 
+.container .row .col-md-9 img {
+  width: 100%; }
+
+.container .row .col-md-9 .content {
+  font-size: 14px; }
+
 header .navbar {
   padding: 0 10px; }
   header .navbar a.nav-link {

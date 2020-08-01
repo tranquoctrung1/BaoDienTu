@@ -7,15 +7,28 @@ module.exports.loadNewsDetails = async function (req, res) {
   const TagOfNews = await newsModel.loadTagNews(id);
   const CmtNews = await newsModel.loadCmt(id);
   const FiveRelatedPosts = await newsModel.loadFiveRelatedPosts(id, 5);
+ 
+  var Views = NewsDetails[0].View + 1;
+  console.log(Views);
 
+  const entity = {
+    NewsID: id,
+    View: Views,
+    // View: req.body.View + 1,
+  }
+  console.log(entity);
+  const PlusView = await newsModel.patch(entity);
+ 
   res.render("vwNews/NewsDetails", {
     NewsDetails,
     TagOfNews,
     CmtNews,
     FiveRelatedPosts,
+    PlusView,
   });
 };
 
+//Xử lý nút Like
 module.exports.patch = async function(req, res){
   const entity = {
     NewsID: req.body.NewsID,
