@@ -1,63 +1,67 @@
 <div class="container">
     <br>
     <div class="row">
-        <div class="col-md-9">
-            {{#each NewsDetails}}
-                <h1>{{NewsTitle}}</h1>
-                <b>Tác giả: {{Name}}</b>&nbsp;&nbsp;<a>|&nbsp;{{formatDate DatePost}}</a><br>
-                <b>
-                    Lượt xem <i class="fa fa-eye" aria-hidden="true"> {{View}} -</i>&ensp;Lượt thích <i class="far fa-thumbs-up"> {{Like}}</i>
-                </b>
-                <div class="abstract">
-                    <br>
-                    <b>{{Abstract}}</b>
-                </div>
-                <div class="content">
-                    <p>{{{Content}}}
-                    </p>
-                </div>
-            {{/each}}
-                <button type="submit" class="btn btn-primary mb-md-3">
-                    <i class="fas fa-thumbs-up"></i>
-                    Like
-                </button>
-                <div>
-                    <i class="fas fa-tags"></i>
-                    {{#each TagOfNews}}
-                    <span class="d-inline p-2 bg-secondary text-white rounded-pill">{{TagName}}</span>
-                    {{/each}}
-                </div>
-                <div class="card text-left mt-md-3 mb-md-3">
-                    <div class="card-header">
-                        Comment:
+            <div class="col-md-9">
+                    <form method="POST">
+                {{#each NewsDetails}}
+                    <input id="txtNewsID" name="NewsID" value="{{NewsID}}" hidden>
+                    <input id="txtLike" name="Like" value="{{Like}}" hidden>
+                    <input id="txtView" name="View" value="{{View}}" hidden>
+                    <h1>{{NewsTitle}}</h1>
+                    <b>Tác giả: {{Name}}</b>&nbsp;&nbsp;<a>|&nbsp;{{formatDate DatePost}}</a><br>
+                    <b>
+                        Lượt xem <i class="fa fa-eye" aria-hidden="true"> {{View}} -</i>&ensp;Lượt thích <i class="far fa-thumbs-up"> {{Like}} </i>
+                    </b>
+                    <div class="abstract">
+                        <br>
+                        <b>{{Abstract}}</b>
                     </div>
-                    <div class="form-group col px-md-5 mt-md-3 mb-md-3">
-                        <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
-                        <button type="submit" class="btn btn-success mt-md-3">
-                            Send
-                            <i class="fa fa-plane" aria-hidden="true"></i>
-                        </button>
+                    <div class="content">
+                        <p>{{{Content}}}
+                        </p>
                     </div>
-                    <img class="card-img-top" src="holder.js/100px180/" alt="">
-                    {{#each CmtNews}}
-                    <div class="col px-md-5 mb-md-3">
-                        <div class="p-3 border">
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <img src="/images/lion.jpg" class="img-thumbnail">
-                                </div>
-                                <div class="col-sm-10">
-                                    <h5 class="card-name" id="username" name="username">{{UserName}}</h5>
-                                    <p class="card-text" id="txtComment" name="txtComment">{{content}}</p>
-                                    <p class="text-secondary">{{DateTime}}</span>
+                    <button type="submit" class="btn btn-primary mb-md-3" formaction="/newsDetails/like">
+                        <i class="fas fa-thumbs-up"></i>
+                        Like
+                    </button>
+                {{/each}}
+                    </form>
+                    <div>
+                        <i class="fas fa-tags"></i>
+                        {{#each TagOfNews}}
+                        <a href="#" class="tag">{{TagName}}</a>
+                        {{/each}}
+                    </div>
+                    <div class="card text-left mt-md-3 mb-md-3">
+                        <div class="card-header">
+                            Comment:
+                        </div>
+                        <div class="form-group col px-md-5 mt-md-3 mb-md-3">
+                            <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
+                            <button type="submit" class="btn btn-success mt-md-3">
+                                Send
+                                <i class="fa fa-plane" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        <img class="card-img-top" src="holder.js/100px180/" alt="">
+                        {{#each CmtNews}}
+                        <div class="col px-md-5 mb-md-3">
+                            <div class="p-3 border">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <img src="/images/lion.jpg" class="img-thumbnail">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <h5 class="card-name" id="username" name="username">{{UserName}}</h5>
+                                        <p class="card-text" id="txtComment" name="txtComment">{{content}}</p>
+                                        <p class="text-secondary">{{DateTime}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        {{/each}}
                     </div>
-                    {{/each}}
-                </div>
-
-        </div>
+            </div>
         <div class="col-md-3">
             <h4>5 BÀI ĐĂNG LIÊN QUAN</h4>
             {{#each FiveRelatedPosts}}
