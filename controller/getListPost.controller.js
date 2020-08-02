@@ -4,8 +4,10 @@ const config = require('../config/config.json');
 module.exports.loadListPost = async function (req, res) {
   const id = +req.params.id || 1;
 
-  const topFourNewsFamous = await newsModel.loadNewListPost(1,6,0);
+  const topFourNewsFamous = await newsModel.loadNewListPost(id,6,0);
   const topFourNewsFamousLength = topFourNewsFamous;
+  let pageListPost = await newsModel.paginationListPost(id);
+
 
   // const page = +req.query.page || 1;
   // if (page < 0) page = 1;
@@ -39,11 +41,17 @@ module.exports.loadListPost = async function (req, res) {
   //   can_go_next: page < nPages
   // });
 
-
-
+    var page = parseInt(req.query.page) || 1;
+    var perPage = 2;
+  
+    var start = (page - 1) * perPage;
+    var end = page * perPage;
+    
+    pageListPost = pageListPost.slice(start, end);
+  
+  console.log(pageListPost)
   res.render("listPost", {
-    topFourNewsFamous,
-    topFourNewsFamousLength
+    pageListPost
   });
 };
 

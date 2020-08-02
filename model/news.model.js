@@ -49,5 +49,13 @@ module.exports = {
                   join ${TBL_TAG_OF_NEWS} tn on tn.NewsID= n.NewsID
                   join ${TBL_TAG} t on t.TagID = tn.TagID
                 where tn.TagID=${id} limit ${limit} offset ${offset} `)
-  }
+  },
+  paginationListPost: function (id) {
+    return db.load(
+      `SELECT n.NewsTitle, cc.CatChildName, c.CatName,n.Abstract , n.DatePost, n.Avatar FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} 
+      cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID 
+      where c.CatID = ${id}`
+    );
 }
+}
+
