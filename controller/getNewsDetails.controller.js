@@ -14,7 +14,6 @@ module.exports.loadNewsDetails = async function (req, res) {
   const entity = {
     NewsID: id,
     View: Views,
-    // View: req.body.View + 1,
   }
   console.log(entity);
   const PlusView = await newsModel.patch(entity);
