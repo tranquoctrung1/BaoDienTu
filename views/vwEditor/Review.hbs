@@ -34,7 +34,13 @@
           <div class="card-body text-success">
             <form method="POST">
               <div class="form-group">
+                <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}" hidden>
                 <label for="txtTagName">Dán nhãn: </label>
+                <div>
+                  {{#each TagOfNews}}
+                  <a>{{TagName}} - </a>
+                  {{/each}}
+                </div>
                 <select class="custom-select" id="txtTag" name="TagID">
                   {{#each LoadTag}}
                   <option value="{{TagID}}">{{TagName}}</option>
@@ -47,6 +53,7 @@
             </form>
             <form method="POST">
               <div class="form-group">
+                <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}" hidden>
                 <label for="txtCatName">Chuyên mục con: </label>
                 <select class="custom-select" id="txtCatChild" name="CatChild_ID">
                   <option selected value="{{this.news.CatChild_ID}}">{{this.news.CatChildName}}</option>
@@ -57,9 +64,21 @@
               </div>
               <div class="form-group">
                 <label for="txtDatePost">Thời gian bài đăng xuất bản lên hệ thống: </label>
-                <input id="txtDatePost" name="DatePost" class="form-control" type="datetime">
+                {{!-- <input id="txtDatePost" name="DatePost" class="form-control" type="datetime"> --}}
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Ngày</span>
+                  </div>
+                  <input type="date" class="form-control" id="txtDatePost" name="DatePost">
+                </div>
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Giờ</span>
+                  </div>
+                  <input type="time" class="form-control" id="txtTimePost" name="TimePost">
+                </div>
               </div>
-              <button type="submit" class="btn btn-success " formaction="/Writer/update">
+              <button type="submit" class="btn btn-success " formaction="/Editor/accept">
                 <i class="fa fa-check" aria-hidden="true"></i>
                 Duyệt
               </button>
@@ -67,19 +86,22 @@
           </div>
         </div>
       <div class="card border-danger  mb-3" style="max-width: 18rem;">
-        <div class="card-header text-danger">
-          <h5 style="margin: 0;">TỪ CHỐI BÀI VIẾT</h5>
-        </div>
-        <div class="card-body text-danger ">
-          <div class="form-group">
-            <label for="txtNote">Ghi chú: </label>
-            <textarea name="Note" id="txtNote" class="form-control" cols="30" rows="3"></textarea>
+        <form method="POST">
+          <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}" hidden>
+          <div class="card-header text-danger">
+            <h5 style="margin: 0;">TỪ CHỐI BÀI VIẾT</h5>
           </div>
-          <button type="submit" class="btn btn-danger" title="Remove News" formaction="/Writer/del">
-            <i class="fa fa-ban" aria-hidden="true"></i>
-            Từ chối
-          </button>
-        </div>
+          <div class="card-body text-danger ">
+            <div class="form-group">
+              <label for="txtNote">Lý do từ chối: </label>
+              <input name="Note" id="txtNote" class="form-control" cols="30" rows="3" value="{{this.news.Note}}"></input>
+            </div>
+            <button type="submit" class="btn btn-danger" title="Remove News" formaction="/Editor/deny">
+              <i class="fa fa-ban" aria-hidden="true"></i>
+              Từ chối
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

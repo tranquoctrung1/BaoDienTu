@@ -271,6 +271,7 @@
                       {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                       <th scope="col" class="text-center">Ngày đăng</th>
                       <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                      <th scope="col" class="text-center">Lý do</th>
                       <th scope="col"></th>
                       <th scope="col"></th>
                     </tr>
@@ -283,8 +284,9 @@
                       {{!-- <td>DsNhãn</td> --}}
                       <td>{{formatDate DatePost}}</td>
                       <td>{{Abstract}}</td>
+                      <td>{{Note}}</td>
                       <td>
-                        <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
+                        <a class="btn btn-primary btn-sm" href="/Writer/Edit_baivietbituchoi/{{NewsID}}" role="button">
                           <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                         </a>
                       </td>
