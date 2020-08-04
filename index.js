@@ -16,6 +16,7 @@ const Home = require("./router/home.route");
 const ListPost = require('./router/listPost.route');
 const News = require("./router/newsDetails.route");
 const Writer = require("./router/writer.route");
+const Editor = require("./router/editor.route");
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
@@ -84,11 +85,11 @@ app.use(catAndSubCat.loadCatAndSubCat);
 // use router
 app.use("/", Home);
 app.use('/newsDetails', News);
-
 app.use('/Writer', Writer);
+app.use('/Editor', Editor);
 
-// app.get('/Writer', function (req, res){
-//   res.render('vwWriter/Writer.hbs');
+// app.get('/Editor', function (req, res){
+//   res.render('vwEditor/Editor.hbs');
 // })
 
 app.use('/list', ListPost);

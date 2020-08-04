@@ -78,6 +78,20 @@ module.exports.editWriter = async function (req, res) {
   });
 };
 
+module.exports.editWriter_baivietbituchoi = async function (req, res) {
+  const id = +req.params.id || -1;
+
+  const LoadEditNews = await writerModel.Edit_loadNews(id);
+  const news = LoadEditNews[0];
+
+  const Edit_LoadCatChild = await writerModel.loadCatChild();
+  
+    res.render("vwWriter/Edit_baivietbituchoi", {
+      news,
+      Edit_LoadCatChild,
+  });
+};
+
 module.exports.DelPost = async function(req, res){
   const DelPost = await writerModel.del(req.body.NewsID);
   console.log(req.params.NewsID);
@@ -87,6 +101,29 @@ module.exports.DelPost = async function(req, res){
 module.exports.UpdatePost = async function(req, res){
   await writerModel.patch(req.body);
    res.redirect("/Writer");
+}
+
+module.exports.UpdatePost_bituchoi = async function(req, res){
+  var today = new Date();
+  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+  var dateTime = date+" "+time;
+
+  const entity = {
+    NewsID: req.body.NewsID,
+    NewsTitle: req.body.NewsTitle,
+    DatePost: dateTime,
+    CatChild_ID: req.body.CatChild_ID,
+    Abstract: req.body.Abstract,
+    Content: req.body.Content,
+    Status: 4,
+    IsPremium: 0,
+    IsDel: 0,
+    Note: req.body.Note,
+  }
+  console.log(entity);
+  await writerModel.patch(entity);
+  res.redirect("/Writer");
 }
 
 module.exports.updateAvatar = async function(req, res){

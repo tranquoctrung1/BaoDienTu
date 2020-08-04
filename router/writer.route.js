@@ -18,9 +18,11 @@ const getWriter = require("../controller/getWriter.controller");
 router.get('/', getWriter.loadWriter);
 router.post('/', upload.single("Avatar"), getWriter.postWriter);
 router.get('/Edit/:id', getWriter.editWriter);
+router.get('/Edit_baivietbituchoi/:id', getWriter.editWriter_baivietbituchoi);
 router.post('/updateAvatar', upload.single("Avatar"), getWriter.updateAvatar);
 router.post('/del', getWriter.DelPost);
 router.post('/update', getWriter.UpdatePost);
+router.post('/update_bituchoi', upload.single("Avatar"), getWriter.UpdatePost_bituchoi);
 router.get('/AddTag/:id', getWriter.LoadAddTag);
 router.post('/addtag', getWriter.addTag);
 

@@ -154,12 +154,12 @@
                             <td>{{Abstract}}</td>
                             <td>
                               <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
-                                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                                <i class="fa fa-pencil-alt" aria-hidden="true" title="Chỉnh sửa"></i>
                               </a>
                             </td>
                             <td>
                               <a class="btn btn-success btn-sm" href="/Writer/AddTag/{{NewsID}}" role="button">
-                                <i class="fa fa-tags" aria-hidden="true"></i>
+                                <i class="fa fa-tags" aria-hidden="true" title="Thêm nhãn"></i>
                               </a>
                             </td>
                           </tr>
@@ -198,10 +198,10 @@
                       <td>{{Abstract}}</td>
                       <td hidden>
                         <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
-                          <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                          <i class="fa fa-pencil-alt" aria-hidden="true" title="Chỉnh sửa"></i>
                         </a>
                         <a class="btn btn-success btn-sm" href="/Writer/AddTag/{{NewsID}}" role="button">
-                          Thêm <i class="fa fa-tags" aria-hidden="true"></i>
+                          Thêm <i class="fa fa-tags" aria-hidden="true" title="Thêm nhãn"></i>
                         </a>
                       </td>
                     </tr>
@@ -241,10 +241,10 @@
                       <td>{{Abstract}}</td>
                       <td hidden>
                         <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
-                          <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                          <i class="fa fa-pencil-alt" aria-hidden="true" title="Chỉnh sửa"></i>
                         </a>
                         <a class="btn btn-success btn-sm" href="/Writer/AddTag/{{NewsID}}" role="button">
-                          Thêm <i class="fa fa-tags" aria-hidden="true"></i>
+                          Thêm <i class="fa fa-tags" aria-hidden="true" title="Thêm nhãn"></i>
                         </a>
                       </td>
                     </tr>
@@ -271,6 +271,7 @@
                       {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                       <th scope="col" class="text-center">Ngày đăng</th>
                       <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                      <th scope="col" class="text-center">Lý do</th>
                       <th scope="col"></th>
                       <th scope="col"></th>
                     </tr>
@@ -283,8 +284,9 @@
                       {{!-- <td>DsNhãn</td> --}}
                       <td>{{formatDate DatePost}}</td>
                       <td>{{Abstract}}</td>
+                      <td>{{Note}}</td>
                       <td>
-                        <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
+                        <a class="btn btn-primary btn-sm" href="/Writer/Edit_baivietbituchoi/{{NewsID}}" role="button">
                           <i class="fa fa-pencil-alt" aria-hidden="true"></i>
                         </a>
                       </td>
