@@ -43,17 +43,20 @@ module.exports.addTag = async function(req, res){
 }
 
 module.exports.acceptPost = async function(req, res){
+  var trangthai;
   if(req.body.DatePost === '')
   {
     var today = new Date();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
     var datePost = date+" "+time;
+    trangthai = 2;
   }
   else{
     var date = req.body.DatePost;
     var time = req.body.TimePost;
     var datePost = date+" "+time;
+    trangthai = 1;
   }
 
   console.log(datePost);
@@ -62,7 +65,7 @@ module.exports.acceptPost = async function(req, res){
     NewsID: req.body.NewsID,
     CatChild_ID: req.body.CatChild_ID,
     DatePost: datePost,
-    Status: 1,
+    Status: trangthai,
   }
 
   console.log(entity);
@@ -83,6 +86,18 @@ module.exports.denyPost = async function(req, res){
   console.log(entity);
   await editorModel.patch(entity);
   var url = "/Editor";
+
+  res.redirect(url);
+}
+
+module.exports.addNewTag = async function(req, res){
+  const entity = {
+    TagName: req.body.TagName,
+  }
+
+  const NewTag = await editorModel.addNewTag(entity);
+  var url = "/Editor/Review/" + req.body.NewsID;
+  console.log(url);
 
   res.redirect(url);
 }

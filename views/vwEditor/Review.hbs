@@ -103,6 +103,25 @@
           </div>
         </form>
       </div>
+      <div class="card border-primary  mb-3" style="max-width: 18rem;">
+        <form method="POST">
+          <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}" hidden>
+          <div class="card-header text-primary">
+            <h5 style="margin: 0;">THÊM TAG MỚI</h5>
+          </div>
+          <div class="card-body text-primary ">
+            <div class="form-group">
+              <label for="txtTag">Nhập dán nhãn mới muốn thêm: </label>
+              <input name="TagName" id="txtTagName" class="form-control" cols="30" rows="3"></input>
+            </div>
+            {{!-- Thêm tag mới vào db --}}
+            <button type="submit" class="btn btn-primary" title="Remove News" formaction="/Editor/addNewTag">
+              <i class="fa fa-tags" aria-hidden="true"></i>
+              Thêm
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

@@ -35,4 +35,7 @@ module.exports = {
         delete entity.NewsID;
         return db.patch(TBL_NEWS, entity, condition);
     },
+    addNewTag: function(entity){
+        return db.add(TBL_TAG, entity);
+    }
 }
