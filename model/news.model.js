@@ -71,4 +71,9 @@ module.exports = {
     delete entity.NewsID;
     return db.patch(TBL_NEWS, entity, condition);
   },
+  countNewByCat: function (id) {
+    return db.load(`SELECT count(*) as Count FROM ${TBL_NEWS} n 
+    join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
+    join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = ${id}`);
+  },
 };
