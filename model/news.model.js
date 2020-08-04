@@ -52,12 +52,12 @@ module.exports = {
     );
   },
   loadNewBySubCategoryID: function (id, limit, offset) {
-    return db.load(`Select n.NewsTitle, n.Abstract, n.DatePost,n.Avatar ,cn.CatChild_ID, cn.CatChildName 
-                    from ${TBL_NEWS} N JOIN ${TBL_SUBCATEGORY} cn ON cn.CatChild_ID = n.CatChild_ID 
+    return db.load(`Select n.NewsTitle, n.Abstract, n.DatePost,n.Avatar ,cn.CatChild_ID, cn.CatChildName, c.CatName
+                    from ${TBL_NEWS} N JOIN ${TBL_SUBCATEGORY} cn ON cn.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cn.CatChild_ID
                     where cn.CatChild_ID = '${id}' limit ${limit} offset ${offset}`);
   },
   loadTagListPost: function (id, limit, offset) {
-    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName,n.Abstract, n.DatePost, t.TagName
+    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName,n.Abstract, n.DatePost, t.TagName, n.Avatar
                 from ${TBL_SUBCATEGORY} cc join ${TBL_CATEGORY} c on c.CatID = cc.CatID
                   join ${TBL_NEWS} n on n.CatChild_ID = cc.CatChild_ID 
                   join ${TBL_TAG_OF_NEWS} tn on tn.NewsID= n.NewsID
@@ -75,5 +75,17 @@ module.exports = {
     return db.load(`SELECT count(*) as Count FROM ${TBL_NEWS} n 
     join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
     join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = ${id}`);
+  },
+
+  countNewBySubCat: function (id) {
+    return db.load(`SELECT count(*) as Count FROM ${TBL_NEWS} n 
+    join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
+    join ${TBL_CATEGORY} c on c.CatID = cc.CatID where cc.CatChild_ID = ${id}`);
+  },
+
+  countNewBySubCat: function (id) {
+    return db.load(
+      `SELECT count(*) as Count FROM ${TBL_TAG_OF_NEWS} t WHERE t.TagID = ${id}`
+    );
   },
 };
