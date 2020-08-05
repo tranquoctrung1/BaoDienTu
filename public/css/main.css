@@ -20,19 +20,28 @@
 .home-page .container .row .col-md-6 .card {
   border: 0;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-  transition: all .5s ease-in-out;
-  height: 200px; }
+  transition: all .5s ease-in-out; }
+  @media only screen and (min-width: 768px) {
+    .home-page .container .row .col-md-6 .card {
+      height: 200px; } }
   .home-page .container .row .col-md-6 .card .card-img {
-    width: 100%;
-    height: 100%; }
+    width: 100%; }
+    @media only screen and (min-width: 768px) {
+      .home-page .container .row .col-md-6 .card .card-img {
+        height: 200px; } }
   .home-page .container .row .col-md-6 .card .card-title {
     text-transform: uppercase;
+    text-decoration: none;
     font-weight: bold;
     font-size: 16px;
-    transition: all .5s ease-in-out; }
+    transition: all .5s ease-in-out;
+    color: #636e72; }
   .home-page .container .row .col-md-6 .card .card-text {
     text-transform: uppercase;
     font-size: 15px; }
+    .home-page .container .row .col-md-6 .card .card-text a {
+      text-decoration: none;
+      color: #636e72; }
   .home-page .container .row .col-md-6 .card:hover {
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
     .home-page .container .row .col-md-6 .card:hover .card-title {
@@ -44,19 +53,25 @@
     margin: 10px;
     border: 0;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    transition: all .5s ease-in-out;
-    height: 200px; }
+    transition: all .5s ease-in-out; }
     .home-page .most-view .container .row .owl-carousel .item .card .card-img, .home-page .newest .container .row .owl-carousel .item .card .card-img {
-      width: 100%;
-      height: 100%; }
+      width: 100%; }
+      @media only screen and (min-width: 768px) {
+        .home-page .most-view .container .row .owl-carousel .item .card .card-img, .home-page .newest .container .row .owl-carousel .item .card .card-img {
+          height: 200px; } }
     .home-page .most-view .container .row .owl-carousel .item .card .card-title, .home-page .newest .container .row .owl-carousel .item .card .card-title {
       text-transform: uppercase;
+      text-decoration: none;
       font-weight: bold;
       font-size: 16px;
-      transition: all .5s ease-in-out; }
+      transition: all .5s ease-in-out;
+      color: #636e72; }
     .home-page .most-view .container .row .owl-carousel .item .card .card-text, .home-page .newest .container .row .owl-carousel .item .card .card-text {
       text-transform: uppercase;
       font-size: 15px; }
+      .home-page .most-view .container .row .owl-carousel .item .card .card-text a, .home-page .newest .container .row .owl-carousel .item .card .card-text a {
+        text-decoration: none;
+        color: #636e72; }
     .home-page .most-view .container .row .owl-carousel .item .card:hover, .home-page .newest .container .row .owl-carousel .item .card:hover {
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
       .home-page .most-view .container .row .owl-carousel .item .card:hover .card-title, .home-page .newest .container .row .owl-carousel .item .card:hover .card-title {
@@ -85,19 +100,25 @@
     margin: 10px;
     border: 0;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
-    transition: all .5s ease-in-out;
-    height: 200px; }
+    transition: all .5s ease-in-out; }
     .home-page .top-ten .container .row .card .card-img {
-      width: 100%;
-      height: 100%; }
+      width: 100%; }
+      @media only screen and (min-width: 768px) {
+        .home-page .top-ten .container .row .card .card-img {
+          height: 200px; } }
     .home-page .top-ten .container .row .card .card-title {
       text-transform: uppercase;
+      text-decoration: none;
       font-weight: bold;
       font-size: 16px;
-      transition: all .5s ease-in-out; }
+      transition: all .5s ease-in-out;
+      color: #636e72; }
     .home-page .top-ten .container .row .card .card-text {
       text-transform: uppercase;
       font-size: 15px; }
+      .home-page .top-ten .container .row .card .card-text a {
+        text-decoration: none;
+        color: #636e72; }
     .home-page .top-ten .container .row .card:hover {
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
       .home-page .top-ten .container .row .card:hover .card-title {

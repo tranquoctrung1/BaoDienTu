@@ -116,29 +116,29 @@ app.use(function (err, req, res, next) {
   res.status(500).render("500", { layout: false });
 });
 
-function request_handler(proxy, req, res) {
-  // http(s) requests.
-  proxy.web(req, res, function (err) {
-    console.log(err.stack);
-    res.writeHead(502);
-    res.end("There was an error. Please try again");
-  });
-  // websocket requests.
-  req.on("upgrade", function (req, socket, head) {
-    proxy.ws(req, socket, head, function (err) {
-      console.log(err.stack);
-      socket.close();
-    });
-  });
-}
+// function request_handler(proxy, req, res) {
+//   // http(s) requests.
+//   proxy.web(req, res, function (err) {
+//     console.log(err.stack);
+//     res.writeHead(502);
+//     res.end("There was an error. Please try again");
+//   });
+//   // websocket requests.
+//   req.on("upgrade", function (req, socket, head) {
+//     proxy.ws(req, socket, head, function (err) {
+//       console.log(err.stack);
+//       socket.close();
+//     });
+//   });
+// }
 
-var site_host_http = "http://localhost:8000";
+// var site_host_http = "http://localhost:8000";
 
-// create the HTTP proxy server.
-var http_proxy = httpProxy.createProxyServer({
-  target: site_host_http,
-  ws: true,
-});
+// // create the HTTP proxy server.
+// var http_proxy = httpProxy.createProxyServer({
+//   target: site_host_http,
+//   ws: true,
+// });
 
 const server = http.createServer(app);
 

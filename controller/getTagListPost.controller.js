@@ -18,7 +18,7 @@ module.exports.loadTagList = async function (req, res) {
     offset
   );
 
-  const total = await newsModel.countNewBySubCat(id);
+  const total = await newsModel.countNewByTag(id);
 
   // // const total = await productModel.countByCat(req.params.catId);
   const nPages = Math.ceil(total[0].Count / config.pagination.limit);

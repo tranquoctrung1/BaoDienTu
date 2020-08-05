@@ -11,12 +11,14 @@ module.exports.loadhome = async function (req, res) {
   let listViewsNews = [];
 
   for (let i = 0; i < 10; i++) {
-    let id = listCategory[i].catid;
+    if (listCategory[i] != undefined) {
+      let id = listCategory[i].catid;
 
-    let data = await newsModel.loadViewestNewsByCatId(id, 1);
+      let data = await newsModel.loadViewestNewsByCatId(id, 1);
 
-    if (data[0] != undefined) {
-      listViewsNews.push(data[0]);
+      if (data[0] != undefined) {
+        listViewsNews.push(data[0]);
+      }
     }
   }
 
@@ -27,12 +29,14 @@ module.exports.loadhome = async function (req, res) {
   let listMostSoonNews = [];
 
   for (let i = 0; i < 10; i++) {
-    let id = listCategory[i].catid;
+    if (listCategory[i] != undefined) {
+      let id = listCategory[i].catid;
 
-    let data = await newsModel.loadMostSoonNewsByCatId(id, 1);
+      let data = await newsModel.loadMostSoonNewsByCatId(id, 1);
 
-    if (data[0] != undefined) {
-      listMostSoonNews.push(data[0]);
+      if (data[0] != undefined) {
+        listMostSoonNews.push(data[0]);
+      }
     }
   }
 

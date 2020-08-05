@@ -10,13 +10,14 @@ const TBL_USER = "user";
 
 module.exports = {
   loadTopNewsFamous: function (quantity) {
-    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar FROM ${TBL_NEWS} n 
+    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar, c.CatID, cc.CatChild_ID, n.NewsID FROM ${TBL_NEWS} n 
                     join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
                     join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 ORDER BY n.Like DESC limit ${quantity}`);
   },
   singleNewsDetails: function (NewsId) {
-    return db.load(`SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content from ${TBL_NEWS} n 
-                    join ${TBL_USER} u on n.Author = u.UserID WHERE NewsID = '${NewsId}'`);
+    return db.load(
+      `SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, n.Avatar from ${TBL_NEWS} n JOIN ${TBL_USER} u on n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID WHERE NewsID = '${NewsId}' and n.isDel = 0`
+    );
   },
   loadTagNews: function (NewsId) {
     return db.load(`SELECT t.TagName FROM ${TBL_TAG_OF_NEWS} ton 
@@ -35,12 +36,12 @@ module.exports = {
                       JOIN ${TBL_CATEGORY} c2 on cc2.CatID = c2.CatID WHERE nn.NewsID = ${NewsId}) LIMIT ${quantity}`);
   },
   loadViewestNewsByCatId: function (id, quantity) {
-    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar 
+    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar, c.CatID, cc.CatChild_ID, n.NewsID 
                   FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID 
                   join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = '${id}' and n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 ORDER BY n.View DESC limit ${quantity}`);
   },
   loadMostSoonNewsByCatId: function (id, quantity) {
-    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar 
+    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar, c.CatID, cc.CatChild_ID, n.NewsID 
                   FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID 
                   join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = '${id}' and n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 ORDER BY n.DatePost limit ${quantity}`);
   },
@@ -78,12 +79,12 @@ module.exports = {
   },
 
   countNewBySubCat: function (id) {
-    return db.load(`SELECT count(*) as Count FROM ${TBL_NEWS} n 
-    join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
-    join ${TBL_CATEGORY} c on c.CatID = cc.CatID where cc.CatChild_ID = ${id}`);
+    return db.load(
+      `select count(*) as Count from ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID where cc.CatChild_ID = ${id} `
+    );
   },
 
-  countNewBySubCat: function (id) {
+  countNewByTag: function (id) {
     return db.load(
       `SELECT count(*) as Count FROM ${TBL_TAG_OF_NEWS} t WHERE t.TagID = ${id}`
     );
