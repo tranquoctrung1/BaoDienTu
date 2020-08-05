@@ -15,8 +15,7 @@ module.exports = {
                     join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 ORDER BY n.Like DESC limit ${quantity}`);
   },
   singleNewsDetails: function (NewsId) {
-    return db.load(`SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content from ${TBL_NEWS} n 
-                    join ${TBL_USER} u on n.Author = u.UserID WHERE NewsID = '${NewsId}'`);
+    return db.load(`SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, n.Avatar from ${TBL_NEWS} n JOIN ${TBL_USER} u on n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID WHERE NewsID = '${NewsId}' and n.isDel = 0`);
   },
   loadTagNews: function (NewsId) {
     return db.load(`SELECT t.TagName FROM ${TBL_TAG_OF_NEWS} ton 
