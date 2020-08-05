@@ -1,0 +1,31 @@
+<div class="content">
+    <div class="box">
+        <form method="POST" class="frm">
+            <div>
+                <h3 class="text-danger">CẬP NHẬT CHUYÊN MỤC</h3>
+            </div>
+            <div class="form_group">
+                <input id="txtCatID" class="text-primary" name="CatID" class="form-control" type="text" value="{{this.category.CatID}}" hidden>
+                <label for="txtCatName" class="text-primary">Tên chuyên mục: </label>
+                <input id="txtCatName" name="CatName" class="form-control" type="text" value="{{this.category.CatName}}">
+            </div>
+            <div class="form_group">
+                <label for="txtManager" class="text-primary">Người quản lý chuyên mục: </label>
+                <select class="custom-select" id="txtManager" name="Manager">
+                    <option selected value="{{this.category.Manager}}">{{this.category.Name}}</option>
+                    {{#each LoadUser}}
+                    <option value="{{UserID}}">{{Name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="submit-form">
+                <button type="submit" class="btn btn-primary" formaction="/Admin/UpdateCategory/update">
+                    Cập nhật
+                </button>
+                <a type="submit" class="btn btn-danger" href="/Admin" role="button">
+                    Hủy
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

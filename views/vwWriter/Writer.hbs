@@ -1,0 +1,373 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css">
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
+{{/section}}
+
+{{#section 'js'}}
+{{!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --}}
+<script src="https://cdn.tiny.cloud/1/8jbstsesvb079hdfufswb0btf1ud4bteqgpfco77q6t8z88h/tinymce/5/tinymce.min.js"
+  referrerpolicy="origin"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/themes/fa/theme.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/locales/vi.min.js"></script>
+<script>
+  tinymce.init({
+    selector: '#txtContent',
+    content_css: '//www.tiny.cloud/css/codepen.min.css',
+    height: 450,
+    plugins: 'paste image link autolink lists table media code responsivefilemanager',
+    menubar: true,
+    toolbar: [
+      'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link media image',
+    ],
+    images_upload_url: 'postAcceptor.php',
+    automatic_uploads: false,
+  });
+</script>
+
+
+
+<script>
+  $('#avatar').fileinput({
+    theme: 'fa',
+    showCaption: true,
+    dropZoneEnabled: true,
+    allowedFileExtensions: ['png', 'jpg', 'gif'],
+    language: 'vi'
+  });
+</script>
+{{/section}}
+
+<br>
+<div class="container">
+  <div class="row">
+    <br>
+    <div class="col-md-2">
+      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-listpost-tab" data-toggle="pill" href="#v-pills-listpost" role="tab"
+          aria-controls="v-pills-listpost" aria-selected="false">Tất cả bài viết</a>
+        <a class="nav-link" id="v-pills-newpost-tab" data-toggle="pill" href="#v-pills-newpost" role="tab"
+          aria-controls="v-pills-newpost" aria-selected="true">Viết bài mới</a>
+        <a class="nav-link" id="v-pills-listpostdaduyetvachoxuatban-tab" data-toggle="pill"
+          href="#v-pills-listpost-daduyetvachoxuatban" role="tab" aria-controls="v-pills-listpost-daduyetvachoxuatban"
+          aria-selected="true">Bài viết đã được duyệt & chờ xuất bản</a>
+        <a class="nav-link" id="v-pills-listpostdaxuatban-tab" data-toggle="pill" href="#v-pills-listpost-daxuatban"
+          role="tab" aria-controls="v-pills-listpost-daxuatban" aria-selected="true">Bài viết đã xuất bản</a>
+        <a class="nav-link" id="v-pills-listpostbituchoi-tab" data-toggle="pill" href="#v-pills-listpost-bituchoi"
+          role="tab" aria-controls="v-pills-listpost-bituchoi" aria-selected="true">Bài viết bị từ chối</a>
+        <a class="nav-link" id="v-pills-listpostchuaduocduyet-tab" data-toggle="pill"
+          href="#v-pills-listpost-chuaduocduyet" role="tab" aria-controls="v-pills-listpost-chuaduocduyet"
+          aria-selected="true">Bài viết chưa được duyệt</a>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="tab-content" id="v-pills-tabContent">
+        {{!-- <div class="tab-pane fade show active" id="v-pills-newpost" role="tabpanel" aria-labelledby="v-pills-newpost-tab"> --}}
+        <div class="tab-pane fade" id="v-pills-newpost" role="tabpanel" aria-labelledby="v-pills-newpost-tab">
+          <form method="post" novalidate action="" enctype="multipart/form-data">
+            <div class="card">
+              <div class="card-header">
+                <h4>Thêm bài mới</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-9">
+                    <div class="form-group">
+                      <label for="txtNewsTitle">Tiêu đề: </label>
+                      <input id="txtNewsTitle" name="NewsTitle" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="txtAvatar">Ảnh đại diện bài viết: </label>
+                      <div class="file-loading">
+                        <input id="avatar" name="Avatar" type="file" multiple>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="txtAbstract">Nội dung ngắn:</label>
+                      {{!-- <textarea name="Abstract" id="txtAbstract" class="form-control" cols="30" rows="3"></textarea> --}}
+                      <input name="Abstract" id="txtAbstract" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                      <label for="txtContent">Nội dung chi tiết:</label>
+                      <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10"></textarea>
+                    </div>
+                    {{!-- <div class="form-group">
+                          <label for="txtTag">Gắn nhãn:</label>
+                          <input name="TagID" id="txtTag" class="form-control" type="text">
+                        </div> --}}
+                  </div>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="txtAuthor">Tác giả: </label>
+                      <select class="custom-select" id="txtAuthor" name="Author">
+                        {{#each LoadAuthor}}
+                        <option value="{{UserID}}">{{UserName}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="txtCatChild">Chuyên mục con: </label>
+                      <select class="custom-select" id="txtCatChild" name="CatChild_ID">
+                        {{#each LoadCatChild}}
+                        <option value="{{CatChild_ID}}">{{CatChildName}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-lg btn-success btn-block">
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                  Đăng ngay
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        {{!-- <div class="tab-pane fade" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab"> --}}
+        <div class="tab-pane fade show active" id="v-pills-listpost" role="tabpanel"
+          aria-labelledby="v-pills-listpost-tab">
+          <form method="POST">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between">
+                <h4>Danh sách các bài đăng</h4>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center" hidden>NewsID</th>
+                    <th scope="col" class="text-center">Avatar</th>
+                    <th scope="col" class="text-center">Tiêu đề</th>
+                    {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
+                    <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.LoadListPost}}
+                  <tr>
+                    <td hidden>
+                      <input id="txtNewsID" class="form-control" type="text" value="{{NewsID}}" readonly>
+                    </td>
+                    <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
+                    <td>{{NewsTitle}}</td>
+                    {{!-- <td>
+                              TagName
+                            </td> --}}
+                    <td>{{formatDate DatePost}}</td>
+                    <td>{{Abstract}}</td>
+                    <td>
+                      <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
+                        <i class="fa fa-pencil-alt" aria-hidden="true" title="Chỉnh sửa"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a class="btn btn-success btn-sm" href="/Writer/AddTag/{{NewsID}}" role="button">
+                        <i class="fa fa-tags" aria-hidden="true" title="Thêm nhãn"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              <div class="card-footer text-muted">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="v-pills-listpost-daduyetvachoxuatban" role="tabpanel"
+          aria-labelledby="v-pills-listpostdaduyetvachoxuatban-tab">
+          <form method="POST">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between">
+                <h4>Danh sách bài đăng đã được duyệt và chờ xuất bản</h4>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center">Avatar</th>
+                    <th scope="col" class="text-center">Tiêu đề</th>
+                    {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
+                    <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                    <th scope="col" hidden>Tùy chỉnh</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.daduocduyetvachoxuatban}}
+                  <tr>
+                    <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
+                    <td>{{NewsTitle}}</td>
+                    {{!-- <td>DsNhãn</td> --}}
+                    <td>{{formatDate DatePost}}</td>
+                    <td>{{Abstract}}</td>
+                    <td hidden>
+                      <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
+                        <i class="fa fa-pencil-alt" aria-hidden="true" title="Chỉnh sửa"></i>
+                      </a>
+                      <a class="btn btn-success btn-sm" href="/Writer/AddTag/{{NewsID}}" role="button">
+                        Thêm <i class="fa fa-tags" aria-hidden="true" title="Thêm nhãn"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              <div class="card-footer text-muted">
+                Footer
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="v-pills-listpost-daxuatban" role="tabpanel"
+          aria-labelledby="v-pills-listpostdaxuatban-tab">
+          <form method="POST">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between">
+                <h4>Danh sách bài đăng đã xuất bản</h4>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center">Avatar</th>
+                    <th scope="col" class="text-center">Tiêu đề</th>
+                    {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
+                    <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                    <th scope="col" hidden>Tùy chỉnh</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.daxuatban}}
+                  <tr>
+                    <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
+                    <td>{{NewsTitle}}</td>
+                    {{!-- <td>DsNhãn</td> --}}
+                    <td>{{formatDate DatePost}}</td>
+                    <td>{{Abstract}}</td>
+                    <td hidden>
+                      <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
+                        <i class="fa fa-pencil-alt" aria-hidden="true" title="Chỉnh sửa"></i>
+                      </a>
+                      <a class="btn btn-success btn-sm" href="/Writer/AddTag/{{NewsID}}" role="button">
+                        Thêm <i class="fa fa-tags" aria-hidden="true" title="Thêm nhãn"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              <div class="card-footer text-muted">
+                Footer
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="v-pills-listpost-bituchoi" role="tabpanel"
+          aria-labelledby="v-pills-listpostbituchoi-tab">
+          <form method="POST">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between">
+                <h4>Danh sách bài đăng bị từ chối</h4>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center">Avatar</th>
+                    <th scope="col" class="text-center">Tiêu đề</th>
+                    {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
+                    <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                    <th scope="col" class="text-center">Lý do</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.bituchoi}}
+                  <tr>
+                    <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
+                    <td>{{NewsTitle}}</td>
+                    {{!-- <td>DsNhãn</td> --}}
+                    <td>{{formatDate DatePost}}</td>
+                    <td>{{Abstract}}</td>
+                    <td>{{Note}}</td>
+                    <td>
+                      <a class="btn btn-primary btn-sm" href="/Writer/Edit_baivietbituchoi/{{NewsID}}" role="button">
+                        <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a class="btn btn-success btn-sm" href="/Writer/AddTag/{{NewsID}}" role="button">
+                        <i class="fa fa-tags" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              <div class="card-footer text-muted">
+                Footer
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="tab-pane fade" id="v-pills-listpost-chuaduocduyet" role="tabpanel"
+          aria-labelledby="v-pills-listpostchuaduocduyet-tab">
+          <form method="POST">
+            <div class="card">
+              <div class="card-header d-flex justify-content-between">
+                <h4>Danh sách bài đăng chưa được duyệt</h4>
+              </div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col" class="text-center">Avatar</th>
+                    <th scope="col" class="text-center">Tiêu đề</th>
+                    {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
+                    <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each this.chuaduocduyet}}
+                  <tr>
+                    <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
+                    <td>{{NewsTitle}}</td>
+                    {{!-- <td>DsNhãn</td> --}}
+                    <td>{{formatDate DatePost}}</td>
+                    <td>{{Abstract}}</td>
+                    <td>
+                      <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
+                        <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <a class="btn btn-success btn-sm" href="/Writer/AddTag/{{NewsID}}" role="button">
+                        <i class="fa fa-tags" aria-hidden="true"></i>
+                      </a>
+                    </td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+              <div class="card-footer text-muted">
+                Footer
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

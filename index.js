@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const http = require("http");
+const httpProxy = require("http-proxy");
 const exphbs = require("express-handlebars");
 const sass = require("node-sass-middleware");
 const reload = require("reload");
@@ -13,8 +14,12 @@ const app = express();
 
 // call router
 const Home = require("./router/home.route");
-const ListPost = require('./router/listPost.route');
+const ListPost = require("./router/listPost.route");
 const News = require("./router/newsDetails.route");
+const Writer = require("./router/writer.route");
+const Editor = require("./router/editor.route");
+const Admin = require("./router/admin.route");
+const User = require("./router/user.route")
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
@@ -82,8 +87,22 @@ app.use(catAndSubCat.loadCatAndSubCat);
 
 // use router
 app.use("/", Home);
-app.use('/newsDetails', News);
-app.use('/list', ListPost);
+
+app.use("/newsDetails", News);
+app.use("/Writer", Writer);
+app.use("/Editor", Editor);
+app.use("/Admin", Admin);
+//app.use("/User", User)
+
+app.get('/User', function (req, res){
+   res.render('vwUser/indexUser.hbs');
+ })
+ app.get('/User/Update', function (req, res){
+  res.render('vwUser/updateInfo.hbs');
+})
+
+app.use("/list", ListPost);
+
 // defaul error handler
 
 // page not found
@@ -95,6 +114,30 @@ app.use(function (req, res) {
 app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.status(500).render("500", { layout: false });
+});
+
+function request_handler(proxy, req, res) {
+  // http(s) requests.
+  proxy.web(req, res, function (err) {
+    console.log(err.stack);
+    res.writeHead(502);
+    res.end("There was an error. Please try again");
+  });
+  // websocket requests.
+  req.on("upgrade", function (req, socket, head) {
+    proxy.ws(req, socket, head, function (err) {
+      console.log(err.stack);
+      socket.close();
+    });
+  });
+}
+
+var site_host_http = "http://localhost:8000";
+
+// create the HTTP proxy server.
+var http_proxy = httpProxy.createProxyServer({
+  target: site_host_http,
+  ws: true,
 });
 
 const server = http.createServer(app);

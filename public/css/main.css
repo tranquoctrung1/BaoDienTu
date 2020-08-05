@@ -142,10 +142,11 @@
       transition: background-color .3s; }
       .home-page .pagination .pagination-content a:hover {
         background-color: #ddd; }
-
-.avatar {
-  width: 120px;
-  height: 120px; }
+      .home-page .pagination .pagination-content a.active {
+        background: #e17055; }
+      .home-page .pagination .pagination-content a.disabled {
+        pointer-events: none;
+        cursor: default; }
 
 .col-sm-8 {
   padding-top: 20px; }
@@ -159,7 +160,7 @@
   width: 500px; }
 
 .picture img {
-  width: 100%; }
+  max-width: 100%; }
 
 .col-sm-3 .card {
   border: 0;
@@ -178,6 +179,51 @@
 
 .viewandlike {
   color: blue; }
+
+.tag {
+  padding: 5px 10px;
+  background: #dfe6e9;
+  color: #636e72;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px; }
+  .tag:hover {
+    text-decoration: none;
+    text-align: center;
+    background: #b2bec3; }
+
+.container .row .col-md-9 img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto; }
+
+.container .row .col-md-9 h1 {
+  text-transform: uppercase; }
+
+.container .row .col-md-9 a {
+  font-weight: bold;
+  font-size: 11px;
+  color: #b2bec3; }
+
+.container .row .col-md-9 p {
+  padding: 10px;
+  text-align: justify; }
+
+.container .row .col-md-9 .avatar img {
+  width: 500px;
+  display: block;
+  margin: 0 auto; }
+
+.container .row .col-md-9 .send-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+
+.container .row .col-md-9 .content {
+  font-size: 14px; }
+  .container .row .col-md-9 .content img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto; }
 
 header .navbar {
   padding: 0 10px; }
@@ -310,3 +356,26 @@ footer {
       font-size: 20px; }
       footer .container .col-md-4 a:hover {
         color: #444; }
+
+.List_avatar {
+  width: 70px;
+  height: 70px; }
+
+.box {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .box label {
+    margin-top: 12px; }
+  .box .frm {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+  .box .submit-form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 15px; }
+    .box .submit-form a {
+      margin: 5px; }
