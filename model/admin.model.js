@@ -10,16 +10,16 @@ const TBL_TAG_OF_NEWS = "tag_of_news";
 
 module.exports = {
     loadCat: function(){
-        return db.load(`SELECT * FROM ${TBL_CATEGORY} c JOIN ${TBL_USER} u ON c.Manager = u.UserID`);
+        return db.load(`SELECT c.CatID, c.CatName, u.Name, c.IsDel FROM ${TBL_CATEGORY} c JOIN ${TBL_USER} u ON c.Manager = u.UserID`);
     },
     loadTag: function(){
         return db.load(`SELECT * FROM ${TBL_TAG}`);
     },
     loadNews: function(){
-        return db.load(`SELECT * FROM ${TBL_NEWS}`);
+        return db.load(`SELECT n.NewsID, n.Avatar, n.NewsTitle, n.DatePost, n.Abstract, n.Author, n.Content, n.IsDel, u.UserName, u.Name FROM ${TBL_NEWS} n JOIN ${TBL_USER} u ON n.Author = u.UserID`);
     },
     loadUser: function(){
-        return db.load(`SELECT * FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID`);
+        return db.load(`SELECT u.UserID, u.UserName, u.Name, u.BirthDay, u.IsDel, tou.TypeName FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID`);
     },
     addNewCategory: function(entity){
         return db.add(TBL_CATEGORY, entity);
@@ -40,7 +40,7 @@ module.exports = {
         return db.add(TBL_USER, entity);
     },
     loadUpdateCategory: function(CatID){
-        return db.load(`SELECT * FROM ${TBL_CATEGORY} c JOIN ${TBL_USER} u ON c.Manager = u.UserID WHERE CatID = ${CatID}`);
+        return db.load(`SELECT c.CatID, c.CatName, u.Name, c.IsDel FROM ${TBL_CATEGORY} c JOIN ${TBL_USER} u ON c.Manager = u.UserID WHERE CatID = ${CatID}`);
     },
     updateCategory: function (entity) {
         const condition = {
@@ -60,7 +60,7 @@ module.exports = {
         return db.patch(TBL_TAG, entity, condition);
     },
     loadUpdatePost: function(NewsID){
-        return db.load(`SELECT * FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE n.NewsID = ${NewsID}`);
+        return db.load(`SELECT n.NewsID, n.Avatar, n.NewsTitle, n.DatePost, n.Abstract, n.Author, n.Content, n.IsDel, u.UserName, u.Name, cc.CatChildName FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE n.NewsID = ${NewsID}`);
     },
     updatePost: function (entity) {
         const condition = {
@@ -93,7 +93,7 @@ module.exports = {
     },
     //====Quản lý User
     loadUpdateUser: function(UserID){
-        return db.load(`SELECT * FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID WHERE UserID = ${UserID}`);
+        return db.load(`SELECT u.UserID, u.UserName, u.Name, u.BirthDay, u.IsDel, tou.TypeName FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID WHERE UserID = ${UserID}`);
     },
     updateUser: function (entity) {
         const condition = {
