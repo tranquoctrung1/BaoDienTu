@@ -1,0 +1,49 @@
+{{#section 'title'}}
+Những bài viết mới nhất
+{{/section}}
+<main class="home-page">
+	<section class="most-view">
+		{{#if newsLength}}
+		<h5 class="most-view__title"> Danh sách bài viết </h5>
+		<div class="container">
+			<div class="row">
+				<div class="section-contents ">
+					{{#each news}}
+					<div class="item">
+						<div class="card mb-3">
+							<div class="row no-gutters">
+								<div class="col-md-4">
+									<img src="/images/logo.png" class="card-img" alt="image posting">
+								</div>
+								<div class="col-md-8">
+									<div class="card-body">
+										<h5 class="card-title">{{NewsTitle}}</h5>
+										<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small>
+										</p>
+										<p class="card-text">{{Abstract}}</p>
+										<p class="card-text">{{CatName}} - {{CatChildName}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					{{/each}}
+					<div class="pagination">
+						<div class="pagination-content">
+							<a href="{{startPage}}">&laquo;</a>
+							<a href="{{prevPage}}" {{#if cant_go_prev}} class="disabled" {{/if}}>&lt;</a>
+							{{#each page_items}}
+							<a href="{{href}}" {{#if isActive}}class="active" {{/if}}>{{value}}</a>
+							{{/each}}
+							<a href="{{nextPage}}" {{#if cant_go_next}} class="disabled" {{/if}}>&gt;</a>
+							<a href="{{endPage}}">&raquo;</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{{else}}
+		<div class="p-2"><strong>Không có dữ liệu</strong></div>
+		{{/if}}
+	</section>
+</main>
