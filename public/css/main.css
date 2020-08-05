@@ -198,6 +198,9 @@
   .news-details-page .col-sm-3 .card .card-title {
     font-weight: bold;
     transition: all .5s ease-in-out; }
+    .news-details-page .col-sm-3 .card .card-title a {
+      text-decoration: none;
+      color: #636e72; }
   .news-details-page .col-sm-3 .card:hover {
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
     .news-details-page .col-sm-3 .card:hover .card-title {
