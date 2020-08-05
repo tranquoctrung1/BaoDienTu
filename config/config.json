@@ -4,14 +4,13 @@
     "port": 3306,
     "user": "root",
     "password": "",
-    "database": "baodientu_db",
+    "database": "baodientu",
     "connectionLimit": 100
   },
   "pagination": {
-    "limit": 6
+    "limit": 3
   },
   "authentication": {
     "saltRounds": 10
   }
 }
-

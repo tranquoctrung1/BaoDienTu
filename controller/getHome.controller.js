@@ -15,7 +15,9 @@ module.exports.loadhome = async function (req, res) {
 
     let data = await newsModel.loadViewestNewsByCatId(id, 1);
 
-    listViewsNews.push(data[0]);
+    if (data[0] != undefined) {
+      listViewsNews.push(data[0]);
+    }
   }
 
   let listViewsNewsLength = listViewsNews.length;
@@ -29,10 +31,14 @@ module.exports.loadhome = async function (req, res) {
 
     let data = await newsModel.loadMostSoonNewsByCatId(id, 1);
 
-    listMostSoonNews.push(data[0]);
+    if (data[0] != undefined) {
+      listMostSoonNews.push(data[0]);
+    }
   }
 
   let listMostSoonNewsLength = listMostSoonNews.length;
+
+  // console.log(listMostSoonNews);
 
   res.render("index", {
     topFourNewsFamous,
@@ -43,4 +49,3 @@ module.exports.loadhome = async function (req, res) {
     listMostSoonNewsLength,
   });
 };
-

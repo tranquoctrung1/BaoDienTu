@@ -142,6 +142,11 @@
       transition: background-color .3s; }
       .home-page .pagination .pagination-content a:hover {
         background-color: #ddd; }
+      .home-page .pagination .pagination-content a.active {
+        background: #e17055; }
+      .home-page .pagination .pagination-content a.disabled {
+        pointer-events: none;
+        cursor: default; }
 
 .avatar {
   width: 120px;
