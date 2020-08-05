@@ -59,19 +59,19 @@ module.exports.Category_IsDel = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadCategory = await adminModel.loadUpdateCategory(id);
   console.log(LoadCategory);
-  var isDel = LoadCategory[0].IsDelC;
+  var isDel = LoadCategory[0].IsDel;
 
   console.log(isDel);
-  if(LoadCategory[0].IsDelC === 1){
+  if(LoadCategory[0].IsDel === 1){
     isDel = 0;
   }
-  else if(LoadCategory[0].IsDelC === 0){
+  else if(LoadCategory[0].IsDel === 0){
     isDel = 1;
   }
 
   const entity = {
     CatID: id,
-    IsDelC: isDel,
+    IsDel: isDel,
   }
   console.log(entity);
   await adminModel.updateCategory(entity);
@@ -122,19 +122,19 @@ module.exports.Tag_IsDel = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadTag = await adminModel.loadUpdateTag(id);
   console.log(LoadTag);
-  var isDel = LoadTag[0].IsDelT;
+  var isDel = LoadTag[0].IsDel;
 
   console.log(isDel);
-  if(LoadTag[0].IsDelT === 1){
+  if(LoadTag[0].IsDel === 1){
     isDel = 0;
   }
-  else if(LoadTag[0].IsDelT === 0){
+  else if(LoadTag[0].IsDel === 0){
     isDel = 1;
   }
 
   const entity = {
     TagID: id,
-    IsDelT: isDel,
+    IsDel: isDel,
   }
   console.log(entity);
   await adminModel.updateTag(entity);
@@ -225,19 +225,19 @@ module.exports.Post_IsDel = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadPost = await adminModel.loadUpdatePost(id);
   console.log(LoadPost);
-  var isDel = LoadPost[0].IsDelN;
+  var isDel = LoadPost[0].IsDel;
 
   console.log(isDel);
-  if(LoadPost[0].IsDelN === 1){
+  if(LoadPost[0].IsDel === 1){
     isDel = 0;
   }
-  else if(LoadPost[0].IsDelN === 0){
+  else if(LoadPost[0].IsDel === 0){
     isDel = 1;
   }
 
   const entity = {
     NewsID: id,
-    IsDelN: isDel,
+    IsDel: isDel,
   }
   console.log(entity);
   await adminModel.updatePost(entity);
@@ -266,7 +266,7 @@ module.exports.addUser = async function (req, res) {
     Email: req.body.Email,
     TypeOfUser: req.body.TypeOfUser,
     PenName: req.body.PenName,
-    IsDelU: 0,
+    IsDel: 0,
   }
   console.log(entity);
   await adminModel.addNewUser(entity);
@@ -300,19 +300,19 @@ module.exports.User_IsDel = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadUser = await adminModel.loadUpdateUser(id);
   console.log(LoadUser);
-  var isDel = LoadUser[0].IsDelU;
+  var isDel = LoadUser[0].IsDel;
 
   console.log(isDel);
-  if(LoadUser[0].IsDelU === 1){
+  if(LoadUser[0].IsDel === 1){
     isDel = 0;
   }
-  else if(LoadUser[0].IsDelU === 0){
+  else if(LoadUser[0].IsDel === 0){
     isDel = 1;
   }
 
   const entity = {
     UserID: id,
-    IsDelU: isDel,
+    IsDel: isDel,
   }
   console.log(entity);
   await adminModel.updateUser(entity);
