@@ -1,3 +1,4 @@
+<main class="editor-review-page">
 <br>
 <div class="container">
   <div class="row">
@@ -7,12 +8,22 @@
           Quay trở lại danh sách chờ duyệt
       </a>
       <h1>{{this.news.NewsTitle}}</h1>
-      <b>Tác giả: {{Name}}</b>&nbsp;&nbsp;<a>|&nbsp;{{formatDate DatePost}}</a><br>
+      <b>Tác giả: {{this.news.Name}}</b>&nbsp;&nbsp;<a>|&nbsp;{{formatDate DatePost}}</a><br>
       <b>
           Lượt xem <i class="fa fa-eye" aria-hidden="true"> {{this.news.View}} -</i>&ensp;Lượt thích <i class="far fa-thumbs-up"> {{this.news.Like}}</i>
       </b>
+      <div class="catChild">
+          <b>Chuyên mục: </b>&ensp;
+          <a href="#" class="color">{{this.news.CatChildName}}</a>
+      </div>
+      <div class="avatar">
+          {{#if this.news.IsAvatar}}
+              <img src="/images/{{this.news.Avatar}}" alt="avatar for new">
+          {{else}}
+              <img src="/images/logo.png" alt="avatar for new">
+          {{/if}}
+      </div>
       <div class="abstract">
-          <br>
           <b>{{this.news.Abstract}}</b>
       </div>
       <div class="content">
@@ -125,4 +136,4 @@
     </div>
   </div>
 </div>
-
+</main>
