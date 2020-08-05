@@ -10,7 +10,7 @@ const TBL_USER = "user";
 
 module.exports = {
   loadTopNewsFamous: function (quantity) {
-    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar FROM ${TBL_NEWS} n 
+    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar, c.CatID, cc.CatChild_ID, n.NewsID FROM ${TBL_NEWS} n 
                     join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
                     join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 ORDER BY n.Like DESC limit ${quantity}`);
   },
@@ -36,12 +36,12 @@ module.exports = {
                       JOIN ${TBL_CATEGORY} c2 on cc2.CatID = c2.CatID WHERE nn.NewsID = ${NewsId}) LIMIT ${quantity}`);
   },
   loadViewestNewsByCatId: function (id, quantity) {
-    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar 
+    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar, c.CatID, cc.CatChild_ID, n.NewsID 
                   FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID 
                   join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = '${id}' and n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 ORDER BY n.View DESC limit ${quantity}`);
   },
   loadMostSoonNewsByCatId: function (id, quantity) {
-    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar 
+    return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar, c.CatID, cc.CatChild_ID, n.NewsID 
                   FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID 
                   join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = '${id}' and n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 ORDER BY n.DatePost limit ${quantity}`);
   },
