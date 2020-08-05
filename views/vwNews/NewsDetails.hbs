@@ -13,10 +13,12 @@
                     Lượt xem: {{View}} -</i>&ensp;Lượt thích: {{Like}} </i>
                 </b>
                 <div class="avatar">
-                    {{#if Avatar}}
-                    <img src="/images/{{Avatar}}" alt="avatar for new">
+                    {{#if IsAvatar}}
+                    
+                        <img src="/images/{{Avatar}}" alt="avatar for new">
                     {{else}}
-                    <img src="/images/logo.png" alt="avatar for new">
+                        <div>0</div>
+                        <img src="/images/logo.png" alt="avatar for new">
                     {{/if}}
                 </div>
                 <div class="abstract">
@@ -70,7 +72,11 @@
             <h4>5 BÀI ĐĂNG LIÊN QUAN</h4>
             {{#each FiveRelatedPosts}}
             <div class="card mt-md-3 mb-md-3">
-                <img src="/images/lion.jpg" class="card-img-top">
+                {{#if IsAvatar}}
+                <img src="/images/{{Avatar}}" alt="avatar for new" class="card-img-top">
+                {{else}}
+                <img src="/images/logo.png" alt="avatar for new" class="card-img-top">
+                {{/if}}
                 <div class="card-body">
                     <h5 class="card-title">{{NewsTitle}}</h5>
                     <p class="card-text">{{Abstract}}</p>
