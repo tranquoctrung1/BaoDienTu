@@ -16,11 +16,11 @@ module.exports = {
   },
   singleNewsDetails: function (NewsId) {
     return db.load(
-      `SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, n.Avatar, cc.CatChildName from ${TBL_NEWS} n JOIN ${TBL_USER} u on n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID WHERE NewsID = '${NewsId}' and n.isDel = 0`
+      `SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, n.Avatar, cc.CatChildName, c.CatID, cc.CatChild_ID from ${TBL_NEWS} n JOIN ${TBL_USER} u on n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID WHERE NewsID = '${NewsId}' and n.isDel = 0`
     );
   },
   loadTagNews: function (NewsId) {
-    return db.load(`SELECT t.TagName FROM ${TBL_TAG_OF_NEWS} ton 
+    return db.load(`SELECT t.TagName, t.tagID FROM ${TBL_TAG_OF_NEWS} ton 
                     INNER JOIN ${TBL_TAG} t on ton.tagID = t.tagID WHERE ton.NewsID = ${NewsId} and t.IsDel = 0`);
   },
   loadCmt: function (NewsId) {
@@ -29,7 +29,7 @@ module.exports = {
                   WHERE n.NewsID = ${NewsId}`);
   },
   loadFiveRelatedPosts: function (NewsId, quantity) {
-    return db.load(`SELECT n.NewsTitle, n.Abstract, n.Avatar FROM ${TBL_NEWS} n 
+    return db.load(`SELECT n.NewsTitle, n.Abstract, n.Avatar, n.NewsID FROM ${TBL_NEWS} n 
                     join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID 
                     join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE c.CatID = (SELECT c2.CatID FROM ${TBL_NEWS} nn 
                       JOIN ${TBL_SUBCATEGORY} cc2 on nn.CatChild_ID = cc2.CatChild_ID 
