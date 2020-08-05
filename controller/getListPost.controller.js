@@ -20,7 +20,6 @@ module.exports.loadListPost = async function (req, res) {
 
   const total = await newsModel.countNewByCat(id);
 
-  // // const total = await productModel.countByCat(req.params.catId);
   const nPages = Math.ceil(total[0].Count / config.pagination.limit);
   let page_items = [];
 
