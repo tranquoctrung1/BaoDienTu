@@ -91,7 +91,7 @@ module.exports.loadListPost = async function (req, res) {
     }
   }
 
-  console.log(page_items);
+  //console.log(page_items);
 
   res.render("listPost", {
     news: list,
