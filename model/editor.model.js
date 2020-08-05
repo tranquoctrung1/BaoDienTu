@@ -14,7 +14,7 @@ module.exports = {
         // return db.load(`SELECT * FROM ${TBL_NEWS} n JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID JOIN ${TBL_USER} u ON n.Author = u.UserID WHERE Status = 4 and c.CatID = ${CatID}`);
     },
     Review_loadNews: function(NewsID){
-        return db.load(`SELECT * FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE n.NewsID = ${NewsID}`);
+        return db.load(`SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, n.Avatar, cc.CatChildName from ${TBL_NEWS} n JOIN ${TBL_USER} u on n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID WHERE NewsID = '${NewsID}'`);
     },
     loadCatChild: function(){
         return db.load(`SELECT * FROM ${TBL_SUBCATEGORY}`);
