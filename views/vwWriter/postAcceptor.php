@@ -2,12 +2,12 @@
   /***************************************************
    * Only these origins are allowed to upload images *
    ***************************************************/
-  $accepted_origins = array("http://localhost", "http://192.168.1.1", "http://example.com");
+  $accepted_origins = array("http://localhost:3000", "http://192.168.1.1", "http://example.com");
 
   /*********************************************
    * Change this line to set the upload folder *
    *********************************************/
-  $imageFolder = "../../public/images/";
+  $imageFolder = "/public/images/";
 
   reset ($_FILES);
   $temp = current($_FILES);
@@ -43,6 +43,7 @@
 
     // Accept upload if there was no origin, or if it is an accepted origin
     $filetowrite = $imageFolder . $temp['name'];
+    echo $filetowrite;
     move_uploaded_file($temp['tmp_name'], $filetowrite);
 
     // Respond to the successful upload with JSON.
