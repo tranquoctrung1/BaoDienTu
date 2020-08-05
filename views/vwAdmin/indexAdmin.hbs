@@ -1,0 +1,258 @@
+<div class="container">
+    <div class="row" style="margin: 15px;">
+        <br>
+        <div class="col-md-2">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-listpost-tab" data-toggle="pill" href="#v-pills-listpost" role="tab" aria-controls="v-pills-listpost" aria-selected="false">Quản lý chuyên mục</a>
+                <a class="nav-link" id="v-pills-listpostdaduyetvachoxuatban-tab" data-toggle="pill" href="#v-pills-listpost-daduyetvachoxuatban" role="tab" aria-controls="v-pills-listpost-daduyetvachoxuatban" aria-selected="true">Quản lý nhãn</a>
+                <a class="nav-link" id="v-pills-listpostdaxuatban-tab" data-toggle="pill" href="#v-pills-listpost-daxuatban" role="tab" aria-controls="v-pills-listpost-daxuatban" aria-selected="true">Quản lý bài viết</a>
+                <a class="nav-link" id="v-pills-listpostbituchoi-tab" data-toggle="pill" href="#v-pills-listpost-bituchoi" role="tab" aria-controls="v-pills-listpost-bituchoi" aria-selected="true">Quản lý người dùng</a>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab">
+                    <h1 class="text-center" style="margin: 5px;">QUẢN LÝ CHUYÊN MỤC</h1>
+                    <form method="POST">
+                        <div class="form-group">
+                            <a type="submit" class="btn btn-primary " href="/Admin/paddNewCategory" role="button" title="Thêm mới">
+                                <i class="fas fa-plus"></i>
+                                Thêm mới
+                            </a>
+                        </div>
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4>Danh sách chuyên mục</h4>
+                            </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="text-left">Mã chuyên mục</th>
+                                        <th scope="col" class="text-center">Tên chuyên mục</th>
+                                        <th scope="col" class="text-center">Người quản lý chuyên mục</th>
+                                        <th scope="col" class="text-center">Tình trạng</th>
+                                        <th scope="col" class="text-right">Thao tác</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {{#each LoadCategory}}
+                                    <tr>
+                                        <td class="text-center">{{CatID}}</td>
+                                        <td class="text-center">{{CatName}}</td>
+                                        <td class="text-center">{{Name}}</td>
+                                        <td class="text-center">
+                                            {{#if IsDelC}}
+                                                <a class="btn btn-dark text-white btn-sm" title="Bị Xóa">
+                                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                                </a>
+                                            {{else}}
+                                                <a class="btn btn-dark text-white btn-sm">
+                                                    <i class="fas fa-lock-open"></i>
+                                                </a>
+                                            {{/if}}
+                                        </td>
+                                        <td class="text-right">
+                                        <a class="btn btn-primary btn-sm" href="/Admin/UpdateCategory/{{CatID}}" role="button">
+                                            <i class="fa fa-pencil-alt" aria-hidden="true" title="Cập nhật"></i>
+                                        </a>
+
+                                        <a class="btn btn-warning text-white btn-sm" href="/Admin/Category_IsDel/{{CatID}}" role="button">
+                                            <i class="fa fa-lock" aria-hidden="true" title="Xóa"></i>
+                                        </a>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            <div class="card-footer text-muted">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="v-pills-listpost-daduyetvachoxuatban" role="tabpanel" aria-labelledby="v-pills-listpostdaduyetvachoxuatban-tab">
+                    <h1 class="text-center" style="margin: 5px;">QUẢN LÝ NHÃN</h1>
+                    <form method="POST">
+                        <div class="form-group">
+                            <a type="submit" class="btn btn-primary " href="/Admin/paddNewTag" role="button" title="Thêm mới">
+                                <i class="fas fa-plus"></i>
+                                Thêm mới
+                            </a>
+                        </div>
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4>Danh sách nhãn</h4>
+                            </div>
+                            <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                <th scope="col" class="text-left">Mã nhãn</th>
+                                <th scope="col" class="text-center">Tên nhãn</th>
+                                <th scope="col" class="text-center">Tình trạng</th>
+                                <th scope="col" class="text-right">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each LoadTag}}
+                                <tr>
+                                <td class="text-left">{{TagID}}</td>
+                                <td class="text-center">{{TagName}}</td>
+                                <td class="text-center">
+                                    {{#if IsDelT}}
+                                        <a class="btn btn-dark text-white btn-sm" title="Bị Xóa">
+                                            <i class="fa fa-lock" aria-hidden="true"></i>
+                                        </a>
+                                    {{else}}
+                                        <a class="btn btn-dark text-white btn-sm">
+                                            <i class="fas fa-lock-open"></i>
+                                        </a>
+                                    {{/if}}
+                                </td>
+                                <td class="text-right">
+                                    <a class="btn btn-primary btn-sm" href="/Admin/UpdateTag/{{TagID}}" role="button">
+                                    <i class="fa fa-pencil-alt" aria-hidden="true" title="Cập nhật"></i>
+                                    </a>
+                                    <a class="btn btn-warning text-white btn-sm" href="/Admin/Tag_IsDel/{{TagID}}" role="button">
+                                        <i class="fa fa-lock" aria-hidden="true" title="Xóa"></i>
+                                    </a>
+                                </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                            </table>
+                            <div class="card-footer text-muted">
+                                Footer
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="v-pills-listpost-daxuatban" role="tabpanel" aria-labelledby="v-pills-listpostdaxuatban-tab">
+                    <h1 class="text-center" style="margin: 5px;">QUẢN LÝ BÀI VIẾT</h1>
+                    <form method="POST">
+                        <div class="form-group">
+                            <a type="submit" class="btn btn-primary " href="/Admin/paddNewPost" role="button" title="Thêm mới">
+                                <i class="fas fa-plus"></i>
+                                Thêm mới
+                            </a>
+                        </div>
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4>Danh sách bài bài viết</h4>
+                            </div>
+                            <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                <th scope="col" class="text-left">Mã bài viết</th>
+                                <th scope="col" class="text-center">Avatar</th>
+                                <th scope="col" class="text-center">Tiêu đề</th>
+                                <th scope="col" class="text-center">Ngày đăng</th>
+                                <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                                <th scope="col" class="text-center">Tác giả</th>
+                                <th scope="col" class="text-center">Tình trạng</th>
+                                <th scope="col" class="text-right">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each LoadNews}}
+                                <tr>
+                                    <td class="text-left">{{NewsID}}</td>
+                                    <td><img src="/images/{{Avatar}}" class="List_avatar"></td>
+                                    <td class="text-center">{{NewsTitle}}</td>
+                                    <td class="text-center">{{formatDate DatePost}}</td>
+                                    <td class="text-center">{{Abstract}}</td>
+                                    <td class="text-center">{{Author}}</td>
+                                    <td class="text-center">
+                                        {{#if IsDelN}}
+                                            <a class="btn btn-dark text-white btn-sm" title="Bị Xóa">
+                                                <i class="fa fa-lock" aria-hidden="true"></i>
+                                            </a>
+                                        {{else}}
+                                            <a class="btn btn-dark text-white btn-sm">
+                                                <i class="fas fa-lock-open"></i>
+                                            </a>
+                                        {{/if}}
+                                    </td>
+                                    <td class="text-right">
+                                        <a class="btn btn-primary btn-sm" href="/Admin/UpdatePost/{{NewsID}}" role="button">
+                                        <i class="fa fa-pencil-alt" aria-hidden="true" title="Cập nhật"></i>
+                                        </a>
+                                        <a class="btn btn-warning text-white btn-sm" href="/Admin/Post_IsDel/{{NewsID}}" role="button">
+                                            <i class="fa fa-lock" aria-hidden="true" title="Xóa"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                            </table>
+                            <div class="card-footer text-muted">
+                                Footer
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="v-pills-listpost-bituchoi" role="tabpanel" aria-labelledby="v-pills-listpostbituchoi-tab">
+                    <h1 class="text-center" style="margin: 5px;">QUẢN LÝ NGƯỜI DÙNG</h1>
+                    <form method="POST">
+                        <div class="form-group">
+                            <a type="submit" class="btn btn-primary " href="/Admin/paddNewUser" role="button" title="Thêm mới">
+                                <i class="fas fa-plus"></i>
+                                Thêm mới
+                            </a>
+                        </div>
+                        <div class="card">
+                            <div class="card-header d-flex justify-content-between">
+                                <h4>Danh sách người dùng</h4>
+                            </div>
+                            <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                <th scope="col" class="text-left">Mã người dùng</th>
+                                <th scope="col" class="text-center">Tên đăng nhập</th>
+                                <th scope="col" class="text-center">Tên hiển thị</th>
+                                <th scope="col" class="text-center">Ngày sinh</th>
+                                <th scope="col" class="text-center">Tình trạng</th>
+                                <th scope="col" class="text-center">Loại tài khoản</th>
+                                <th scope="col" class="text-right">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each LoadUser}}
+                                <tr>
+                                    <td class="text-left">{{UserID}}</td>
+                                    <td class="text-center">{{UserName}}</td>
+                                    <td class="text-center">{{Name}}</td>
+                                    <td class="text-center">{{formatDate BirthDay}}</td>
+                                    <td class="text-center">
+                                        {{#if IsDelU}}
+                                            <a class="btn btn-dark text-white btn-sm" title="Bị Xóa">
+                                                <i class="fa fa-lock" aria-hidden="true"></i>
+                                            </a>
+                                        {{else}}
+                                            <a class="btn btn-dark text-white btn-sm">
+                                                <i class="fas fa-lock-open"></i>
+                                            </a>
+                                        {{/if}}
+                                    </td>
+                                    <td class="text-center">{{TypeName}}</td>
+                                    <td class="text-right">
+                                        <a class="btn btn-primary btn-sm" href="/Admin/UpdateUser/{{UserID}}" role="button">
+                                        <i class="fa fa-pencil-alt" aria-hidden="true" title="Cập nhật"></i>
+                                        </a>
+                                        <a class="btn btn-warning text-white btn-sm" href="/Admin/User_IsDel/{{UserID}}" role="button">
+                                            <i class="fa fa-lock" aria-hidden="true" title="Xóa"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                            </table>
+                            <div class="card-footer text-muted">
+                                Footer
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

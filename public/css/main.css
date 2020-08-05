@@ -336,3 +336,22 @@ footer {
 .List_avatar {
   width: 70px;
   height: 70px; }
+
+.box {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .box label {
+    margin-top: 12px; }
+  .box .frm {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+  .box .submit-form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 15px; }
+    .box .submit-form a {
+      margin: 5px; }
