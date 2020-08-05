@@ -12,16 +12,16 @@ module.exports.loadNewSubListPost = async function (req, res) {
   // get type of list
   const pathName = req.originalUrl.split("/")[2];
 
-  const list = await newsModel.loadNewBySubCategoryID(
-    id,
-    config.pagination.limit,
-    offset
-  );
+  const [list, total] = await Promise.all([
+    newsModel.loadNewBySubCategoryID(id, config.pagination.limit, offset),
+    newsModel.countNewBySubCat(id),
+  ]);
 
-  const total = await newsModel.countNewBySubCat(id);
-
+  console.log(list);
+  console.log(total);
   // // const total = await productModel.countByCat(req.params.catId);
   const nPages = Math.ceil(total[0].Count / config.pagination.limit);
+
   let page_items = [];
 
   if (nPages <= 3) {
