@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const http = require("http");
-const httpProxy = require("http-proxy");
+// const httpProxy = require("http-proxy");
 const exphbs = require("express-handlebars");
 const sass = require("node-sass-middleware");
 const reload = require("reload");
@@ -14,6 +14,7 @@ const app = express();
 
 // call router
 const Home = require("./router/home.route");
+const Login = require("./router/login.route");
 const ListPost = require("./router/listPost.route");
 const News = require("./router/newsDetails.route");
 const Writer = require("./router/writer.route");
@@ -25,6 +26,16 @@ const User = require("./router/user.route")
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
 const catAndSubCat = require("./middlewares/allCatAndSubCat.middleware");
 
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        // secure: true
+    }
+}))
+
 const port = 3000;
 
 app.use(express.json()); // for parsing application/json
@@ -32,38 +43,38 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 // set view engine
 app.engine(
-  "hbs",
-  exphbs({
-    layoutsDir: "views/_layouts",
-    defaultLayout: "layout",
-    partialsDir: "views/_partials",
-    extname: ".hbs",
-    helpers: {
-      section: hbs_sections(),
-      foo: function () {
-        return "foo";
-      },
-      formatDate: function (date) {
-        return moment(date).format("DD/MM/YYYY HH:mm:ss");
-      },
-    },
-  })
+    "hbs",
+    exphbs({
+        layoutsDir: "views/_layouts",
+        defaultLayout: "layout",
+        partialsDir: "views/_partials",
+        extname: ".hbs",
+        helpers: {
+            section: hbs_sections(),
+            foo: function() {
+                return "foo";
+            },
+            formatDate: function(date) {
+                return moment(date).format("DD/MM/YYYY");
+            },
+        },
+    })
 );
 app.set("view engine", "hbs");
 
 // use dependencies library
 app.use(
-  "/bootstrap",
-  express.static(`${__dirname}/node_modules/bootstrap/dist`)
+    "/bootstrap",
+    express.static(`${__dirname}/node_modules/bootstrap/dist`)
 );
 app.use("/jquery", express.static(`${__dirname}/node_modules/jquery/dist`));
 app.use(
-  "/popper",
-  express.static(`${__dirname}/node_modules/popper.js/dist/umd`)
+    "/popper",
+    express.static(`${__dirname}/node_modules/popper.js/dist/umd`)
 );
 app.use(
-  "/font",
-  express.static(`${__dirname}/node_modules/@fortawesome/fontawesome-free`)
+    "/font",
+    express.static(`${__dirname}/node_modules/@fortawesome/fontawesome-free`)
 );
 
 app.use("/owl", express.static(`${__dirname}/node_modules/owl.carousel/dist`));
@@ -71,11 +82,11 @@ app.use("/owl", express.static(`${__dirname}/node_modules/owl.carousel/dist`));
 
 // use sass-midleware
 app.use(
-  sass({
-    src: __dirname + "/public", //where the sass files are
-    dest: __dirname + "/public", //where css should go
-    debug: true, // obvious
-  })
+    sass({
+        src: __dirname + "/public", //where the sass files are
+        dest: __dirname + "/public", //where css should go
+        debug: true, // obvious
+    })
 );
 
 // use static file
@@ -87,7 +98,12 @@ app.use(catAndSubCat.loadCatAndSubCat);
 
 // use router
 app.use("/", Home);
+// app.use('/newsDetails', require('./router/newsDetails.route'));
+app.use("/login", Login);
 
+app.get("/newsDetails", (req, res) => {
+    res.render("vwNews/NewsDetails");
+});
 app.use("/newsDetails", News);
 app.use("/Writer", Writer);
 app.use("/Editor", Editor);
@@ -103,17 +119,18 @@ app.get('/User', function (req, res){
 
 app.use("/list", ListPost);
 
+
 // defaul error handler
 
 // page not found
-app.use(function (req, res) {
-  res.render("404", { layout: false });
+app.use(function(req, res) {
+    res.render("404", { layout: false });
 });
 
 // other error
-app.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).render("500", { layout: false });
+app.use(function(err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).render("500", { layout: false });
 });
 
 // function request_handler(proxy, req, res) {
@@ -143,7 +160,7 @@ app.use(function (err, req, res, next) {
 const server = http.createServer(app);
 
 server.listen(port, () => {
-  console.log(`App is running on port ${port}`);
+    console.log(`App is running on port ${port}`);
 });
 
 // reload(app).then(() => {
