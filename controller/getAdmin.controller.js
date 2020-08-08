@@ -25,6 +25,34 @@ module.exports.loadAdmin = async function (req, res) {
         item.IsPremium = 0;
       }
     });
+    
+    LoadNews.forEach(item => {
+      if(item.Status === 1 || item.Status === 2)
+      {
+        item.NewsOK = 1;
+      }
+    });
+
+    LoadNews.forEach(item => {
+      if(item.Status === 3)
+      {
+        item.NewsEefuse = 1;
+      }
+    });
+
+    LoadNews.forEach(item => {
+      if(item.Status === 4)
+      {
+        item.NotApproved = 1;
+      }
+    });
+
+    LoadNews.forEach(item => {
+      if(item.IsPremium === 4)
+      {
+        item.IsPremium = 1;
+      }
+    });
 
     res.render("vwAdmin/indexAdmin", {
         LoadCategory,
@@ -221,6 +249,28 @@ module.exports.updatePost = async function (req, res) {
   res.redirect("/Admin");
 }
 
+module.exports.denyPremium = async function (req, res) {
+  const entity = {
+    NewsID: req.body.NewsID,
+    IsPremium: 0,
+  }
+
+  await adminModel.updatePost(entity);
+  var url = "/Admin/UpdatePost/" + req.body.NewsID;
+  res.redirect(url);
+}
+
+module.exports.updatePremium = async function (req, res) {
+  const entity = {
+    NewsID: req.body.NewsID,
+    IsPremium: 1,
+  }
+
+  await adminModel.updatePost(entity);
+  var url = "/Admin/UpdatePost/" + req.body.NewsID;
+  res.redirect(url);
+}
+
 module.exports.updateAvatar = async function(req, res){//////
   console.log(req.body);
   const entity = {
@@ -371,5 +421,108 @@ module.exports.editorCategory_deny = async function (req, res) {
   const LoadEditorCat = await adminModel.loadEditorCat();
   
   var url = "/Admin/Editor_Category/" + LoadEditorCat[0].UserID;
+  res.redirect(url);
+}
+
+module.exports.reviewPost = async function (req, res) {
+  const id = +req.params.id || -1;
+
+  const LoadReviewNews = await adminModel.Review_loadNews(id);
+  const news = LoadReviewNews[0];
+
+  const Review_LoadCatChild = await adminModel.loadCatChild();
+  const LoadTag = await adminModel.loadTag();
+  const TagOfNews = await adminModel.loadTagNews(id);
+
+  if(news.Avatar != null && news.Avatar != '')
+  {
+    news.IsAvatar = 1;
+  }
+  else{
+    news.IsAvatar = 0;
+  }
+  
+    res.render("vwAdmin/ReviewPost", {
+      news,
+      Review_LoadCatChild,
+      LoadTag,
+      TagOfNews,
+  });
+};
+
+
+
+//=====
+module.exports._addTag = async function(req, res){
+  const entity = {
+    NewsID: req.body.NewsID,
+    TagID: req.body.TagID,
+  }
+
+  console.log(entity);
+  await adminModel.addTag(entity);
+  var url = "/Admin/ReviewPost/" + req.body.NewsID;
+  console.log(url);
+
+  res.redirect(url);
+}
+
+module.exports._acceptPost = async function(req, res){
+  var trangthai;
+  if(req.body.DatePost === '')
+  {
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours()+":"+today.getMinutes()+":"+today.getSeconds();
+    var datePost = date+" "+time;
+    trangthai = 2;
+  }
+  else{
+    var date = req.body.DatePost;
+    var time = req.body.TimePost;
+    var datePost = date+" "+time;
+    trangthai = 1;
+  }
+
+  console.log(datePost);
+
+  const entity = {
+    NewsID: req.body.NewsID,
+    CatChild_ID: req.body.CatChild_ID,
+    DatePost: datePost,
+    Status: trangthai,
+  }
+
+  console.log(entity);
+  await adminModel.updatePost(entity);
+  var url = "/Admin";
+
+  res.redirect(url);
+}
+
+module.exports._denyPost = async function(req, res){
+
+  const entity = {
+    NewsID: req.body.NewsID,
+    Note: req.body.Note,
+    Status: 3,
+  }
+
+  console.log(entity);
+  await adminModel.updatePost(entity);
+  var url = "/Admin";
+
+  res.redirect(url);
+}
+
+module.exports._addNewTag = async function(req, res){
+  const entity = {
+    TagName: req.body.TagName,
+  }
+
+  const NewTag = await adminModel.addNewTag(entity);
+  var url = "/Admin/ReviewPost/" + req.body.NewsID;
+  console.log(url);
+
   res.redirect(url);
 }

@@ -18,10 +18,10 @@ module.exports = {
         return db.load(`SELECT * FROM ${TBL_TAG}`);
     },
     loadNews: function(){
-        return db.load(`SELECT n.NewsID, n.Avatar, n.NewsTitle, n.DatePost, n.Abstract, n.Author, n.Content, n.IsDel, u.UserName, u.Name FROM ${TBL_NEWS} n JOIN ${TBL_USER} u ON n.Author = u.UserID`);
+        return db.load(`SELECT n.NewsID, n.Avatar, n.NewsTitle, n.DatePost, n.Abstract, n.Status, n.Author, n.Content, n.IsPremium, n.IsDel, u.UserName, u.Name FROM ${TBL_NEWS} n JOIN ${TBL_USER} u ON n.Author = u.UserID`);
     },
     loadUser: function(){
-        return db.load(`SELECT u.UserID, u.UserName, u.Name, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID`);
+        return db.load(`SELECT u.UserID, u.UserName, u.Name, u.Password, u.Phone, u.PenName, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID`);
     },
     addNewCategory: function(entity){
         return db.add(TBL_CATEGORY, entity);
@@ -62,7 +62,7 @@ module.exports = {
         return db.patch(TBL_TAG, entity, condition);
     },
     loadUpdatePost: function(NewsID){
-        return db.load(`SELECT n.NewsID, n.Avatar, n.NewsTitle, n.DatePost, n.Abstract, n.Author, n.Content, n.IsDel, u.UserName, u.Name, cc.CatChildName FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE n.NewsID = ${NewsID}`);
+        return db.load(`SELECT n.NewsID, n.Avatar, n.NewsTitle, n.DatePost, n.Abstract, n.Author, n.Content, n.IsPremium, n.IsDel, u.UserName, u.Name, cc.CatChildName FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE n.NewsID = ${NewsID}`);
     },
     updatePost: function (entity) {
         const condition = {
@@ -95,7 +95,7 @@ module.exports = {
     },
     //====Quản lý User
     loadUpdateUser: function(UserID){
-        return db.load(`SELECT u.UserID, u.UserName, u.Name, u.BirthDay, u.IsDel, tou.TypeName FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID WHERE UserID = ${UserID}`);
+        return db.load(`SELECT u.UserID, u.UserName, u.Name, u.Password, u.Phone, u.PenName, u.Email, u.BirthDay, u.IsDel, tou.TypeName FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID WHERE UserID = ${UserID}`);
     },
     updateUser: function (entity) {
         const condition = {
@@ -120,5 +120,19 @@ module.exports = {
     loadEditorCat: function(){
         return db.load(`SELECT ec.EditorCat_ID, ec.UserID, ec.CatID FROM ${TBL_EDITOR_CAT} ec`);
     },
-    
+    Review_loadNews: function(NewsID){
+        return db.load(`SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, n.Avatar, cc.CatChildName from ${TBL_NEWS} n JOIN ${TBL_USER} u on n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID WHERE NewsID = '${NewsID}'`);
+    },
+    loadCatChild: function(){
+        return db.load(`SELECT * FROM ${TBL_SUBCATEGORY}`);
+    },
+    loadTag: function(){
+        return db.load(`SELECT * FROM ${TBL_TAG}`);
+    },
+    loadTagNews: function(NewsId){
+        return db.load(`SELECT t.TagName FROM ${TBL_TAG_OF_NEWS} ton INNER JOIN ${TBL_TAG} t on ton.tagID = t.tagID WHERE ton.NewsID = ${NewsId}`)
+    },
+    addTag: function(entity){
+        return db.add(TBL_TAG_OF_NEWS, entity);
+    },
 }
