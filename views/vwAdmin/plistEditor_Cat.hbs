@@ -1,0 +1,61 @@
+<div class="container">
+    <a class="btn btn-primary" href="/Admin" role="button" title="Back to List" style="margin: 15px;">
+        <i class="fa fa-backward" aria-hidden="true"></i>
+        Quay trở lại trang quản lý
+    </a>
+    <div class="row">
+        <div class="col-9">
+            <form method="POST">
+                <div>
+                    <h3 class="text-danger" style="text-align: center;">DANH SÁCH CHUYÊN MỤC BIÊN TẬP VIÊN QUẢN LÝ</h3>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col" class="text-left">Mã</th>
+                        <th scope="col" class="text-center">Tên chuyên mục</th>
+                        <th scope="col" class="text-right"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <input id="txtEditor" name="UserID" class="form-control" type="text" value="{{this.editorCat.UserID}}" hidden>
+                        {{#each LoadEditorCat}}
+                        <tr>
+                            <td class="text-left">{{EditorCat_ID}}</td>
+                            <td class="text-center">{{CatName}}</td>
+                            <td class="text-right">
+                                <a class="btn btn-danger btn-sm" href="/Admin/Editor_Category/deny/{{EditorCat_ID}}" role="button" title="Hủy quền">
+                                    <i class="fas fa-minus"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class="col-3">
+            <div class="box">
+                <form method="POST" class="frm">
+                    <div>
+                        <h3 class="text-danger">Phân công</h3>
+                    </div>
+                    <input id="txtEditor" name="UserID" class="form-control" type="text" value="{{this.editorCat.UserID}}" hidden>
+                    <div class="form_group">
+                        <label class="text-primary" for="txtCatName">Tên chuyên mục: </label>
+                        <select class="custom-select" id="txtCatName" name="CatID">
+                        {{#each LoadCategory}}
+                        <option value="{{CatID}}">{{CatName}}</option>
+                        {{/each}}
+                        </select>
+                    </div>
+                    <div class="submit-form">
+                        <button type="submit" class="btn btn-primary" formaction="/Admin/Editor_Category/grant">
+                            Phân công
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

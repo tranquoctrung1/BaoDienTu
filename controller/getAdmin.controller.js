@@ -6,6 +6,26 @@ module.exports.loadAdmin = async function (req, res) {
     const LoadNews = await adminModel.loadNews();
     const LoadUser = await adminModel.loadUser();
 
+    LoadUser.forEach(item => {
+      if(item.TypeOfUser === 4)
+      {
+        item.IsEditor = 1;
+      }
+      else{
+        item.IsEditor = 0;
+      }
+    });
+
+    LoadUser.forEach(item => {
+      if(item.PreID != null)
+      {
+        item.IsPremium = 1;
+      }
+      else{
+        item.IsPremium = 0;
+      }
+    });
+
     res.render("vwAdmin/indexAdmin", {
         LoadCategory,
         LoadTag,
@@ -256,7 +276,7 @@ module.exports.paddNewUser = async function (req, res) {
 }
 
 module.exports.addUser = async function (req, res) {
-
+  
   const entity = {
     UserName: req.body.UserName,
     Name: req.body.Name,
@@ -270,18 +290,18 @@ module.exports.addUser = async function (req, res) {
   }
   console.log(entity);
   await adminModel.addNewUser(entity);
-
+  
   res.redirect("/Admin");
 }
 
 
 module.exports.loadUpdateUser = async function (req, res) {
   const id = +req.params.id || -1;
-
+  
   const LoadUpdateUser = await adminModel.loadUpdateUser(id);
   const user = LoadUpdateUser[0];
   const typeUser = await adminModel.loadTypeOfUser();
- 
+  
   res.render("vwAdmin/pUpdateUser", {
     user,
     typeUser,
@@ -289,10 +309,10 @@ module.exports.loadUpdateUser = async function (req, res) {
 }
 
 module.exports.updateUser = async function (req, res) {
-
+  
   console.log(req.body);
   await adminModel.updateUser(req.body);
-
+  
   res.redirect("/Admin");
 }
 
@@ -301,7 +321,7 @@ module.exports.User_IsDel = async function (req, res) {
   const LoadUser = await adminModel.loadUpdateUser(id);
   console.log(LoadUser);
   var isDel = LoadUser[0].IsDel;
-
+  
   console.log(isDel);
   if(LoadUser[0].IsDel === 1){
     isDel = 0;
@@ -309,7 +329,7 @@ module.exports.User_IsDel = async function (req, res) {
   else if(LoadUser[0].IsDel === 0){
     isDel = 1;
   }
-
+  
   const entity = {
     UserID: id,
     IsDel: isDel,
@@ -317,4 +337,39 @@ module.exports.User_IsDel = async function (req, res) {
   console.log(entity);
   await adminModel.updateUser(entity);
   res.redirect("/Admin");
+}
+
+module.exports.LoadList_EditorCategory = async function (req, res) {
+  const id = +req.params.id || -1;
+  const LoadEditorCat = await adminModel.loadEditor_Category(id);
+  const editorCat = LoadEditorCat[0];
+  const LoadCategory = await adminModel.loadCat();
+
+  res.render("vwAdmin/plistEditor_Cat",{
+    LoadEditorCat,
+    editorCat,
+    LoadCategory,
+  });
+}
+
+module.exports.editorCategory_grant = async function (req, res) {
+  const entity = {
+    CatID: req.body.CatID,
+    UserID: req.body.UserID,
+  }
+  await adminModel.addEditorCat(entity);
+  
+  var url = "/Admin/Editor_Category/" + req.body.UserID;
+  res.redirect(url);
+}
+
+module.exports.editorCategory_deny = async function (req, res) {
+  const id = +req.params.id || -1;
+
+  console.log(req.body);
+  await adminModel.delEditorCat(id);
+  const LoadEditorCat = await adminModel.loadEditorCat();
+  
+  var url = "/Admin/Editor_Category/" + LoadEditorCat[0].UserID;
+  res.redirect(url);
 }
