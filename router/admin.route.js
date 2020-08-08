@@ -41,4 +41,8 @@ router.get('/UpdateUser/:id', getAdmin.loadUpdateUser);
 router.post('/UpdateUser/update', getAdmin.updateUser);
 router.get('/User_IsDel/:id', getAdmin.User_IsDel);
 
+router.get('/Editor_Category/:id', getAdmin.LoadList_EditorCategory);
+router.post('/Editor_Category/grant', getAdmin.editorCategory_grant);
+router.get('/Editor_Category/deny/:id', getAdmin.editorCategory_deny);
+
 module.exports = router;

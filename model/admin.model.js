@@ -7,6 +7,8 @@ const TBL_TAG = 'tag';
 const TBL_TYPE_OF_USER = "type_of_user";
 const TBL_SUBCATEGORY = "category_child";
 const TBL_TAG_OF_NEWS = "tag_of_news";
+const TBL_PREMIUM = "premium";
+const TBL_EDITOR_CAT = 'editor_cat';
 
 module.exports = {
     loadCat: function(){
@@ -19,7 +21,7 @@ module.exports = {
         return db.load(`SELECT n.NewsID, n.Avatar, n.NewsTitle, n.DatePost, n.Abstract, n.Author, n.Content, n.IsDel, u.UserName, u.Name FROM ${TBL_NEWS} n JOIN ${TBL_USER} u ON n.Author = u.UserID`);
     },
     loadUser: function(){
-        return db.load(`SELECT u.UserID, u.UserName, u.Name, u.BirthDay, u.IsDel, tou.TypeName FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID`);
+        return db.load(`SELECT u.UserID, u.UserName, u.Name, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID`);
     },
     addNewCategory: function(entity){
         return db.add(TBL_CATEGORY, entity);
@@ -44,7 +46,7 @@ module.exports = {
     },
     updateCategory: function (entity) {
         const condition = {
-          CatID: entity.CatID
+            CatID: entity.CatID
         }
         delete entity.CatID;
         return db.patch(TBL_CATEGORY, entity, condition);
@@ -54,7 +56,7 @@ module.exports = {
     },
     updateTag: function (entity) {
         const condition = {
-          TagID: entity.TagID
+            TagID: entity.TagID
         }
         delete entity.TagID;
         return db.patch(TBL_TAG, entity, condition);
@@ -64,7 +66,7 @@ module.exports = {
     },
     updatePost: function (entity) {
         const condition = {
-          NewsID: entity.NewsID
+            NewsID: entity.NewsID
         }
         delete entity.NewsID;
         return db.patch(TBL_NEWS, entity, condition);
@@ -74,19 +76,19 @@ module.exports = {
     },
     delNews: function (id) {
         const condition = {
-          NewsID: id
+            NewsID: id
         }
         return db.del(TBL_NEWS, condition);
     },
     delTag_Of_News: function (id) {
         const condition = {
-          NewsID: id
+            NewsID: id
         }
         return db.del(TBL_TAG_OF_NEWS, condition);
     },
     updateAvatar: function(entity){
         const condition = {
-          NewsID: entity.NewsID
+            NewsID: entity.NewsID
         }
         delete entity.NewsID;
         return db.patch(TBL_NEWS, entity, condition);
@@ -102,5 +104,21 @@ module.exports = {
         delete entity.UserID;
         return db.patch(TBL_USER, entity, condition);
     },
-
+    //===Editor_Category
+    loadEditor_Category: function(UserID){
+        return db.load(`SELECT ec.EditorCat_ID, ec.UserID, ec.CatID, c.CatName FROM ${TBL_EDITOR_CAT} ec JOIN ${TBL_USER} u ON ec.UserID = u.UserID JOIN ${TBL_CATEGORY} c ON ec.CatID = c.CatID WHERE u.UserID = ${UserID} and c.IsDel = 0`);
+    },
+    addEditorCat: function(entity){
+        return db.add(TBL_EDITOR_CAT, entity);
+    },
+    delEditorCat: function (id) {
+        const condition = {
+            EditorCat_ID: id
+        }
+    return db.del(TBL_EDITOR_CAT, condition);
+    },
+    loadEditorCat: function(){
+        return db.load(`SELECT ec.EditorCat_ID, ec.UserID, ec.CatID FROM ${TBL_EDITOR_CAT} ec`);
+    },
+    
 }
