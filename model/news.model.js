@@ -94,4 +94,19 @@ module.exports = {
       where tn.TagID=${id} and t.isDel = 0  and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0`
     );
   },
+  getFullTextSearch: function (content, limit, offset) {
+    return db.load(
+      `SELECT n.NewsTitle, cc.CatChildName, c.CatName,n.Abstract , n.DatePost, n.Avatar, c.CatID, cc.CatChild_ID, n.NewsID FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} 
+      cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID 
+      where n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and match(n.NewsTitle, n.Abstract, n.Content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) limit ${limit} offset ${offset} `
+    );
+  },
+
+  countByFullTextSearch: function (content) {
+    return db.load(
+      `SELECT count(*) as Count FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} 
+      cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID 
+      where n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and match(n.NewsTitle, n.Abstract, n.Content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE)`
+    );
+  },
 };
