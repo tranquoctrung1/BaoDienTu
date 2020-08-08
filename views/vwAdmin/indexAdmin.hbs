@@ -212,6 +212,7 @@
                                 <th scope="col" class="text-center">Ngày sinh</th>
                                 <th scope="col" class="text-center">Tình trạng</th>
                                 <th scope="col" class="text-center">Loại tài khoản</th>
+                                <th></th>
                                 <th scope="col" class="text-right">Thao tác</th>
                                 </tr>
                             </thead>
@@ -234,6 +235,29 @@
                                         {{/if}}
                                     </td>
                                     <td class="text-center">{{TypeName}}</td>
+                                    <td>
+                                        {{#if IsEditor}}
+                                            <a class="btn btn-success text-white btn-sm" title="Phân công chuyên mục cho biên tập viên" href="/Admin/Editor_Category/{{UserID}}" role="button">
+                                                <i class="fas fa-tasks"></i>
+                                            </a>
+                                        {{else}}
+                                        {{/if}}
+
+                                        {{#if IsPremium}}
+                                            <a class="btn btn-danger text-white btn-sm" title="Tài khoản Premium">
+                                                <i class="fas fa-star"></i>
+                                            </a>
+                                        {{else}}
+                                        {{/if}}
+                                        
+                                        {{#if IsExpired}}
+                                            <a class="btn btn-danger text-white btn-sm" title="Tài khoản Premium">
+                                                <i class="far fa-star"></i>
+                                            </a>
+                                        {{else}}
+                                        {{/if}}
+
+                                    </td>
                                     <td class="text-right">
                                         <a class="btn btn-primary btn-sm" href="/Admin/UpdateUser/{{UserID}}" role="button">
                                         <i class="fa fa-pencil-alt" aria-hidden="true" title="Cập nhật"></i>

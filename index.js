@@ -20,6 +20,8 @@ const News = require("./router/newsDetails.route");
 const Writer = require("./router/writer.route");
 const Editor = require("./router/editor.route");
 const Admin = require("./router/admin.route");
+const User = require("./router/user.route")
+
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
 const catAndSubCat = require("./middlewares/allCatAndSubCat.middleware");
@@ -106,10 +108,14 @@ app.use("/newsDetails", News);
 app.use("/Writer", Writer);
 app.use("/Editor", Editor);
 app.use("/Admin", Admin);
+//app.use("/User", User)
 
-// app.get('/Admin', function (req, res){
-//   res.render('vwAdmin/indexAdmin.hbs');
-// })
+app.get('/User', function (req, res){
+   res.render('vwUser/indexUser.hbs');
+ })
+ app.get('/User/Update', function (req, res){
+  res.render('vwUser/updateInfo.hbs');
+})
 
 app.use("/list", ListPost);
 

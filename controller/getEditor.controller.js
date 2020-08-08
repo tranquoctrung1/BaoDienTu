@@ -19,6 +19,14 @@ module.exports.reviewPost = async function (req, res) {
   const Review_LoadCatChild = await editorModel.loadCatChild();
   const LoadTag = await editorModel.loadTag();
   const TagOfNews = await editorModel.loadTagNews(id);
+
+  if(news.Avatar != null && news.Avatar != '')
+  {
+    news.IsAvatar = 1;
+  }
+  else{
+    news.IsAvatar = 0;
+  }
   
     res.render("vwEditor/Review", {
       news,

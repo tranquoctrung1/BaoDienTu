@@ -20,10 +20,9 @@ module.exports.loadListPost = async function (req, res) {
 
   const total = await newsModel.countNewByCat(id);
 
-  // // const total = await productModel.countByCat(req.params.catId);
   const nPages = Math.ceil(total[0].Count / config.pagination.limit);
   let page_items = [];
-
+  
   if (nPages <= 3) {
     for (let i = 1; i <= nPages; i++) {
       const item = {
@@ -90,8 +89,6 @@ module.exports.loadListPost = async function (req, res) {
       ];
     }
   }
-
-  console.log(page_items);
 
   res.render("listPost", {
     news: list,
