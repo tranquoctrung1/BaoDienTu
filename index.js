@@ -9,8 +9,8 @@ const session = require("express-session");
 const hbs_sections = require("express-handlebars-sections");
 const moment = require("moment");
 require("express-async-errors");
-
 const app = express();
+const passport = require('passport');
 
 // call router
 const Home = require("./router/home.route");
@@ -40,6 +40,9 @@ const port = 3000;
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // set view engine
 app.engine(
@@ -110,11 +113,11 @@ app.use("/Editor", Editor);
 app.use("/Admin", Admin);
 //app.use("/User", User)
 
-app.get('/User', function (req, res){
-   res.render('vwUser/indexUser.hbs');
- })
- app.get('/User/Update', function (req, res){
-  res.render('vwUser/updateInfo.hbs');
+app.get('/User', function(req, res) {
+    res.render('vwUser/indexUser.hbs');
+})
+app.get('/User/Update', function(req, res) {
+    res.render('vwUser/updateInfo.hbs');
 })
 
 app.use("/list", ListPost);
