@@ -25,8 +25,8 @@
                 </div>
                 <div class="form_group">
                     <label for="txtBirthday" class="text-primary">Ngày sinh: </label>
-                    <input id="txtBirthday" name="BirthDay" class="form-control" type="text"
-                        value="{{formatDate this.user.BirthDay}}">
+                    <input id="txtBirthday" name="BirthDay" class="form-control" type="date"
+                        value="{{formatDate2 this.user.BirthDay}}">
                 </div>
                 <div class="form_group">
                     <label for="txtPhone" class="text-primary">Số điện thoại: </label>
@@ -39,7 +39,7 @@
                 <div class="form_group">
                     <label for="txtTypeOfUser" class="text-primary">Loại tài khoản: </label>
                     <select class="custom-select" id="txtTypeOfUser" name="TypeOfUser">
-                        <option selected value="{{this.user.TypeOfUser}}">{{this.user.TypeName}}</option>
+                        <option selected value="{{this.user.TypeID}}">{{this.user.TypeName}}</option>
                         {{#each typeUser}}
                         <option value="{{TypeID}}">{{TypeName}}</option>
                         {{/each}}

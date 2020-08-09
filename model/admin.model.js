@@ -29,6 +29,12 @@ module.exports = {
       `SELECT u.UserID, u.UserName, u.Name, u.Password, u.Phone, u.PenName, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID`
     );
   },
+  loadUser_Editor: function () {
+    return db.load(
+      `SELECT u.UserID, u.UserName, u.Name, u.Password, u.Phone, u.PenName, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID WHERE tou.TypeID = 4`
+    );
+  },
+
   addNewCategory: function (entity) {
     return db.add(TBL_CATEGORY, entity);
   },
@@ -49,7 +55,7 @@ module.exports = {
   },
   loadUpdateCategory: function (CatID) {
     return db.load(
-      `SELECT c.CatID, c.CatName, u.Name, c.IsDel FROM ${TBL_CATEGORY} c JOIN ${TBL_USER} u ON c.Manager = u.UserID WHERE CatID = ${CatID}`
+      `SELECT c.CatID, c.CatName, u.Name, c.Manager, c.IsDel FROM ${TBL_CATEGORY} c JOIN ${TBL_USER} u ON c.Manager = u.UserID WHERE CatID = ${CatID}`
     );
   },
   updateCategory: function (entity) {

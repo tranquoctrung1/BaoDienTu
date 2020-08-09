@@ -32,9 +32,7 @@ module.exports.loadAdmin = async function (req, res) {
   });
 
   var today = new Date();
-  console.log(today);
   var t = today.setDate(today.getDate());
-  console.log(t);
 
   LoadUser.forEach((item) => {
     var exp = new Date(item.ExpriryDate);
@@ -94,7 +92,7 @@ module.exports.addCategory = async function (req, res) {
     Manager: req.body.Manager,
     IsDel: 0,
   };
-  console.log(entity);
+
   await adminModel.addNewCategory(entity);
 
   res.redirect("/Admin");
@@ -106,7 +104,9 @@ module.exports.loadUpdateCategory = async function (req, res) {
   const LoadUpdateCategory = await adminModel.loadUpdateCategory(id);
   const category = LoadUpdateCategory[0];
 
-  const LoadUser = await adminModel.loadUser();
+  const listUser = await adminModel.loadUser_Editor();
+  const LoadUser = listUser.filter((user) => user.UserID !== user.UserID);
+  console.log(category);
 
   res.render("vwAdmin/pUpdateCategory", {
     category,
@@ -115,6 +115,7 @@ module.exports.loadUpdateCategory = async function (req, res) {
 };
 
 module.exports.updateCategory = async function (req, res) {
+  console.log(req.body);
   await adminModel.updateCategory(req.body);
   res.redirect("/Admin");
 };
@@ -122,10 +123,9 @@ module.exports.updateCategory = async function (req, res) {
 module.exports.Category_IsDel = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadCategory = await adminModel.loadUpdateCategory(id);
-  console.log(LoadCategory);
+
   var isDel = LoadCategory[0].IsDel;
 
-  console.log(isDel);
   if (LoadCategory[0].IsDel === 1) {
     isDel = 0;
   } else if (LoadCategory[0].IsDel === 0) {
@@ -136,7 +136,7 @@ module.exports.Category_IsDel = async function (req, res) {
     CatID: id,
     IsDel: isDel,
   };
-  console.log(entity);
+
   await adminModel.updateCategory(entity);
   res.redirect("/Admin");
 };
@@ -152,7 +152,7 @@ module.exports.addTag = async function (req, res) {
     TagName: req.body.TagName,
     IsDel: 0,
   };
-  console.log(entity);
+
   await adminModel.addNewTag(entity);
 
   res.redirect("/Admin");
@@ -174,7 +174,7 @@ module.exports.updateTag = async function (req, res) {
     TagID: req.body.TagID,
     TagName: req.body.TagName,
   };
-  console.log(entity);
+
   await adminModel.updateTag(entity);
 
   res.redirect("/Admin");
@@ -183,10 +183,9 @@ module.exports.updateTag = async function (req, res) {
 module.exports.Tag_IsDel = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadTag = await adminModel.loadUpdateTag(id);
-  console.log(LoadTag);
+
   var isDel = LoadTag[0].IsDel;
 
-  console.log(isDel);
   if (LoadTag[0].IsDel === 1) {
     isDel = 0;
   } else if (LoadTag[0].IsDel === 0) {
@@ -197,7 +196,7 @@ module.exports.Tag_IsDel = async function (req, res) {
     TagID: id,
     IsDel: isDel,
   };
-  console.log(entity);
+
   await adminModel.updateTag(entity);
   res.redirect("/Admin");
 };
@@ -236,7 +235,7 @@ module.exports.addNewPost = async function (req, res) {
     IsPremium: 0,
     IsDel: 0,
   };
-  console.log(entity);
+
   const NewPost = await adminModel.addNewPost(entity);
 
   res.redirect("/Admin");
@@ -256,7 +255,6 @@ module.exports.loadUpdatePost = async function (req, res) {
 };
 
 module.exports.updatePost = async function (req, res) {
-  console.log(req.body);
   await adminModel.updatePost(req.body);
 
   res.redirect("/Admin");
@@ -285,13 +283,11 @@ module.exports.updatePremium = async function (req, res) {
 };
 
 module.exports.updateAvatar = async function (req, res) {
-  //////
-  console.log(req.body);
   const entity = {
     NewsID: req.body.NewsID,
     Avatar: req.file.filename,
   };
-  console.log(entity);
+
   await adminModel.updateAvatar(entity);
   var url = "/Admin/UpdatePost/" + req.body.NewsID;
   res.redirect(url);
@@ -300,17 +296,15 @@ module.exports.updateAvatar = async function (req, res) {
 module.exports.DelPost = async function (req, res) {
   await adminModel.delTag_Of_News(req.body.NewsID);
   await adminModel.delNews(req.body.NewsID);
-  console.log(req.params.NewsID);
   res.redirect("/Admin");
 };
 
 module.exports.Post_IsDel = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadPost = await adminModel.loadUpdatePost(id);
-  console.log(LoadPost);
+
   var isDel = LoadPost[0].IsDel;
 
-  console.log(isDel);
   if (LoadPost[0].IsDel === 1) {
     isDel = 0;
   } else if (LoadPost[0].IsDel === 0) {
@@ -321,7 +315,7 @@ module.exports.Post_IsDel = async function (req, res) {
     NewsID: id,
     IsDel: isDel,
   };
-  console.log(entity);
+
   await adminModel.updatePost(entity);
   res.redirect("/Admin");
 };
@@ -349,7 +343,7 @@ module.exports.addUser = async function (req, res) {
     PenName: req.body.PenName,
     IsDel: 0,
   };
-  console.log(entity);
+
   await adminModel.addNewUser(entity);
 
   res.redirect("/Admin");
@@ -360,7 +354,9 @@ module.exports.loadUpdateUser = async function (req, res) {
 
   const LoadUpdateUser = await adminModel.loadUpdateUser(id);
   const user = LoadUpdateUser[0];
-  const typeUser = await adminModel.loadTypeOfUser();
+
+  const listTypeUser = await adminModel.loadTypeOfUser();
+  const typeUser = listTypeUser.filter((type) => type.TypeID !== user.TypeID);
 
   res.render("vwAdmin/pUpdateUser", {
     user,
@@ -369,7 +365,15 @@ module.exports.loadUpdateUser = async function (req, res) {
 };
 
 module.exports.updateUser = async function (req, res) {
-  console.log(req.body);
+  var today = new Date(req.body.BirthDay);
+  var date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  var time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var dateTime = date + " " + time;
+
+  req.body.BirthDay = dateTime;
+
   await adminModel.updateUser(req.body);
 
   res.redirect("/Admin");
@@ -378,10 +382,8 @@ module.exports.updateUser = async function (req, res) {
 module.exports.User_IsDel = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadUser = await adminModel.loadUpdateUser(id);
-  console.log(LoadUser);
   var isDel = LoadUser[0].IsDel;
 
-  console.log(isDel);
   if (LoadUser[0].IsDel === 1) {
     isDel = 0;
   } else if (LoadUser[0].IsDel === 0) {
@@ -392,7 +394,7 @@ module.exports.User_IsDel = async function (req, res) {
     UserID: id,
     IsDel: isDel,
   };
-  console.log(entity);
+
   await adminModel.updateUser(entity);
   res.redirect("/Admin");
 };
@@ -424,7 +426,6 @@ module.exports.editorCategory_grant = async function (req, res) {
 module.exports.editorCategory_deny = async function (req, res) {
   const id = +req.params.id || -1;
 
-  console.log(req.body);
   await adminModel.delEditorCat(id);
   const LoadEditorCat = await adminModel.loadEditorCat();
 
@@ -463,10 +464,8 @@ module.exports._addTag = async function (req, res) {
     TagID: req.body.TagID,
   };
 
-  console.log(entity);
   await adminModel.addTag(entity);
   var url = "/Admin/ReviewPost/" + req.body.NewsID;
-  console.log(url);
 
   res.redirect(url);
 };
@@ -492,8 +491,6 @@ module.exports._acceptPost = async function (req, res) {
     trangthai = 1;
   }
 
-  console.log(datePost);
-
   const entity = {
     NewsID: req.body.NewsID,
     CatChild_ID: req.body.CatChild_ID,
@@ -501,7 +498,6 @@ module.exports._acceptPost = async function (req, res) {
     Status: trangthai,
   };
 
-  console.log(entity);
   await adminModel.updatePost(entity);
   var url = "/Admin";
 
@@ -515,7 +511,6 @@ module.exports._denyPost = async function (req, res) {
     Status: 3,
   };
 
-  console.log(entity);
   await adminModel.updatePost(entity);
   var url = "/Admin";
 

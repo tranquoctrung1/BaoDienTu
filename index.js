@@ -63,6 +63,9 @@ app.engine(
       formatDateTime: function (date) {
         return moment(date).format("hh:mm:ss a");
       },
+      formatDate2: function (date) {
+        return moment(date).format("YYYY-MM-DD");
+      },
     },
   })
 );
