@@ -117,16 +117,8 @@ app.use("/newsDetails", News);
 app.use("/Writer", Writer);
 app.use("/Editor", Editor);
 app.use("/Admin", Admin);
+app.use("/User", User)
 app.use("/search", Search);
-//app.use("/User", User)
-
-app.get("/User", function (req, res) {
-  res.render("vwUser/indexUser.hbs");
-});
-app.get("/User/Update", function (req, res) {
-  res.render("vwUser/updateInfo.hbs");
-});
-
 app.use("/list", ListPost);
 
 // defaul error handler

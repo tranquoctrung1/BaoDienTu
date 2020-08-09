@@ -4,7 +4,7 @@ const router = express.Router();
 
 const getUser = require("../controller/getUser.controller");
 router.get('/', getUser.loadUser);
-//router.get('/updateUserInfo', getUser.updateInfo);
-
+router.get('/updateUserInfo/:id', getUser.loadUpdateUser);
+router.post('/updateUserInfo/update', getUser.updateUser );
 
 module.exports = router;
