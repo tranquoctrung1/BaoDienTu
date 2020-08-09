@@ -54,6 +54,9 @@
     border: 0;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     transition: all .5s ease-in-out; }
+    @media only screen and (min-width: 768px) {
+      .home-page .most-view .container .row .owl-carousel .item .card, .home-page .newest .container .row .owl-carousel .item .card {
+        height: 200px; } }
     .home-page .most-view .container .row .owl-carousel .item .card .card-img, .home-page .newest .container .row .owl-carousel .item .card .card-img {
       width: 100%; }
       @media only screen and (min-width: 768px) {
@@ -174,6 +177,197 @@
         pointer-events: none;
         cursor: default; }
 
+.login-page .dangnhap {
+  background: linear-gradient(120deg, #3498db, #9b59b6) no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .login-page .dangnhap .dangnhap-form {
+    width: 360px;
+    background: #fbfbfb;
+    height: 600px;
+    padding: 80px 40px;
+    border-radius: 10pxD; }
+    .login-page .dangnhap .dangnhap-form h2 {
+      text-align: center;
+      margin-bottom: 40px; }
+    .login-page .dangnhap .dangnhap-form .txtbox {
+      border-bottom: 2px solid #636e72;
+      position: relative;
+      margin: 30px 0; }
+      .login-page .dangnhap .dangnhap-form .txtbox input {
+        font-size: 15px;
+        color: #333333;
+        border: none;
+        width: 100%;
+        outline: none;
+        background: none;
+        padding: 0 5px;
+        height: 40px; }
+      .login-page .dangnhap .dangnhap-form .txtbox span::before {
+        content: attr(data-placeolder);
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        color: #636e72;
+        transform: translateY(-50%);
+        transition: .5s;
+        z-index: 1;
+        pointer-events: none; }
+      .login-page .dangnhap .dangnhap-form .txtbox span::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        bottom: -2px;
+        background: linear-gradient(120deg, #3498db, #9b59b6);
+        transition: .5s; }
+    .login-page .dangnhap .dangnhap-form .dnbtn {
+      display: block;
+      width: 100%;
+      height: 50px;
+      border: none;
+      background: linear-gradient(120deg, #f1c40f, #e67e22, #f1c40f);
+      color: #FFF;
+      background-size: 200%;
+      font-size: 15px;
+      margin-bottom: 1rem; }
+      .login-page .dangnhap .dangnhap-form .dnbtn:hover {
+        background-position: right;
+        color: blanchedalmond; }
+    .login-page .dangnhap .dangnhap-form .dnbtn_fb {
+      display: block;
+      width: 100%;
+      height: 50px;
+      border: none;
+      background: linear-gradient(120deg, #3498db, #9b59b6, #3498db);
+      color: #FFF;
+      background-size: 200%;
+      font-size: 15px;
+      margin-bottom: 1rem; }
+      .login-page .dangnhap .dangnhap-form .dnbtn_fb:hover {
+        background-position: right;
+        color: blanchedalmond; }
+    .login-page .dangnhap .dangnhap-form .dnbtn_gg {
+      display: block;
+      width: 100%;
+      height: 50px;
+      border: none;
+      background: linear-gradient(120deg, #e67e22, #c0392b, #e67e22);
+      color: #FFF;
+      background-size: 200%;
+      font-size: 15px;
+      margin-bottom: 1rem; }
+      .login-page .dangnhap .dangnhap-form .dnbtn_gg:hover {
+        background-position: right;
+        color: blanchedalmond; }
+
+.login-page .dangnhap .focus + span::before {
+  top: -5px;
+  font-size: 0px; }
+
+.login-page .dangnhap .focus + span::after {
+  width: 1%; }
+
+.register-page {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-family: montserrat;
+  box-sizing: border-box; }
+  .register-page .dangky {
+    background-image: linear-gradient(120deg, #3498db, #9b59b6, #3498db);
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .register-page .dangky p {
+      color: #636e72; }
+    .register-page .dangky .ngaythangnam {
+      display: block;
+      margin: 10px 0; }
+      .register-page .dangky .ngaythangnam select {
+        width: 80px;
+        height: 30px;
+        border: 1px solid #3498db; }
+        @media screen and (min-width: 768px) {
+          .register-page .dangky .ngaythangnam select {
+            width: 90px; } }
+    .register-page .dangky .thanhpho {
+      width: 100%;
+      height: 30px;
+      margin: 10px 0;
+      border: 1px solid #3498db; }
+    .register-page .dangky .dangky-form {
+      width: 360px;
+      background: #fcfeff;
+      padding: 40px 40px;
+      border-radius: 10px;
+      margin: 40px 0; }
+      @media screen and (min-width: 768px) {
+        .register-page .dangky .dangky-form {
+          width: 700px; } }
+      .register-page .dangky .dangky-form h2 {
+        text-align: center;
+        margin-bottom: 60px; }
+      .register-page .dangky .dangky-form h4 {
+        text-align: center; }
+    .register-page .dangky .canhan .txtb {
+      border-bottom: 2px solid #636e72;
+      position: relative;
+      margin: 30px 0; }
+      .register-page .dangky .canhan .txtb input {
+        font-size: 15px;
+        color: #333333;
+        border: none;
+        width: 100%;
+        outline: none;
+        background: none;
+        padding: 0 5px;
+        height: 40px; }
+      .register-page .dangky .canhan .txtb span::before {
+        content: attr(data-placeolder);
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        color: #636e72;
+        transform: translateY(-50%);
+        z-index: 1;
+        transition: .5s;
+        pointer-events: none; }
+      .register-page .dangky .canhan .txtb span::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        left: 0;
+        bottom: -2px;
+        background: linear-gradient(120deg, #3498db, #9b59b6);
+        transition: .5s; }
+    .register-page .dangky .canhan .penname {
+      display: none; }
+    .register-page .dangky .canhan .pennameactive {
+      display: block; }
+    .register-page .dangky .canhan .kbtn {
+      display: flex;
+      justify-content: center; }
+      .register-page .dangky .canhan .kbtn .btn {
+        display: block;
+        width: 150px;
+        background: linear-gradient(120deg, #3498db, #9b59b6, #3498db);
+        color: #FFF;
+        background-size: 200%;
+        font-size: 15px; }
+        .register-page .dangky .canhan .kbtn .btn:hover {
+          background-position: right;
+          color: blanchedalmond; }
+    .register-page .dangky .focus + span::before {
+      top: -5px;
+      font-size: 0px; }
+    .register-page .dangky .focus + span::after {
+      width: 100%; }
+
 .news-details-page .col-sm-8 {
   padding-top: 20px; }
 
@@ -225,7 +419,7 @@
   display: block;
   margin: 0 auto; }
 
-.news-details-page .container .row .col-md-9 h1 {
+.news-details-page .container .row .col-md-9 h2 {
   text-transform: uppercase; }
 
 .news-details-page .container .row .col-md-9 a {
@@ -312,6 +506,12 @@
     max-width: 100%;
     display: block;
     margin: 0 auto; }
+
+.news-details-page .CatAndPre {
+  display: flex;
+  justify-content: space-between; }
+  .news-details-page .CatAndPre i {
+    font-size: 15px; }
 
 header .navbar {
   padding: 0 10px; }
@@ -470,24 +670,49 @@ footer {
   width: 70px;
   height: 70px; }
 
-.box {
+.admin-page .box {
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center; }
-  .box label {
+  .admin-page .box label {
     margin-top: 12px; }
-  .box .frm {
+  .admin-page .box .frm {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
-  .box .submit-form {
+  .admin-page .box .submit-form {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin-top: 15px; }
-    .box .submit-form a {
+    .admin-page .box .submit-form a {
       margin: 5px; }
+
+.admin-page p {
+  font-size: 12px; }
+
+.admin-page .box {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .admin-page .box label {
+    margin-top: 12px; }
+  .admin-page .box .frm {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+  .admin-page .box .submit-form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 15px; }
+    .admin-page .box .submit-form a {
+      margin: 5px; }
+
+.admin-page p {
+  font-size: 12px; }
 
 .editor-review-page .container img {
   max-width: 100%;

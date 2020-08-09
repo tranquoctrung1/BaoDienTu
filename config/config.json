@@ -1,16 +1,16 @@
 {
-  "mysql": {
-    "host": "localhost",
-    "port": 3306,
-    "user": "root",
-    "password": "",
-    "database": "baodientu",
-    "connectionLimit": 100
-  },
-  "pagination": {
-    "limit": 3
-  },
-  "authentication": {
-    "saltRounds": 10
-  }
+    "mysql": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "root",
+        "password": "",
+        "database": "baodientu",
+        "connectionLimit": 100
+    },
+    "pagination": {
+        "limit": 3
+    },
+    "authentication": {
+        "saltRounds": 10
+    }
 }

@@ -34,11 +34,23 @@ router.post('/UpdatePost/update', getAdmin.updatePost);
 router.post('/UpdatePost/updateAvatar', upload.single("Avatar"), getAdmin.updateAvatar);
 router.post('/UpdatePost/del', getAdmin.DelPost);
 router.get('/Post_IsDel/:id', getAdmin.Post_IsDel);
+router.post('/UpdatePost/cancelPremium', getAdmin.denyPremium);
+router.post('/UpdatePost/grantPremium', getAdmin.updatePremium);
 
 router.get('/paddNewUser', getAdmin.paddNewUser);
 router.post('/paddNewUser/addNewUser', getAdmin.addUser);
 router.get('/UpdateUser/:id', getAdmin.loadUpdateUser);
 router.post('/UpdateUser/update', getAdmin.updateUser);
 router.get('/User_IsDel/:id', getAdmin.User_IsDel);
+
+router.get('/Editor_Category/:id', getAdmin.LoadList_EditorCategory);
+router.post('/Editor_Category/grant', getAdmin.editorCategory_grant);
+router.get('/Editor_Category/deny/:id', getAdmin.editorCategory_deny);
+router.get('/ReviewPost/:id', getAdmin.reviewPost);
+
+router.post('/themdannhan', getAdmin._addTag);
+router.post('/accept', getAdmin._acceptPost);
+router.post('/deny', getAdmin._denyPost);
+router.post('/addNewTag', getAdmin._addNewTag);
 
 module.exports = router;
