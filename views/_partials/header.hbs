@@ -7,8 +7,8 @@
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="mr-auto"></div>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" id="searchBox" type="search"
+                <form class="form-inline my-2 my-lg-0" method="GET" action="/search">
+                    <input class="form-control mr-sm-2" id="searchBox" type="search" name="content"
                         placeholder="Nhập thông tin tìm kiếm">
                 </form>
                 <ul class="navbar-nav">
@@ -20,8 +20,13 @@
                     <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-user-plus"></i> Đăng Ký</a></li> --}}
                     <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a>
                     </li>
-                    <li class="nav-item"><img class="nav-item__user" src="/images/logo.png" width="30" height="100%"
-                            alt="avatar" loading="lazy"></li>
+                    <li class="nav-item" id="avatar"><img class="nav-item__user"  src="/images/image.jpg" width="30" height="100%"
+                            alt="avatar" loading="lazy">
+                        <div class="User-info">
+                            <a href="/User/updateUserInfo/1">Cập nhật tài khoản</a>
+                            
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>

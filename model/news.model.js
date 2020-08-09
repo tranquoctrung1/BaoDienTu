@@ -16,7 +16,7 @@ module.exports = {
   },
   singleNewsDetails: function (NewsId) {
     return db.load(
-      `SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, n.Avatar, cc.CatChildName, c.CatID, cc.CatChild_ID from ${TBL_NEWS} n JOIN ${TBL_USER} u on n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID WHERE NewsID = '${NewsId}' and n.isDel = 0`
+      `SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, n.Avatar, n.IsPremium, cc.CatChildName, c.CatID, cc.CatChild_ID from ${TBL_NEWS} n JOIN ${TBL_USER} u on n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID WHERE NewsID = '${NewsId}' and n.isDel = 0`
     );
   },
   loadTagNews: function (NewsId) {
@@ -29,7 +29,7 @@ module.exports = {
                   WHERE n.NewsID = ${NewsId}`);
   },
   loadFiveRelatedPosts: function (NewsId, quantity) {
-    return db.load(`SELECT n.NewsTitle, n.Abstract, n.Avatar, n.NewsID FROM ${TBL_NEWS} n 
+    return db.load(`SELECT n.NewsTitle, n.Abstract, n.Avatar, n.NewsID, n.IsPremium, n.DatePost FROM ${TBL_NEWS} n 
                     join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID 
                     join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE c.CatID = (SELECT c2.CatID FROM ${TBL_NEWS} nn 
                       JOIN ${TBL_SUBCATEGORY} cc2 on nn.CatChild_ID = cc2.CatChild_ID 
@@ -92,6 +92,21 @@ module.exports = {
         join ${TBL_TAG_OF_NEWS} tn on tn.NewsID= n.NewsID
         join ${TBL_TAG} t on t.TagID = tn.TagID
       where tn.TagID=${id} and t.isDel = 0  and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0`
+    );
+  },
+  getFullTextSearch: function (content, limit, offset) {
+    return db.load(
+      `SELECT n.NewsTitle, cc.CatChildName, c.CatName,n.Abstract , n.DatePost, n.Avatar, c.CatID, cc.CatChild_ID, n.NewsID FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} 
+      cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID 
+      where n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and match(n.NewsTitle, n.Abstract, n.Content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) limit ${limit} offset ${offset} `
+    );
+  },
+
+  countByFullTextSearch: function (content) {
+    return db.load(
+      `SELECT count(*) as Count FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} 
+      cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID 
+      where n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and match(n.NewsTitle, n.Abstract, n.Content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE)`
     );
   },
 };

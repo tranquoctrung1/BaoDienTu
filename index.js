@@ -20,21 +20,24 @@ const News = require("./router/newsDetails.route");
 const Writer = require("./router/writer.route");
 const Editor = require("./router/editor.route");
 const Admin = require("./router/admin.route");
-const User = require("./router/user.route")
+const User = require("./router/user.route");
+const Search = require("./router/search.route");
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
 const catAndSubCat = require("./middlewares/allCatAndSubCat.middleware");
 
-app.set('trust proxy', 1) // trust first proxy
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        // secure: true
-    }
-}))
+app.set("trust proxy", 1); // trust first proxy
+app.use(
+    session({
+        secret: "keyboard cat",
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            // secure: true
+        },
+    })
+);
 
 const port = 3000;
 
@@ -59,6 +62,12 @@ app.engine(
             },
             formatDate: function(date) {
                 return moment(date).format("DD/MM/YYYY");
+            },
+            formatDateTime: function(date) {
+                return moment(date).format("hh:mm:ss a");
+            },
+            formatDate2: function(date) {
+                return moment(date).format("YYYY-MM-DD");
             },
         },
     })
@@ -111,6 +120,7 @@ app.use("/newsDetails", News);
 app.use("/Writer", Writer);
 app.use("/Editor", Editor);
 app.use("/Admin", Admin);
+
 //app.use("/User", User)
 
 app.get('/User', function(req, res) {
@@ -119,9 +129,9 @@ app.get('/User', function(req, res) {
 app.get('/User/Update', function(req, res) {
     res.render('vwUser/updateInfo.hbs');
 })
-
+app.use("/User", User)
+app.use("/search", Search);
 app.use("/list", ListPost);
-
 
 // defaul error handler
 

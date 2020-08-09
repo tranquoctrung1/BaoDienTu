@@ -37,8 +37,12 @@
 </script>
 {{/section}}
 
-<br>
+<main class="admin-page">
 <div class="container">
+  <a class="btn btn-success" href="/Admin" role="button" title="Back" style="margin: 15px;">
+    <i class="fa fa-backward" aria-hidden="true"></i>
+    Quay lại
+  </a>
   <div class="row">
     <br>
     <div class="col-md-2">
@@ -59,6 +63,13 @@
                   <div class="card-body">
                       <div class="row">
                         <div class="col-9">
+                          {{#if this.news.IsPremium}}
+                            <h5 class="text-danger">
+                              <i class="fa fa-star" aria-hidden="true"></i>
+                              Bài viết Premim
+                            </h5>
+                          {{/if}}
+
                           <div class="form-group" hidden>
                             <label for="txtNewsID" class="text-primary">NewsID: </label>
                             <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}" readonly>
@@ -101,15 +112,26 @@
                               {{/each}}
                             </select>
                           </div>
+                          {{!-- Xử lý premium --}}
+                          <div class="form-group">
+                            <label for="txtPremium" class="text-primary">Premium: </label>
+                            {{#if this.news.IsPremium}}
+                              <button type="submit" class="btn btn-warning text-white" formaction="/Admin/UpdatePost/cancelPremium">
+                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                  Hủy Premium
+                              </button>
+                            {{else}}
+                              <button type="submit" class="btn btn-warning text-white" formaction="/Admin/UpdatePost/grantPremium">
+                                  <i class="fa fa-star" aria-hidden="true"></i>
+                                  Cập nhật Premium
+                              </button>
+                            {{/if}}
+                          </div>
                         </div>
                       </div>
                       <br>
                   </div>
                   <div class="card-footer">
-                    <a class="btn btn-primary" href="/Admin" role="button" title="Back to List">
-                      <i class="fa fa-backward" aria-hidden="true"></i>
-                      Quay trở lại
-                    </a>
                     <button type="submit" class="btn btn-success " formaction="/Admin/UpdatePost/update">
                       <i class="fa fa-check" aria-hidden="true"></i>
                       Cập nhật
@@ -152,3 +174,4 @@
     </div>
   </div>
 </div>
+</main>

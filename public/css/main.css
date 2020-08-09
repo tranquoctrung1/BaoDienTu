@@ -54,6 +54,9 @@
     border: 0;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     transition: all .5s ease-in-out; }
+    @media only screen and (min-width: 768px) {
+      .home-page .most-view .container .row .owl-carousel .item .card, .home-page .newest .container .row .owl-carousel .item .card {
+        height: 200px; } }
     .home-page .most-view .container .row .owl-carousel .item .card .card-img, .home-page .newest .container .row .owl-carousel .item .card .card-img {
       width: 100%; }
       @media only screen and (min-width: 768px) {
@@ -416,7 +419,7 @@
   display: block;
   margin: 0 auto; }
 
-.news-details-page .container .row .col-md-9 h1 {
+.news-details-page .container .row .col-md-9 h2 {
   text-transform: uppercase; }
 
 .news-details-page .container .row .col-md-9 a {
@@ -504,6 +507,12 @@
     display: block;
     margin: 0 auto; }
 
+.news-details-page .CatAndPre {
+  display: flex;
+  justify-content: space-between; }
+  .news-details-page .CatAndPre i {
+    font-size: 15px; }
+
 header .navbar {
   padding: 0 10px; }
   header .navbar a.nav-link {
@@ -513,6 +522,27 @@ header .navbar {
     display: none; }
   header .navbar .form-inline .form-control {
     width: 100%; }
+  header .navbar #avatar {
+    position: relative; }
+    header .navbar #avatar .User-info {
+      padding: 10px;
+      width: 180px;
+      opacity: 0;
+      position: absolute;
+      top: 22px;
+      right: 17px;
+      transform: translate(20%, 50%); }
+      header .navbar #avatar .User-info a {
+        color: #7f8c8d;
+        font-weight: 500;
+        text-decoration: none; }
+    header .navbar #avatar:hover .User-info, header .navbar #avatar:active .User-info {
+      opacity: 1;
+      background: white;
+      border: 1px solid #ecf0f1;
+      border-radius: 5px;
+        border-radius-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+      transition: .3s all ease-in-out; }
   @media only screen and (min-width: 1023px) {
     header .navbar .navbar-nav .nav-item {
       position: relative;
@@ -640,43 +670,49 @@ footer {
   width: 70px;
   height: 70px; }
 
-.box {
+.admin-page .box {
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center; }
-  .box label {
+  .admin-page .box label {
     margin-top: 12px; }
-  .box .frm {
+  .admin-page .box .frm {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
-  .box .submit-form {
+  .admin-page .box .submit-form {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin-top: 15px; }
-    .box .submit-form a {
+    .admin-page .box .submit-form a {
       margin: 5px; }
 
-.box {
+.admin-page p {
+  font-size: 12px; }
+
+.admin-page .box {
   padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center; }
-  .box label {
+  .admin-page .box label {
     margin-top: 12px; }
-  .box .frm {
+  .admin-page .box .frm {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
-  .box .submit-form {
+  .admin-page .box .submit-form {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     margin-top: 15px; }
-    .box .submit-form a {
+    .admin-page .box .submit-form a {
       margin: 5px; }
+
+.admin-page p {
+  font-size: 12px; }
 
 .editor-review-page .container img {
   max-width: 100%;
