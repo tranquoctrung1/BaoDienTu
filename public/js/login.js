@@ -21,3 +21,10 @@ $(".txtbox input").on("blur", function() {
         $(this).removeClass("focus");
 
 });
+
+$('#googlehref').click(function() {
+    window.location.replace("/login/auth/google");
+});
+$('#facebookhref').click(function() {
+    window.location.replace("/login/auth/facebook");
+});
