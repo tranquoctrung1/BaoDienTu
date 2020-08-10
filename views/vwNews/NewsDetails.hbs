@@ -9,7 +9,8 @@
                     <input id="txtLike" name="Like" value="{{Like}}" hidden>
                     <input id="txtView" name="View" value="{{View}}" hidden>
                     <h2>{{NewsTitle}}</h2>
-                    <b>Tác giả: {{Name}}</b>&nbsp;&nbsp;<a>&nbsp;{{formatDateTime DatePost}} - {{formatDate DatePost}}</a><br>
+                    <b>Tác giả: {{Name}}</b>&nbsp;&nbsp;<a>&nbsp;{{formatDate DatePost}} -
+                        {{formatDateTime DatePost}}</a><br>
                     <b>
                         Lượt xem: {{View}} -</i>&ensp;Lượt thích: {{Like}} </i>
                     </b>
@@ -93,12 +94,13 @@
                         <h5 class="card-title"><a href="/newsDetails/{{NewsID}}"
                                 style="text-decoration: none; color: #636e72 ">{{NewsTitle}}</a> </h5>
                         <p class="card-text">{{Abstract}}</p>
-                        <p class="card-text"><small class="text-muted">{{formatDateTime DatePost}} - {{formatDate DatePost}}</small></p>
+                        <p class="card-text"><small class="text-muted">{{formatDateTime DatePost}} -
+                                {{formatDate DatePost}}</small></p>
                         {{#if IsPremium}}
-                            <div class="text-warning" style="text-align: right; font-size: 13px;">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                Premium
-                            </div>
+                        <div class="text-warning" style="text-align: right; font-size: 13px;">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            Premium
+                        </div>
                         {{/if}}
                     </div>
                 </div>

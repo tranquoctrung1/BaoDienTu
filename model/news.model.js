@@ -28,11 +28,20 @@ module.exports = {
                   INNER join ${TBL_NEWS} n on cmt.NewsID = n.NewsID INNER join ${TBL_USER} u on cmt.userID = u.UserID 
                   WHERE n.NewsID = ${NewsId}`);
   },
-  loadFiveRelatedPosts: function (NewsId, quantity) {
+  loadFiveRelatedPosts_NormalAccount: function (NewsId, quantity) {
+    //Không load những bài Premium
     return db.load(`SELECT n.NewsTitle, n.Abstract, n.Avatar, n.NewsID, n.IsPremium, n.DatePost FROM ${TBL_NEWS} n 
                     join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID 
                     join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE c.CatID = (SELECT c2.CatID FROM ${TBL_NEWS} nn 
                       JOIN ${TBL_SUBCATEGORY} cc2 on nn.CatChild_ID = cc2.CatChild_ID 
+                      JOIN ${TBL_CATEGORY} c2 on cc2.CatID = c2.CatID WHERE nn.NewsID = ${NewsId} and nn.IsDel = 0) and n.IsPremium = 0 and n.IsDel = 0 LIMIT ${quantity}`);
+  },
+  loadFiveRelatedPosts_PremiumAccount: function (NewsId, quantity) {
+    //Có bài Premium
+    return db.load(`SELECT n.NewsTitle, n.Abstract, n.Avatar, n.NewsID, n.IsPremium, n.DatePost FROM ${TBL_NEWS} n
+                    join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
+                    join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE c.CatID = (SELECT c2.CatID FROM ${TBL_NEWS} nn
+                      JOIN ${TBL_SUBCATEGORY} cc2 on nn.CatChild_ID = cc2.CatChild_ID
                       JOIN ${TBL_CATEGORY} c2 on cc2.CatID = c2.CatID WHERE nn.NewsID = ${NewsId} and nn.IsDel = 0) and n.IsDel = 0 LIMIT ${quantity}`);
   },
   loadViewestNewsByCatId: function (id, quantity) {
