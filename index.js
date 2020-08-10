@@ -129,6 +129,9 @@ app.use("/Editor", Editor);
 app.use("/Admin", Admin);
 
 //app.use("/User", User)
+app.get("/Subscriber", (req, res) => {
+  res.render("vwSubscriber/RegisterPremium.hbs");
+});
 
 app.get("/User", function (req, res) {
   res.render("vwUser/indexUser.hbs");
