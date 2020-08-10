@@ -179,14 +179,15 @@ module.exports.NewEditorCat = async function (req, res) {
   };
 
   await adminModel.addEditorCat(entity);
-  res.redirect("/Admin");
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
 };
 
 module.exports.DelEditorCat = async function (req, res) {
   const id = +req.params.id || 1;
 
   await adminModel.delEditorCat(id);
-  var url = "/Admin/UpdateCategory/" + id;
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
   res.redirect(url);
 };
 

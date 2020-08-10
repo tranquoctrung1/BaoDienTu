@@ -7,10 +7,11 @@
         <div class="row">
             <div class="col-8">
                 <form method="POST">
-                    {{#each LoadEditorCategory}}
+                    <input id="txtCatID" class="text-primary" name="CatID" class="form-control" type="text"
+                        value="{{this.category.CatID}}" hidden>
                     <div>
                         <h5 class="text-danger" style="margin: 15px; text-align: center;">DANH SÁCH NGƯỜI QUẢN LÝ CHUYÊN
-                            MỤC: {{CatName}}
+                            MỤC: {{this.category.CatName}}
                         </h5>
                     </div>
                     <table class="table table-hover">
@@ -22,6 +23,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each LoadEditorCategory}}
                             <tr>
                                 <td class="text-center">{{EditorCat_ID}}</td>
                                 <td class="text-center">{{Name}}</td>
@@ -32,9 +34,9 @@
                                     </button>
                                 </td>
                             </tr>
+                            {{/each}}
                         </tbody>
                     </table>
-                    {{/each}}
                 </form>
             </div>
             <div class="col-4">
