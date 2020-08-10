@@ -18,7 +18,7 @@ router.get("/", getAdmin.loadAdmin);
 router.get("/paddNewCategory", getAdmin.paddNewCategory);
 router.post("/paddNewCategory/addNewCategory", getAdmin.addCategory);
 router.get("/UpdateCategory/:id", getAdmin.loadUpdateCategory);
-router.post("/UpdateCategory/update", getAdmin.updateCategory);
+router.post("/UpdateCategory/addNewEditorCat", getAdmin.NewEditorCat);
 router.get("/Category_IsDel/:id", getAdmin.Category_IsDel);
 
 router.get("/paddNewTag", getAdmin.paddNewTag);
