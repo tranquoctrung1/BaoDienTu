@@ -89,7 +89,6 @@ module.exports.paddNewCategory = async function (req, res) {
 module.exports.addCategory = async function (req, res) {
   const entity = {
     CatName: req.body.CatName,
-    Manager: req.body.Manager,
     IsDel: 0,
   };
 
@@ -104,20 +103,33 @@ module.exports.loadUpdateCategory = async function (req, res) {
   const LoadUpdateCategory = await adminModel.loadUpdateCategory(id);
   const category = LoadUpdateCategory[0];
 
-  const listUser = await adminModel.loadUser_Editor();
-  const LoadUser = listUser.filter((user) => user.UserID !== user.UserID);
-  console.log(category);
+  const LoadEditorCategory = await adminModel.loadUEditorCategory(id);
+
+  const Editor = await adminModel.loadEditor();
 
   res.render("vwAdmin/pUpdateCategory", {
     category,
-    LoadUser,
+    Editor,
+    LoadEditorCategory,
   });
 };
 
-module.exports.updateCategory = async function (req, res) {
-  console.log(req.body);
-  await adminModel.updateCategory(req.body);
+module.exports.NewEditorCat = async function (req, res) {
+  const entity = {
+    CatID: req.body.CatID,
+    UserID: req.body.UserID,
+  };
+
+  await adminModel.addEditorCat(entity);
   res.redirect("/Admin");
+};
+
+module.exports.DelEditorCat = async function (req, res) {
+  const id = +req.params.id || 1;
+
+  await adminModel.delEditorCat(id);
+  var url = "/Admin/UpdateCategory/" + id;
+  res.redirect(url);
 };
 
 module.exports.Category_IsDel = async function (req, res) {

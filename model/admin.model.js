@@ -12,9 +12,7 @@ const TBL_EDITOR_CAT = "editor_cat";
 
 module.exports = {
   loadCat: function () {
-    return db.load(
-      `SELECT c.CatID, c.CatName, u.Name, c.IsDel FROM ${TBL_CATEGORY} c JOIN ${TBL_USER} u ON c.Manager = u.UserID`
-    );
+    return db.load(`SELECT c.CatID, c.CatName, c.IsDel FROM ${TBL_CATEGORY} c`);
   },
   loadTag: function () {
     return db.load(`SELECT * FROM ${TBL_TAG}`);
@@ -55,7 +53,12 @@ module.exports = {
   },
   loadUpdateCategory: function (CatID) {
     return db.load(
-      `SELECT c.CatID, c.CatName, u.Name, c.Manager, c.IsDel FROM ${TBL_CATEGORY} c JOIN ${TBL_USER} u ON c.Manager = u.UserID WHERE CatID = ${CatID}`
+      `SELECT c.CatID, c.CatName, c.IsDel FROM ${TBL_CATEGORY} c  WHERE CatID = ${CatID}`
+    );
+  },
+  loadUEditorCategory: function (CatID) {
+    return db.load(
+      `SELECT ec.EditorCat_ID, ec.CatID, ec.UserID, c.CatName, u.Name FROM ${TBL_CATEGORY} c JOIN ${TBL_EDITOR_CAT} ec ON c.CatID = ec.CatID JOIN ${TBL_USER} u ON ec.UserID = u.UserID WHERE c.CatID = ${CatID}`
     );
   },
   updateCategory: function (entity) {
@@ -65,6 +68,13 @@ module.exports = {
     delete entity.CatID;
     return db.patch(TBL_CATEGORY, entity, condition);
   },
+  delEditorCat: function (id) {
+    const condition = {
+      EditorCat_ID: id,
+    };
+    return db.del(TBL_EDITOR_CAT, condition);
+  },
+  //=============QUẢN LÝ TAG
   loadUpdateTag: function (TagID) {
     return db.load(`SELECT * FROM ${TBL_TAG} WHERE TagID = ${TagID}`);
   },
@@ -139,7 +149,12 @@ module.exports = {
   },
   loadEditorCat: function () {
     return db.load(
-      `SELECT ec.EditorCat_ID, ec.UserID, ec.CatID FROM ${TBL_EDITOR_CAT} ec`
+      `SELECT ec.EditorCat_ID, ec.UserID, ec.CatID FROM ${TBL_EDITOR_CAT} ec `
+    );
+  },
+  loadEditor_Category: function () {
+    return db.load(
+      `SELECT ec.EditorCat_ID, ec.UserID, ec.CatID FROM ${TBL_EDITOR_CAT} ec `
     );
   },
   Review_loadNews: function (NewsID) {
@@ -175,5 +190,8 @@ module.exports = {
     };
     delete entity.PreID;
     return db.patch(TBL_PREMIUM, entity, condition);
+  },
+  loadEditor: function () {
+    return db.load(`SELECT * FROM ${TBL_USER} WHERE TypeOfUser = 4`);
   },
 };
