@@ -27,6 +27,8 @@ const Search = require("./router/search.route");
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
 const catAndSubCat = require("./middlewares/allCatAndSubCat.middleware");
 
+const loginPageWriter = require("./middlewares/login.middleware");
+
 app.set("trust proxy", 1); // trust first proxy
 app.use(
     session({
@@ -117,9 +119,10 @@ app.get("/newsDetails", (req, res) => {
     res.render("vwNews/NewsDetails");
 });
 app.use("/newsDetails", News);
-app.use("/Writer", Writer);
-app.use("/Editor", Editor);
-app.use("/Admin", Admin);
+
+app.use("/Writer", loginPageWriter.loginPageWriter, Writer);
+app.use("/Editor", loginPageWriter.loginPageEditor, Editor);
+app.use("/Admin", loginPageWriter.loginPageAdmin, Admin);
 
 //app.use("/User", User)
 

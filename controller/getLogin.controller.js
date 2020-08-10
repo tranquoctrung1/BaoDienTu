@@ -43,8 +43,12 @@ module.exports.postlogin = async function(req, res) {
         })
     }
     delete user.Password;
-
     req.session.UserID = user.UserID;
+    req.session.avata = user.avata;
+    req.session.Name = user.Name;
+    req.session.TypeOfUser = user.TypeOfUser;
+
+
 
     console.log(req.session.UserID);
 
