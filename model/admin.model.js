@@ -32,7 +32,6 @@ module.exports = {
       `SELECT u.UserID, u.UserName, u.Name, u.Password, u.Phone, u.PenName, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID WHERE tou.TypeID = 4`
     );
   },
-
   addNewCategory: function (entity) {
     return db.add(TBL_CATEGORY, entity);
   },
@@ -41,6 +40,24 @@ module.exports = {
   },
   loadCatChild: function () {
     return db.load(`SELECT * FROM ${TBL_SUBCATEGORY}`);
+  },
+  loadCatChild_ID: function (CatID) {
+    return db.load(`SELECT * FROM ${TBL_SUBCATEGORY} WHERE CatID = ${CatID}`);
+  },
+  loadUpdateCatChild_ID: function (CatChildID) {
+    return db.load(
+      `SELECT * FROM ${TBL_SUBCATEGORY} WHERE CatChild_ID = ${CatChildID}`
+    );
+  },
+  updateCatChild_ID: function (entity) {
+    const condition = {
+      CatChild_ID: entity.CatChild_ID,
+    };
+    delete entity.CaCatChild_IDtID;
+    return db.patch(TBL_SUBCATEGORY, entity, condition);
+  },
+  addNewCatChild: function (entity) {
+    return db.add(TBL_SUBCATEGORY, entity);
   },
   addNewPost: function (entity) {
     return db.add(TBL_NEWS, entity);
@@ -154,7 +171,7 @@ module.exports = {
   },
   loadEditor_Category: function () {
     return db.load(
-      `SELECT ec.EditorCat_ID, ec.UserID, ec.CatID FROM ${TBL_EDITOR_CAT} ec `
+      `SELECT ec.EditorCat_ID, ec.UserID, ec.CatID, c.CatName FROM ${TBL_EDITOR_CAT} ec JOIN ${TBL_CATEGORY} c ON ec.CatID = c.CatID`
     );
   },
   Review_loadNews: function (NewsID) {
