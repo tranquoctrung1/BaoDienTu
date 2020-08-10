@@ -23,35 +23,10 @@ passport.use(new FacebookStrategy({
         // console.log(profile._json);
 
         const picture = `https://graph.facebook.com/${profile.id}/picture?width=200&height=200&access_token=${accessToken}`;
-        // console.log(picture);
-
-
-
-
-        var d = new Date(13, 7, 1995);
-        const entity = {
-                UserName: profile._json.id,
-                Name: profile._json.name,
-                Password: profile._json.id,
-                Phone: '0909123123',
-                Email: profile._json.email,
-                TypeOfUser: 2,
-                Penname: profile._json.name,
-                BirthDay: d,
-                IsActive: 1,
-                IsDel: 0,
-                token: profile._json.id,
-                avata: picture
-            }
-            // console.log(email);
-
-
-        await loginModel.add(entity);
-
-        const abc = await loginModel.singleidgoogle(profile._json.id);
+        // console.log(profile);
 
         process.nextTick(function() {
-            return done(null, abc);
+            return done(null, profile);
         });
     }
 ));

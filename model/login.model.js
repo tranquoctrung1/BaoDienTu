@@ -25,7 +25,7 @@ module.exports.singleidgoogle = async function(username) {
 
     const rows = await db.load(`select * from ${USER} where UserName = '${username}'`);
     if (rows.length === 0) {
-        return null;
+        return 0;
     }
     // console.log(rows[0]);
     return rows[0];
