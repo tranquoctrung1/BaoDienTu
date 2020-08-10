@@ -6,10 +6,7 @@ module.exports.loadNewsDetails = async function (req, res) {
   const NewsDetails = await newsModel.singleNewsDetails(id);
   const TagOfNews = await newsModel.loadTagNews(id);
   const CmtNews = await newsModel.loadCmt(id);
-  const FiveRelatedPosts = await newsModel.loadFiveRelatedPosts_NormalAccount(
-    id,
-    5
-  );
+  const FiveRelatedPosts = await newsModel.loadFiveRelatedPosts(id, 5);
 
   console.log(NewsDetails[0].Avatar);
   if (NewsDetails[0].Avatar != null && NewsDetails[0].Avatar != "") {
