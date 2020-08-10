@@ -103,12 +103,14 @@ module.exports.loadUpdateCategory = async function (req, res) {
   const LoadUpdateCategory = await adminModel.loadUpdateCategory(id);
   const category = LoadUpdateCategory[0];
 
+  const LoadEditorCategory = await adminModel.loadUEditorCategory(id);
+
   const Editor = await adminModel.loadEditor();
-  console.log(category);
 
   res.render("vwAdmin/pUpdateCategory", {
     category,
     Editor,
+    LoadEditorCategory,
   });
 };
 
@@ -120,6 +122,14 @@ module.exports.NewEditorCat = async function (req, res) {
 
   await adminModel.addEditorCat(entity);
   res.redirect("/Admin");
+};
+
+module.exports.DelEditorCat = async function (req, res) {
+  const id = +req.params.id || 1;
+
+  await adminModel.delEditorCat(id);
+  var url = "/Admin/UpdateCategory/" + id;
+  res.redirect(url);
 };
 
 module.exports.Category_IsDel = async function (req, res) {

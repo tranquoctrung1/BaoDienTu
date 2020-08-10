@@ -1,48 +1,43 @@
 <main class="admin-page">
     <div class="container">
+        <a type="submit" class="btn btn-success" href="/Admin" role="button" style="margin: 10px;">
+            <i class="fas fa-undo"></i>
+            Quay lại
+        </a>
         <div class="row">
             <div class="col-8">
-                <h5>DANH SÁCH NGƯỜI QUẢN LÝ CHUYÊN MỤC</h5>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col" class="text-left">ID</th>
-                            <th scope="col" class="text-center">Tên chuyên mục</th>
-                            <th scope="col" class="text-center">Người quản lý</th>
-                            <th scope="col" class="text-center">Tình trạng</th>
-                            <th scope="col" class="text-right">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each LoadCategory}}
-                        <tr>
-                            <td class="text-center">{{CatID}}</td>
-                            <td class="text-center">{{CatName}}</td>
-                            <td class="text-center">
-                                {{#if IsDel}}
-                                <a class="btn btn-dark text-white btn-sm" title="Bị Xóa">
-                                    <i class="fa fa-lock" aria-hidden="true"></i>
-                                </a>
-                                {{else}}
-                                <a class="btn btn-dark text-white btn-sm">
-                                    <i class="fas fa-lock-open"></i>
-                                </a>
-                                {{/if}}
-                            </td>
-                            <td class="text-right">
-                                <a class="btn btn-primary btn-sm" href="/Admin/UpdateCategory/{{CatID}}" role="button">
-                                    <i class="fa fa-pencil-alt" aria-hidden="true" title="Cập nhật"></i>
-                                </a>
-
-                                <a class="btn btn-warning text-white btn-sm" href="/Admin/Category_IsDel/{{CatID}}"
-                                    role="button">
-                                    <i class="fa fa-lock" aria-hidden="true" title="Xóa"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
+                <form method="POST">
+                    <div>
+                        <h5 class="text-danger" style="margin: 15px; text-align: center;">DANH SÁCH NGƯỜI QUẢN LÝ CHUYÊN
+                            MỤC
+                        </h5>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">ID</th>
+                                <th scope="col" class="text-center">Tên chuyên mục</th>
+                                <th scope="col" class="text-center">Người quản lý</th>
+                                <th scope="col" class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each LoadEditorCategory}}
+                            <tr>
+                                <td class="text-center">{{EditorCat_ID}}</td>
+                                <td class="text-center">{{CatName}}</td>
+                                <td class="text-center">{{Name}}</td>
+                                <td class="text-right">
+                                    <button class="btn btn-danger text-white btn-sm"
+                                        formaction="/Admin/Del_EditorCategory/{{EditorCat_ID}}">
+                                        <i class="fas fa-minus-circle" title="Hủy"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </form>
             </div>
             <div class="col-4">
                 <div class="box">

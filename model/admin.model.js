@@ -56,6 +56,11 @@ module.exports = {
       `SELECT c.CatID, c.CatName, c.IsDel FROM ${TBL_CATEGORY} c  WHERE CatID = ${CatID}`
     );
   },
+  loadUEditorCategory: function (CatID) {
+    return db.load(
+      `SELECT ec.EditorCat_ID, ec.CatID, ec.UserID, c.CatName, u.Name FROM ${TBL_CATEGORY} c JOIN ${TBL_EDITOR_CAT} ec ON c.CatID = ec.CatID JOIN ${TBL_USER} u ON ec.UserID = u.UserID WHERE c.CatID = ${CatID}`
+    );
+  },
   updateCategory: function (entity) {
     const condition = {
       CatID: entity.CatID,
@@ -63,6 +68,13 @@ module.exports = {
     delete entity.CatID;
     return db.patch(TBL_CATEGORY, entity, condition);
   },
+  delEditorCat: function (id) {
+    const condition = {
+      EditorCat_ID: id,
+    };
+    return db.del(TBL_EDITOR_CAT, condition);
+  },
+  //=============QUẢN LÝ TAG
   loadUpdateTag: function (TagID) {
     return db.load(`SELECT * FROM ${TBL_TAG} WHERE TagID = ${TagID}`);
   },
@@ -136,6 +148,11 @@ module.exports = {
     return db.del(TBL_EDITOR_CAT, condition);
   },
   loadEditorCat: function () {
+    return db.load(
+      `SELECT ec.EditorCat_ID, ec.UserID, ec.CatID FROM ${TBL_EDITOR_CAT} ec `
+    );
+  },
+  loadEditor_Category: function () {
     return db.load(
       `SELECT ec.EditorCat_ID, ec.UserID, ec.CatID FROM ${TBL_EDITOR_CAT} ec `
     );
