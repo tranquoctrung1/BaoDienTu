@@ -104,6 +104,7 @@ module.exports.loadUpdateCategory = async function (req, res) {
   const category = LoadUpdateCategory[0];
 
   const LoadEditorCategory = await adminModel.loadUEditorCategory(id);
+  const LoadCatChild_ID = await adminModel.loadCatChild_ID(id);
 
   const Editor = await adminModel.loadEditor();
 
@@ -111,7 +112,64 @@ module.exports.loadUpdateCategory = async function (req, res) {
     category,
     Editor,
     LoadEditorCategory,
+    LoadCatChild_ID,
   });
+};
+
+module.exports.loadUpdateCategoryChild = async function (req, res) {
+  const id = +req.params.id || 1;
+
+  const LoadUpdateCategoryChild = await adminModel.loadUpdateCatChild_ID(id);
+  const categorychild = LoadUpdateCategoryChild[0];
+
+  res.render("vwAdmin/pUpdateCategoryChild", {
+    categorychild,
+  });
+};
+
+module.exports.updateCategoryChild = async function (req, res) {
+  const entity = {
+    CatChild_ID: req.body.CatChild_ID,
+    CatChildName: req.body.CatChildName,
+  };
+
+  await adminModel.updateCatChild_ID(entity);
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
+};
+
+module.exports.CategoryChild_IsDel = async function (req, res) {
+  const id = +req.params.id || -1;
+  const LoadCategoryChild = await adminModel.loadUpdateCatChild_ID(id);
+
+  var isDel = LoadCategoryChild[0].IsDel;
+
+  if (LoadCategoryChild[0].IsDel === 1) {
+    isDel = 0;
+  } else if (LoadCategoryChild[0].IsDel === 0) {
+    isDel = 1;
+  }
+
+  const entity = {
+    CatChild_ID: id,
+    IsDel: isDel,
+  };
+
+  await adminModel.updateCatChild_ID(entity);
+  var url = "/Admin/UpdateCategory/" + LoadCategoryChild[0].CatID;
+  res.redirect(url);
+};
+
+module.exports.NewCatChild = async function (req, res) {
+  const entity = {
+    CatID: req.body.CatID,
+    CatChildName: req.body.CatChildName,
+    IsDel: 0,
+  };
+
+  await adminModel.addNewCatChild(entity);
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
 };
 
 module.exports.NewEditorCat = async function (req, res) {
@@ -414,6 +472,7 @@ module.exports.User_IsDel = async function (req, res) {
 module.exports.LoadList_EditorCategory = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadEditorCat = await adminModel.loadEditor_Category(id);
+  console.log(LoadEditorCat);
   const editorCat = LoadEditorCat[0];
   const LoadCategory = await adminModel.loadCat();
 

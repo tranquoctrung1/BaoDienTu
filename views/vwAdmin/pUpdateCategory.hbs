@@ -7,25 +7,23 @@
         <div class="row">
             <div class="col-8">
                 <form method="POST">
+                    {{#each LoadEditorCategory}}
                     <div>
                         <h5 class="text-danger" style="margin: 15px; text-align: center;">DANH SÁCH NGƯỜI QUẢN LÝ CHUYÊN
-                            MỤC
+                            MỤC: {{CatName}}
                         </h5>
                     </div>
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th scope="col" class="text-center">ID</th>
-                                <th scope="col" class="text-center">Tên chuyên mục</th>
                                 <th scope="col" class="text-center">Người quản lý</th>
                                 <th scope="col" class="text-right"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{#each LoadEditorCategory}}
                             <tr>
                                 <td class="text-center">{{EditorCat_ID}}</td>
-                                <td class="text-center">{{CatName}}</td>
                                 <td class="text-center">{{Name}}</td>
                                 <td class="text-right">
                                     <button class="btn btn-danger text-white btn-sm"
@@ -34,9 +32,9 @@
                                     </button>
                                 </td>
                             </tr>
-                            {{/each}}
                         </tbody>
                     </table>
+                    {{/each}}
                 </form>
             </div>
             <div class="col-4">
@@ -63,6 +61,80 @@
                         <div class="submit-form">
                             <button type="submit" class="btn btn-primary"
                                 formaction="/Admin/UpdateCategory/addNewEditorCat">
+                                Thêm
+                            </button>
+                            <a type="submit" class="btn btn-danger" href="/Admin" role="button">
+                                Hủy
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <form method="POST">
+                    <div>
+                        <h5 class="text-danger" style="margin: 15px; text-align: center;">DANH SÁCH CHUYÊN MỤC CON
+                        </h5>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">ID</th>
+                                <th scope="col" class="text-center">Tên chuyên mục</th>
+                                <th scope="col" class="text-center">Tình trạng</th>
+                                <th scope="col" class="text-right"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each LoadCatChild_ID}}
+                            <tr>
+                                <td class="text-center" hidden>{{CatID}}</td>
+                                <td class="text-center">{{CatChild_ID}}</td>
+                                <td class="text-center">{{CatChildName}}</td>
+                                <td class="text-center">
+                                    {{#if IsDel}}
+                                    <a class="btn btn-dark text-white btn-sm" title="Bị Xóa">
+                                        <i class="fa fa-lock" aria-hidden="true"></i>
+                                    </a>
+                                    {{else}}
+                                    <a class="btn btn-dark text-white btn-sm">
+                                        <i class="fas fa-lock-open"></i>
+                                    </a>
+                                    {{/if}}
+                                </td>
+                                <td class="text-right">
+                                    <a class="btn btn-primary btn-sm"
+                                        href="/Admin/UpdateCategory/UpdateCategoryChild/{{CatChild_ID}}" role="button">
+                                        <i class="fa fa-pencil-alt" aria-hidden="true" title="Cập nhật"></i>
+                                    </a>
+                                    <a class="btn btn-warning text-white btn-sm"
+                                        href="/Admin/UpdateCategory/Category_IsDel/{{CatChild_ID}}" role="button">
+                                        <i class="fa fa-lock" aria-hidden="true" title="Xóa"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div class="col-4">
+                <div class="box">
+                    <form method="POST" class="frm">
+                        <div>
+                            <h5 class="text-danger">THÊM CHUYÊN MỤC CON</h5>
+                        </div>
+                        <div class="form_group">
+                            <input id="txtCatID" class="text-primary" name="CatID" class="form-control" type="text"
+                                value="{{this.category.CatID}}" hidden>
+                            <label for="txtCatName" class="text-primary">Tên chuyên mục con: </label>
+                            <input id="txtCatChildName" name="CatChildName" class="form-control" type="text">
+                        </div>
+                        <div class="submit-form">
+                            <button type="submit" class="btn btn-primary"
+                                formaction="/Admin/UpdateCategory/addNewCatChild">
                                 Thêm
                             </button>
                             <a type="submit" class="btn btn-danger" href="/Admin" role="button">

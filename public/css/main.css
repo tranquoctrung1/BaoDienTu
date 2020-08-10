@@ -692,6 +692,9 @@ footer {
 .admin-page p {
   font-size: 12px; }
 
+.admin-page h5 {
+  text-transform: uppercase; }
+
 .admin-page .box {
   padding: 20px;
   display: flex;
@@ -713,6 +716,9 @@ footer {
 
 .admin-page p {
   font-size: 12px; }
+
+.admin-page h5 {
+  text-transform: uppercase; }
 
 .editor-review-page .container img {
   max-width: 100%;
