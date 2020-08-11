@@ -33,6 +33,8 @@ route.get("/verify", getLogin.loadVerify);
 
 route.post("/verify", getLogin.postVerify);
 
+route.get("/logout", getLogin.logout)
+
 route.get('/auth/google',
     passport.authenticate('google', {
         scope: ['email', 'profile']
@@ -84,9 +86,7 @@ route.get('/auth/google/redirect', passport.authenticate('google'), async functi
 
 // facebook
 route.get('/auth/facebook',
-    passport.authenticate('facebook', {
-        scope: 'email'
-    }));
+    passport.authenticate('facebook', { authType: 'rerequest', scope: ['user_likes'] }));
 
 
 route.get('/auth/facebook/redirect',
@@ -123,9 +123,9 @@ route.get('/auth/facebook/redirect',
             req.session.avata = abc.avata;
             req.session.Name = abc.Name;
             res.redirect('/');
-            // console.log(req.session.UserID);
-            // console.log(req.session.avata);
-            // console.log(req.session.Name);
+            console.log(req.session.UserID);
+            console.log(req.session.avata);
+            console.log(req.session.Name);
         }
     });
 
