@@ -1,3 +1,23 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css">
+
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/themes/fa/theme.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/locales/vi.min.js"></script>
+
+<script>
+    $('#avata').fileinput({
+        theme: 'fa',
+        showCaption: true,
+        dropZoneEnabled: true,
+        allowedFileExtensions: ['png', 'jpg', 'gif'],
+        language: 'vi'
+    });
+</script>
+{{/section}}
 <div class="content">
     <div class="box-update-user">
         <form method="POST" action="/User/updateUserInfo/update" class="frm">
@@ -6,8 +26,8 @@
             </div>
             <input value="{{listUser.UserID}}" type="hidden" name="id">
             <div class="form_group">
-                <label class="text-primary" for="txtCatName" >Tên: </label>
-                
+                <label class="text-primary" for="txtCatName">Tên: </label>
+
                 <input id="txtUsername" name="UserName" class="form-control" type="text" value="{{listUser.Name}}">
             </div>
             {{#if isWriter}}
@@ -18,18 +38,25 @@
             {{/if}}
             <div class="form-group">
                 <label for="staticEmail" class="text-primary">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" name="Email" value="{{listUser.Email}}" placeholder="email@example.com">
+                <input type="email" class="form-control" id="exampleInputEmail1" name="Email" value="{{listUser.Email}}"
+                    placeholder="email@example.com">
+            </div>
+            <div class="form-group">
+                <label for="avata">Ảnh đại diện: </label>
+                <div class="file-loading">
+                    <input id="avata" name="avata" type="file" class="file" multiple>
+                </div>
             </div>
             <div class="form_group">
                 <label class="text-primary" for="txtCatName">Ngày sinh: </label>
                 <input id="date" name="bday" class="form-control" value="{{formatDate2 listUser.BirthDay}}" type="date">
             </div>
             <div class="submit-form">
-                <button type="submit" class="btn btn-primary" >
+                <button type="submit" class="btn btn-primary">
                     Cập thật
                 </button>
-                
-                <button class="btn btn-danger ml-3" >
+
+                <button class="btn btn-danger ml-3">
                     <a href="javascript: window.history.back()">Hủy</a>
                 </button>
             </div>

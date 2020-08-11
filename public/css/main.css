@@ -823,6 +823,27 @@ footer {
     .subscriber-page .box .submit-form a {
       margin: 5px; }
 
+.contaier-update-user-form {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .contaier-update-user-form .update-user-form {
+    width: 50%;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px; }
+    .contaier-update-user-form .update-user-form h3 {
+      text-align: center; }
+    .contaier-update-user-form .update-user-form .submit-form {
+      display: flex;
+      justify-content: flex-end; }
+      .contaier-update-user-form .update-user-form .submit-form button.btn {
+        margin-top: 10px;
+        margin-left: 10px; }
+        .contaier-update-user-form .update-user-form .submit-form button.btn a {
+          text-decoration: none; }
+
 .box-update-user {
   display: flex;
   justify-content: center;
