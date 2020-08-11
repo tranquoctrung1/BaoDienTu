@@ -518,6 +518,9 @@ header .navbar {
   header .navbar a.nav-link {
     font-weight: bold;
     color: #b2bec3; }
+  header .navbar .name {
+    font-weight: bold;
+    color: #7f8c8d; }
   header .navbar div.nav-link {
     display: none; }
   header .navbar .form-inline .form-control {
@@ -545,30 +548,34 @@ header .navbar {
       background: white;
       border: 1px solid #ecf0f1;
       border-radius: 5px;
-        border-radius-box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
       transition: .3s all ease-in-out; }
   @media only screen and (min-width: 1023px) {
-    header .navbar .navbar-nav .nav-item {
-      position: relative;
-      margin: 0 10px; }
-      header .navbar .navbar-nav .nav-item::before {
-        display: block;
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: #2d3436;
-        transition: all .5s ease-in-out; }
-      header .navbar .navbar-nav .nav-item:hover::before {
-        width: 80%; }
-      header .navbar .navbar-nav .nav-item .nav-link {
-        transition: all .5s ease-in-out; }
-    header .navbar .navbar-nav div.nav-link {
-      display: block; }
-      header .navbar .navbar-nav div.nav-link i {
-        cursor: pointer; }
+    header .navbar .navbar-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      header .navbar .navbar-nav .nav-item {
+        position: relative;
+        margin: 0 10px; }
+        header .navbar .navbar-nav .nav-item::before {
+          display: block;
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: #2d3436;
+          transition: all .5s ease-in-out; }
+        header .navbar .navbar-nav .nav-item:hover::before {
+          width: 80%; }
+        header .navbar .navbar-nav .nav-item .nav-link {
+          transition: all .5s ease-in-out; }
+      header .navbar .navbar-nav div.nav-link {
+        display: block; }
+        header .navbar .navbar-nav div.nav-link i {
+          cursor: pointer; }
     header .navbar .form-inline {
       overflow: hidden; }
       header .navbar .form-inline .form-control {
