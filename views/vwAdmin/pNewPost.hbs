@@ -1,104 +1,108 @@
 {{#section 'css'}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css">
 <style>
-    .hidden{display:none;}
+    .hidden {
+        display: none;
+    }
 </style>
 {{/section}}
 
 {{#section 'js'}}
 {{!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --}}
-<script src="https://cdn.tiny.cloud/1/8jbstsesvb079hdfufswb0btf1ud4bteqgpfco77q6t8z88h/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/8jbstsesvb079hdfufswb0btf1ud4bteqgpfco77q6t8z88h/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/themes/fa/theme.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/locales/vi.min.js"></script>
 <script>
-  tinymce.init({
-    selector: '#txtContent',
-    content_css: '//www.tiny.cloud/css/codepen.min.css',
-    height: 450,
-    plugins: 'paste image link autolink lists table media code responsivefilemanager',
-    menubar: true,
-    toolbar: [
-      'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link media image',
-    ],  
-    images_upload_url: 'postAcceptor.php',
-    automatic_uploads: false,
-  });
+    tinymce.init({
+        selector: '#txtContent',
+        content_css: '//www.tiny.cloud/css/codepen.min.css',
+        height: 450,
+        plugins: 'paste image link autolink lists table media code responsivefilemanager',
+        menubar: true,
+        toolbar: [
+            'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link media image',
+        ],
+        images_upload_url: 'postAcceptor.php',
+        automatic_uploads: false,
+    });
 </script>
 
 
 
 <script>
-  $('#avatar').fileinput({
-    theme: 'fa',
-    showCaption: true,
-    dropZoneEnabled: true,
-    allowedFileExtensions: ['png', 'jpg', 'gif'],
-    language: 'vi'
-  });
+    $('#avatar').fileinput({
+        theme: 'fa',
+        showCaption: true,
+        dropZoneEnabled: true,
+        allowedFileExtensions: ['png', 'jpg', 'gif'],
+        language: 'vi'
+    });
 </script>
 {{/section}}
 <main class="admin-page">
-<div class="container">
-    <a class="btn btn-primary" href="/Admin" role="button" title="Back" style="margin: 10px;">
-        <i class="fa fa-backward" aria-hidden="true"></i>
-        Quay trở lại
-    </a>
-    <form method="post" novalidate action="" enctype="multipart/form-data">
-        <div class="card">
-            <div class="card-header">
-            <h4 class="text-danger">Thêm bài mới</h4>
-            </div>
-            <div class="card-body">
-            <div class="row">
-                <div class="col-9">
-                <div class="form-group">
-                    <label class="text-primary" for="txtNewsTitle">Tiêu đề: </label>
-                    <input id="txtNewsTitle" name="NewsTitle" class="form-control" type="text">
+    <div class="container">
+        <a class="btn btn-primary" href="/Admin" role="button" title="Back" style="margin: 10px;">
+            <i class="fa fa-backward" aria-hidden="true"></i>
+            Quay trở lại
+        </a>
+        <form method="post" novalidate action="" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="text-danger">Thêm bài mới</h4>
                 </div>
-                <div class="form-group">
-                    <label class="text-primary" for="txtAvatar">Ảnh đại diện bài viết: </label>
-                    <div class="file-loading">
-                    <input id="avatar" name="Avatar" type="file" multiple>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-9">
+                            <div class="form-group">
+                                <label class="text-primary" for="txtNewsTitle">Tiêu đề: </label>
+                                <input id="txtNewsTitle" name="NewsTitle" class="form-control" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label class="text-primary" for="txtAvatar">Ảnh đại diện bài viết: </label>
+                                <div class="file-loading">
+                                    <input id="avatar" name="Avatar" type="file" class="file">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-primary" for="txtAbstract">Nội dung ngắn:</label>
+                                <input name="Abstract" id="txtAbstract" class="form-control" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label class="text-primary" for="txtContent">Nội dung chi tiết:</label>
+                                <textarea name="Content" id="txtContent" class="form-control" cols="30"
+                                    rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="text-primary" for="txtAuthor">Tác giả: </label>
+                                <select class="custom-select" id="txtAuthor" name="Author">
+                                    {{#each LoadUser}}
+                                    <option value="{{UserID}}">{{Name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-primary" for="txtCatChild">Chuyên mục con: </label>
+                                <select class="custom-select" id="txtCatChild" name="CatChild_ID">
+                                    {{#each LoadCatChild}}
+                                    <option value="{{CatChild_ID}}">{{CatChildName}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
                     </div>
+                    <br>
                 </div>
-                <div class="form-group">
-                    <label class="text-primary" for="txtAbstract">Nội dung ngắn:</label>
-                    <input name="Abstract" id="txtAbstract" class="form-control" type="text">
-                </div>
-                <div class="form-group">
-                    <label class="text-primary" for="txtContent">Nội dung chi tiết:</label>
-                    <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10"></textarea>
-                </div>
-                </div>
-                <div class="col-3">
-                <div class="form-group">
-                    <label class="text-primary" for="txtAuthor">Tác giả: </label>
-                    <select class="custom-select" id="txtAuthor" name="Author">
-                    {{#each LoadUser}}
-                    <option value="{{UserID}}">{{Name}}</option>
-                    {{/each}}
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="text-primary" for="txtCatChild">Chuyên mục con: </label>
-                    <select class="custom-select" id="txtCatChild" name="CatChild_ID">
-                    {{#each LoadCatChild}}
-                    <option value="{{CatChild_ID}}">{{CatChildName}}</option>
-                    {{/each}}
-                    </select>
-                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-lg btn-success btn-block">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                        Đăng ngay
+                    </button>
                 </div>
             </div>
-            <br>
-            </div>
-            <div class="card-footer">
-            <button type="submit" class="btn btn-lg btn-success btn-block">
-                <i class="fa fa-check" aria-hidden="true"></i>
-                Đăng ngay
-            </button>
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 </main>

@@ -9,8 +9,8 @@ const session = require("express-session");
 const hbs_sections = require("express-handlebars-sections");
 const moment = require("moment");
 require("express-async-errors");
-
 const app = express();
+const passport = require("passport");
 
 // call router
 const Home = require("./router/home.route");
@@ -22,10 +22,13 @@ const Editor = require("./router/editor.route");
 const Admin = require("./router/admin.route");
 const User = require("./router/user.route");
 const Search = require("./router/search.route");
+const Subscriber = require("./router/subscriber.route");
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
 const catAndSubCat = require("./middlewares/allCatAndSubCat.middleware");
+
+const loginPageWriter = require("./middlewares/login.middleware");
 
 app.set("trust proxy", 1); // trust first proxy
 app.use(
@@ -44,6 +47,9 @@ const port = 3000;
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 // set view engine
 app.engine(
   "hbs",
@@ -61,7 +67,10 @@ app.engine(
         return moment(date).format("DD/MM/YYYY");
       },
       formatDateTime: function (date) {
-        return moment(date).format("h:mm:ss");
+        return moment(date).format("hh:mm:ss a");
+      },
+      formatDate2: function (date) {
+        return moment(date).format("YYYY-MM-DD");
       },
     },
   })
@@ -111,10 +120,28 @@ app.get("/newsDetails", (req, res) => {
   res.render("vwNews/NewsDetails");
 });
 app.use("/newsDetails", News);
+
+// app.use("/Writer", loginPageWriter.loginPageWriter, Writer);
+// app.use("/Editor", loginPageWriter.loginPageEditor, Editor);
+// app.use("/Admin", loginPageWriter.loginPageAdmin, Admin);
+
 app.use("/Writer", Writer);
 app.use("/Editor", Editor);
 app.use("/Admin", Admin);
-app.use("/User", User)
+app.use("/Subscriber", Subscriber);
+
+//app.use("/User", User)
+// app.get("/Subscriber", (req, res) => {
+//   res.render("vwSubscriber/RegisterPremium.hbs");
+// });
+
+app.get("/User", function (req, res) {
+  res.render("vwUser/indexUser.hbs");
+});
+app.get("/User/Update", function (req, res) {
+  res.render("vwUser/updateInfo.hbs");
+});
+app.use("/User", User);
 app.use("/search", Search);
 app.use("/list", ListPost);
 
