@@ -12,5 +12,18 @@
     },
     "authentication": {
         "saltRounds": 10
+    },
+    "Mail": {
+        "Gmail_USER": "phamquangthien.it@gmail.com",
+        "Gmail_PASS": "pbwzanxeyonhugbc"
+
+    },
+    "Google": {
+        "ClientID": "598291162843-m7d9pl3799mp9157sar2uj016sco0rkg.apps.googleusercontent.com",
+        "Clientsecret": "lOE-Zi9HhBC47TmQ1iTsx-yD"
+    },
+    "Facebook": {
+        "ClientID": "312427036621867",
+        "Clientsecret": "bde135b2c5dd250c63e932b023978f41"
     }
 }
