@@ -12,6 +12,10 @@ var options = {
 }
 
 
+module.exports.logout = async function(req, res) {
+    req.session.UserID = null;
+    res.redirect('/');
+};
 module.exports.loadlogin = async function(req, res) {
 
     res.render("login/login", {});
