@@ -4,8 +4,8 @@ const TBL_USER = "user";
 const TBL_PREMIUM = "premium";
 
 module.exports = {
-  loadUser: function () {
-    return db.load(`SELECT * FROM ${TBL_USER} WHERE TypeOfUser = 5`);
+  loadSubscriber: function (UserID) {
+    return db.load(`SELECT * FROM ${TBL_USER} WHERE UserID = ${UserID}`);
   },
   updateTypeOfUser_UserID: function (entity) {
     const condition = {
