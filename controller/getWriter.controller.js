@@ -1,5 +1,4 @@
 const writerModel = require("../model/writer.model");
-const multer = require("multer");
 const { loadTag } = require("../model/writer.model");
 
 module.exports.loadWriter = async function (req, res) {

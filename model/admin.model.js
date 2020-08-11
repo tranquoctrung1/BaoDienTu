@@ -104,7 +104,7 @@ module.exports = {
   },
   loadUpdatePost: function (NewsID) {
     return db.load(
-      `SELECT n.NewsID, n.Avatar, n.NewsTitle, n.DatePost, n.Abstract, n.Author, n.Content, n.IsPremium, n.IsDel, u.UserName, u.Name, cc.CatChildName FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE n.NewsID = ${NewsID}`
+      `SELECT n.NewsID, n.Avatar, n.NewsTitle, n.DatePost, n.CatChild_ID, n.Abstract, n.Author, n.Content, n.IsPremium, n.IsDel, u.UserName, u.Name, cc.CatChildName FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE n.NewsID = ${NewsID}`
     );
   },
   updatePost: function (entity) {

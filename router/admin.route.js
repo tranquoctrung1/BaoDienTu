@@ -53,7 +53,11 @@ router.post("/UpdatePost/cancelPremium", getAdmin.denyPremium);
 router.post("/UpdatePost/grantPremium", getAdmin.updatePremium);
 
 router.get("/paddNewUser", getAdmin.paddNewUser);
-router.post("/paddNewUser/addNewUser", getAdmin.addUser);
+router.post(
+  "/paddNewUser/addNewUser",
+  upload.single("avata"),
+  getAdmin.addUser
+);
 router.get("/UpdateUser/:id", getAdmin.loadUpdateUser);
 router.post("/UpdateUser/update", getAdmin.updateUser);
 router.get("/User_IsDel/:id", getAdmin.User_IsDel);
