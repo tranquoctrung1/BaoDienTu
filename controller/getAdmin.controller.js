@@ -318,6 +318,7 @@ module.exports.loadUpdatePost = async function (req, res) {
   const LoadUpdatePost = await adminModel.loadUpdatePost(id);
   const news = LoadUpdatePost[0];
   const UpdatePost_LoadCatChild = await adminModel.loadCatChild();
+  console.log(news);
 
   res.render("vwAdmin/pUpdatePost", {
     news,
@@ -326,7 +327,15 @@ module.exports.loadUpdatePost = async function (req, res) {
 };
 
 module.exports.updatePost = async function (req, res) {
-  await adminModel.updatePost(req.body);
+  const entity = {
+    NewsID: req.body.NewsID,
+    NewsTitle: req.body.NewsTitle,
+    Abstract: req.body.Abstract,
+    Content: req.body.Content,
+    CatChild_ID: req.body.CatChild_ID,
+  };
+  console.log(entity);
+  await adminModel.updatePost(entity);
 
   res.redirect("/Admin");
 };
@@ -405,6 +414,7 @@ module.exports.paddNewUser = async function (req, res) {
 module.exports.addUser = async function (req, res) {
   const entity = {
     UserName: req.body.UserName,
+    avata: req.file.filename,
     Name: req.body.Name,
     Password: req.body.Password,
     Birthday: req.body.Birthday,
@@ -414,7 +424,7 @@ module.exports.addUser = async function (req, res) {
     PenName: req.body.PenName,
     IsDel: 0,
   };
-
+  console.log(entity);
   await adminModel.addNewUser(entity);
 
   res.redirect("/Admin");
