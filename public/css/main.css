@@ -523,6 +523,10 @@ header .navbar {
   header .navbar .form-inline .form-control {
     width: 100%; }
   header .navbar #avatar {
+    width: 40px !important;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
     position: relative; }
     header .navbar #avatar .User-info {
       padding: 10px;
