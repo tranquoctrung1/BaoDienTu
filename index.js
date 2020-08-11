@@ -135,12 +135,12 @@ app.use("/Subscriber", Subscriber);
 //   res.render("vwSubscriber/RegisterPremium.hbs");
 // });
 
-app.get("/User", function (req, res) {
-  res.render("vwUser/indexUser.hbs");
-});
-app.get("/User/Update", function (req, res) {
-  res.render("vwUser/updateInfo.hbs");
-});
+// app.get("/User", function (req, res) {
+//   res.render("vwUser/indexUser.hbs");
+// });
+// app.get("/User/Update", function (req, res) {
+//   res.render("vwUser/updateInfo.hbs");
+// });
 app.use("/User", User);
 app.use("/search", Search);
 app.use("/list", ListPost);
