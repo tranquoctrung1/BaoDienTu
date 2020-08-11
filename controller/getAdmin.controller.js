@@ -89,7 +89,6 @@ module.exports.paddNewCategory = async function (req, res) {
 module.exports.addCategory = async function (req, res) {
   const entity = {
     CatName: req.body.CatName,
-    Manager: req.body.Manager,
     IsDel: 0,
   };
 
@@ -104,20 +103,92 @@ module.exports.loadUpdateCategory = async function (req, res) {
   const LoadUpdateCategory = await adminModel.loadUpdateCategory(id);
   const category = LoadUpdateCategory[0];
 
-  const listUser = await adminModel.loadUser_Editor();
-  const LoadUser = listUser.filter((user) => user.UserID !== user.UserID);
-  console.log(category);
+  const LoadEditorCategory = await adminModel.loadUEditorCategory(id);
+  const LoadCatChild_ID = await adminModel.loadCatChild_ID(id);
+
+  const Editor = await adminModel.loadEditor();
 
   res.render("vwAdmin/pUpdateCategory", {
     category,
-    LoadUser,
+    Editor,
+    LoadEditorCategory,
+    LoadCatChild_ID,
   });
 };
 
-module.exports.updateCategory = async function (req, res) {
-  console.log(req.body);
-  await adminModel.updateCategory(req.body);
-  res.redirect("/Admin");
+module.exports.loadUpdateCategoryChild = async function (req, res) {
+  const id = +req.params.id || 1;
+
+  const LoadUpdateCategoryChild = await adminModel.loadUpdateCatChild_ID(id);
+  const categorychild = LoadUpdateCategoryChild[0];
+
+  res.render("vwAdmin/pUpdateCategoryChild", {
+    categorychild,
+  });
+};
+
+module.exports.updateCategoryChild = async function (req, res) {
+  const entity = {
+    CatChild_ID: req.body.CatChild_ID,
+    CatChildName: req.body.CatChildName,
+  };
+
+  await adminModel.updateCatChild_ID(entity);
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
+};
+
+module.exports.CategoryChild_IsDel = async function (req, res) {
+  const id = +req.params.id || -1;
+  const LoadCategoryChild = await adminModel.loadUpdateCatChild_ID(id);
+
+  var isDel = LoadCategoryChild[0].IsDel;
+
+  if (LoadCategoryChild[0].IsDel === 1) {
+    isDel = 0;
+  } else if (LoadCategoryChild[0].IsDel === 0) {
+    isDel = 1;
+  }
+
+  const entity = {
+    CatChild_ID: id,
+    IsDel: isDel,
+  };
+
+  await adminModel.updateCatChild_ID(entity);
+  var url = "/Admin/UpdateCategory/" + LoadCategoryChild[0].CatID;
+  res.redirect(url);
+};
+
+module.exports.NewCatChild = async function (req, res) {
+  const entity = {
+    CatID: req.body.CatID,
+    CatChildName: req.body.CatChildName,
+    IsDel: 0,
+  };
+
+  await adminModel.addNewCatChild(entity);
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
+};
+
+module.exports.NewEditorCat = async function (req, res) {
+  const entity = {
+    CatID: req.body.CatID,
+    UserID: req.body.UserID,
+  };
+
+  await adminModel.addEditorCat(entity);
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
+};
+
+module.exports.DelEditorCat = async function (req, res) {
+  const id = +req.params.id || 1;
+
+  await adminModel.delEditorCat(id);
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
 };
 
 module.exports.Category_IsDel = async function (req, res) {
@@ -247,6 +318,7 @@ module.exports.loadUpdatePost = async function (req, res) {
   const LoadUpdatePost = await adminModel.loadUpdatePost(id);
   const news = LoadUpdatePost[0];
   const UpdatePost_LoadCatChild = await adminModel.loadCatChild();
+  console.log(news);
 
   res.render("vwAdmin/pUpdatePost", {
     news,
@@ -255,7 +327,15 @@ module.exports.loadUpdatePost = async function (req, res) {
 };
 
 module.exports.updatePost = async function (req, res) {
-  await adminModel.updatePost(req.body);
+  const entity = {
+    NewsID: req.body.NewsID,
+    NewsTitle: req.body.NewsTitle,
+    Abstract: req.body.Abstract,
+    Content: req.body.Content,
+    CatChild_ID: req.body.CatChild_ID,
+  };
+  console.log(entity);
+  await adminModel.updatePost(entity);
 
   res.redirect("/Admin");
 };
@@ -334,6 +414,7 @@ module.exports.paddNewUser = async function (req, res) {
 module.exports.addUser = async function (req, res) {
   const entity = {
     UserName: req.body.UserName,
+    avata: req.file.filename,
     Name: req.body.Name,
     Password: req.body.Password,
     Birthday: req.body.Birthday,
@@ -343,7 +424,7 @@ module.exports.addUser = async function (req, res) {
     PenName: req.body.PenName,
     IsDel: 0,
   };
-
+  console.log(entity);
   await adminModel.addNewUser(entity);
 
   res.redirect("/Admin");
@@ -402,6 +483,7 @@ module.exports.User_IsDel = async function (req, res) {
 module.exports.LoadList_EditorCategory = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadEditorCat = await adminModel.loadEditor_Category(id);
+  console.log(LoadEditorCat);
   const editorCat = LoadEditorCat[0];
   const LoadCategory = await adminModel.loadCat();
 
