@@ -1,11 +1,6 @@
 const UserModel = require("../model/user.model");
-const { render } = require("node-sass");
 
 module.exports.loadUser = async function (req, res) {
-  // const id = req.session.UserID;
-  // const id = 10;
-  // console.log(id);
-  // const LoadUser = await UserModel.loadUser_UserID(id);
   const LoadUser = await UserModel.loadUser();
 
   LoadUser.forEach((item) => {
@@ -78,19 +73,7 @@ module.exports.registerPre = async function (req, res) {
   console.log(entityNewAccPremium);
   await UserModel.addNewAccPremium(entityNewAccPremium);
 
-  res.redirect("/User");
-};
-
-module.exports.loadUpdateUser = async function (req, res) {
-  const id = +req.params.id || 1;
-
-  res.render("vwUser/updateInfo");
-};
-module.exports.updateUser = async function (req, res) {
-  console.log(req.body);
-  await UserModel.updateUser(req.body);
-
-  //res.redirect("/User");
+  res.redirect("/");
 };
 
 module.exports.loadPremiumRenewals = async function (req, res) {
@@ -146,4 +129,46 @@ module.exports.renewals = async function (req, res) {
   await UserModel.updatePremium(entity);
   var url = "/User/PremiumRenewal/" + req.body.UserID;
   res.redirect(url);
+};
+
+module.exports.loadUser = async function (req, res) {
+  res.render("vwUser/indexUser");
+};
+
+module.exports.loadUpdateUser = async function (req, res) {
+  const id = +req.params.id || 1;
+
+  const listUser = await UserModel.loadUpdateUser(id);
+
+  let isWriter = listUser[0].TypeOfUser === 3 ? true : false;
+
+  res.render("vwUser/updateInfo", {
+    listUser: listUser[0],
+    isWriter,
+  });
+};
+
+module.exports.updateUser = async function (req, res) {
+  let entity;
+  if (req.body.butdanh !== undefined) {
+    entity = {
+      Name: req.body.UserName,
+      Email: req.body.Email,
+      BirthDay: req.body.bday,
+      PenName: req.body.butdanh,
+      avata: req.body.avata,
+      UserID: req.body.id,
+    };
+  } else {
+    entity = {
+      Name: req.body.UserName,
+      Email: req.body.Email,
+      BirthDay: req.body.bday,
+      UserID: req.body.id,
+      avata: req.body.avata,
+    };
+  }
+  await UserModel.updateUser(entity);
+
+  res.redirect("/");
 };

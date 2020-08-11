@@ -7,8 +7,8 @@ const TBL_PREMIUM = "premium";
 
 module.exports = {
   loadUpdateUser: function (UserID) {
-    return db.load(`SELECT u.UserID ,u.Name,u.PenName, u.Email,u.BirthDay,  u.IsDel, tou.TypeName 
-        FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID 
+    return db.load(`SELECT u.UserID, u.TypeOfUser ,u.Name,u.PenName, u.Email,u.BirthDay
+        FROM ${TBL_USER} u 
         WHERE UserID = ${UserID}`);
   },
   loadUser_UserID: function (UserID) {

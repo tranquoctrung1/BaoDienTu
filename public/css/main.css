@@ -522,7 +522,11 @@ header .navbar {
     display: none; }
   header .navbar .form-inline .form-control {
     width: 100%; }
+  header .navbar .nav-item__user {
+    border-radius: 50%; }
   header .navbar #avatar {
+    width: 40px;
+    height: 40px;
     position: relative; }
     header .navbar #avatar .User-info {
       padding: 10px;
@@ -818,3 +822,46 @@ footer {
     margin-top: 15px; }
     .subscriber-page .box .submit-form a {
       margin: 5px; }
+
+.contaier-update-user-form {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .contaier-update-user-form .update-user-form {
+    width: 50%;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px; }
+    .contaier-update-user-form .update-user-form h3 {
+      text-align: center; }
+    .contaier-update-user-form .update-user-form .submit-form {
+      display: flex;
+      justify-content: flex-end; }
+      .contaier-update-user-form .update-user-form .submit-form button.btn {
+        margin-top: 10px;
+        margin-left: 10px; }
+        .contaier-update-user-form .update-user-form .submit-form button.btn a {
+          text-decoration: none; }
+
+.box-update-user {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .box-update-user .frm {
+    width: 50%;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+    .box-update-user .frm h3 {
+      text-align: center;
+      text-transform: uppercase; }
+    .box-update-user .frm .submit-form {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 10px; }
+      .box-update-user .frm .submit-form button a {
+        text-decoration: none;
+        color: white; }
