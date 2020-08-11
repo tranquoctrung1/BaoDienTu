@@ -22,6 +22,7 @@ const Editor = require("./router/editor.route");
 const Admin = require("./router/admin.route");
 const User = require("./router/user.route");
 const Search = require("./router/search.route");
+const Subscriber = require("./router/subscriber.route");
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
@@ -127,8 +128,12 @@ app.use("/newsDetails", News);
 app.use("/Writer", Writer);
 app.use("/Editor", Editor);
 app.use("/Admin", Admin);
+app.use("/Subscriber", Subscriber);
 
 //app.use("/User", User)
+// app.get("/Subscriber", (req, res) => {
+//   res.render("vwSubscriber/RegisterPremium.hbs");
+// });
 
 app.get("/User", function (req, res) {
   res.render("vwUser/indexUser.hbs");
