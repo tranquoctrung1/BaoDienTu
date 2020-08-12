@@ -48,4 +48,16 @@ module.exports = {
     delete entity.PreID;
     return db.patch(TBL_PREMIUM, entity, condition);
   },
+
+  loadPassword: function (id) {
+    return db.load(`select password from ${TBL_USER} where UserID = ${id}`);
+  },
+
+  changePassword: function (entity) {
+    const condition = {
+      UserID: entity.UserID,
+    };
+    delete entity.UserID;
+    return db.patch(TBL_USER, entity, condition);
+  },
 };

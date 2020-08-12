@@ -30,7 +30,6 @@
                             height="100%" alt="avatar" loading="lazy">
                         <div class="User-info">
                             <a href="/User/updateUserInfo/{{UserID}}">Cập nhật tài khoản</a>
-
                         </div>
                     </li>
                     {{else}}
@@ -39,7 +38,8 @@
                             height="100%" alt="avatar" loading="lazy">
                         <div class="User-info">
                             <a href="/User/updateUserInfo/{{UserID}}">Cập nhật tài khoản</a>
-
+                            <hr>
+                            <a href="/changePassword/{{UserID}}">Đổi mật khẩu</a>
                         </div>
                     </li>
                     {{else}}
@@ -47,7 +47,8 @@
                             height="100%" alt="avatar" loading="lazy">
                         <div class="User-info">
                             <a href="/User/updateUserInfo/{{UserID}}">Cập nhật tài khoản</a>
-
+                            <hr>
+                            <a href="/changePassword/{{UserID}}">Đổi mật khẩu</a>
                         </div>
                     </li>
                     {{/if}}
