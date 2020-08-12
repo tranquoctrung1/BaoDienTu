@@ -66,12 +66,12 @@
       width: 100%; }
       @media only screen and (min-width: 768px) {
         .home-page .most-view .container .row .owl-carousel .item .card .card-img, .home-page .newest .container .row .owl-carousel .item .card .card-img {
-          height: 250px; } }
+          height: 200px; } }
     .home-page .most-view .container .row .owl-carousel .item .card .card-title, .home-page .newest .container .row .owl-carousel .item .card .card-title {
       text-transform: uppercase;
       text-decoration: none;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 13px;
       transition: all .5s ease-in-out;
       color: #636e72; }
     .home-page .most-view .container .row .owl-carousel .item .card .card-text, .home-page .newest .container .row .owl-carousel .item .card .card-text {
@@ -84,7 +84,8 @@
         color: #e1b12c;
         float: right;
         font-size: 85%;
-        letter-spacing: 2px; }
+        letter-spacing: 2px;
+        margin-top: -15px; }
     .home-page .most-view .container .row .owl-carousel .item .card:hover, .home-page .newest .container .row .owl-carousel .item .card:hover {
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
       .home-page .most-view .container .row .owl-carousel .item .card:hover .card-title, .home-page .newest .container .row .owl-carousel .item .card:hover .card-title {
