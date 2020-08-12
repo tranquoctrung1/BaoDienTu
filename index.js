@@ -144,6 +144,13 @@ app.use("/Subscriber", Subscriber);
 app.use("/User", User);
 app.use("/search", Search);
 app.use("/list", ListPost);
+// logout
+
+app.get("/logout", function (req, res) {
+  req.session.destroy();
+
+  res.redirect("/");
+});
 
 // defaul error handler
 

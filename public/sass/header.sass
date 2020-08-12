@@ -5,6 +5,9 @@ header
 		a.nav-link
 			font-weight: bold
 			color: #b2bec3
+		.name
+			font-weight: bold
+			color: #7f8c8d
 		div.nav-link
 			display: none
 		.form-inline
@@ -38,12 +41,15 @@ header
 					background: white
 					border: 1px solid #ecf0f1
 					border-radius: 5px
-    				box-shadow: 0 0 5px 1px rgba(0, 0, 0,.3)
+					box-shadow: 0 0 5px 1px rgba(0, 0, 0,.3)
 					transition: .3s all ease-in-out	
 
 		// laptop
 		@media only screen and (min-width: 1023px)
 			.navbar-nav
+				display: flex
+				justify-content: center
+				align-items: center
 				.nav-item
 					position: relative
 					margin: 0 10px
@@ -66,6 +72,7 @@ header
 							width: 80%
 					.nav-link
 						transition: all .5s ease-in-out
+
 
 				div.nav-link
 					display: block
@@ -184,4 +191,3 @@ header
 								&:hover
 									a.nav__ul__sub-category
 										color: #24AEE4
-		

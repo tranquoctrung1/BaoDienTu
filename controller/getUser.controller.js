@@ -168,6 +168,12 @@ module.exports.updateUser = async function (req, res) {
       avata: req.body.avata,
     };
   }
+
+  req.session.UserID = entity.UserID;
+  req.session.avata = entity.avata;
+  req.session.Name = entity.Name;
+  req.session.TypeOfUser = entity.TypeOfUser;
+
   await UserModel.updateUser(entity);
 
   res.redirect("/");

@@ -15,23 +15,51 @@
                     <li class="nav-item">
                         <div class="nav-link"><i class="fas fa-search" id="showInput"></i></div>
                     </li>
-                    {{#if ID}}
-                        <li class="nav-item"><a class="nav-link" href="/login/logout"><i class="fas fa-sign-out-alt"></i> Đăng Xuất</a>
+                    {{#if isLogined}}
+                    <form action="/logout" method="post">
+                        <li class="nav-item"><a class="nav-link" href="/logout" role="button"><i
+                                    class="fas fa-sign-out-alt"></i> Đăng
+                                Xuất</a>
+                        </li>
+
+                    </form>
+                    <li class="nav-item name">{{Name}}
                     </li>
-                    <li class="nav-item" id="avatar"><img class="nav-item__user"  src="/images/{{avata}}" width="100%" height="100%"
-                            alt="avatar" loading="lazy">
+                    {{#if passport}}
+                    <li class="nav-item" id="avatar"><img class="nav-item__user" src="{{Avatar}}" width="100%"
+                            height="100%" alt="avatar" loading="lazy">
                         <div class="User-info">
-                            <a href="/User/updateUserInfo/{{ID}}">Cập nhật tài khoản</a>
-                            
+                            <a href="/User/updateUserInfo/{{UserID}}">Cập nhật tài khoản</a>
+
                         </div>
                     </li>
                     {{else}}
-                         <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-out-alt"></i> Đăng Nhập</a>
+                    {{#if Avatar}}
+                    <li class="nav-item" id="avatar"><img class="nav-item__user" src="/images/{{Avatar}}" width="100%"
+                            height="100%" alt="avatar" loading="lazy">
+                        <div class="User-info">
+                            <a href="/User/updateUserInfo/{{UserID}}">Cập nhật tài khoản</a>
+
+                        </div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="/login/register"><i class="fas fa-user-plus"></i> Đăng Ký</a></li>
+                    {{else}}
+                    <li class="nav-item" id="avatar"><img class="nav-item__user" src="/images/logo.png" width="100%"
+                            height="100%" alt="avatar" loading="lazy">
+                        <div class="User-info">
+                            <a href="/User/updateUserInfo/{{UserID}}">Cập nhật tài khoản</a>
+
+                        </div>
+                    </li>
                     {{/if}}
-                   
-                   
+                    {{/if}}
+                    {{else}}
+                    <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-out-alt"></i> Đăng
+                            Nhập</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/login/register"><i class="fas fa-user-plus"></i>
+                            Đăng
+                            Ký</a></li>
+                    {{/if}}
                 </ul>
             </div>
         </nav>
