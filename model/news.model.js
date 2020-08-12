@@ -7,6 +7,8 @@ const TBL_COMMENT = "comment";
 const TBL_TAG_OF_NEWS = "tag_of_news";
 const TBL_TAG = "tag";
 const TBL_USER = "user";
+const TBL_TYPE_OF_USER = "type_of_user";
+const TBL_PREMIUM = "premium";
 
 module.exports = {
   loadTopNewsFamous: function (quantity) {
