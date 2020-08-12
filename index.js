@@ -23,7 +23,7 @@ const Admin = require("./router/admin.route");
 const User = require("./router/user.route");
 const Search = require("./router/search.route");
 const Subscriber = require("./router/subscriber.route");
-const ForgetPassword = require("./router/forgetPassword.route");
+const ChangePassword = require("./router/changePassword.route");
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
@@ -145,7 +145,7 @@ app.use("/Subscriber", Subscriber);
 app.use("/User", User);
 app.use("/search", Search);
 app.use("/list", ListPost);
-app.use("/changePassword", ForgetPassword);
+app.use("/changePassword", ChangePassword);
 // logout
 
 app.get("/logout", function (req, res) {

@@ -41,12 +41,14 @@
                 <input type="email" class="form-control" id="exampleInputEmail1" name="Email" value="{{listUser.Email}}"
                     placeholder="email@example.com">
             </div>
+            {{#if isPassport}}
             <div class="form-group">
                 <label for="avata">Ảnh đại diện: </label>
                 <div class="file-loading">
                     <input id="avata" name="avata" type="file" class="file" multiple>
                 </div>
             </div>
+            {{/if}}
             <div class="form_group">
                 <label class="text-primary" for="txtCatName">Ngày sinh: </label>
                 <input id="date" name="bday" class="form-control" value="{{formatDate2 listUser.BirthDay}}" type="date">

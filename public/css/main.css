@@ -893,30 +893,30 @@ footer {
         text-decoration: none;
         color: white; }
 
-.forget-password-form {
+.change-password-form {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .forget-password-form form {
+  .change-password-form form {
     width: 50%;
     padding: 20px;
     margin: 20px 0;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     font-size: 13px; }
-    .forget-password-form form label {
+    .change-password-form form label {
       font-weight: 500; }
-    .forget-password-form form h2 {
+    .change-password-form form h2 {
       text-align: center;
       font-size: 20px;
       text-transform: uppercase; }
-    .forget-password-form form .button-handle-form {
+    .change-password-form form .button-handle-form {
       display: flex;
       justify-content: flex-end;
       align-items: center; }
-      .forget-password-form form .button-handle-form button {
+      .change-password-form form .button-handle-form button {
         width: 100px;
         margin-left: 10px; }
-        .forget-password-form form .button-handle-form button a {
+        .change-password-form form .button-handle-form button a {
           text-decoration: none;
           color: white; }

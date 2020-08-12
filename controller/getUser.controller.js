@@ -64,11 +64,11 @@ module.exports.registerPre = async function (req, res) {
   var h = today.getHours();
   var m = today.getMinutes();
   var s = today.getSeconds();
-  var Ex = new Date(yyyy, mm, dd, h, m + 5, s);
+  var Exp = new Date(yyyy, mm, dd, h, m + parseInt(req.body.Ex), s);
 
   const entityNewAccPremium = {
     UserID: req.body.UserID,
-    ExpriryDate: Ex,
+    ExpriryDate: Exp,
   };
   console.log(entityNewAccPremium);
   await UserModel.addNewAccPremium(entityNewAccPremium);
@@ -136,16 +136,33 @@ module.exports.loadUser = async function (req, res) {
 };
 
 module.exports.loadUpdateUser = async function (req, res) {
-  const id = +req.params.id || 1;
+  if (
+    req.session.UserID != null &&
+    req.session.UserID != undefined &&
+    req.session.UserID != ""
+  ) {
+    const id = +req.params.id || 1;
 
-  const listUser = await UserModel.loadUpdateUser(id);
+    const listUser = await UserModel.loadUpdateUser(id);
 
-  let isWriter = listUser[0].TypeOfUser === 3 ? true : false;
+    let isPassport = true;
 
-  res.render("vwUser/updateInfo", {
-    listUser: listUser[0],
-    isWriter,
-  });
+    if (req.session.passport) {
+      isPassport = false;
+    }
+
+    console.log(isPassport);
+
+    let isWriter = listUser[0].TypeOfUser === 3 ? true : false;
+
+    res.render("vwUser/updateInfo", {
+      listUser: listUser[0],
+      isWriter,
+      isPassport,
+    });
+  } else {
+    res.redirect("/login");
+  }
 };
 
 module.exports.updateUser = async function (req, res) {
