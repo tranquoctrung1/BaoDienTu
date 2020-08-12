@@ -42,6 +42,11 @@
     .home-page .container .row .col-md-6 .card .card-text a {
       text-decoration: none;
       color: #636e72; }
+    .home-page .container .row .col-md-6 .card .card-text .fa {
+      color: #e1b12c;
+      float: right;
+      font-size: 85%;
+      letter-spacing: 2px; }
   .home-page .container .row .col-md-6 .card:hover {
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
     .home-page .container .row .col-md-6 .card:hover .card-title {
@@ -61,7 +66,7 @@
       width: 100%; }
       @media only screen and (min-width: 768px) {
         .home-page .most-view .container .row .owl-carousel .item .card .card-img, .home-page .newest .container .row .owl-carousel .item .card .card-img {
-          height: 200px; } }
+          height: 250px; } }
     .home-page .most-view .container .row .owl-carousel .item .card .card-title, .home-page .newest .container .row .owl-carousel .item .card .card-title {
       text-transform: uppercase;
       text-decoration: none;
@@ -75,6 +80,11 @@
       .home-page .most-view .container .row .owl-carousel .item .card .card-text a, .home-page .newest .container .row .owl-carousel .item .card .card-text a {
         text-decoration: none;
         color: #636e72; }
+      .home-page .most-view .container .row .owl-carousel .item .card .card-text .fa, .home-page .newest .container .row .owl-carousel .item .card .card-text .fa {
+        color: #e1b12c;
+        float: right;
+        font-size: 85%;
+        letter-spacing: 2px; }
     .home-page .most-view .container .row .owl-carousel .item .card:hover, .home-page .newest .container .row .owl-carousel .item .card:hover {
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
       .home-page .most-view .container .row .owl-carousel .item .card:hover .card-title, .home-page .newest .container .row .owl-carousel .item .card:hover .card-title {
@@ -122,6 +132,11 @@
       .home-page .top-ten .container .row .card .card-text a {
         text-decoration: none;
         color: #636e72; }
+      .home-page .top-ten .container .row .card .card-text .fa {
+        color: #e1b12c;
+        float: right;
+        font-size: 85%;
+        letter-spacing: 2px; }
     .home-page .top-ten .container .row .card:hover {
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
       .home-page .top-ten .container .row .card:hover .card-title {
@@ -150,6 +165,11 @@
       .home-page .most-view .container .row .item .card .card-text a {
         text-decoration: none;
         color: #636e72; }
+      .home-page .most-view .container .row .item .card .card-text .fa {
+        color: #e1b12c;
+        float: right;
+        font-size: 100%;
+        letter-spacing: 2px; }
     .home-page .most-view .container .row .item .card:hover {
       box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3); }
       .home-page .most-view .container .row .item .card:hover .card-title {
