@@ -1,0 +1,91 @@
+{{#section 'title'}}
+Đăng Nhập
+{{/section}}
+
+{{#section 'js'}}
+<script src="/js/register.js"></script>
+{{/section}}
+
+<div class="register-page">
+    <div class="dangky">
+        <form action='' class='dangky-form' method='POST' enctype="multipart/form-data" onsubmit='return KiemtraDangKy()'>
+            <h2>Đăng Ký</h2>
+            <h6 class="text-danger"></h6>
+            <!-- Thông tin cá nhân -->
+            <div class="container canhan">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Thông tin cá nhân</h4>
+                        <div class="txtb">
+                            <input type="text" name="hoten" id="hoten">
+                            <span data-placeolder="Họ tên của bạn"></span>
+                        </div>
+
+                        <p>Ngày sinh</p>
+                        <div class="ngaythangnam">
+                            <select name="ngay" id="ddngay" class="ddngay">
+                                <option value="ngay">[Ngày]</option>
+                            </select>
+                            <select name="thang" id="mmthang" class="mmthang">
+                                <option value="thang">[Tháng]</option>
+                            </select>
+                            <select name="nam" id="yyyynam" class="yyyynam">
+                                <option value="nam">[Năm]</option>
+                            </select>
+                        </div>
+                        {{!-- <p>
+                            <select class="thanhpho" name="thanhpho" id="thanhpho">
+                                <option id='chonthanhpho' value="123">--Chọn thành phố--</option>
+                            </select>
+                        </p> --}}
+
+                        <p>
+                            <select class="thanhpho" name="loaiuser" id="loaiuser">
+                                <option value="2">--Đọc Giả --</option>
+                                <option value="3">--Viết Bài --</option>
+                            </select>
+                        </p>
+                        <div class="penname txtb">
+                            <input type="text" name="penname" id="penname">
+                            <span data-placeolder="Bút Danh"></span>
+                        </div>
+                        <div class="email txtb">
+                            <input type="email" name="email" id="email">
+                            <span data-placeolder="Email Của Bạn"></span>
+                        </div>
+                        <div class="phone txtb">
+                            <input type="phone" name="phone" id="phone">
+                            <span data-placeolder="Số Điện Thoại"></span>
+                        </div>
+                        <div class="avata txtb">
+                            <label for="Hình Đại Diện">"Hình Đại Diện</label>
+                            <input type="file" name="avata" id="avata">
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Thông tin tài khoản</h4>
+                        <div class="txtb">
+                            <input type="text" name="userdangnhap" id="userdangnhap">
+                            <span data-placeolder="Tên đăng nhập"></span>
+                        </div>
+                        <div class="text-danger" id="err"></div>
+                        <div class="txtb">
+                            <input type="password" name="passworddangnhap" id="passworddangnhap">
+                            <span data-placeolder="Mật khẩu"></span>
+                        </div>
+                        <div class="txtb">
+                            <input type="password" name="kiemtrapassworddangnhap" id="kiemtrapassworddangnhap">
+                            <span data-placeolder="Xác nhận mật khẩu"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col kbtn">
+                        <!-- submit -->
+                        <input type='submit' class='btn' id='submit' value='Đăng Ký'>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>

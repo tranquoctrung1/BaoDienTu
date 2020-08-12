@@ -1,5 +1,4 @@
 const writerModel = require("../model/writer.model");
-const multer = require("multer");
 const { loadTag } = require("../model/writer.model");
 
 module.exports.loadWriter = async function (req, res) {
@@ -102,6 +101,7 @@ module.exports.DelPost = async function (req, res) {
 
 module.exports.UpdatePost = async function (req, res) {
   await writerModel.patch(req.body);
+  console.log(req.body);
   res.redirect("/Writer");
 };
 
@@ -147,7 +147,7 @@ module.exports.LoadAddTag = async function (req, res) {
 
   const LoadNews = await writerModel.loadNews(id);
   const news = LoadNews[0];
-
+  console.log(news);
   const TagOfNews = await writerModel.loadTagNews(id);
   const LoadTag = await loadTag();
 

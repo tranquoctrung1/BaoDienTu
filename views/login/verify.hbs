@@ -1,0 +1,38 @@
+{{#section "title"}}
+  Verify
+{{/section}}
+
+{{#section "js"}}
+  <script src="/js/verify.js"></script>
+{{/section}}
+
+<div class="login-page">
+  <div class="dangnhap">
+    <form
+      action=""
+      class="dangnhap-form"
+      method="POST"
+    >
+      <h2>
+        Xác Nhận Mã
+      </h2>
+      {{#if error}}
+        <div class="thongbao text-danger">
+          {{error}}
+        </div>
+      {{/if}}
+      <!-- password -->
+      <div class="txtbox">
+        <input type="email" name="verifyemail" id="verifyemail" />
+        <span data-placeolder="Email"></span>
+      </div>
+      <!-- username -->
+      <div class="txtbox">
+        <input type="text" name="verifytoken" id="verifytoken" />
+        <span data-placeolder="Mã Xác Nhận"></span>
+      </div>
+
+      <input type="submit" class="dnbtn_fb" value="Xác Nhận" />
+    </form>
+  </div>
+</div>

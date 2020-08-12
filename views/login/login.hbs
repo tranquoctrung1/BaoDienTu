@@ -1,0 +1,47 @@
+{{#section 'title'}}
+Đăng Nhập
+{{/section}}
+
+{{#section 'js'}}
+<script src="/js/login.js"></script>
+{{/section}}
+
+
+<div class="login-page">
+
+    <div class="dangnhap">
+        <form action='' class='dangnhap-form' method='POST' id='dangnhap-form' name='dangnhap-form'
+            onsubmit='return KiemTra()'>
+            <h2>Đăng Nhập</h2>
+            {{#if error}}
+            <div class="thongbao text-danger">
+                {{error}}
+            </div>
+            {{/if}}
+            <h6 class="text-danger .mb-0"></h6>
+            <!-- username -->
+            <div class='txtbox'>
+                <input type='text' name='username' id='username'>
+                <span data-placeolder='Username'></span>
+            </div>
+            <!-- password -->
+            <div class='txtbox'>
+                <input type='password' name='password' id='password'>
+                <span data-placeolder='Password'></span>
+            </div>
+            <!-- submit -->
+            <input type='submit' class='dnbtn' value='Đăng Nhập'>
+            <!-- submit fb -->
+            <input type='button' class='dnbtn_fb' id="facebookhref" value='Đăng Nhập Bằng Facebook'>
+            <!-- submit gm-->
+            <input type='button' id="googlehref" class='dnbtn_gg' value='Đăng Nhập Bằng Google'>
+            <!-- dang ky -->
+            <div class='bottom-text'>
+                Bạn không có tài khoản ?<a href='/login/register' class="ml-2">Đăng Ký</a>
+            </div>
+            <div class='bottom-text'>
+                Bạn quên mật khẩu ?<a href='/forgetpassword' class="ml-2">Quên mật khẩu</a>
+            </div>
+        </form>
+    </div>
+</div>

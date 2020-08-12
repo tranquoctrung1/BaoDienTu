@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const http = require("http");
-const httpProxy = require("http-proxy");
+// const httpProxy = require("http-proxy");
 const exphbs = require("express-handlebars");
 const sass = require("node-sass-middleware");
 const reload = require("reload");
@@ -9,26 +9,48 @@ const session = require("express-session");
 const hbs_sections = require("express-handlebars-sections");
 const moment = require("moment");
 require("express-async-errors");
-
 const app = express();
+const passport = require("passport");
 
 // call router
 const Home = require("./router/home.route");
+const Login = require("./router/login.route");
 const ListPost = require("./router/listPost.route");
 const News = require("./router/newsDetails.route");
 const Writer = require("./router/writer.route");
 const Editor = require("./router/editor.route");
 const Admin = require("./router/admin.route");
-const User = require("./router/user.route")
+const User = require("./router/user.route");
+const Search = require("./router/search.route");
+const Subscriber = require("./router/subscriber.route");
+const ChangePassword = require("./router/changePassword.route");
+const ForgetPassword = require("./router/forgetPassword.route");
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
 const catAndSubCat = require("./middlewares/allCatAndSubCat.middleware");
 
+const loginPageWriter = require("./middlewares/login.middleware");
+
+app.set("trust proxy", 1); // trust first proxy
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      // secure: true
+    },
+  })
+);
+
 const port = 3000;
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // set view engine
 app.engine(
@@ -44,7 +66,13 @@ app.engine(
         return "foo";
       },
       formatDate: function (date) {
-        return moment(date).format("DD/MM/YYYY HH:mm:ss");
+        return moment(date).format("DD/MM/YYYY");
+      },
+      formatDateTime: function (date) {
+        return moment(date).format("hh:mm:ss a");
+      },
+      formatDate2: function (date) {
+        return moment(date).format("YYYY-MM-DD");
       },
     },
   })
@@ -87,21 +115,46 @@ app.use(catAndSubCat.loadCatAndSubCat);
 
 // use router
 app.use("/", Home);
+// app.use('/newsDetails', require('./router/newsDetails.route'));
+app.use("/login", Login);
 
+app.get("/newsDetails", (req, res) => {
+  res.render("vwNews/NewsDetails");
+});
 app.use("/newsDetails", News);
+
+// app.use("/Writer", loginPageWriter.loginPageWriter, Writer);
+// app.use("/Editor", loginPageWriter.loginPageEditor, Editor);
+// app.use("/Admin", loginPageWriter.loginPageAdmin, Admin);
+
 app.use("/Writer", Writer);
 app.use("/Editor", Editor);
 app.use("/Admin", Admin);
+app.use("/Subscriber", Subscriber);
+
 //app.use("/User", User)
+// app.get("/Subscriber", (req, res) => {
+//   res.render("vwSubscriber/RegisterPremium.hbs");
+// });
 
-app.get('/User', function (req, res){
-   res.render('vwUser/indexUser.hbs');
- })
- app.get('/User/Update', function (req, res){
-  res.render('vwUser/updateInfo.hbs');
-})
-
+// app.get("/User", function (req, res) {
+//   res.render("vwUser/indexUser.hbs");
+// });
+// app.get("/User/Update", function (req, res) {
+//   res.render("vwUser/updateInfo.hbs");
+// });
+app.use("/User", User);
+app.use("/search", Search);
 app.use("/list", ListPost);
+app.use("/changePassword", ChangePassword);
+app.use("/forgetpassword", ForgetPassword);
+// logout
+
+app.get("/logout", function (req, res) {
+  req.session.destroy();
+
+  res.redirect("/");
+});
 
 // defaul error handler
 

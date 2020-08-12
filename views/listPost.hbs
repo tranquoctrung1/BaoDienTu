@@ -13,15 +13,23 @@ Những bài viết mới nhất
 						<div class="card mb-3">
 							<div class="row no-gutters">
 								<div class="col-md-4">
+									{{#if Avatar}}
+									<img src="/images/{{Avatar}}" class="card-img" alt="image posting">
+									{{else}}
 									<img src="/images/logo.png" class="card-img" alt="image posting">
+									{{/if}}
 								</div>
 								<div class="col-md-8">
 									<div class="card-body">
-										<h5 class="card-title">{{NewsTitle}}</h5>
+										<a href="/newsdetails/{{NewsID}}" class="card-title">{{NewsTitle}}</a>
+										<p class="card-text">{{Abstract}}</p>
+										<p class="card-text"><a href="/list/category/{{CatID}}">{{CatName}}</a> -
+											<a href="/list/subcategory/{{CatChild_ID}}">{{CatChildName}}</a> </p>
 										<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small>
 										</p>
-										<p class="card-text">{{Abstract}}</p>
-										<p class="card-text">{{CatName}} - {{CatChildName}}</p>
+										{{#if IsPremium }}
+										<p class="card-text"><i class="fa fa-star" aria-hidden="true"> PREMIUM</i></p>
+										{{/if}}
 									</div>
 								</div>
 							</div>

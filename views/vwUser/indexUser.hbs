@@ -1,21 +1,58 @@
 <div class="container">
     <div class="row" style="margin: 15px;">
-     <br>
+        <br>
         <div class="col-md-2">
-           
+
         </div>
         <div class="col-md-10">
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab">
+                <div class="tab-pane fade show active" id="v-pills-listpost" role="tabpanel"
+                    aria-labelledby="v-pills-listpost-tab">
                     <h1 class="text-center" style="margin: 5px;">Thông tin cá nhân</h1>
                     <form method="POST">
+                        {{#each LoadUser}}
+                        <div class="form_group">
+                            <label for="txtUserName" class="text-primary">Tên người dùng: </label>
+                            <select class="custom-select" id="txtUserID" name="UserID">
+
+                                <option value="{{UserID}}">{{Name}}</option>
+
+                            </select>
+                        </div>
+                        <br>
                         <div class="form-group">
-                            <a type="submit" class="btn btn-primary " href="/views/vwUser/updateInfo.hbs" role="button" title="Thêm mới">
+                            <a type="submit" class="btn btn-primary " href="/User/updateUserInfo/{{UserID}}"
+                                role="button" title="Thêm mới">
                                 <i class="fas fa-plus"></i>
                                 Cập nhật thông tin cá nhân
                             </a>
                         </div>
-                        
+                        <div class="submit-form">
+                            {{#if IsPremium}}
+                            {{#if Ex}}
+                            <label for="txtUserName" class="text-danger">Tài khoản Premium</label>
+                            {{else}}
+                            <label for="txtUserName" class="text-danger">Tài khoản Premium hết hạn! Gia hạn
+                                Premium</label>
+                            {{!-- Nếu tài khoản đã đăng ký Premium thì cho gian hạn Premium --}}
+                            <a type="submit" class="btn btn-warning text-white" href="/User/PremiumRenewal/{{UserID}}"
+                                role="button" title="Cập nhật Premium">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                Gia hạn Premium
+                            </a>
+                            {{/if}}
+                            {{else}}
+                            {{#if IsGuest}}
+                            {{!-- Nếu tài khoản chưa đăng ký Premium --}}
+                            <a type="submit" class="btn btn-danger " href="/User/RegisterPremium/{{UserID}}"
+                                role="button" title="Cập nhật Premium">
+                                <i class="fas fa-registered"></i>
+                                Đăng ký Premium
+                            </a>
+                            {{/if}}
+                            {{/if}}
+                        </div>
+                        {{/each}}
                     </form>
                 </div>
             </div>
