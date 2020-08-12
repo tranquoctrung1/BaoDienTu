@@ -4,6 +4,7 @@ module.exports.loadNewsDetails = async function (req, res) {
   const id = req.params.id;
 
   const NewsDetails = await newsModel.singleNewsDetails(id);
+  const news = NewsDetails[0];
   const TagOfNews = await newsModel.loadTagNews(id);
   const CmtNews = await newsModel.loadCmt(id);
   const FiveRelatedPosts = await newsModel.loadFiveRelatedPosts_NormalAccount(
@@ -37,7 +38,7 @@ module.exports.loadNewsDetails = async function (req, res) {
   const PlusView = await newsModel.patch(entity);
 
   res.render("vwNews/NewsDetails", {
-    NewsDetails,
+    news,
     TagOfNews,
     CmtNews,
     FiveRelatedPosts,

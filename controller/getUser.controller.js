@@ -64,11 +64,11 @@ module.exports.registerPre = async function (req, res) {
   var h = today.getHours();
   var m = today.getMinutes();
   var s = today.getSeconds();
-  var Ex = new Date(yyyy, mm, dd, h, m + 5, s);
+  var Exp = new Date(yyyy, mm, dd, h, m + parseInt(req.body.Ex), s);
 
   const entityNewAccPremium = {
     UserID: req.body.UserID,
-    ExpriryDate: Ex,
+    ExpriryDate: Exp,
   };
   console.log(entityNewAccPremium);
   await UserModel.addNewAccPremium(entityNewAccPremium);
