@@ -24,6 +24,7 @@ const User = require("./router/user.route");
 const Search = require("./router/search.route");
 const Subscriber = require("./router/subscriber.route");
 const ChangePassword = require("./router/changePassword.route");
+const ForgetPassword = require("./router/forgetPassword.route");
 
 // call middleware
 const topTenCategory = require("./middlewares/topTenCategory.middleware");
@@ -146,6 +147,7 @@ app.use("/User", User);
 app.use("/search", Search);
 app.use("/list", ListPost);
 app.use("/changePassword", ChangePassword);
+app.use("/forgetpassword", ForgetPassword);
 // logout
 
 app.get("/logout", function (req, res) {

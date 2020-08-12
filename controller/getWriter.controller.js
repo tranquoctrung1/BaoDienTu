@@ -95,12 +95,13 @@ module.exports.editWriter_baivietbituchoi = async function (req, res) {
 
 module.exports.DelPost = async function (req, res) {
   const DelPost = await writerModel.del(req.body.NewsID);
-  console.log(req.params.NewsID);
+  // console.log(req.params.NewsID);
   res.redirect("/Writer");
 };
 
 module.exports.UpdatePost = async function (req, res) {
   await writerModel.patch(req.body);
+  console.log(req.body);
   res.redirect("/Writer");
 };
 
@@ -124,18 +125,18 @@ module.exports.UpdatePost_bituchoi = async function (req, res) {
     IsDel: 0,
     Note: req.body.Note,
   };
-  console.log(entity);
+  // console.log(entity);
   await writerModel.patch(entity);
   res.redirect("/Writer");
 };
 
 module.exports.updateAvatar = async function (req, res) {
-  console.log(req.body);
+  // console.log(req.body);
   const entity = {
     NewsID: req.body.NewsID,
     Avatar: req.file.filename,
   };
-  console.log(entity);
+  // console.log(entity);
   await writerModel.updateAvatar(entity);
   var url = "/Writer/Edit/" + req.body.NewsID;
   res.redirect(url);
@@ -146,7 +147,7 @@ module.exports.LoadAddTag = async function (req, res) {
 
   const LoadNews = await writerModel.loadNews(id);
   const news = LoadNews[0];
-
+  console.log(news);
   const TagOfNews = await writerModel.loadTagNews(id);
   const LoadTag = await loadTag();
 
@@ -163,10 +164,10 @@ module.exports.addTag = async function (req, res) {
     TagID: req.body.TagID,
   };
 
-  console.log(entity);
+  // console.log(entity);
   await writerModel.addTag(entity);
   var url = "/Writer/AddTag/" + req.body.NewsID;
-  console.log(url);
+  // console.log(url);
 
   res.redirect(url);
 };

@@ -20,12 +20,12 @@ module.exports.reviewPost = async function (req, res) {
   const LoadTag = await editorModel.loadTag();
   const TagOfNews = await editorModel.loadTagNews(id);
 
-  if(news.Avatar != null && news.Avatar != '')
+  if(LoadReviewNews[0].Avatar != null && LoadReviewNews[0].Avatar != '')
   {
-    news.IsAvatar = 1;
+    LoadReviewNews[0].IsAvatar = 1;
   }
   else{
-    news.IsAvatar = 0;
+    LoadReviewNews[0].IsAvatar = 0;
   }
   
     res.render("vwEditor/Review", {

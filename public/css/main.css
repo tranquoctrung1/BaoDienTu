@@ -702,6 +702,89 @@ footer {
   width: 70px;
   height: 70px; }
 
+.writer-page .tag {
+  padding: 5px 10px;
+  background: #dfe6e9;
+  color: #636e72;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px; }
+  .writer-page .tag:hover {
+    text-decoration: none;
+    text-align: center;
+    background: #b2bec3; }
+
+.writer-page .catChild a {
+  display: inline-block;
+  height: 24px;
+  line-height: 24px;
+  position: relative;
+  margin: 0 16px 8px 0;
+  padding: 0 10px 0 12px;
+  background: #777;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  -webkit-border-top-right-radius: 3px;
+  border-top-right-radius: 3px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 12px;
+  font-family: "Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-weight: bold; }
+  .writer-page .catChild a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -12px;
+    width: 0;
+    height: 0;
+    border-color: transparent #00a6df transparent transparent;
+    border-style: solid;
+    border-width: 12px 12px 12px 0; }
+  .writer-page .catChild a::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 1px;
+    float: left;
+    width: 5px;
+    height: 5px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: #fff;
+    -webkit-box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.4); }
+
+.writer-page .catChild .color {
+  background: #00a6df; }
+  .writer-page .catChild .color:hover {
+    background: #595959 !important; }
+    .writer-page .catChild .color:hover::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -12px;
+      width: 0;
+      height: 0;
+      border-color: transparent #595959 transparent transparent;
+      border-style: solid;
+      border-width: 12px 12px 12px 0; }
+
+.writer-page img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto; }
+
+.writer-page h2 {
+  text-transform: uppercase; }
+
+.writer-page a {
+  font-weight: bold;
+  font-size: 13px;
+  color: #b2bec3; }
+
 .admin-page .box {
   padding: 20px;
   display: flex;
@@ -919,5 +1002,33 @@ footer {
         width: 100px;
         margin-left: 10px; }
         .change-password-form form .button-handle-form button a {
+          text-decoration: none;
+          color: white; }
+
+.form-enter-email, .form-verify-token, .form-update-password {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .form-enter-email form, .form-verify-token form, .form-update-password form {
+    width: 50%;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    font-size: 13px; }
+    .form-enter-email form label, .form-verify-token form label, .form-update-password form label {
+      font-weight: 500; }
+    .form-enter-email form h2, .form-verify-token form h2, .form-update-password form h2 {
+      text-align: center;
+      font-size: 20px;
+      text-transform: uppercase; }
+    .form-enter-email form .button-handle-form, .form-verify-token form .button-handle-form, .form-update-password form .button-handle-form {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center; }
+      .form-enter-email form .button-handle-form button, .form-verify-token form .button-handle-form button, .form-update-password form .button-handle-form button {
+        width: 100px;
+        margin-left: 10px; }
+        .form-enter-email form .button-handle-form button a, .form-verify-token form .button-handle-form button a, .form-update-password form .button-handle-form button a {
           text-decoration: none;
           color: white; }

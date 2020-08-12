@@ -50,3 +50,19 @@ module.exports.singleByPatch = async function (entity) {
 module.exports.getEmail = function (email) {
   return db.load(`select Email from ${USER} where Email = '${email}'`);
 };
+
+module.exports.updateToken = function (entity) {
+  const condition = {
+    Email: entity.Email,
+  };
+  delete entity.Email;
+  return db.patch(USER, entity, condition);
+};
+
+module.exports.updatePassword = function (entity) {
+  const condition = {
+    Email: entity.Email,
+  };
+  delete entity.Email;
+  return db.patch(USER, entity, condition);
+};
