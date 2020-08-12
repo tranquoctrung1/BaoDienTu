@@ -23,8 +23,7 @@ module.exports = {
     return db.load(`SELECT * FROM ${TBL_SUBCATEGORY}`);
   },
   Edit_loadNews: function(NewsID){
-    // return db.load(`SELECT * FROM ${TBL_NEWS} WHERE NewsID = ${NewsID}`);
-    return db.load(`SELECT n.NewsID, n.NewsTitle, n.Avatar, n.Abstract, n.Content, n.CatChild_ID, u.Name, cc.CatChildName FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE n.NewsID = ${NewsID}`);
+    return db.load(`SELECT n.NewsID, n.NewsTitle, n.Avatar, n.CatChild_ID, n.Abstract, n.Note, n.Content, u.Name, cc.CatChildName FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE n.NewsID = ${NewsID}`);
   },
   Edit_loadAuthor: function(NewsID){
     return db.load(`SELECT u.UserID, u.Name FROM ${TBL_NEWS} n join ${TBL_USER} u on n.Author = u.UserID WHERE n.NewsID = ${NewsID}`)
