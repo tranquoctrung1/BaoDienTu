@@ -148,7 +148,6 @@ module.exports.checkEmail = async function (req, res) {
 
   if (email) {
     const data = await loginModel.getEmail(email);
-    console.log(data);
 
     if (data === undefined || data.length === 0) {
       return res.json(true);
