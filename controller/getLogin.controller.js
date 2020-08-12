@@ -142,3 +142,22 @@ module.exports.loadCheckregister = async function (req, res) {
   }
   res.json(false);
 };
+
+module.exports.checkEmail = async function (req, res) {
+  const { email } = req.query || "";
+
+  if (email) {
+    const data = await loginModel.getEmail(email);
+    console.log(data);
+
+    if (data === undefined || data.length === 0) {
+      return res.json(true);
+    } else {
+      if (data[0].Email != "" && data[0].Email != null) {
+        return res.json(false);
+      }
+    }
+  } else {
+    return res.json(true);
+  }
+};
