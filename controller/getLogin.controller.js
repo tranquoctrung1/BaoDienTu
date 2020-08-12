@@ -8,9 +8,6 @@ var options = {
   // example input , yes negative values do work
   min: 1000,
   max: 9999,
-  // example input , yes negative values do work
-  min: 1000,
-  max: 9999,
 };
 
 module.exports.logout = async function (req, res) {

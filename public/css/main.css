@@ -1003,3 +1003,31 @@ footer {
         .change-password-form form .button-handle-form button a {
           text-decoration: none;
           color: white; }
+
+.form-enter-email, .form-verify-token, .form-update-password {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .form-enter-email form, .form-verify-token form, .form-update-password form {
+    width: 50%;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    font-size: 13px; }
+    .form-enter-email form label, .form-verify-token form label, .form-update-password form label {
+      font-weight: 500; }
+    .form-enter-email form h2, .form-verify-token form h2, .form-update-password form h2 {
+      text-align: center;
+      font-size: 20px;
+      text-transform: uppercase; }
+    .form-enter-email form .button-handle-form, .form-verify-token form .button-handle-form, .form-update-password form .button-handle-form {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center; }
+      .form-enter-email form .button-handle-form button, .form-verify-token form .button-handle-form button, .form-update-password form .button-handle-form button {
+        width: 100px;
+        margin-left: 10px; }
+        .form-enter-email form .button-handle-form button a, .form-verify-token form .button-handle-form button a, .form-update-password form .button-handle-form button a {
+          text-decoration: none;
+          color: white; }
