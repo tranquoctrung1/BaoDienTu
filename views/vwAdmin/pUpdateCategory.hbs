@@ -43,6 +43,25 @@
                 <div class="box">
                     <form method="POST" class="frm">
                         <div>
+                            <h5 class="text-danger">CHỈNH SỬA TÊN CHUYÊN MỤC CHA</h5>
+                        </div>
+                        <div class="form_group">
+                            <input id="txtCatID" class="text-primary" name="CatID" class="form-control" type="text"
+                                value="{{this.category.CatID}}" hidden>
+                            <label for="txtCatName" class="text-primary">Tên chuyên mục: </label>
+                            <input id="txtCatName" name="CatName" class="form-control" type="text"
+                                value="{{this.category.CatName}}">
+                        </div>
+                        <div class="submit-form">
+                            <button type="submit" class="btn btn-primary" formaction="/Admin/UpdateCategory/update">
+                                Cập nhật
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="box">
+                    <form method="POST" class="frm">
+                        <div>
                             <h5 class="text-danger">THÊM NGƯỜI QUẢN LÝ CHUYÊN MỤC</h5>
                         </div>
                         <div class="form_group">

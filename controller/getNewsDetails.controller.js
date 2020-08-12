@@ -11,7 +11,7 @@ module.exports.loadNewsDetails = async function (req, res) {
     5
   );
 
-  console.log(NewsDetails[0].Avatar);
+  // console.log(NewsDetails[0].Avatar);
   if (NewsDetails[0].Avatar != null && NewsDetails[0].Avatar != "") {
     NewsDetails[0].IsAvatar = 1;
   } else {
@@ -33,7 +33,7 @@ module.exports.loadNewsDetails = async function (req, res) {
     NewsID: id,
     View: Views,
   };
-  console.log(entity);
+  // console.log(entity);
   const PlusView = await newsModel.patch(entity);
 
   res.render("vwNews/NewsDetails", {

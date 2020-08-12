@@ -272,6 +272,7 @@
                                     <thead>
                                         <tr>
                                             <th scope="col" class="text-left">ID</th>
+                                            <th scope="col" class="text-center">Avatar</th>
                                             <th scope="col" class="text-center">Tên đăng nhập</th>
                                             <th scope="col" class="text-center">Tên hiển thị</th>
                                             <th scope="col" class="text-center">Ngày sinh</th>
@@ -287,6 +288,13 @@
                                         {{#each LoadUser}}
                                         <tr>
                                             <td class="text-left">{{UserID}}</td>
+                                            <td class="text-center">
+                                                {{#if avata}}
+                                                <img src="/images/{{avata}}" class="List_avatar">
+                                                {{else}}
+                                                <img src="/images/Account.png" class="List_avatar">
+                                                {{/if}}
+                                            </td>
                                             <td class="text-center">{{UserName}}</td>
                                             <td class="text-center">{{Name}}</td>
                                             <td class="text-center">{{formatDate BirthDay}}</td>

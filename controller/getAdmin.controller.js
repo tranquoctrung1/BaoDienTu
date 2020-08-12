@@ -116,6 +116,18 @@ module.exports.loadUpdateCategory = async function (req, res) {
   });
 };
 
+module.exports.updateCat = async function (req, res) {
+  const entity = {
+    CatID: req.body.CatID,
+    CatName: req.body.CatName,
+  };
+
+  await adminModel.updateCategory(entity);
+
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
+};
+
 module.exports.loadUpdateCategoryChild = async function (req, res) {
   const id = +req.params.id || 1;
 
@@ -300,14 +312,14 @@ module.exports.addNewPost = async function (req, res) {
     Abstract: req.body.Abstract,
     Content: req.body.Content,
     Author: req.body.Author,
-    Status: 4,
+    Status: 2, //vì Admin đăng bài
     View: 0,
     Like: 0,
     IsPremium: 0,
     IsDel: 0,
   };
 
-  const NewPost = await adminModel.addNewPost(entity);
+  await adminModel.addNewPost(entity);
 
   res.redirect("/Admin");
 };
@@ -333,6 +345,7 @@ module.exports.updatePost = async function (req, res) {
     Abstract: req.body.Abstract,
     Content: req.body.Content,
     CatChild_ID: req.body.CatChild_ID,
+    Status: 2,
   };
   console.log(entity);
   await adminModel.updatePost(entity);
@@ -424,7 +437,7 @@ module.exports.addUser = async function (req, res) {
     PenName: req.body.PenName,
     IsDel: 0,
   };
-  console.log(entity);
+  // console.log(entity);
   await adminModel.addNewUser(entity);
 
   res.redirect("/Admin");
@@ -455,9 +468,38 @@ module.exports.updateUser = async function (req, res) {
 
   req.body.BirthDay = dateTime;
 
-  await adminModel.updateUser(req.body);
+  if (req.file.filename == null || req.file.filename == "") {
+    req.file.filename = "";
+  }
+
+  const entity = {
+    UserID: req.body.UserID,
+    UserName: req.body.UserName,
+    Name: req.body.Name,
+    Password: req.body.Password,
+    BirthDay: req.body.BirthDay,
+    Phone: req.body.Phone,
+    Email: req.body.Email,
+    TypeOfUser: req.body.TypeOfUser,
+    PenName: req.body.PenName,
+    IsDel: 0,
+  };
+
+  console.log(entity);
+  await adminModel.updateUser(entity);
 
   res.redirect("/Admin");
+};
+
+module.exports.updateAvatarU = async function (req, res) {
+  const entity = {
+    UserID: req.body.UserID,
+    avata: req.file.filename,
+  };
+
+  await adminModel.updateUser(entity);
+  var url = "/Admin/UpdateUser/" + req.body.UserID;
+  res.redirect(url);
 };
 
 module.exports.User_IsDel = async function (req, res) {
@@ -631,6 +673,16 @@ module.exports.loadPremiumRenewals = async function (req, res) {
   const id = +req.params.id || 1;
   const Premium = await adminModel.loadPremium(id);
   const pre = Premium[0];
+
+  var today = new Date();
+  var t = today.setDate(today.getDate());
+  var ex = new Date(pre.ExpriryDate);
+
+  if (t <= ex) {
+    Premium[0].Ex = 1;
+  } else {
+    Premium[0].Ex = 0;
+  }
 
   res.render("vwAdmin/pPremiumRenewal", {
     pre,

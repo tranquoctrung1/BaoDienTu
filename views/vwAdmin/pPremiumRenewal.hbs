@@ -17,6 +17,11 @@
                     <label for="txtPremium">Thời gian Premium: </label>
                     <input id="txtPremium" name="Premium" class="form-control" type="text"
                         value="{{formatDate this.pre.ExpriryDate}} {{formatDateTime this.pre.ExpriryDate}}" readonly>
+                    {{#if this.pre.Ex}}
+                    <i class="text-danger">(Còn hạn Premium)</i>
+                    {{else}}
+                    <i class="text-danger">(Tài khoản hết hạn Premium)</i>
+                    {{/if}}
                 </div>
 
                 <div class="form-group">
