@@ -136,16 +136,33 @@ module.exports.loadUser = async function (req, res) {
 };
 
 module.exports.loadUpdateUser = async function (req, res) {
-  const id = +req.params.id || 1;
+  if (
+    req.session.UserID != null &&
+    req.session.UserID != undefined &&
+    req.session.UserID != ""
+  ) {
+    const id = +req.params.id || 1;
 
-  const listUser = await UserModel.loadUpdateUser(id);
+    const listUser = await UserModel.loadUpdateUser(id);
 
-  let isWriter = listUser[0].TypeOfUser === 3 ? true : false;
+    let isPassport = true;
 
-  res.render("vwUser/updateInfo", {
-    listUser: listUser[0],
-    isWriter,
-  });
+    if (req.session.passport) {
+      isPassport = false;
+    }
+
+    console.log(isPassport);
+
+    let isWriter = listUser[0].TypeOfUser === 3 ? true : false;
+
+    res.render("vwUser/updateInfo", {
+      listUser: listUser[0],
+      isWriter,
+      isPassport,
+    });
+  } else {
+    res.redirect("/login");
+  }
 };
 
 module.exports.updateUser = async function (req, res) {
