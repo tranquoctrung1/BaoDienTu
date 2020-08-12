@@ -24,7 +24,7 @@ module.exports = {
   },
   loadUser: function () {
     return db.load(
-      `SELECT u.UserID, u.UserName, u.Name, u.Password, u.Phone, u.PenName, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID`
+      `SELECT u.UserID, u.UserName, u.avata, u.Name, u.Password, u.Phone, u.PenName, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID`
     );
   },
   loadUser_Editor: function () {
@@ -139,7 +139,7 @@ module.exports = {
   //====Quản lý User
   loadUpdateUser: function (UserID) {
     return db.load(
-      `SELECT u.UserID, u.UserName, u.Name, u.Password, u.Phone, u.PenName, u.Email, u.BirthDay, u.IsDel, tou.TypeID, tou.TypeName FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID WHERE UserID = ${UserID}`
+      `SELECT u.UserID, u.UserName, u.avata, u.Name, u.Password, u.Phone, u.PenName, u.Email, u.BirthDay, u.IsDel, tou.TypeID, tou.TypeName FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID WHERE UserID = ${UserID}`
     );
   },
   updateUser: function (entity) {
@@ -169,9 +169,9 @@ module.exports = {
       `SELECT ec.EditorCat_ID, ec.UserID, ec.CatID FROM ${TBL_EDITOR_CAT} ec `
     );
   },
-  loadEditor_Category: function () {
+  loadEditor_Category: function (UserID) {
     return db.load(
-      `SELECT ec.EditorCat_ID, ec.UserID, ec.CatID, c.CatName FROM ${TBL_EDITOR_CAT} ec JOIN ${TBL_CATEGORY} c ON ec.CatID = c.CatID`
+      `SELECT ec.EditorCat_ID, ec.UserID, ec.CatID, c.CatName FROM ${TBL_EDITOR_CAT} ec JOIN ${TBL_CATEGORY} c ON ec.CatID = c.CatID WHERE ec.UserID = ${UserID}`
     );
   },
   Review_loadNews: function (NewsID) {

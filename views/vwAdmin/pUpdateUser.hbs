@@ -1,7 +1,48 @@
+{{#section 'css'}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css">
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+{{/section}}
+
+{{#section 'js'}}
+<script src="https://cdn.tiny.cloud/1/8jbstsesvb079hdfufswb0btf1ud4bteqgpfco77q6t8z88h/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/themes/fa/theme.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/locales/vi.min.js"></script>
+<script>
+    tinymce.init({
+        selector: '#txtContent',
+        content_css: '//www.tiny.cloud/css/codepen.min.css',
+        height: 450,
+        plugins: 'paste image link autolink lists table media code responsivefilemanager',
+        menubar: true,
+        toolbar: [
+            'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link media image',
+        ],
+        images_upload_url: 'postAcceptor.php',
+        automatic_uploads: false,
+    });
+</script>
+
+<script>
+    $('#avatar').fileinput({
+        theme: 'fa',
+        showCaption: true,
+        dropZoneEnabled: true,
+        allowedFileExtensions: ['png', 'jpg', 'gif'],
+        language: 'vi'
+    });
+</script>
+{{/section}}
+
 <main class="admin-page">
     <div class="content">
         <div class="box">
-            <form method="POST" class="frm">
+            <form method="POST" class="frm" enctype="multipart/form-data" novalidate>
                 <div>
                     <h3 class="text-danger">CẬP NHẬT NGƯỜI DÙNG</h3>
                 </div>
@@ -14,6 +55,24 @@
                     <input id="txtUsername" name="UserName" class="form-control" type="text"
                         value="{{this.user.UserName}}">
                 </div>
+                <br>
+                <div class="form-group">
+                    <label for="txtAvatar" class="text-primary">Avatar hiện tại: </label>
+                    {{#if this.user.avata}}
+                    <img src="/images/{{this.user.avata}}" style="height: 150px;">
+                    {{else}}
+                    <img src="/images/Account.png" class="List_avatar">
+                    {{/if}}
+                </div>
+                <div class="form-group">
+                    <label for="txtAvatar" class="text-primary">Cập nhật Avatar: </label>
+                    <div class="file-loading">
+                        <input id="avatar" name="avata" type="file" class="file">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success" formaction="/Admin/UpdateUser/updateAvatarUser">
+                    Cập nhật Avatar
+                </button>
                 <div class="form_group">
                     <label for="txtName" class="text-primary">Họ và tên: </label>
                     <input id="txtName" name="Name" class="form-control" type="text" value="{{this.user.Name}}">
@@ -24,8 +83,8 @@
                         value="{{this.user.Password}}">
                 </div>
                 <div class="form_group">
-                    <label for="txtBirthday" class="text-primary">Ngày sinh: </label>
-                    <input id="txtBirthday" name="BirthDay" class="form-control" type="date"
+                    <label for="txtBirthDay" class="text-primary">Ngày sinh: </label>
+                    <input id="txtBirthDay" name="BirthDay" class="form-control" type="date"
                         value="{{formatDate2 this.user.BirthDay}}">
                 </div>
                 <div class="form_group">
@@ -52,7 +111,7 @@
                 </div>
                 <div class="submit-form">
                     <button type="submit" class="btn btn-primary" formaction="/Admin/UpdateUser/update">
-                        Cập nhật
+                        Cập nhật thông tin
                     </button>
                     <a type="submit" class="btn btn-danger" href="/Admin" role="button">
                         Hủy
