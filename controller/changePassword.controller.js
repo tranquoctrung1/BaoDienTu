@@ -2,12 +2,12 @@ const userModel = require("../model/user.model");
 const bcrypt = require("bcrypt");
 const config = require("../config/config.json");
 
-module.exports.loadForgetPassword = function (req, res) {
+module.exports.loadChangePassword = function (req, res) {
   if (req.session.UserID === undefined) {
     res.redirect("/login");
     return;
   }
-  res.render("forgetPassword/forgetPassword");
+  res.render("changePassword/changePassword");
 };
 
 module.exports.postChangePassword = async function (req, res) {
@@ -34,6 +34,6 @@ module.exports.postChangePassword = async function (req, res) {
 
     res.redirect("/");
   } else {
-    res.render("forgetPassword/forgetPassword", { err: "Sai mật khẩu" });
+    res.render("changePassword/changePassword", { err: "Sai mật khẩu" });
   }
 };
