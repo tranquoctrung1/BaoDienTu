@@ -1,9 +1,8 @@
 const categoryModel = require("../model/category.model");
+const userModel = require("../model/user.model");
 
 module.exports.loadTopTenCategory = async function (req, res, next) {
   const data = await categoryModel.loadTopTenCategory();
-
-  console.log(req.session);
 
   let topTenCategory = [];
   for (let item of data) {
@@ -30,8 +29,6 @@ module.exports.loadTopTenCategory = async function (req, res, next) {
     res.locals.Name = req.session.Name;
     res.locals.isLogined = true;
   }
-
-  console.log(res.locals);
 
   next();
 };

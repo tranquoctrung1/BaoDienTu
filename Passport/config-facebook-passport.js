@@ -16,6 +16,7 @@ passport.use(new FacebookStrategy({
         clientID: config.Facebook.ClientID,
         clientSecret: config.Facebook.Clientsecret,
         callbackURL: "/login/auth/facebook/redirect",
+        enableProof: true,
         profileFields: ['id', 'displayName', 'picture.type(large)', 'email', 'birthday', 'friends', 'first_name', 'last_name', 'middle_name', 'gender', 'link']
     },
     async function(accessToken, refreshToken, profile, done) {
