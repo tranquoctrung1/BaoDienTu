@@ -94,8 +94,9 @@ module.exports.editWriter_baivietbituchoi = async function (req, res) {
 };
 
 module.exports.DelPost = async function (req, res) {
-  const DelPost = await writerModel.del(req.body.NewsID);
-  // console.log(req.params.NewsID);
+  await writerModel.delTagOfNews(req.body.NewsID);
+  await writerModel.delPost(req.body.NewsID);
+
   res.redirect("/Writer");
 };
 

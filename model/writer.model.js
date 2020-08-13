@@ -31,7 +31,7 @@ module.exports = {
   Edit_loadCatChild: function(NewsID){
     return db.load(`SELECT cc.CatChild_ID, cc.CatChildName FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on n.CatChild_ID = cc.CatChild_ID WHERE NewsID = ${NewsID}`);
   },
-  del: function (id) {
+  delPost: function (id) {
     const condition = {
       NewsID: id
     }
@@ -48,6 +48,7 @@ module.exports = {
     return db.load(`SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, cc.CatChildName FROM ${TBL_NEWS} n JOIN ${TBL_USER} u ON n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID WHERE NewsID = ${NewsID}`);
   },
   loadTagNews: function(NewsId){
+                        
     return db.load(`SELECT t.TagName FROM ${TBL_TAG_OF_NEWS} ton INNER JOIN ${TBL_TAG} t on ton.tagID = t.tagID WHERE ton.NewsID = ${NewsId}`)
   },
   loadTag: function(){
@@ -55,6 +56,12 @@ module.exports = {
   },
   addTag: function(entity){
     return db.add(TBL_TAG_OF_NEWS, entity);
+  },
+  delTagOfNews: function (id) {
+    const condition = {
+      NewsID: id
+    }
+    return db.del(TBL_TAG_OF_NEWS, condition);
   },
   daduocduyetvachoxuatban: function(){
     return db.load(`SELECT * FROM ${TBL_NEWS} wHERE Status = 1`)
