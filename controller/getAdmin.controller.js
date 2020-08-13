@@ -474,23 +474,16 @@ module.exports.updateUser = async function (req, res) {
     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   var dateTime = date + " " + time;
 
-  req.body.BirthDay = dateTime;
-
-  if (req.file.filename == null || req.file.filename == "") {
-    req.file.filename = "";
-  }
-
   const entity = {
     UserID: req.body.UserID,
     UserName: req.body.UserName,
     Name: req.body.Name,
     Password: req.body.Password,
-    BirthDay: req.body.BirthDay,
+    BirthDay: dateTime,
     Phone: req.body.Phone,
     Email: req.body.Email,
     TypeOfUser: req.body.TypeOfUser,
     PenName: req.body.PenName,
-    IsDel: 0,
   };
 
   console.log(entity);
