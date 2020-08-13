@@ -1,12 +1,15 @@
 {{#section 'css'}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/css/fileinput.min.css">
 <style>
-    .hidden{display:none;}
+  .hidden {
+    display: none;
+  }
 </style>
 {{/section}}
 
 {{#section 'js'}}
-<script src="https://cdn.tiny.cloud/1/8jbstsesvb079hdfufswb0btf1ud4bteqgpfco77q6t8z88h/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/8jbstsesvb079hdfufswb0btf1ud4bteqgpfco77q6t8z88h/tinymce/5/tinymce.min.js"
+  referrerpolicy="origin"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/fileinput.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/themes/fa/theme.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.9/js/locales/vi.min.js"></script>
@@ -19,7 +22,7 @@
     menubar: true,
     toolbar: [
       'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link media image',
-    ],  
+    ],
     images_upload_url: 'postAcceptor.php',
     automatic_uploads: false,
   });
@@ -48,114 +51,121 @@
 
     <div class="col-md-2">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a class="nav-link active" id="v-pills-editpost-tab" data-toggle="pill" href="#v-pills-editpost" role="tab" aria-controls="v-pills-editpost" aria-selected="true">Sửa bài viết</a>
-        <a class="nav-link" id="v-pills-updateAvatar-tab" data-toggle="pill" href="#v-pills-updateAvatar" role="tab" aria-controls="v-pills-editpost" aria-selected="true">Cập nhật ảnh đại diện bài viết</a>
-      
+        <a class="nav-link active" id="v-pills-editpost-tab" data-toggle="pill" href="#v-pills-editpost" role="tab"
+          aria-controls="v-pills-editpost" aria-selected="true">Sửa bài viết</a>
+        <a class="nav-link" id="v-pills-updateAvatar-tab" data-toggle="pill" href="#v-pills-updateAvatar" role="tab"
+          aria-controls="v-pills-editpost" aria-selected="true">Cập nhật ảnh đại diện bài viết</a>
+
       </div>
     </div>
     <div class="col-md-10">
       <div class="tab-content" id="v-pills-tabContent">
-        <div class="tab-pane fade show active" id="v-pills-editpost" role="tabpanel" aria-labelledby="v-pills-editpost-tab">
-              <form method="post">
-                <input type="text" id="txtNote" name="Note" class="form-control" value="{{this.news.Note}}" hidden>
-                <div class="card">
-                  <div class="card-header">
-                    <h4>Sửa bài viết bị từ chối</h4>
-                  </div>
-                  <div class="card-body">
+        <div class="tab-pane fade show active" id="v-pills-editpost" role="tabpanel"
+          aria-labelledby="v-pills-editpost-tab">
+          <form method="post">
+            <input type="text" id="txtNote" name="Note" class="form-control" value="{{this.news.Note}}" hidden>
+            <div class="card">
+              <div class="card-header">
+                <h4>Sửa bài viết bị từ chối</h4>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-9">
+                    <div class="form-group" hidden>
+                      <label for="txtNewsID">NewsID: </label>
+                      <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}"
+                        readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="txtNewsTitle">Tiêu đề: </label>
+                      <input id="txtNewsTitle" name="NewsTitle" class="form-control" type="text"
+                        value="{{this.news.NewsTitle}}">
+                    </div>
+                    <div class="form-group">
                       <div class="row">
-                        <div class="col-9">
-                          <div class="form-group" hidden>
-                            <label for="txtNewsID">NewsID: </label>
-                            <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}" readonly>
-                          </div>
-                          <div class="form-group">
-                            <label for="txtNewsTitle">Tiêu đề: </label>
-                            <input id="txtNewsTitle" name="NewsTitle" class="form-control" type="text" value="{{this.news.NewsTitle}}">
-                          </div>
-                          <div class="form-group">
-                            <div class="row">
-                              <div class="col-6">
-                                <label for="txtAvatar">Ảnh đại diện bài viết: </label>
-                                <img src="/images/{{this.news.Avatar}}" width="100%">
-                              </div>
-                              <div class="col-6">
-                                
-                              </div>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="txtAbstract">Nội dung ngắn:</label>
-                            <input name="Abstract" id="txtAbstract" class="form-control" type="text" value="{{this.news.Abstract}}">
-                          </div>
-                          <div class="form-group">
-                            <label for="txtContent">Nội dung chi tiết:</label>
-                            <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10" aria-valuemax="{{{this.news.Content}}}"></textarea>
-                          </div>
+                        <div class="col-6">
+                          <label for="txtAvatar">Ảnh đại diện bài viết: </label>
+                          <img src="/images/{{this.news.Avatar}}" width="100%">
                         </div>
-                        <div class="col-3">
-                          <div class="form-group">
-                            <label for="txtAuthor">Tác giả: </label>
-                              <input id="txtAuthor" class="form-control" type="text" value="{{this.news.Name}}" readonly>
-                          </div>
-                          <div class="form-group">
-                            <label for="txtCatChild">Chuyên mục con: </label>
-                            <select class="custom-select" id="txtCatChild" name="CatChild_ID">
-                              <option selected value="{{this.news.CatChild_ID}}">{{this.news.CatChildName}}</option>
-                              {{#each Edit_LoadCatChild}}
-                              <option value="{{CatChild_ID}}">{{CatChildName}}</option>
-                              {{/each}}
-                            </select>
-                          </div>
+                        <div class="col-6">
+
                         </div>
                       </div>
-                      <br>
+                    </div>
+                    <div class="form-group">
+                      <label for="txtAbstract">Nội dung ngắn:</label>
+                      <input name="Abstract" id="txtAbstract" class="form-control" type="text"
+                        value="{{this.news.Abstract}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="txtContent">Nội dung chi tiết:</label>
+                      <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10"
+                        aria-valuemax="{{{this.news.Content}}}"></textarea>
+                    </div>
                   </div>
-                  <div class="card-footer">
-                    <a class="btn btn-primary" href="/Writer" role="button" title="Back to List">
-                      <i class="fa fa-backward" aria-hidden="true"></i>
-                      Quay trở lại
-                    </a>
-                    <button type="submit" class="btn btn-success " formaction="/Writer/update_bituchoi">
-                      <i class="fa fa-check" aria-hidden="true"></i>
-                      Cập nhật
-                    </button>
-                    <button type="submit" class="btn btn-danger" title="Remove News" formaction="/Writer/del">
-                      <i class="fa fa-trash" aria-hidden="true"></i>
-                      Xóa bài viết
-                    </button>
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="txtAuthor">Tác giả: </label>
+                      <input id="txtAuthor" class="form-control" type="text" value="{{this.news.Name}}" readonly>
+                    </div>
+                    <div class="form-group">
+                      <label for="txtCatChild">Chuyên mục con: </label>
+                      <select class="custom-select" id="txtCatChild" name="CatChild_ID">
+                        <option selected value="{{this.news.CatChild_ID}}">{{this.news.CatChildName}}</option>
+                        {{#each Edit_LoadCatChild}}
+                        <option value="{{CatChild_ID}}">{{CatChildName}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
                   </div>
                 </div>
-              </form>
+                <br>
+              </div>
+              <div class="card-footer">
+                <a class="btn btn-primary" href="/Writer" role="button" title="Back to List">
+                  <i class="fa fa-backward" aria-hidden="true"></i>
+                  Quay trở lại
+                </a>
+                <button type="submit" class="btn btn-success " formaction="/Writer/update_bituchoi">
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                  Cập nhật
+                </button>
+                <button type="submit" class="btn btn-danger" title="Remove News" formaction="/Writer/del">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                  Xóa bài viết
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
         <div class="tab-pane fade" id="v-pills-updateAvatar" role="tabpanel" aria-labelledby="v-pills-updateAvatar-tab">
-            <div class="form-group">
-              <div class="row">
-                <div class="col-6">
-                  <label for="txtAvatar">Ảnh đại diện bài viết: </label>
-                  <img src="/images/{{this.news.Avatar}}" width="100%">
-                </div>
-                <div class="col-6">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-6">
+                <label for="txtAvatar">Ảnh đại diện bài viết: </label>
+                <img src="/images/{{this.news.Avatar}}" width="100%">
+              </div>
+              <div class="col-6">
                 <form method="post" novalidate enctype="multipart/form-data">
                   <div class="form-group" hidden>
                     <label for="txtNewsID">NewsID: </label>
-                    <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}" readonly>
+                    <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}"
+                      readonly>
                   </div>
                   <label for="txtAvatar">Cập nhật ảnh đại diện bài viết: </label>
                   <div class="file-loading">
-                    <input id="avatar" name="Avatar" type="file" multiple>
+                    <input id="avatar" name="Avatar" type="file" class="file">
                   </div><br>
                   <button type="submit" class="btn btn-success " formaction="/Writer/updateAvatar">
                     <i class="fa fa-check" aria-hidden="true"></i>
                     Cập nhật ảnh đại diện
                   </button>
                 </form>
-                </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-

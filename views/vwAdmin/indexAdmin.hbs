@@ -1,5 +1,5 @@
 <main class="admin-page">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row" style="margin: 15px;">
             <br>
             <div class="col-md-2">
@@ -39,7 +39,6 @@
                                         <tr>
                                             <th scope="col" class="text-left">Mã chuyên mục</th>
                                             <th scope="col" class="text-center">Tên chuyên mục</th>
-                                            <th scope="col" class="text-center">Người quản lý chuyên mục</th>
                                             <th scope="col" class="text-center">Tình trạng</th>
                                             <th scope="col" class="text-right">Thao tác</th>
                                         </tr>
@@ -49,7 +48,6 @@
                                         <tr>
                                             <td class="text-center">{{CatID}}</td>
                                             <td class="text-center">{{CatName}}</td>
-                                            <td class="text-center">{{Name}}</td>
                                             <td class="text-center">
                                                 {{#if IsDel}}
                                                 <a class="btn btn-dark text-white btn-sm" title="Bị Xóa">
@@ -273,14 +271,15 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th scope="col" class="text-left">Mã người dùng</th>
+                                            <th scope="col" class="text-left">ID</th>
+                                            <th scope="col" class="text-center">Avatar</th>
                                             <th scope="col" class="text-center">Tên đăng nhập</th>
                                             <th scope="col" class="text-center">Tên hiển thị</th>
                                             <th scope="col" class="text-center">Ngày sinh</th>
                                             <th scope="col" class="text-center">Tình trạng</th>
                                             <th scope="col" class="text-center">Loại tài khoản</th>
                                             <th scope="col" class="text-center">Tình trạng Premium</th>
-                                            <th scope="col" class="text-center">Cấp Premium</th>
+                                            <th scope="col" class="text-center">Cấp Pre</th>
                                             <th scope="col" class="text-right"></th>
                                             <th scope="col" class="text-right"></th>
                                         </tr>
@@ -289,6 +288,13 @@
                                         {{#each LoadUser}}
                                         <tr>
                                             <td class="text-left">{{UserID}}</td>
+                                            <td class="text-center">
+                                                {{#if avata}}
+                                                <img src="/images/{{avata}}" class="List_avatar">
+                                                {{else}}
+                                                <img src="/images/Account.png" class="List_avatar">
+                                                {{/if}}
+                                            </td>
                                             <td class="text-center">{{UserName}}</td>
                                             <td class="text-center">{{Name}}</td>
                                             <td class="text-center">{{formatDate BirthDay}}</td>
@@ -340,6 +346,14 @@
                                                     <i class="far fa-star"></i>
                                                 </a>
                                                 {{/if}}
+                                                {{/if}}
+
+                                                {{#if IsGuest}}
+                                                    <a class="btn btn-warning text-white btn-sm" title="Đăng ký Subscriber"
+                                                        href="/Admin/registerSub/{{UserID}}" role="button">
+                                                        <i class="fas fa-user-tie"></i>
+                                                    </a>
+                                                {{else}}
                                                 {{/if}}
                                             </td>
                                             <td class="text-right">

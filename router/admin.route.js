@@ -18,7 +18,19 @@ router.get("/", getAdmin.loadAdmin);
 router.get("/paddNewCategory", getAdmin.paddNewCategory);
 router.post("/paddNewCategory/addNewCategory", getAdmin.addCategory);
 router.get("/UpdateCategory/:id", getAdmin.loadUpdateCategory);
-router.post("/UpdateCategory/update", getAdmin.updateCategory);
+router.post("/UpdateCategory/update", getAdmin.updateCat);
+router.get(
+  "/UpdateCategory/UpdateCategoryChild/:id",
+  getAdmin.loadUpdateCategoryChild
+);
+router.post(
+  "/UpdateCategory/UpdateCategoryChild/update",
+  getAdmin.updateCategoryChild
+);
+router.get("/UpdateCategory/Category_IsDel/:id", getAdmin.CategoryChild_IsDel);
+router.post("/UpdateCategory/addNewCatChild", getAdmin.NewCatChild);
+router.post("/UpdateCategory/addNewEditorCat", getAdmin.NewEditorCat);
+router.post("/Del_EditorCategory/:id", getAdmin.DelEditorCat);
 router.get("/Category_IsDel/:id", getAdmin.Category_IsDel);
 
 router.get("/paddNewTag", getAdmin.paddNewTag);
@@ -42,11 +54,21 @@ router.post("/UpdatePost/cancelPremium", getAdmin.denyPremium);
 router.post("/UpdatePost/grantPremium", getAdmin.updatePremium);
 
 router.get("/paddNewUser", getAdmin.paddNewUser);
-router.post("/paddNewUser/addNewUser", getAdmin.addUser);
+router.post(
+  "/paddNewUser/addNewUser",
+  upload.single("avata"),
+  getAdmin.addUser
+);
 router.get("/UpdateUser/:id", getAdmin.loadUpdateUser);
 router.post("/UpdateUser/update", getAdmin.updateUser);
+router.post(
+  "/UpdateUser/updateAvatarUser",
+  upload.single("avata"),
+  getAdmin.updateAvatarU
+);
 router.get("/User_IsDel/:id", getAdmin.User_IsDel);
 router.get("/grantAccPremium/:id", getAdmin.grantAccPremium);
+router.get("/registerSub/:id", getAdmin.registerSubscriber);
 router.get("/PremiumRenewal/:id", getAdmin.loadPremiumRenewals);
 router.post("/PremiumRenewal/Renewals", getAdmin.renewals);
 

@@ -32,9 +32,12 @@ Home
 							<div class="col-md-8">
 								<div class="card-body">
 									<a href="/newsdetails/{{NewsID}}" class="card-title">{{NewsTitle}}</a>
-									<p class="card-text"><a href="/list/category/{{CatID}}">{{CatName}}</a> -
+									<p class="card-text mb-1"><a href="/list/category/{{CatID}}">{{CatName}}</a> -
 										<a href="/list/subcategory/{{CatChild_ID}}">{{CatChildName}}</a> </p>
 									<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small></p>
+									{{#if IsPremium }}
+										<p class="card-text"><i class="fa fa-star" aria-hidden="true"> Premium</i></p>
+									{{/if}}
 								</div>
 							</div>
 						</div>
@@ -68,10 +71,13 @@ Home
 								<div class="col-md-8">
 									<div class="card-body">
 										<a href="/newsdetails/{{NewsID}}" class="card-title">{{NewsTitle}}</a>
-										<p class="card-text"><a href="/list/category/{{CatID}}">{{CatName}}</a> -
+										<p class="card-text mb-1"><a href="/list/category/{{CatID}}">{{CatName}}</a> -
 											<a href="/list/subcategory/{{CatChild_ID}}">{{CatChildName}}</a> </p>
-										<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small>
+										<p class="card-text mb-1"><small class="text-muted">{{formatDate DatePost}}</small>
 										</p>
+										{{#if IsPremium }}
+										<p class="card-text"><i class="fa fa-star" aria-hidden="true"> Premium</i></p>
+										{{/if}}
 									</div>
 								</div>
 							</div>
@@ -110,6 +116,9 @@ Home
 											<a href="/list/subcategory/{{CatChild_ID}}">{{CatChildName}}</a> </p>
 										<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small>
 										</p>
+										{{#if IsPremium }}
+										<p class="card-text"><i class="fa fa-star" aria-hidden="true"> Premium</i></p>
+										{{/if}}
 									</div>
 								</div>
 							</div>
@@ -145,6 +154,9 @@ Home
 								<p class="card-text"><a href="/list/category/{{CatID}}">{{CatName}}</a> -
 									<a href="/list/subcategory/{{CatChild_ID}}">{{CatChildName}}</a> </p>
 								<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small></p>
+								{{#if IsPremium }}
+										<p class="card-text"><i class="fa fa-star" aria-hidden="true"> Premium</i></p>
+								{{/if}}
 							</div>
 						</div>
 					</div>

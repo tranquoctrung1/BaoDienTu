@@ -24,6 +24,14 @@ module.exports.loadAdmin = async function (req, res) {
   });
 
   LoadUser.forEach((item) => {
+    if (item.TypeOfUser === 5) {
+      item.IsGuest = 1;
+    } else {
+      item.IsGuest = 0;
+    }
+  });
+
+  LoadUser.forEach((item) => {
     if (item.PreID != null) {
       item.IsPremium = 1;
     } else {
@@ -89,7 +97,6 @@ module.exports.paddNewCategory = async function (req, res) {
 module.exports.addCategory = async function (req, res) {
   const entity = {
     CatName: req.body.CatName,
-    Manager: req.body.Manager,
     IsDel: 0,
   };
 
@@ -104,20 +111,104 @@ module.exports.loadUpdateCategory = async function (req, res) {
   const LoadUpdateCategory = await adminModel.loadUpdateCategory(id);
   const category = LoadUpdateCategory[0];
 
-  const listUser = await adminModel.loadUser_Editor();
-  const LoadUser = listUser.filter((user) => user.UserID !== user.UserID);
-  console.log(category);
+  const LoadEditorCategory = await adminModel.loadUEditorCategory(id);
+  const LoadCatChild_ID = await adminModel.loadCatChild_ID(id);
+
+  const Editor = await adminModel.loadEditor();
 
   res.render("vwAdmin/pUpdateCategory", {
     category,
-    LoadUser,
+    Editor,
+    LoadEditorCategory,
+    LoadCatChild_ID,
   });
 };
 
-module.exports.updateCategory = async function (req, res) {
-  console.log(req.body);
-  await adminModel.updateCategory(req.body);
-  res.redirect("/Admin");
+module.exports.updateCat = async function (req, res) {
+  const entity = {
+    CatID: req.body.CatID,
+    CatName: req.body.CatName,
+  };
+
+  await adminModel.updateCategory(entity);
+
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
+};
+
+module.exports.loadUpdateCategoryChild = async function (req, res) {
+  const id = +req.params.id || 1;
+
+  const LoadUpdateCategoryChild = await adminModel.loadUpdateCatChild_ID(id);
+  const categorychild = LoadUpdateCategoryChild[0];
+
+  res.render("vwAdmin/pUpdateCategoryChild", {
+    categorychild,
+  });
+};
+
+module.exports.updateCategoryChild = async function (req, res) {
+  const entity = {
+    CatChild_ID: req.body.CatChild_ID,
+    CatChildName: req.body.CatChildName,
+  };
+
+  await adminModel.updateCatChild_ID(entity);
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
+};
+
+module.exports.CategoryChild_IsDel = async function (req, res) {
+  const id = +req.params.id || -1;
+  const LoadCategoryChild = await adminModel.loadUpdateCatChild_ID(id);
+
+  var isDel = LoadCategoryChild[0].IsDel;
+
+  if (LoadCategoryChild[0].IsDel === 1) {
+    isDel = 0;
+  } else if (LoadCategoryChild[0].IsDel === 0) {
+    isDel = 1;
+  }
+
+  const entity = {
+    CatChild_ID: id,
+    IsDel: isDel,
+  };
+
+  await adminModel.updateCatChild_ID(entity);
+  var url = "/Admin/UpdateCategory/" + LoadCategoryChild[0].CatID;
+  res.redirect(url);
+};
+
+module.exports.NewCatChild = async function (req, res) {
+  const entity = {
+    CatID: req.body.CatID,
+    CatChildName: req.body.CatChildName,
+    IsDel: 0,
+  };
+
+  await adminModel.addNewCatChild(entity);
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
+};
+
+module.exports.NewEditorCat = async function (req, res) {
+  const entity = {
+    CatID: req.body.CatID,
+    UserID: req.body.UserID,
+  };
+
+  await adminModel.addEditorCat(entity);
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
+};
+
+module.exports.DelEditorCat = async function (req, res) {
+  const id = +req.params.id || 1;
+
+  await adminModel.delEditorCat(id);
+  var url = "/Admin/UpdateCategory/" + req.body.CatID;
+  res.redirect(url);
 };
 
 module.exports.Category_IsDel = async function (req, res) {
@@ -204,10 +295,10 @@ module.exports.Tag_IsDel = async function (req, res) {
 //========================================QUẢN LÝ BÀI VIẾT
 
 module.exports.paddNewPost = async function (req, res) {
-  const LoadUser = await adminModel.loadUser();
+  const LoadAdmin = await adminModel.loadAdmin();
   const LoadCatChild = await adminModel.loadCatChild();
   res.render("vwAdmin/pNewPost", {
-    LoadUser,
+    LoadAdmin,
     LoadCatChild,
   });
 };
@@ -229,14 +320,14 @@ module.exports.addNewPost = async function (req, res) {
     Abstract: req.body.Abstract,
     Content: req.body.Content,
     Author: req.body.Author,
-    Status: 4,
+    Status: 2, //vì Admin đăng bài
     View: 0,
     Like: 0,
     IsPremium: 0,
     IsDel: 0,
   };
 
-  const NewPost = await adminModel.addNewPost(entity);
+  await adminModel.addNewPost(entity);
 
   res.redirect("/Admin");
 };
@@ -247,6 +338,7 @@ module.exports.loadUpdatePost = async function (req, res) {
   const LoadUpdatePost = await adminModel.loadUpdatePost(id);
   const news = LoadUpdatePost[0];
   const UpdatePost_LoadCatChild = await adminModel.loadCatChild();
+  console.log(news);
 
   res.render("vwAdmin/pUpdatePost", {
     news,
@@ -255,7 +347,16 @@ module.exports.loadUpdatePost = async function (req, res) {
 };
 
 module.exports.updatePost = async function (req, res) {
-  await adminModel.updatePost(req.body);
+  const entity = {
+    NewsID: req.body.NewsID,
+    NewsTitle: req.body.NewsTitle,
+    Abstract: req.body.Abstract,
+    Content: req.body.Content,
+    CatChild_ID: req.body.CatChild_ID,
+    Status: 2,
+  };
+  console.log(entity);
+  await adminModel.updatePost(entity);
 
   res.redirect("/Admin");
 };
@@ -334,6 +435,7 @@ module.exports.paddNewUser = async function (req, res) {
 module.exports.addUser = async function (req, res) {
   const entity = {
     UserName: req.body.UserName,
+    avata: req.file.filename,
     Name: req.body.Name,
     Password: req.body.Password,
     Birthday: req.body.Birthday,
@@ -343,7 +445,7 @@ module.exports.addUser = async function (req, res) {
     PenName: req.body.PenName,
     IsDel: 0,
   };
-
+  // console.log(entity);
   await adminModel.addNewUser(entity);
 
   res.redirect("/Admin");
@@ -372,11 +474,33 @@ module.exports.updateUser = async function (req, res) {
     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   var dateTime = date + " " + time;
 
-  req.body.BirthDay = dateTime;
+  const entity = {
+    UserID: req.body.UserID,
+    UserName: req.body.UserName,
+    Name: req.body.Name,
+    Password: req.body.Password,
+    BirthDay: dateTime,
+    Phone: req.body.Phone,
+    Email: req.body.Email,
+    TypeOfUser: req.body.TypeOfUser,
+    PenName: req.body.PenName,
+  };
 
-  await adminModel.updateUser(req.body);
+  console.log(entity);
+  await adminModel.updateUser(entity);
 
   res.redirect("/Admin");
+};
+
+module.exports.updateAvatarU = async function (req, res) {
+  const entity = {
+    UserID: req.body.UserID,
+    avata: req.file.filename,
+  };
+
+  await adminModel.updateUser(entity);
+  var url = "/Admin/UpdateUser/" + req.body.UserID;
+  res.redirect(url);
 };
 
 module.exports.User_IsDel = async function (req, res) {
@@ -402,6 +526,7 @@ module.exports.User_IsDel = async function (req, res) {
 module.exports.LoadList_EditorCategory = async function (req, res) {
   const id = +req.params.id || -1;
   const LoadEditorCat = await adminModel.loadEditor_Category(id);
+  console.log(LoadEditorCat);
   const editorCat = LoadEditorCat[0];
   const LoadCategory = await adminModel.loadCat();
 
@@ -532,9 +657,19 @@ module.exports.grantAccPremium = async function (req, res) {
   const id = +req.params.id || -1;
   var today = new Date();
 
-  var expiredDate = today.setDate(today.getDate() + 7);
-  var expriry = new Date(expiredDate);
+  var yyyy = today.getFullYear();
+  var mm = today.getMonth();
+  var dd = today.getDate();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  var Exp = new Date(yyyy, mm, dd, h, m + 5, s); // +5 phút
+  var expriry = new Date(Exp);
 
+  // var expiredDate = today.setDate(today.getDate() + 7); // +7 ngày
+  // var expriry = new Date(expiredDate);
+
+  
   const entity = {
     UserID: id,
     ExpriryDate: expriry,
@@ -545,10 +680,33 @@ module.exports.grantAccPremium = async function (req, res) {
   res.redirect("/Admin");
 };
 
+module.exports.registerSubscriber = async function (req, res) {
+  const id = +req.params.id || -1;
+  
+  const entity = {
+    UserID: id,
+    TypeOfUser: 2,
+  };
+
+  await adminModel.updateUser(entity);
+
+  res.redirect("/Admin");
+};
+
 module.exports.loadPremiumRenewals = async function (req, res) {
   const id = +req.params.id || 1;
   const Premium = await adminModel.loadPremium(id);
   const pre = Premium[0];
+
+  var today = new Date();
+  var t = today.setDate(today.getDate());
+  var ex = new Date(pre.ExpriryDate);
+
+  if (t <= ex) {
+    Premium[0].Ex = 1;
+  } else {
+    Premium[0].Ex = 0;
+  }
 
   res.render("vwAdmin/pPremiumRenewal", {
     pre,

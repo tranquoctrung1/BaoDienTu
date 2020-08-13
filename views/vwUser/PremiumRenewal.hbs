@@ -1,0 +1,52 @@
+<main class="admin-page">
+    <div class="content">
+        <div class="box">
+            <form method="POST" class="frm">
+                <div>
+                    <h3 class="text-danger">GIA HẠN PREMIUM</h3>
+                </div>
+                {{#if this.pre.Ex}}
+                <label class="text-danger">(Còn hạn Premium)</label>
+                {{else}}
+                <label class="text-danger">(Tài khoản hết hạn Premium)</label>
+                {{/if}}
+                <input id="txtPreID" name="PreID" class="form-control" type="text" value="{{this.pre.PreID}}" hidden>
+                <input id="txtUserID" name="UserID" class="form-control" type="text" value="{{this.pre.UserID}}" hidden>
+                <input id="txtExpriryDate" name="ExpriryDate" class="form-control" type="text"
+                    value="{{this.pre.ExpriryDate}}" hidden>
+                <div class="form_group">
+                    <label for="txtName">Tên khách hàng: </label>
+                    <input id="txtName" name="Name" class="form-control" type="text" value="{{this.pre.Name}}" readonly>
+                </div>
+                <div class="form_group">
+                    <label for="txtPremium">Thời gian Premium: </label>
+                    <input id="txtPremium" name="Premium" class="form-control" type="text"
+                        value="{{formatDate this.pre.ExpriryDate}} {{formatDateTime this.pre.ExpriryDate}}" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtDatePost">Gia hạn: </label>
+                    <select class="form-control" id="select" name="type">
+                        <option value="year">Năm</option>
+                        <option value="month">Tháng</option>
+                        <option value="day">Ngày</option>
+                        <option value="hour">Giờ</option>
+                        <option value="minute">Phút</option>
+                        <option value="second">Giây</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="PlusEx" name="PlusEx" class="form-control" min="0">
+                </div>
+                <div class="submit-form">
+                    <button type="submit" class="btn btn-primary" formaction="/User/PremiumRenewal/Renewals">
+                        Gia hạn
+                    </button>
+                    <a type="submit" class="btn btn-danger" href="/User" role="button">
+                        Hủy
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
