@@ -27,6 +27,11 @@ module.exports = {
       `SELECT u.UserID, u.UserName, u.avata, u.Name, u.Password, u.Phone, u.PenName, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID`
     );
   },
+  loadAdmin: function () {
+    return db.load(
+      `SELECT u.UserID, u.UserName, u.Name, u.IsDel, u.TypeOfUser, tou.TypeID, tou.TypeName FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID WHERE tou.TypeID = 1`
+    );
+  },
   loadUser_Editor: function () {
     return db.load(
       `SELECT u.UserID, u.UserName, u.Name, u.Password, u.Phone, u.PenName, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID WHERE tou.TypeID = 4`

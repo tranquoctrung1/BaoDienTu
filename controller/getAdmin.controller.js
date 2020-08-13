@@ -287,10 +287,10 @@ module.exports.Tag_IsDel = async function (req, res) {
 //========================================QUẢN LÝ BÀI VIẾT
 
 module.exports.paddNewPost = async function (req, res) {
-  const LoadUser = await adminModel.loadUser();
+  const LoadAdmin = await adminModel.loadAdmin();
   const LoadCatChild = await adminModel.loadCatChild();
   res.render("vwAdmin/pNewPost", {
-    LoadUser,
+    LoadAdmin,
     LoadCatChild,
   });
 };
@@ -656,9 +656,19 @@ module.exports.grantAccPremium = async function (req, res) {
   const id = +req.params.id || -1;
   var today = new Date();
 
-  var expiredDate = today.setDate(today.getDate() + 7);
-  var expriry = new Date(expiredDate);
+  var yyyy = today.getFullYear();
+  var mm = today.getMonth();
+  var dd = today.getDate();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  var Exp = new Date(yyyy, mm, dd, h, m + 5, s); // +5 phút
+  var expriry = new Date(Exp);
 
+  // var expiredDate = today.setDate(today.getDate() + 7); // +7 ngày
+  // var expriry = new Date(expiredDate);
+
+  
   const entity = {
     UserID: id,
     ExpriryDate: expriry,
