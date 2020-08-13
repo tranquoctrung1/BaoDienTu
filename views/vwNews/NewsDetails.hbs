@@ -87,11 +87,12 @@
                                     <div class="card-header">
                                         Comment:
                                     </div>
-                                    <div class="form-group col px-md-5 mt-md-3 mb-md-3">
-                                        <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
-                                        <div class="send-button"> <button type="submit" class="btn btn-success mt-md-3"> Gửi</button>
-                                        </div>
-                                    </div>
+                                   <form action="" method="POST">
+                            <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
+                            <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
+                            <div class="send-button"> <button type="submit" formaction="/newsDetails/comment" class="btn btn-success mt-md-3"> Gửi</button>
+                            </div>
+                        </form>
                                     <img class="card-img-top" src="holder.js/100px180/" alt="">
                                     {{#each CmtNews}}
                                     <div class="col px-md-5 mb-md-3">
@@ -236,9 +237,12 @@
                         Comment:
                     </div>
                     <div class="form-group col px-md-5 mt-md-3 mb-md-3">
-                        <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
-                        <div class="send-button"> <button type="submit" class="btn btn-success mt-md-3"> Gửi</button>
-                        </div>
+                        <form action="" method="POST">
+                            <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
+                            <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
+                            <div class="send-button"> <button type="submit" formaction="/newsDetails/comment" class="btn btn-success mt-md-3"> Gửi</button>
+                            </div>
+                        </form>
                     </div>
                     <img class="card-img-top" src="holder.js/100px180/" alt="">
                     {{#each CmtNews}}

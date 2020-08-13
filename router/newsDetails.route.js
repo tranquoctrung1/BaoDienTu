@@ -6,5 +6,5 @@ router.get('/:id', getNews.loadNewsDetails);
 
 router.post('/like', getNews.patch);
 router.post('/RegisterSub', getNews.registerSub);
-
+router.post('/comment', getNews.postComment);
 module.exports = router;
