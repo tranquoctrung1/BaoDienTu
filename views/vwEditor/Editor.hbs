@@ -42,6 +42,11 @@
 <br>
 <div class="container">
     <form method="POST">
+      <h4 class="text-primary">Danh sách chuyên mục bạn đang quản lý:
+        {{#each LoadListPost_CatEditManager}}
+          {{CatName}} - 
+        {{/each}}
+      </h4>
         <div class="card">
         <div class="card-header d-flex justify-content-between">
             <h4>Danh sách các bài chờ duyệt</h4>
