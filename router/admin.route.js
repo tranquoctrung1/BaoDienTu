@@ -68,6 +68,7 @@ router.post(
 );
 router.get("/User_IsDel/:id", getAdmin.User_IsDel);
 router.get("/grantAccPremium/:id", getAdmin.grantAccPremium);
+router.get("/registerSub/:id", getAdmin.registerSubscriber);
 router.get("/PremiumRenewal/:id", getAdmin.loadPremiumRenewals);
 router.post("/PremiumRenewal/Renewals", getAdmin.renewals);
 

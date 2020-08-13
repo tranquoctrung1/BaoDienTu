@@ -24,6 +24,14 @@ module.exports.loadAdmin = async function (req, res) {
   });
 
   LoadUser.forEach((item) => {
+    if (item.TypeOfUser === 5) {
+      item.IsGuest = 1;
+    } else {
+      item.IsGuest = 0;
+    }
+  });
+
+  LoadUser.forEach((item) => {
     if (item.PreID != null) {
       item.IsPremium = 1;
     } else {
@@ -675,6 +683,19 @@ module.exports.grantAccPremium = async function (req, res) {
   };
 
   await adminModel.addNewAccPremium(entity);
+
+  res.redirect("/Admin");
+};
+
+module.exports.registerSubscriber = async function (req, res) {
+  const id = +req.params.id || -1;
+  
+  const entity = {
+    UserID: id,
+    TypeOfUser: 2,
+  };
+
+  await adminModel.updateUser(entity);
 
   res.redirect("/Admin");
 };
