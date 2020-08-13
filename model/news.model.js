@@ -111,4 +111,14 @@ module.exports = {
       where n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and match(n.NewsTitle, n.Abstract, n.Content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE)`
     );
   },
+  loadUser: function(UserID){
+    return db.load(`SELECT u.UserID, u.UserName, u.Name, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID WHERE u.UserID = ${UserID}`);
+  },
+  patchUser: function (entity) {
+    const condition = {
+      UserID: entity.UserID,
+    };
+    delete entity.UserID;
+    return db.patch(TBL_USER, entity, condition);
+  },
 };
