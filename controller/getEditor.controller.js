@@ -1,12 +1,12 @@
 const editorModel = require("../model/editor.model");
 
 module.exports.loadEditor = async function (req, res) {
-    const LoadListPost = await editorModel.loadListPost_chuaduyet();
+    const LoadListPost = await editorModel.loadListPost_chuaduyet(req.session.UserID);
+    const LoadListPost_CatEditManager = await editorModel.loadList_CategoryEditorManager(req.session.UserID);
 
-    // const LoadAuthor = await editorModel.loadAuthor(LoadListPost.NewsID);
     res.render("vwEditor/Editor", {
         LoadListPost,
-        // LoadAuthor,
+        LoadListPost_CatEditManager,
     });
 }
 
