@@ -14,9 +14,9 @@ module.exports = {
   loadUser_UserID: function (UserID) {
     return db.load(`SELECT * FROM ${TBL_USER} WHERE UserID = ${UserID}`);
   },
-  loadUser: function () {
+  loadUser: function (UserID) {
     return db.load(
-      `SELECT u.UserID, u.UserName, u.Name, u.Password, u.Phone, u.PenName, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID`
+      `SELECT u.UserID, u.UserName, u.Name, u.Password, u.Phone, u.PenName, u.BirthDay, u.IsDel, u.TypeOfUser, tou.TypeName, p.PreID, p.ExpriryDate FROM ${TBL_USER} u JOIN ${TBL_TYPE_OF_USER} tou ON u.TypeOfUser = tou.TypeID LEFT JOIN ${TBL_PREMIUM} p ON u.UserID = p.UserID WHERE u.UserID = ${UserID}`
     );
   },
   updateTypeOfUser_UserID: function (entity) {

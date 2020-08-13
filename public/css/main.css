@@ -534,6 +534,25 @@
   .news-details-page .CatAndPre i {
     font-size: 15px; }
 
+.news-details-page .box {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .news-details-page .box label {
+    margin-top: 12px; }
+  .news-details-page .box .frm {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2); }
+  .news-details-page .box .submit-form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 15px; }
+    .news-details-page .box .submit-form a {
+      margin: 5px; }
+
 header .navbar {
   padding: 0 10px; }
   header .navbar a.nav-link {

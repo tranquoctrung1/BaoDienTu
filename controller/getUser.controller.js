@@ -40,8 +40,8 @@ module.exports.loadUser = async function (req, res) {
 
 module.exports.loadSubscriber = async function (req, res) {
   const id = +req.params.id || 1;
-  console.log(req.body);
-  console.log(id);
+  // console.log(req.body);
+  // console.log(id);
   const LoadSubscriber = await UserModel.loadUser_UserID(id);
   const sub = LoadSubscriber[0];
 
@@ -51,11 +51,12 @@ module.exports.loadSubscriber = async function (req, res) {
 };
 
 module.exports.registerPre = async function (req, res) {
-  const entityupdate = {
-    UserID: req.body.UserID,
-    TypeOfUser: 2,
-  };
-  await UserModel.updateTypeOfUser_UserID(entityupdate);
+  // const entityupdate = {
+  //   // UserID: req.session.UserID,
+  //   UserID: 5,
+  //   TypeOfUser: 2,
+  // };
+  // await UserModel.updateTypeOfUser_UserID(entityupdate);
 
   var today = new Date();
   var yyyy = today.getFullYear();
@@ -67,7 +68,8 @@ module.exports.registerPre = async function (req, res) {
   var Exp = new Date(yyyy, mm, dd, h, m + parseInt(req.body.Ex), s);
 
   const entityNewAccPremium = {
-    UserID: req.body.UserID,
+    UserID: req.session.UserID,
+    // UserID: 8,
     ExpriryDate: Exp,
   };
   console.log(entityNewAccPremium);
@@ -77,20 +79,20 @@ module.exports.registerPre = async function (req, res) {
 };
 
 module.exports.loadPremiumRenewals = async function (req, res) {
-  const id = +req.params.id || 1;
-  const Premium = await UserModel.loadPremium(id);
+  // const id = +req.params.id || 1;
+  const Premium = await UserModel.loadPremium(req.session.UserID);
+  // const Premium = await UserModel.loadPremium(5);
   const pre = Premium[0];
 
   var today = new Date();
   var t = today.setDate(today.getDate());
-  var ex = new Date(pre.ExpriryDate);
+  var ex = new Date(Premium[0].ExpriryDate);
 
   if (t <= ex) {
     Premium[0].Ex = 1;
   } else {
     Premium[0].Ex = 0;
   }
-  console.log(Premium[0].Ex);
 
   res.render("vwUser/PremiumRenewal", {
     pre,
@@ -127,7 +129,8 @@ module.exports.renewals = async function (req, res) {
   console.log(entity);
 
   await UserModel.updatePremium(entity);
-  var url = "/User/PremiumRenewal/" + req.body.UserID;
+  // var url = "/User/PremiumRenewal/" + req.session.UserID;
+  var url = "/User/PremiumRenewal/" + 5;
   res.redirect(url);
 };
 
