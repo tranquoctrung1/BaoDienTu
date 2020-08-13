@@ -24,6 +24,14 @@ module.exports.loadAdmin = async function (req, res) {
   });
 
   LoadUser.forEach((item) => {
+    if (item.TypeOfUser === 5) {
+      item.IsGuest = 1;
+    } else {
+      item.IsGuest = 0;
+    }
+  });
+
+  LoadUser.forEach((item) => {
     if (item.PreID != null) {
       item.IsPremium = 1;
     } else {
@@ -287,10 +295,10 @@ module.exports.Tag_IsDel = async function (req, res) {
 //========================================QUẢN LÝ BÀI VIẾT
 
 module.exports.paddNewPost = async function (req, res) {
-  const LoadUser = await adminModel.loadUser();
+  const LoadAdmin = await adminModel.loadAdmin();
   const LoadCatChild = await adminModel.loadCatChild();
   res.render("vwAdmin/pNewPost", {
-    LoadUser,
+    LoadAdmin,
     LoadCatChild,
   });
 };
@@ -466,23 +474,16 @@ module.exports.updateUser = async function (req, res) {
     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   var dateTime = date + " " + time;
 
-  req.body.BirthDay = dateTime;
-
-  if (req.file.filename == null || req.file.filename == "") {
-    req.file.filename = "";
-  }
-
   const entity = {
     UserID: req.body.UserID,
     UserName: req.body.UserName,
     Name: req.body.Name,
     Password: req.body.Password,
-    BirthDay: req.body.BirthDay,
+    BirthDay: dateTime,
     Phone: req.body.Phone,
     Email: req.body.Email,
     TypeOfUser: req.body.TypeOfUser,
     PenName: req.body.PenName,
-    IsDel: 0,
   };
 
   console.log(entity);
@@ -656,15 +657,38 @@ module.exports.grantAccPremium = async function (req, res) {
   const id = +req.params.id || -1;
   var today = new Date();
 
-  var expiredDate = today.setDate(today.getDate() + 7);
-  var expriry = new Date(expiredDate);
+  var yyyy = today.getFullYear();
+  var mm = today.getMonth();
+  var dd = today.getDate();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  var Exp = new Date(yyyy, mm, dd, h, m + 5, s); // +5 phút
+  var expriry = new Date(Exp);
 
+  // var expiredDate = today.setDate(today.getDate() + 7); // +7 ngày
+  // var expriry = new Date(expiredDate);
+
+  
   const entity = {
     UserID: id,
     ExpriryDate: expriry,
   };
 
   await adminModel.addNewAccPremium(entity);
+
+  res.redirect("/Admin");
+};
+
+module.exports.registerSubscriber = async function (req, res) {
+  const id = +req.params.id || -1;
+  
+  const entity = {
+    UserID: id,
+    TypeOfUser: 2,
+  };
+
+  await adminModel.updateUser(entity);
 
   res.redirect("/Admin");
 };

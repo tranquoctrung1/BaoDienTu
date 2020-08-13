@@ -347,6 +347,14 @@
                                                 </a>
                                                 {{/if}}
                                                 {{/if}}
+
+                                                {{#if IsGuest}}
+                                                    <a class="btn btn-warning text-white btn-sm" title="Đăng ký Subscriber"
+                                                        href="/Admin/registerSub/{{UserID}}" role="button">
+                                                        <i class="fas fa-user-tie"></i>
+                                                    </a>
+                                                {{else}}
+                                                {{/if}}
                                             </td>
                                             <td class="text-right">
                                                 <a class="btn btn-primary btn-sm" href="/Admin/UpdateUser/{{UserID}}"
