@@ -27,9 +27,14 @@ Những bài viết mới nhất
 											<a href="/list/subcategory/{{CatChild_ID}}">{{CatChildName}}</a> </p>
 										<p class="card-text"><small class="text-muted">{{formatDate DatePost}}</small>
 										</p>
-										{{#if IsPremium }}
-										<p class="card-text"><i class="fa fa-star" aria-hidden="true"> PREMIUM</i></p>
-										{{/if}}
+										<div class="CatAndPre">
+											<div class="catChild">
+												<a class="color" style="color: white;">{{CatChildName}}</a>
+											</div>
+											{{#if IsPremium }}
+											<p class="card-text"><i class="fa fa-star" aria-hidden="true"> PREMIUM</i></p>
+											{{/if}}
+										</div>
 									</div>
 								</div>
 							</div>

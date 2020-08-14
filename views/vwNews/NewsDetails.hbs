@@ -317,9 +317,14 @@
                     </b>
                     <br>
                     <div class="CatAndPre">
-                        <div class="catChild">
-                            <b>Chuyên mục: </b>&ensp;
-                            <a href="/list/subcategory/{{this.news.CatChild_ID}}" class="color">{{this.news.CatChildName}}</a>
+                        <div style="display: flex;">
+                            <div class="Cat"> {{!Chuyên mục cha}}
+                                <b>Chuyên mục: </b>&ensp;
+                                <a class="color" style="color: white;">{{this.news.CatName}}</a>
+                            </div>
+                            <div class="catChild"> {{!Chuyên mục con}}
+                                <a href="/list/subcategory/{{this.news.CatChild_ID}}" class="color" style="color: white;">{{this.news.CatChildName}}</a>
+                            </div>
                         </div>
                         {{#if this.news.IsPremium}}
                         <div class="text-warning" style="text-align: right; font-size: 18px;">
@@ -405,12 +410,17 @@
                         <p class="card-text">{{Abstract}}</p>
                         <p class="card-text"><small class="text-muted">{{formatDateTime DatePost}} -
                                 {{formatDate DatePost}}</small></p>
-                        {{#if IsPremium}}
-                        <div class="text-warning" style="text-align: right; font-size: 13px;">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            Premium
+                        <div class="CatAndPre">
+                            <div class="Cat">
+                                <a class="color">{{CatName}}</a>
+                            </div>
+                            {{#if IsPremium}}
+                            <div class="text-warning" style="text-align: right; font-size: 13px;">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                Premium
+                            </div>
+                            {{/if}}
                         </div>
-                        {{/if}}
                     </div>
                 </div>
                 {{/each}}
