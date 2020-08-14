@@ -8,6 +8,12 @@
           Quay trở lại danh sách chờ duyệt
       </a>
       <h1>{{this.news.NewsTitle}}</h1>
+      {{#if this.news.IsPremium}}
+        <h5 class="text-danger">
+          <i class="fa fa-star" aria-hidden="true"></i>
+          Bài viết Premim
+        </h5>
+      {{/if}}
       <b>Tác giả: {{this.news.Name}}</b>&nbsp;&nbsp;<a>|&nbsp;{{formatDate DatePost}}</a><br>
       <b>
           Lượt xem <i class="fa fa-eye" aria-hidden="true"> {{this.news.View}} -</i>&ensp;Lượt thích <i class="far fa-thumbs-up"> {{this.news.Like}}</i>
@@ -38,6 +44,26 @@
       </div>
     </div>
     <div class="col-3">
+      <form method="POST">
+        <div class="form-group">
+          <input id="txtNewsID" name="NewsID" class="form-control" type="text" value="{{this.news.NewsID}}" hidden>
+          {{!-- Xử lý premium --}}
+          <div class="form-group">
+            {{#if this.news.IsPremium}}
+              <button type="submit" class="btn btn-warning text-white"
+                formaction="/Editor/Review/cancelPremium">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                Hủy Premium bài viết
+              </button>
+            {{else}}
+              <button type="submit" class="btn btn-warning text-white"
+                formaction="/Editor/Review/grantPremium">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                Cập nhật Premium bài viết
+              </button>
+            {{/if}}
+          </form> 
+        </div>
         <div class="card border-success mb-3" style="max-width: 18rem;">
           <div class="card-header text-success">
             <h5 style="margin: 0;">DUYỆT BÀI VIẾT</h5>

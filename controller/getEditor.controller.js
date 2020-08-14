@@ -36,6 +36,28 @@ module.exports.reviewPost = async function (req, res) {
   });
 };
 
+module.exports.denyPremium = async function(req, res) {
+  const entity = {
+      NewsID: req.body.NewsID,
+      IsPremium: 0,
+  };
+  console.log(entity);
+  await editorModel.updatePost(entity);
+  var url = "/Editor/Review/" + req.body.NewsID;
+  res.redirect(url);
+};
+
+module.exports.updatePremium = async function(req, res) {
+  const entity = {
+      NewsID: req.body.NewsID,
+      IsPremium: 1,
+  };
+  console.log(entity);
+  await editorModel.updatePost(entity);
+  var url = "/Editor/Review/" + req.body.NewsID;
+  res.redirect(url);
+};
+
 module.exports.addTag = async function(req, res){
   const entity = {
     NewsID: req.body.NewsID,
