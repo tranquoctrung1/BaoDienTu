@@ -31,6 +31,12 @@ module.exports.loadNewsDetails = async function(req, res) {
                 LoadUser[0].IsSub = 0;
             }
 
+            if (LoadUser[0].TypeOfUser == 1 || LoadUser[0].TypeOfUser == 3 || LoadUser[0].TypeOfUser == 4) {
+                LoadUser[0].IsAdminWriterEditor = 1;
+            } else {
+                LoadUser[0].IsAdminWriterEditor = 0;
+            }
+
 
             if (LoadUser[0].PreID != null) {
                 LoadUser[0].IsPremium = 1;
@@ -49,7 +55,7 @@ module.exports.loadNewsDetails = async function(req, res) {
             } else {
                 LoadUser[0].Ex = 0;
             }
-
+            
             // console.log(NewsDetails[0].Avatar);
             if (NewsDetails[0].Avatar != null && NewsDetails[0].Avatar != "") {
                 NewsDetails[0].IsAvatar = 1;
@@ -71,6 +77,15 @@ module.exports.loadNewsDetails = async function(req, res) {
     } else {
         user = null;
     }
+
+    CmtNews.forEach((item) => {
+        if (item.avata != null && item.avata != "") {
+            item.IsAvatarUser = 1;
+        } else {
+            item.IsAvatarUser = 0;
+        }
+    });
+
     var Views = NewsDetails[0].View + 1;
     // console.log(Views);
     const entity = {
