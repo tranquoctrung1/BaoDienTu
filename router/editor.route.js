@@ -9,4 +9,7 @@ route.post('/accept', getEditor.acceptPost);
 route.post('/deny', getEditor.denyPost);
 route.post('/addNewTag', getEditor.addNewTag);
 
+route.post("/Review/cancelPremium", getEditor.denyPremium);
+route.post("/Review/grantPremium", getEditor.updatePremium);
+
 module.exports = route;
