@@ -26,7 +26,7 @@ module.exports = {
                     INNER JOIN ${TBL_TAG} t on ton.tagID = t.tagID WHERE ton.NewsID = ${NewsId} and t.IsDel = 0`);
     },
     loadCmt: function(NewsId) {
-        return db.load(`SELECT u.UserName, cmt.Content, cmt.DateTime FROM ${TBL_COMMENT} cmt 
+        return db.load(`SELECT u.UserName, u.Name, u.avata, cmt.Content, cmt.DateTime FROM ${TBL_COMMENT} cmt 
                   INNER join ${TBL_NEWS} n on cmt.NewsID = n.NewsID INNER join ${TBL_USER} u on cmt.userID = u.UserID 
                   WHERE n.NewsID = ${NewsId}`);
     },
