@@ -4,20 +4,21 @@ const { loadTag } = require("../model/writer.model");
 module.exports.loadWriter = async function (req, res) {
   // const id = req.params.id;
 
-  const LoadListPost = await writerModel.loadListPost();
+  const LoadListPost = await writerModel.loadListPost(req.session.UserID);
   //console.log(req.body);
   // const loadTagNews = await writerModel.loadTagNews(req.body.NewsID);
 
-  const LoadAuthor = await writerModel.loadAuthor();
+  const LoadAuthor = await writerModel.loadAuthor(req.session.UserID);
+  const author = LoadAuthor[0];
   const LoadCatChild = await writerModel.loadCatChild();
-  const daduocduyetvachoxuatban = await writerModel.daduocduyetvachoxuatban();
-  const daxuatban = await writerModel.daxuatban();
-  const bituchoi = await writerModel.bituchoi();
-  const chuaduocduyet = await writerModel.chuaduocduyet();
+  const daduocduyetvachoxuatban = await writerModel.daduocduyetvachoxuatban(req.session.UserID);
+  const daxuatban = await writerModel.daxuatban(req.session.UserID);
+  const bituchoi = await writerModel.bituchoi(req.session.UserID);
+  const chuaduocduyet = await writerModel.chuaduocduyet(req.session.UserID);
 
   res.render("vwWriter/Writer", {
     LoadListPost,
-    LoadAuthor,
+    author,
     LoadCatChild,
     daduocduyetvachoxuatban,
     daxuatban,

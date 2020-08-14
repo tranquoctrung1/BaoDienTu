@@ -43,13 +43,13 @@
 {{/section}}
 
 <br>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <br>
     <div class="col-md-2">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <a class="nav-link active" id="v-pills-listpost-tab" data-toggle="pill" href="#v-pills-listpost" role="tab"
-          aria-controls="v-pills-listpost" aria-selected="false">Tất cả bài viết</a>
+          aria-controls="v-pills-listpost" aria-selected="false">Tất cả bài viết của bạn</a>
         <a class="nav-link" id="v-pills-newpost-tab" data-toggle="pill" href="#v-pills-newpost" role="tab"
           aria-controls="v-pills-newpost" aria-selected="true">Viết bài mới</a>
         <a class="nav-link" id="v-pills-listpostdaduyetvachoxuatban-tab" data-toggle="pill"
@@ -95,19 +95,12 @@
                       <label for="txtContent">Nội dung chi tiết:</label>
                       <textarea name="Content" id="txtContent" class="form-control" cols="30" rows="10"></textarea>
                     </div>
-                    {{!-- <div class="form-group">
-                          <label for="txtTag">Gắn nhãn:</label>
-                          <input name="TagID" id="txtTag" class="form-control" type="text">
-                        </div> --}}
                   </div>
                   <div class="col-3">
                     <div class="form-group">
                       <label for="txtAuthor">Tác giả: </label>
-                      <select class="custom-select" id="txtAuthor" name="Author">
-                        {{#each LoadAuthor}}
-                        <option value="{{UserID}}">{{UserName}}</option>
-                        {{/each}}
-                      </select>
+                      <input name="Author" id="txtAuthor" class="form-control" type="text" value="{{this.author.UserID}}" hidden readonly>
+                      <input name="Name" id="txtAuthorName" class="form-control" type="text" value="{{this.author.Name}}" readonly>
                     </div>
                     <div class="form-group">
                       <label for="txtCatChild">Chuyên mục con: </label>
@@ -136,7 +129,7 @@
           <form method="POST">
             <div class="card">
               <div class="card-header d-flex justify-content-between">
-                <h4>Danh sách các bài đăng</h4>
+                <h4>Danh sách các bài đăng của bạn</h4>
               </div>
               <table class="table table-hover">
                 <thead>
@@ -144,8 +137,8 @@
                     <th scope="col" class="text-center" hidden>NewsID</th>
                     <th scope="col" class="text-center">Avatar</th>
                     <th scope="col" class="text-center">Tiêu đề</th>
-                    {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                     <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Tác giả</th>
                     <th scope="col" class="text-center">Nội dung tóm tắt</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -159,10 +152,8 @@
                     </td>
                     <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
                     <td>{{NewsTitle}}</td>
-                    {{!-- <td>
-                              TagName
-                            </td> --}}
                     <td>{{formatDate DatePost}}</td>
+                    <td>{{Name}}</td>
                     <td>{{Abstract}}</td>
                     <td>
                       <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
@@ -195,8 +186,8 @@
                   <tr>
                     <th scope="col" class="text-center">Avatar</th>
                     <th scope="col" class="text-center">Tiêu đề</th>
-                    {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                     <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Tác giả</th>
                     <th scope="col" class="text-center">Nội dung tóm tắt</th>
                     <th scope="col" hidden>Tùy chỉnh</th>
                   </tr>
@@ -206,8 +197,8 @@
                   <tr>
                     <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
                     <td>{{NewsTitle}}</td>
-                    {{!-- <td>DsNhãn</td> --}}
                     <td>{{formatDate DatePost}}</td>
+                    <td>{{Name}}</td>
                     <td>{{Abstract}}</td>
                     <td hidden>
                       <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
@@ -239,8 +230,8 @@
                   <tr>
                     <th scope="col" class="text-center">Avatar</th>
                     <th scope="col" class="text-center">Tiêu đề</th>
-                    {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                     <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Tác giả</th>
                     <th scope="col" class="text-center">Nội dung tóm tắt</th>
                     <th scope="col" hidden>Tùy chỉnh</th>
                   </tr>
@@ -250,8 +241,8 @@
                   <tr>
                     <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
                     <td>{{NewsTitle}}</td>
-                    {{!-- <td>DsNhãn</td> --}}
                     <td>{{formatDate DatePost}}</td>
+                    <td>{{Name}}</td>
                     <td>{{Abstract}}</td>
                     <td hidden>
                       <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">
@@ -283,8 +274,8 @@
                   <tr>
                     <th scope="col" class="text-center">Avatar</th>
                     <th scope="col" class="text-center">Tiêu đề</th>
-                    {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                     <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Tác giả</th>
                     <th scope="col" class="text-center">Nội dung tóm tắt</th>
                     <th scope="col" class="text-center">Lý do</th>
                     <th scope="col"></th>
@@ -296,8 +287,8 @@
                   <tr>
                     <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
                     <td>{{NewsTitle}}</td>
-                    {{!-- <td>DsNhãn</td> --}}
                     <td>{{formatDate DatePost}}</td>
+                    <td>{{Name}}</td>
                     <td>{{Abstract}}</td>
                     <td>{{Note}}</td>
                     <td>
@@ -332,8 +323,8 @@
                   <tr>
                     <th scope="col" class="text-center">Avatar</th>
                     <th scope="col" class="text-center">Tiêu đề</th>
-                    {{!-- <th scope="col" class="text-center">Danh sách nhãn</th> --}}
                     <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Tác giả</th>
                     <th scope="col" class="text-center">Nội dung tóm tắt</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -344,8 +335,8 @@
                   <tr>
                     <th><img src="/images/{{Avatar}}" class="List_avatar"></th>
                     <td>{{NewsTitle}}</td>
-                    {{!-- <td>DsNhãn</td> --}}
                     <td>{{formatDate DatePost}}</td>
+                    <td>{{Name}}</td>
                     <td>{{Abstract}}</td>
                     <td>
                       <a class="btn btn-primary btn-sm" href="/Writer/Edit/{{NewsID}}" role="button">

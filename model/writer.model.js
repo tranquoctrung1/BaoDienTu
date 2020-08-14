@@ -9,15 +9,15 @@ const TBL_TAG = "tag";
 const TBL_USER = "user";
 
 module.exports = {
-  loadListPost: function() {
-    return db.load(`SELECT * FROM ${TBL_NEWS}`);
-    // return db.load(`SELECT * FROM ${TBL_NEWS} n JOIN ${TBL_TAG_OF_NEWS} ton ON n.NewsID = ton.NewsID JOIN ${TBL_TAG} t ON ton.TagID = t.TagID`);
+  //Load tất cả bài viết do Writer A viết
+  loadListPost: function(UserID) {
+    return db.load(`SELECT * FROM ${TBL_NEWS} n JOIN ${TBL_USER} u ON n.Author = u.UserID WHERE u.UserID = ${UserID}`);
   },
   addNewPost: function(entity){
     return db.add(TBL_NEWS, entity);
   },
-  loadAuthor: function(){
-    return db.load(`SELECT * FROM ${TBL_USER}`);
+  loadAuthor: function(UserID){
+    return db.load(`SELECT * FROM ${TBL_USER} WHERE TypeOfUser = 3 and UserID = ${UserID}`);
   },
   loadCatChild: function(){
     return db.load(`SELECT * FROM ${TBL_SUBCATEGORY}`);
@@ -63,17 +63,17 @@ module.exports = {
     }
     return db.del(TBL_TAG_OF_NEWS, condition);
   },
-  daduocduyetvachoxuatban: function(){
-    return db.load(`SELECT * FROM ${TBL_NEWS} wHERE Status = 1`)
+  daduocduyetvachoxuatban: function(UserID){
+    return db.load(`SELECT * FROM ${TBL_NEWS} n JOIN ${TBL_USER} u ON n.Author = u.UserID WHERE Status = 1 and u.UserID = ${UserID}`)
   },
-  daxuatban: function(){
-    return db.load(`SELECT * FROM ${TBL_NEWS} wHERE Status = 2`)
+  daxuatban: function(UserID){
+    return db.load(`SELECT * FROM ${TBL_NEWS} n JOIN ${TBL_USER} u ON n.Author = u.UserID WHERE Status = 2 and u.UserID = ${UserID}`)
   },
-  bituchoi: function(){
-    return db.load(`SELECT * FROM ${TBL_NEWS} wHERE Status = 3`)
+  bituchoi: function(UserID){
+    return db.load(`SELECT * FROM ${TBL_NEWS} n JOIN ${TBL_USER} u ON n.Author = u.UserID WHERE Status = 3 and u.UserID = ${UserID}`)
   },
-  chuaduocduyet: function(){
-    return db.load(`SELECT * FROM ${TBL_NEWS} wHERE Status = 4`)
+  chuaduocduyet: function(UserID){
+    return db.load(`SELECT * FROM ${TBL_NEWS} n JOIN ${TBL_USER} u ON n.Author = u.UserID WHERE Status = 4 and u.UserID = ${UserID}`)
   },
   updateAvatar: function(entity){
     const condition = {
