@@ -2,326 +2,37 @@
     <div class="container">
         {{#if this.news.IsPremium}}
         <br>
-                {{#if this.user.IsGuest}}
-                    {{!-- Tài khoản Guest cho đăng ký Subscriber/Premium --}}
-                    <div class="box">
-                        <form method="POST" class="frm">
-                            <div>
-                                <h3 class="text-danger">ĐĂNG KÝ TÀI KHOẢN SUBSCRIBER</h3>
-                            </div>
-                            <div class="form_group">
-                                <label for="txtCatName" class="text-primary">Tài khoản của bạn chưa đăng ký Subscriber, bạn vui lòng đăng ký để đọc các bài viết Premium</label>
-                            </div>
-                            <div class="submit-form">
-                                <button type="submit" class="btn btn-warning text-white" formaction="/newsDetails/RegisterSub" title="Đăng ký Subscriber">
-                                    <i class="fas fa-user-tie"></i>
-                                    Đăng ký Subscriber
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                {{/if}}
-                
-                {{#if this.user.IsSub}}
-                    {{#if this.user.IsPremium}}
-                        {{#if this.user.Ex}}
-                        <i>Tài khoản Premium còn hạn:</i>
-                        <a type="submit" class="btn btn-warning text-white" href="/User/PremiumRenewal/{{this.user.UserID}}"
-                            role="button" title="Cập nhật Premium">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            Gia hạn Tài khoản Premium của bạn
-                        </a>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-9">
-                                <form method="POST">
-                                    <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
-                                    <input id="txtLike" name="Like" value="{{this.news.Like}}" hidden>
-                                    <input id="txtView" name="View" value="{{this.news.View}}" hidden>
-                                    <h2>{{this.news.NewsTitle}}</h2>
-                                    <b>Tác giả: {{this.news.Name}}</b>&nbsp;&nbsp;<a>&nbsp;{{formatDate this.news.DatePost}} -
-                                        {{formatDateTime this.news.DatePost}}</a><br>
-                                    <b>
-                                        Lượt xem: {{this.news.View}} -</i>&ensp;Lượt thích: {{this.news.Like}} </i>
-                                    </b>
-                                    <br>
-                                    <div class="CatAndPre">
-                                        <div style="display: flex;">
-                                            <div class="Cat"> {{!Chuyên mục cha}}
-                                                <b>Chuyên mục: </b>&ensp;
-                                                <a class="color" style="color: white;">{{this.news.CatName}}</a>
-                                            </div>
-                                            <div class="catChild"> {{!Chuyên mục con}}
-                                                <a href="/list/subcategory/{{this.news.CatChild_ID}}" class="color" style="color: white;">{{this.news.CatChildName}}</a>
-                                            </div>
-                                        </div>
-                                        {{#if this.news.IsPremium}}
-                                        <div class="text-warning" style="text-align: right; font-size: 18px;">
-                                            <i class="fa fa-star" aria-hidden="true"> Premium</i>
-                                        </div>
-                                        {{/if}}
-                                    </div>
-                                    <div class="avatar">
-                                        {{#if this.news.IsAvatar}}
-                                        <img src="/images/{{this.news.Avatar}}" alt="avatar for new">
-                                        {{else}}
-                                        <img src="/images/logo.png" alt="avatar for new">
-                                        {{/if}}
-                                    </div>
-                                    <div class="abstract">
-                                        <br>
-                                        <b>{{this.news.Abstract}}</b>
-                                    </div>
-                                    <div class="content">
-                                        <p>{{{this.news.Content}}}
-                                        </p>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mb-md-3" formaction="/newsDetails/like">
-                                        <i class="fas fa-thumbs-up"></i>
-                                        Like
-                                    </button>
-                                </form>
-                                <div>
-                                    <i class="fas fa-tags"></i>
-                                    {{#each TagOfNews}}
-                                    <a href="/list/tag/{{tagID}}" class="tag" style="color: #636e72;">{{TagName}}</a>
-                                    {{/each}}
-                                </div>
-                                <div class="card text-left mt-md-3 mb-md-3">
-                                    <div class="card-header">
-                                        Comment:
-                                    </div>
-                                    <form action="" method="POST">
-                                        <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
-                                        <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
-                                        <div class="send-button"> <button type="submit" formaction="/newsDetails/comment" class="btn btn-success mt-md-3"> Gửi</button>
-                                        </div>
-                                    </form>
-                                    <img class="card-img-top" src="holder.js/100px180/" alt="">
-                                    {{#each CmtNews}}
-                                    <div class="col px-md-5 mb-md-3">
-                                        <div class="p-3 border">
-                                            <div class="row">
-                                                {{#if IsAvatarUser}}
-                                                    <div class="col-sm-2">
-                                                        <img src="/images/{{avata}}" class="img-thumbnail">
-                                                    </div>
-                                                {{else}}
-                                                    <div class="col-sm-2">
-                                                        <img src="/images/Account.png" class="img-thumbnail">
-                                                    </div>
-                                                {{/if}}
-                                                <div class="col-sm-10">
-                                                    <h5 class="card-name" id="username" name="username">{{Name}}</h5>
-                                                    <p class="card-text" id="txtComment" name="txtComment">{{Content}}</p>
-                                                    <p class="text-secondary">{{formatDate DateTime}} {{formatDateTime DateTime}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{/each}}
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <h4>5 BÀI ĐĂNG LIÊN QUAN</h4>
-                                {{#each FiveRelatedPosts}}
-                                <div class="card mt-md-3 mb-md-3">
-                                    {{#if IsAvatar}}
-                                    <img src="/images/{{Avatar}}" alt="avatar for new" class="card-img-top">
-                                    {{else}}
-                                    <img src="/images/logo.png" alt="avatar for new" class="card-img-top">
-                                    {{/if}}
-                                    <div class="card-body">
-                                        <h5 class="card-title"><a href="/newsDetails/{{NewsID}}"
-                                                style="text-decoration: none; color: #636e72 ">{{NewsTitle}}</a> </h5>
-                                        <p class="card-text">{{Abstract}}</p>
-                                        <p class="card-text"><small class="text-muted">{{formatDateTime DatePost}} -
-                                                {{formatDate DatePost}}</small></p>
-                                        <div class="CatAndPre">
-                                            <div class="Cat">
-                                                <a class="color">{{CatName}}</a> {{!Chuyên mục cha}}
-                                            </div>
-                                            {{#if IsPremium}}
-                                            <div class="text-warning" style="text-align: right; font-size: 13px;">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                Premium
-                                            </div>
-                                            {{/if}}
-                                        </div>
-                                    </div>
-                                </div>
-                                {{/each}}
-                            </div>
-                        </div>
-
-                        {{else}}
-                        <div class="box">
-                            <form method="POST" class="frm">
-                                <div>
-                                    <h3 class="text-danger">GIA HẠN TÀI KHOẢN PREMIUM</h3>
-                                </div>
-                                <div class="form_group">
-                                    <label for="txtCatName" class="text-primary">Tài khoản của bạn HẾT HẠN, vui lòng gia hạn tài khoản để tiếp tục đọc các bài viết Premium</label>
-                                </div>
-                                <div class="submit-form">
-                                    <a type="submit" class="btn btn-warning text-white" href="/User/PremiumRenewal/{{this.user.UserID}}"
-                                        role="button" title="Cập nhật Premium">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        Gia hạn Premium
-                                    </a>
-                                </div>
-                            </form>
-                        </div>
-                        {{/if}}
-                    {{else}}
-                    <div class="box">
-                        <form method="POST" class="frm">
-                            <div>
-                                <h3 class="text-danger">ĐĂNG KÝ TÀI KHOẢN PREMIUM</h3>
-                            </div>
-                            <div class="form_group">
-                                <label for="txtCatName" class="text-primary">Tài khoản của bạn chưa đăng ký Premium, bạn vui lòng đăng ký để đọc các bài viết Premium</label>
-                            </div>
-                            <div class="submit-form">
-                                <a type="submit" class="btn btn-danger " href="/User/RegisterPremium/{{this.user.UserID}}"
-                                    role="button" title="Cập nhật Premium">
-                                    <i class="fas fa-registered"></i>
-                                    Đăng ký Premium
-                                </a>
-                            </div>
-                        </form>
-                    </div>
-                    {{/if}}
-                {{/if}}
-
-            {{!-- Nếu là tài khoản Admin/Writer/Editor thì xem Permium bình thường --}}
-            {{#if this.user.IsAdminWriterEditor}}
-                <div class="row">
-                    <div class="col-md-9">
-                        <form method="POST">
-                            <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
-                            <input id="txtLike" name="Like" value="{{this.news.Like}}" hidden>
-                            <input id="txtView" name="View" value="{{this.news.View}}" hidden>
-                            <h2>{{this.news.NewsTitle}}</h2>
-                            <b>Tác giả: {{this.news.Name}}</b>&nbsp;&nbsp;<a>&nbsp;{{formatDate this.news.DatePost}} -
-                                {{formatDateTime this.news.DatePost}}</a><br>
-                            <b>
-                                Lượt xem: {{this.news.View}} -</i>&ensp;Lượt thích: {{this.news.Like}} </i>
-                            </b>
-                            <br>
-                            <div class="CatAndPre">
-                                <div style="display: flex;">
-                                    <div class="Cat"> {{!Chuyên mục cha}}
-                                        <b>Chuyên mục: </b>&ensp;
-                                        <a class="color" style="color: white;">{{this.news.CatName}}</a>
-                                    </div>
-                                    <div class="catChild"> {{!Chuyên mục con}}
-                                        <a href="/list/subcategory/{{this.news.CatChild_ID}}" class="color" style="color: white;">{{this.news.CatChildName}}</a>
-                                    </div>
-                                </div>
-                                {{#if this.news.IsPremium}}
-                                <div class="text-warning" style="text-align: right; font-size: 18px;">
-                                    <i class="fa fa-star" aria-hidden="true"> Premium</i>
-                                </div>
-                                {{/if}}
-                            </div>
-                            <div class="avatar">
-                                {{#if this.news.IsAvatar}}
-                                <img src="/images/{{this.news.Avatar}}" alt="avatar for new">
-                                {{else}}
-                                <img src="/images/logo.png" alt="avatar for new">
-                                {{/if}}
-                            </div>
-                            <div class="abstract">
-                                <br>
-                                <b>{{this.news.Abstract}}</b>
-                            </div>
-                            <div class="content">
-                                <p>{{{this.news.Content}}}
-                                </p>
-                            </div>
-                            <button type="submit" class="btn btn-primary mb-md-3" formaction="/newsDetails/like">
-                                <i class="fas fa-thumbs-up"></i>
-                                Like
-                            </button>
-                        </form>
-                        <div>
-                            <i class="fas fa-tags"></i>
-                            {{#each TagOfNews}}
-                            <a href="/list/tag/{{tagID}}" class="tag" style="color: #636e72;">{{TagName}}</a>
-                            {{/each}}
-                        </div>
-                        <div class="card text-left mt-md-3 mb-md-3">
-                            <div class="card-header">
-                                Comment:
-                            </div>
-                            <div class="form-group col px-md-5 mt-md-3 mb-md-3">
-                                <form action="" method="POST">
-                                    <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
-                                    <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
-                                    <div class="send-button"> <button type="submit" formaction="/newsDetails/comment" class="btn btn-success mt-md-3"> Gửi</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <img class="card-img-top" src="holder.js/100px180/" alt="">
-                            {{#each CmtNews}}
-                            <div class="col px-md-5 mb-md-3">
-                                <div class="p-3 border">
-                                    <div class="row">
-                                        {{#if IsAvatarUser}}
-                                            <div class="col-sm-2">
-                                                <img src="/images/{{avata}}" class="img-thumbnail">
-                                            </div>
-                                        {{else}}
-                                            <div class="col-sm-2">
-                                                <img src="/images/Account.png" class="img-thumbnail">
-                                            </div>
-                                        {{/if}}
-                                        <div class="col-sm-10">
-                                            <h5 class="card-name" id="username" name="username">{{Name}}</h5>
-                                            <p class="card-text" id="txtComment" name="txtComment">{{Content}}</p>
-                                            <p class="text-secondary">{{formatDate DateTime}} {{formatDateTime DateTime}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{/each}}
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <h4>5 BÀI ĐĂNG LIÊN QUAN</h4>
-                        {{#each FiveRelatedPosts}}
-                        <div class="card mt-md-3 mb-md-3">
-                            {{#if IsAvatar}}
-                            <img src="/images/{{Avatar}}" alt="avatar for new" class="card-img-top">
-                            {{else}}
-                            <img src="/images/logo.png" alt="avatar for new" class="card-img-top">
-                            {{/if}}
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="/newsDetails/{{NewsID}}"
-                                        style="text-decoration: none; color: #636e72 ">{{NewsTitle}}</a> </h5>
-                                <p class="card-text">{{Abstract}}</p>
-                                <p class="card-text"><small class="text-muted">{{formatDateTime DatePost}} -
-                                        {{formatDate DatePost}}</small></p>
-                                <div class="CatAndPre">
-                                    <div class="Cat">
-                                        <a class="color">{{CatName}}</a> {{!Chuyên mục cha}}
-                                    </div>
-                                    {{#if IsPremium}}
-                                    <div class="text-warning" style="text-align: right; font-size: 13px;">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        Premium
-                                    </div>
-                                    {{/if}}
-                                </div>
-                            </div>
-                        </div>
-                        {{/each}}
-                    </div>
+        {{#if this.user.IsGuest}}
+        {{!-- Tài khoản Guest cho đăng ký Subscriber/Premium --}}
+        <div class="box">
+            <form method="POST" class="frm">
+                <div>
+                    <h3 class="text-danger">ĐĂNG KÝ TÀI KHOẢN SUBSCRIBER</h3>
                 </div>
-            {{/if}}
+                <div class="form_group">
+                    <label for="txtCatName" class="text-primary">Tài khoản của bạn chưa đăng ký Subscriber, bạn vui lòng
+                        đăng ký để đọc các bài viết Premium</label>
+                </div>
+                <div class="submit-form">
+                    <button type="submit" class="btn btn-warning text-white" formaction="/newsDetails/RegisterSub"
+                        title="Đăng ký Subscriber">
+                        <i class="fas fa-user-tie"></i>
+                        Đăng ký Subscriber
+                    </button>
+                </div>
+            </form>
+        </div>
+        {{/if}}
 
-        {{else}}
+        {{#if this.user.IsSub}}
+        {{#if this.user.IsPremium}}
+        {{#if this.user.Ex}}
+        <i>Tài khoản Premium còn hạn:</i>
+        <a type="submit" class="btn btn-warning text-white" href="/User/PremiumRenewal/{{this.user.UserID}}"
+            role="button" title="Cập nhật Premium">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            Gia hạn Tài khoản Premium của bạn
+        </a>
         <br>
         <div class="row">
             <div class="col-md-9">
@@ -340,10 +51,181 @@
                         <div style="display: flex;">
                             <div class="Cat"> {{!Chuyên mục cha}}
                                 <b>Chuyên mục: </b>&ensp;
-                                <a class="color" style="color: white;">{{this.news.CatName}}</a>
+                                <a class="color" href="/list/category/{{this.news.CatID}}"
+                                    style="color: white;">{{this.news.CatName}}</a>
                             </div>
                             <div class="catChild"> {{!Chuyên mục con}}
-                                <a href="/list/subcategory/{{this.news.CatChild_ID}}" class="color" style="color: white;">{{this.news.CatChildName}}</a>
+                                <a href="/list/subcategory/{{this.news.CatChild_ID}}" class="color"
+                                    style="color: white;">{{this.news.CatChildName}}</a>
+                            </div>
+                        </div>
+                        {{#if this.news.IsPremium}}
+                        <div class="text-warning" style="text-align: right; font-size: 18px;">
+                            <i class="fa fa-star" aria-hidden="true"> Premium</i>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <div class="avatar">
+                        {{#if this.news.IsAvatar}}
+                        <img src="/images/{{this.news.Avatar}}" alt="avatar for new">
+                        {{else}}
+                        <img src="/images/logo.png" alt="avatar for new">
+                        {{/if}}
+                    </div>
+                    <div class="abstract">
+                        <br>
+                        <b>{{this.news.Abstract}}</b>
+                    </div>
+                    <div class="content">
+                        <p>{{{this.news.Content}}}
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-md-3" formaction="/newsDetails/like">
+                        <i class="fas fa-thumbs-up"></i>
+                        Like
+                    </button>
+                </form>
+                <div>
+                    <i class="fas fa-tags"></i>
+                    {{#each TagOfNews}}
+                    <a href="/list/tag/{{tagID}}" class="tag" style="color: #636e72;">{{TagName}}</a>
+                    {{/each}}
+                </div>
+                <div class="card text-left mt-md-3 mb-md-3">
+                    <div class="card-header">
+                        Comment:
+                    </div>
+                    <form action="" method="POST">
+                        <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
+                        <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
+                        <div class="send-button"> <button type="submit" formaction="/newsDetails/comment"
+                                class="btn btn-success mt-md-3"> Gửi</button>
+                        </div>
+                    </form>
+                    <img class="card-img-top" src="holder.js/100px180/" alt="">
+                    {{#each CmtNews}}
+                    <div class="col px-md-5 mb-md-3">
+                        <div class="p-3 border">
+                            <div class="row">
+                                {{#if IsAvatarUser}}
+                                <div class="col-sm-2">
+                                    <img src="/images/{{avata}}" class="img-thumbnail">
+                                </div>
+                                {{else}}
+                                <div class="col-sm-2">
+                                    <img src="/images/Account.png" class="img-thumbnail">
+                                </div>
+                                {{/if}}
+                                <div class="col-sm-10">
+                                    <h5 class="card-name" id="username" name="username">{{Name}}</h5>
+                                    <p class="card-text" id="txtComment" name="txtComment">{{Content}}</p>
+                                    <p class="text-secondary">{{formatDate DateTime}} {{formatDateTime DateTime}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h4>5 BÀI ĐĂNG LIÊN QUAN</h4>
+                {{#each FiveRelatedPosts}}
+                <div class="card mt-md-3 mb-md-3">
+                    {{#if IsAvatar}}
+                    <img src="/images/{{Avatar}}" alt="avatar for new" class="card-img-top">
+                    {{else}}
+                    <img src="/images/logo.png" alt="avatar for new" class="card-img-top">
+                    {{/if}}
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/newsDetails/{{NewsID}}"
+                                style="text-decoration: none; color: #636e72 ">{{NewsTitle}}</a> </h5>
+                        <p class="card-text">{{Abstract}}</p>
+                        <p class="card-text"><small class="text-muted">{{formatDateTime DatePost}} -
+                                {{formatDate DatePost}}</small></p>
+                        <div class="CatAndPre">
+                            <div class="Cat">
+                                <a class="color" href="/list/category/{{CatID}}">{{CatName}}</a> {{!Chuyên mục cha}}
+                            </div>
+                            {{#if IsPremium}}
+                            <div class="text-warning" style="text-align: right; font-size: 13px;">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                Premium
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        {{else}}
+        <div class="box">
+            <form method="POST" class="frm">
+                <div>
+                    <h3 class="text-danger">GIA HẠN TÀI KHOẢN PREMIUM</h3>
+                </div>
+                <div class="form_group">
+                    <label for="txtCatName" class="text-primary">Tài khoản của bạn HẾT HẠN, vui lòng gia hạn tài khoản
+                        để tiếp tục đọc các bài viết Premium</label>
+                </div>
+                <div class="submit-form">
+                    <a type="submit" class="btn btn-warning text-white" href="/User/PremiumRenewal/{{this.user.UserID}}"
+                        role="button" title="Cập nhật Premium">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        Gia hạn Premium
+                    </a>
+                </div>
+            </form>
+        </div>
+        {{/if}}
+        {{else}}
+        <div class="box">
+            <form method="POST" class="frm">
+                <div>
+                    <h3 class="text-danger">ĐĂNG KÝ TÀI KHOẢN PREMIUM</h3>
+                </div>
+                <div class="form_group">
+                    <label for="txtCatName" class="text-primary">Tài khoản của bạn chưa đăng ký Premium, bạn vui lòng
+                        đăng ký để đọc các bài viết Premium</label>
+                </div>
+                <div class="submit-form">
+                    <a type="submit" class="btn btn-danger " href="/User/RegisterPremium/{{this.user.UserID}}"
+                        role="button" title="Cập nhật Premium">
+                        <i class="fas fa-registered"></i>
+                        Đăng ký Premium
+                    </a>
+                </div>
+            </form>
+        </div>
+        {{/if}}
+        {{/if}}
+
+        {{!-- Nếu là tài khoản Admin/Writer/Editor thì xem Permium bình thường --}}
+        {{#if this.user.IsAdminWriterEditor}}
+        <div class="row">
+            <div class="col-md-9">
+                <form method="POST">
+                    <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
+                    <input id="txtLike" name="Like" value="{{this.news.Like}}" hidden>
+                    <input id="txtView" name="View" value="{{this.news.View}}" hidden>
+                    <h2>{{this.news.NewsTitle}}</h2>
+                    <b>Tác giả: {{this.news.Name}}</b>&nbsp;&nbsp;<a>&nbsp;{{formatDate this.news.DatePost}} -
+                        {{formatDateTime this.news.DatePost}}</a><br>
+                    <b>
+                        Lượt xem: {{this.news.View}} -</i>&ensp;Lượt thích: {{this.news.Like}} </i>
+                    </b>
+                    <br>
+                    <div class="CatAndPre">
+                        <div style="display: flex;">
+                            <div class="Cat"> {{!Chuyên mục cha}}
+                                <b>Chuyên mục: </b>&ensp;
+                                <a class="color" href="/list/category/{{this.news.CatID}}"
+                                    style="color: white;">{{this.news.CatName}}</a>
+                            </div>
+                            <div class="catChild"> {{!Chuyên mục con}}
+                                <a href="/list/subcategory/{{this.news.CatChild_ID}}" class="color"
+                                    style="color: white;">{{this.news.CatChildName}}</a>
                             </div>
                         </div>
                         {{#if this.news.IsPremium}}
@@ -386,7 +268,8 @@
                         <form action="" method="POST">
                             <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
                             <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
-                            <div class="send-button"> <button type="submit" formaction="/newsDetails/comment" class="btn btn-success mt-md-3"> Gửi</button>
+                            <div class="send-button"> <button type="submit" formaction="/newsDetails/comment"
+                                    class="btn btn-success mt-md-3"> Gửi</button>
                             </div>
                         </form>
                     </div>
@@ -396,13 +279,13 @@
                         <div class="p-3 border">
                             <div class="row">
                                 {{#if IsAvatarUser}}
-                                    <div class="col-sm-2">
-                                        <img src="/images/{{avata}}" class="img-thumbnail">
-                                    </div>
+                                <div class="col-sm-2">
+                                    <img src="/images/{{avata}}" class="img-thumbnail">
+                                </div>
                                 {{else}}
-                                    <div class="col-sm-2">
-                                        <img src="/images/Account.png" class="img-thumbnail">
-                                    </div>
+                                <div class="col-sm-2">
+                                    <img src="/images/Account.png" class="img-thumbnail">
+                                </div>
                                 {{/if}}
                                 <div class="col-sm-10">
                                     <h5 class="card-name" id="username" name="username">{{Name}}</h5>
@@ -432,7 +315,137 @@
                                 {{formatDate DatePost}}</small></p>
                         <div class="CatAndPre">
                             <div class="Cat">
-                                <a class="color">{{CatName}}</a> {{!Chuyên mục cha}}
+                                <a class="color" href="/list/category/{{CatID}}">{{CatName}}</a> {{!Chuyên mục cha}}
+                            </div>
+                            {{#if IsPremium}}
+                            <div class="text-warning" style="text-align: right; font-size: 13px;">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                Premium
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+
+        {{else}}
+        <br>
+        <div class="row">
+            <div class="col-md-9">
+                <form method="POST">
+                    <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
+                    <input id="txtLike" name="Like" value="{{this.news.Like}}" hidden>
+                    <input id="txtView" name="View" value="{{this.news.View}}" hidden>
+                    <h2>{{this.news.NewsTitle}}</h2>
+                    <b>Tác giả: {{this.news.Name}}</b>&nbsp;&nbsp;<a>&nbsp;{{formatDate this.news.DatePost}} -
+                        {{formatDateTime this.news.DatePost}}</a><br>
+                    <b>
+                        Lượt xem: {{this.news.View}} -</i>&ensp;Lượt thích: {{this.news.Like}} </i>
+                    </b>
+                    <br>
+                    <div class="CatAndPre">
+                        <div style="display: flex;">
+                            <div class="Cat"> {{!Chuyên mục cha}}
+                                <b>Chuyên mục: </b>&ensp;
+                                <a class="color" href="/list/category/{{this.news.CatID}}"
+                                    style="color: white;">{{this.news.CatName}}</a>
+                            </div>
+                            <div class="catChild"> {{!Chuyên mục con}}
+                                <a href="/list/subcategory/{{this.news.CatChild_ID}}" class="color"
+                                    style="color: white;">{{this.news.CatChildName}}</a>
+                            </div>
+                        </div>
+                        {{#if this.news.IsPremium}}
+                        <div class="text-warning" style="text-align: right; font-size: 18px;">
+                            <i class="fa fa-star" aria-hidden="true"> Premium</i>
+                        </div>
+                        {{/if}}
+                    </div>
+                    <div class="avatar">
+                        {{#if this.news.IsAvatar}}
+                        <img src="/images/{{this.news.Avatar}}" alt="avatar for new">
+                        {{else}}
+                        <img src="/images/logo.png" alt="avatar for new">
+                        {{/if}}
+                    </div>
+                    <div class="abstract">
+                        <br>
+                        <b>{{this.news.Abstract}}</b>
+                    </div>
+                    <div class="content">
+                        <p>{{{this.news.Content}}}
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-md-3" formaction="/newsDetails/like">
+                        <i class="fas fa-thumbs-up"></i>
+                        Like
+                    </button>
+                </form>
+                <div>
+                    <i class="fas fa-tags"></i>
+                    {{#each TagOfNews}}
+                    <a href="/list/tag/{{tagID}}" class="tag" style="color: #636e72;">{{TagName}}</a>
+                    {{/each}}
+                </div>
+                <div class="card text-left mt-md-3 mb-md-3">
+                    <div class="card-header">
+                        Comment:
+                    </div>
+                    <div class="form-group col px-md-5 mt-md-3 mb-md-3">
+                        <form action="" method="POST">
+                            <input id="txtNewsID" name="NewsID" value="{{this.news.NewsID}}" hidden>
+                            <textarea class="form-control" rows="5" id="txtComment" name="txtComment"></textarea>
+                            <div class="send-button"> <button type="submit" formaction="/newsDetails/comment"
+                                    class="btn btn-success mt-md-3"> Gửi</button>
+                            </div>
+                        </form>
+                    </div>
+                    <img class="card-img-top" src="holder.js/100px180/" alt="">
+                    {{#each CmtNews}}
+                    <div class="col px-md-5 mb-md-3">
+                        <div class="p-3 border">
+                            <div class="row">
+                                {{#if IsAvatarUser}}
+                                <div class="col-sm-2">
+                                    <img src="/images/{{avata}}" class="img-thumbnail">
+                                </div>
+                                {{else}}
+                                <div class="col-sm-2">
+                                    <img src="/images/Account.png" class="img-thumbnail">
+                                </div>
+                                {{/if}}
+                                <div class="col-sm-10">
+                                    <h5 class="card-name" id="username" name="username">{{Name}}</h5>
+                                    <p class="card-text" id="txtComment" name="txtComment">{{Content}}</p>
+                                    <p class="text-secondary">{{formatDate DateTime}} {{formatDateTime DateTime}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h4>5 BÀI ĐĂNG LIÊN QUAN</h4>
+                {{#each FiveRelatedPosts}}
+                <div class="card mt-md-3 mb-md-3">
+                    {{#if IsAvatar}}
+                    <img src="/images/{{Avatar}}" alt="avatar for new" class="card-img-top">
+                    {{else}}
+                    <img src="/images/logo.png" alt="avatar for new" class="card-img-top">
+                    {{/if}}
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/newsDetails/{{NewsID}}"
+                                style="text-decoration: none; color: #636e72 ">{{NewsTitle}}</a> </h5>
+                        <p class="card-text">{{Abstract}}</p>
+                        <p class="card-text"><small class="text-muted">{{formatDateTime DatePost}} -
+                                {{formatDate DatePost}}</small></p>
+                        <div class="CatAndPre">
+                            <div class="Cat">
+                                <a class="color" href="/list/category/{{CatID}}">{{CatName}}</a> {{!Chuyên mục cha}}
                             </div>
                             {{#if IsPremium}}
                             <div class="text-warning" style="text-align: right; font-size: 13px;">
