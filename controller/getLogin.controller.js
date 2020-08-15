@@ -27,7 +27,7 @@ module.exports.loadlogin = async function(req, res) {
 module.exports.postlogin = async function(req, res) {
     const user = await loginModel.singleByUserName(req.body.username);
     // console.log(user);
-    if (user.IsActive == 0) {
+    if (user.IsActive == 0 || user.IsActive == undefined) {
         // res.locals.error= 'You need to verify email first.'
         return res.render("login/login", {
             error: "You need to verify email first.",
