@@ -475,7 +475,6 @@ module.exports.loadUpdateUser = async function (req, res) {
 };
 
 module.exports.updateUser = async function (req, res) {
-  console.log(req.body);
   var today = new Date(req.body.BirthDay);
   var date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
@@ -483,11 +482,16 @@ module.exports.updateUser = async function (req, res) {
     today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
   var dateTime = date + " " + time;
 
+  const hashedPassword = await bcrypt.hash(
+    req.body.Password,
+    config.authentication.saltRounds
+  );
+
   const entity = {
     UserID: req.body.UserID,
     UserName: req.body.UserName,
     Name: req.body.Name,
-    Password: req.body.Password,
+    Password: hashedPassword,
     BirthDay: dateTime,
     Phone: req.body.Phone,
     Email: req.body.Email,
