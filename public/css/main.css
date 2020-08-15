@@ -217,7 +217,7 @@
     transition: all .5s ease-in-out; }
     .home-page .most-view .container .row .item .card .card-img {
       width: 100%;
-      height: 100%; }
+      height: 300px; }
     .home-page .most-view .container .row .item .card .card-title {
       text-transform: uppercase;
       text-decoration: none;
