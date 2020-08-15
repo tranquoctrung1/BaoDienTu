@@ -123,26 +123,16 @@ app.get("/newsDetails", (req, res) => {
 });
 app.use("/newsDetails", News);
 
-// app.use("/Writer", loginPageWriter.loginPageWriter, Writer);
-// app.use("/Editor", loginPageWriter.loginPageEditor, Editor);
-// app.use("/Admin", loginPageWriter.loginPageAdmin, Admin);
+app.use("/Writer", loginPageWriter.loginPageWriter, Writer);
+app.use("/Editor", loginPageWriter.loginPageEditor, Editor);
+app.use("/Admin", loginPageWriter.loginPageAdmin, Admin);
 
-app.use("/Writer", Writer);
-app.use("/Editor", Editor);
- app.use("/Admin", Admin);
+// app.use("/Writer", Writer);
+// app.use("/Editor", Editor);
+//  app.use("/Admin", Admin);
+
 app.use("/Subscriber", Subscriber);
 
-//app.use("/User", User)
-// app.get("/Subscriber", (req, res) => {
-//   res.render("vwSubscriber/RegisterPremium.hbs");
-// });
-
-// app.get("/User", function (req, res) {
-//   res.render("vwUser/indexUser.hbs");
-// });
-// app.get("/User/Update", function (req, res) {
-//   res.render("vwUser/updateInfo.hbs");
-// });
 app.use("/User", User);
 app.use("/search", Search);
 app.use("/list", ListPost);

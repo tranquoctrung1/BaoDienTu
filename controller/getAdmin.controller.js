@@ -41,6 +41,15 @@ module.exports.loadAdmin = async function (req, res) {
     }
   });
 
+  LoadUser.forEach((item) => {
+    const ahttp = item.avata.slice(0, 4);
+    if (ahttp == "http") {
+      item.IsAhttp = 1;
+    } else {
+      item.IsAhttp = 0;
+    }
+  });
+
   var today = new Date();
   var t = today.setDate(today.getDate());
 
