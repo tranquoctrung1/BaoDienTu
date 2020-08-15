@@ -60,7 +60,7 @@ router.post(
   getAdmin.addUser
 );
 router.get("/UpdateUser/:id", getAdmin.loadUpdateUser);
-router.post("/UpdateUser/update", getAdmin.updateUser);
+router.post("/UpdateUser/update", upload.single("avata"), getAdmin.updateUser);
 router.post(
   "/UpdateUser/updateAvatarUser",
   upload.single("avata"),
