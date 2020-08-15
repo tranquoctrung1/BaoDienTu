@@ -102,11 +102,16 @@
                                 class="btn btn-success mt-md-3"> Gửi</button>
                         </div>
                     </form>
-                    <img class="card-img-top" src="holder.js/100px180/" alt="">
+                    <img class="card-img-top" src="holder.js/100px180/" alt="chrome">
                     {{#each CmtNews}}
                     <div class="col px-md-5 mb-md-3">
                         <div class="p-3 border">
                             <div class="row">
+                                {{#if isHttp}}
+                                    <div class="col-sm-2">
+                                    <img src="{{avata}}" class="img-thumbnail">
+                                </div>
+                                {{else}}
                                 {{#if IsAvatarUser}}
                                 <div class="col-sm-2">
                                     <img src="/images/{{avata}}" class="img-thumbnail">
@@ -115,6 +120,7 @@
                                 <div class="col-sm-2">
                                     <img src="/images/Account.png" class="img-thumbnail">
                                 </div>
+                                {{/if}}
                                 {{/if}}
                                 <div class="col-sm-10">
                                     <h5 class="card-name" id="username" name="username">{{Name}}</h5>
@@ -278,6 +284,11 @@
                     <div class="col px-md-5 mb-md-3">
                         <div class="p-3 border">
                             <div class="row">
+                                {{#if isHttp}}
+                                    <div class="col-sm-2">
+                                    <img src="{{avata}}" class="img-thumbnail">
+                                </div>
+                                {{else}}
                                 {{#if IsAvatarUser}}
                                 <div class="col-sm-2">
                                     <img src="/images/{{avata}}" class="img-thumbnail">
@@ -286,6 +297,7 @@
                                 <div class="col-sm-2">
                                     <img src="/images/Account.png" class="img-thumbnail">
                                 </div>
+                                {{/if}}
                                 {{/if}}
                                 <div class="col-sm-10">
                                     <h5 class="card-name" id="username" name="username">{{Name}}</h5>
@@ -408,6 +420,11 @@
                     <div class="col px-md-5 mb-md-3">
                         <div class="p-3 border">
                             <div class="row">
+                                {{#if isHttp}}
+                                    <div class="col-sm-2">
+                                    <img src="{{avata}}" class="img-thumbnail">
+                                </div>
+                                {{else}}
                                 {{#if IsAvatarUser}}
                                 <div class="col-sm-2">
                                     <img src="/images/{{avata}}" class="img-thumbnail">
@@ -416,6 +433,7 @@
                                 <div class="col-sm-2">
                                     <img src="/images/Account.png" class="img-thumbnail">
                                 </div>
+                                {{/if}}
                                 {{/if}}
                                 <div class="col-sm-10">
                                     <h5 class="card-name" id="username" name="username">{{Name}}</h5>
