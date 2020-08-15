@@ -96,6 +96,20 @@ module.exports.loadNewsDetails = async function (req, res) {
     NewsID: id,
     View: Views,
   };
+
+  CmtNews.forEach(item => {
+    const isAHttp = item.avata.slice(0, 4);
+    if(isAHttp === "http")
+    {
+      item.isHttp = true;
+    }
+    else 
+    {
+      item.isHttp = false;
+    }
+  })
+
+  console.log(CmtNews)
   const PlusView = await newsModel.patch(entity);
   res.render("vwNews/NewsDetails", {
     news,
