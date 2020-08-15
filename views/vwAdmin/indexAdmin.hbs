@@ -289,10 +289,14 @@
                                         <tr>
                                             <td class="text-left">{{UserID}}</td>
                                             <td class="text-center">
-                                                {{#if avata}}
-                                                <img src="/images/{{avata}}" class="List_avatar">
+                                                {{#if IsAhttp}}
+                                                    <img src="{{avata}}" class="List_avatar">
                                                 {{else}}
-                                                <img src="/images/Account.png" class="List_avatar">
+                                                    {{#if avata}}
+                                                    <img src="/images/{{avata}}" class="List_avatar">
+                                                    {{else}}
+                                                    <img src="/images/Account.png" class="List_avatar">
+                                                    {{/if}}
                                                 {{/if}}
                                             </td>
                                             <td class="text-center">{{UserName}}</td>
