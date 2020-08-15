@@ -14,11 +14,11 @@ module.exports = {
   loadTopNewsFamous: function (quantity) {
     return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar,n.IsPremium, c.CatID, cc.CatChild_ID, n.NewsID FROM ${TBL_NEWS} n 
                     join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
-                    join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 ORDER BY n.Like DESC limit ${quantity}`);
+                    join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 and n.DatePost < Now() ORDER BY n.Like DESC limit ${quantity}`);
   },
   singleNewsDetails: function (NewsId) {
     return db.load(
-      `SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, n.Avatar, n.IsPremium, cc.CatChildName, c.CatID, c.CatName, cc.CatChild_ID from ${TBL_NEWS} n JOIN ${TBL_USER} u on n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID WHERE NewsID = '${NewsId}' and n.isDel = 0`
+      `SELECT n.NewsID, n.NewsTitle, u.Name, n.DatePost, n.View, n.Like, n.Abstract, n.Content, n.Avatar, n.IsPremium, cc.CatChildName, c.CatID, c.CatName, cc.CatChild_ID from ${TBL_NEWS} n JOIN ${TBL_USER} u on n.Author = u.UserID JOIN ${TBL_SUBCATEGORY} cc ON n.CatChild_ID = cc.CatChild_ID JOIN ${TBL_CATEGORY} c ON cc.CatID = c.CatID WHERE NewsID = '${NewsId}' and n.isDel = 0 and n.DatePost < Now()`
     );
   },
   loadTagNews: function (NewsId) {
@@ -35,29 +35,29 @@ module.exports = {
                     join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
                     join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE c.CatID = (SELECT c2.CatID FROM ${TBL_NEWS} nn
                       JOIN ${TBL_SUBCATEGORY} cc2 on nn.CatChild_ID = cc2.CatChild_ID
-                      JOIN ${TBL_CATEGORY} c2 on cc2.CatID = c2.CatID WHERE nn.NewsID = ${NewsId} and nn.IsDel = 0) and n.IsDel = 0 LIMIT ${quantity}`);
+                      JOIN ${TBL_CATEGORY} c2 on cc2.CatID = c2.CatID WHERE nn.NewsID = ${NewsId} and nn.IsDel = 0) and n.IsDel = 0 and n.DatePost < Now() and LIMIT ${quantity}`);
   },
   loadViewestNewsByCatId: function (id, quantity) {
     return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar, n.IsPremium, c.CatID, cc.CatChild_ID, n.NewsID 
                   FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID 
-                  join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = '${id}' and n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 ORDER BY n.View DESC limit ${quantity}`);
+                  join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = '${id}' and n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 and n.DatePost < Now() ORDER BY n.View DESC limit ${quantity}`);
   },
   loadMostSoonNewsByCatId: function (id, quantity) {
     return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar, n.IsPremium, c.CatID, cc.CatChild_ID, n.NewsID 
                   FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID 
-                  join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = '${id}' and n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 ORDER BY n.DatePost limit ${quantity}`);
+                  join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = '${id}' and n.isDel = 0 and (n.Status = 1 OR n.Status = 2 ) and c.isDel = 0 and cc.isDel = 0 and n.DatePost < Now() ORDER BY n.DatePost limit ${quantity}`);
   },
   loadNewListPost: function (id, limit, offset) {
     return db.load(
       `SELECT n.NewsTitle, cc.CatChildName, c.CatName,n.Abstract , n.DatePost, n.Avatar,n.IsPremium , c.CatID, cc.CatChild_ID, n.NewsID FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} 
       cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID 
-      where c.CatID = ${id} and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 order by n.IsPremium desc limit ${limit} offset ${offset}  `
+      where c.CatID = ${id} and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and n.DatePost < Now() order by n.IsPremium desc limit ${limit} offset ${offset}  `
     );
   },
   loadNewBySubCategoryID: function (id, limit, offset) {
     return db.load(`Select n.NewsTitle, n.Abstract, n.DatePost,n.Avatar, n.IsPremium ,cn.CatChild_ID, cn.CatChildName, c.CatName , c.CatID, cn.CatChild_ID, n.NewsID
-                    from ${TBL_NEWS} n JOIN ${TBL_SUBCATEGORY} cn ON cn.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cn.CatChild_ID
-                    where cn.CatChild_ID = ${id} and n.isDel = 0  and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cn.isDel = 0 order by n.IsPremium desc limit ${limit} offset ${offset}`);
+                    from ${TBL_NEWS} n JOIN ${TBL_SUBCATEGORY} cn ON cn.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cn.CatID
+                    where cn.CatChild_ID = ${id} and n.isDel = 0  and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cn.isDel = 0  and n.DatePost < NOW() order by n.IsPremium desc limit ${limit} offset ${offset}`);
   },
   loadTagListPost: function (id, limit, offset) {
     return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName,n.Abstract, n.DatePost, t.TagName, n.Avatar,n.IsPremium, c.CatID, cc.CatChild_ID, n.NewsID
@@ -65,7 +65,7 @@ module.exports = {
                   join ${TBL_NEWS} n on n.CatChild_ID = cc.CatChild_ID 
                   join ${TBL_TAG_OF_NEWS} tn on tn.NewsID= n.NewsID
                   join ${TBL_TAG} t on t.TagID = tn.TagID
-                where tn.TagID=${id} and t.isDel = 0  and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 order by n.IsPremium desc limit ${limit} offset ${offset} `);
+                where tn.TagID=${id} and t.isDel = 0  and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and n.DatePost < Now() order by n.IsPremium desc limit ${limit} offset ${offset} `);
   },
   patch: function (entity) {
     const condition = {
@@ -77,12 +77,12 @@ module.exports = {
   countNewByCat: function (id) {
     return db.load(`SELECT count(*) as Count FROM ${TBL_NEWS} n 
     join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
-    join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = ${id} and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 `);
+    join ${TBL_CATEGORY} c on c.CatID = cc.CatID where c.CatID = ${id} and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and n.DatePost < Now()`);
   },
 
   countNewBySubCat: function (id) {
     return db.load(
-      `select count(*) as Count from ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID where cc.CatChild_ID = ${id}  and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 `
+      `select count(*) as Count from ${TBL_NEWS} n join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID where cc.CatChild_ID = ${id}  and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0  and n.DatePost < Now()`
     );
   },
 
@@ -93,14 +93,14 @@ module.exports = {
         join ${TBL_NEWS} n on n.CatChild_ID = cc.CatChild_ID 
         join ${TBL_TAG_OF_NEWS} tn on tn.NewsID= n.NewsID
         join ${TBL_TAG} t on t.TagID = tn.TagID
-      where tn.TagID=${id} and t.isDel = 0  and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0`
+      where tn.TagID=${id} and t.isDel = 0  and n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and n.DatePost < Now()`
     );
   },
   getFullTextSearch: function (content, limit, offset) {
     return db.load(
       `SELECT n.NewsTitle, cc.CatChildName, c.CatName,n.Abstract , n.DatePost, n.Avatar, n.IsPremium, c.CatID, cc.CatChild_ID, n.NewsID FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} 
       cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID 
-      where n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and match(n.NewsTitle, n.Abstract, n.Content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) order by n.IsPremium desc limit ${limit} offset ${offset} `
+      where n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and match(n.NewsTitle, n.Abstract, n.Content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) and n.DatePost < Now() order by n.IsPremium desc limit ${limit} offset ${offset} `
     );
   },
 
@@ -108,7 +108,7 @@ module.exports = {
     return db.load(
       `SELECT count(*) as Count FROM ${TBL_NEWS} n join ${TBL_SUBCATEGORY} 
       cc on cc.CatChild_ID = n.CatChild_ID join ${TBL_CATEGORY} c on c.CatID = cc.CatID 
-      where n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and match(n.NewsTitle, n.Abstract, n.Content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE)`
+      where n.isDel = 0 and (n.Status = 2 or n.Status = 1) and c.isDel = 0 and cc.isDel = 0 and match(n.NewsTitle, n.Abstract, n.Content) AGAINST ('${content}' IN NATURAL LANGUAGE MODE) and n.DatePost < Now()`
     );
   },
   loadUser: function (UserID) {
@@ -126,4 +126,10 @@ module.exports = {
   addcomment: function (entity) {
     return db.add(TBL_COMMENT, entity);
   },
+
+  // loadNewsInTheFuture: function (NewsId) {
+  //   return db.load(
+  //     `SELECT * FROM ${TBL_NEWS} WHERE DatePost < Now()`
+  //   );
+  // },
 };
