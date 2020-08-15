@@ -11,11 +11,24 @@
                     <input class="form-control mr-sm-2" id="searchBox" type="search" name="content"
                         placeholder="Nhập thông tin tìm kiếm">
                 </form>
+                
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <div class="nav-link"><i class="fas fa-search" id="showInput"></i></div>
                     </li>
                     {{#if isLogined}}
+                    {{#if isAdmin}}
+                         <li class="nav-item"><a class="nav-link" href="/admin"><i class="fas fa-table"></i> Quản Lý </a>
+                    </li>
+                    {{/if}}
+                    {{#if isWriter}}
+                         <li class="nav-item"><a class="nav-link" href="/writer"><i class="fas fa-table"></i> Quản Lý </a>
+                    </li>
+                    {{/if}}
+                    {{#if isEditor}}
+                         <li class="nav-item"><a class="nav-link" href="/editor"><i class="fas fa-table"></i> Quản Lý </a>
+                    </li>
+                    {{/if}}
                     <form action="/logout" method="post">
                         <li class="nav-item"><a class="nav-link" href="/logout" role="button"><i
                                     class="fas fa-sign-out-alt"></i> Đăng
@@ -54,6 +67,7 @@
                     {{/if}}
                     {{/if}}
                     {{else}}
+                    
                     <li class="nav-item"><a class="nav-link" href="/login"><i class="fas fa-sign-out-alt"></i> Đăng
                             Nhập</a>
                     </li>

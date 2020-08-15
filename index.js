@@ -129,7 +129,7 @@ app.use("/newsDetails", News);
 
 app.use("/Writer", Writer);
 app.use("/Editor", Editor);
-app.use("/Admin", Admin);
+ app.use("/Admin", Admin);
 app.use("/Subscriber", Subscriber);
 
 //app.use("/User", User)
