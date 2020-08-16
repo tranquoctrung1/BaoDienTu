@@ -2,11 +2,15 @@ const editorModel = require("../model/editor.model");
 
 module.exports.loadEditor = async function (req, res) {
     const LoadListPost = await editorModel.loadListPost_chuaduyet(req.session.UserID);
+    const LoadListPostApproved = await editorModel.loadListPost_bandaduyet(req.session.UserID);
+    const LoadListPostDeny = await editorModel.loadListPost_bandatuchoi(req.session.UserID);
     const LoadListPost_CatEditManager = await editorModel.loadList_CategoryEditorManager(req.session.UserID);
 
     res.render("vwEditor/Editor", {
         LoadListPost,
         LoadListPost_CatEditManager,
+        LoadListPostApproved,
+        LoadListPostDeny,
     });
 }
 
@@ -96,6 +100,7 @@ module.exports.acceptPost = async function(req, res){
     CatChild_ID: req.body.CatChild_ID,
     DatePost: datePost,
     Status: trangthai,
+    PEditor: 4,
   }
 
   console.log(entity);
@@ -111,6 +116,7 @@ module.exports.denyPost = async function(req, res){
     NewsID: req.body.NewsID,
     Note: req.body.Note,
     Status: 3,
+    PEditor: req.session.UserID,
   }
 
   console.log(entity);
