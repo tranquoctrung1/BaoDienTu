@@ -643,6 +643,7 @@ module.exports._acceptPost = async function (req, res) {
     CatChild_ID: req.body.CatChild_ID,
     DatePost: datePost,
     Status: trangthai,
+    PEditor: req.session.UserID,
   };
 
   await adminModel.updatePost(entity);
