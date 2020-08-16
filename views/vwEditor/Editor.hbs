@@ -40,56 +40,169 @@
 {{/section}}
 
 <br>
-<div class="container">
-    <form method="POST">
-      <h4 class="text-primary">Danh sách chuyên mục bạn đang quản lý:
-        {{#each LoadListPost_CatEditManager}}
-          {{CatName}} - 
-        {{/each}}
-      </h4>
-        <div class="card">
-        <div class="card-header d-flex justify-content-between">
-            <h4>Danh sách các bài chờ duyệt</h4>
+<div class="container-fluid">
+  <div class="row" style="margin: 15px;">
+    <h4 class="text-primary">Danh sách chuyên mục bạn đang quản lý:
+      {{#each LoadListPost_CatEditManager}}
+        {{CatName}} - 
+      {{/each}}
+    </h4>
+    <br>
+    <div class="col-md-2">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <a class="nav-link active" id="v-pills-listpost-tab" data-toggle="pill" href="#v-pills-listpost"
+              role="tab" aria-controls="v-pills-listpost" aria-selected="false">Danh sách bài 'daft' do Writer đăng</a>
+          <a class="nav-link" id="v-pills-listpostdaduyetvachoxuatban-tab" data-toggle="pill"
+              href="#v-pills-listpost-daduyetvachoxuatban" role="tab"
+              aria-controls="v-pills-listpost-daduyetvachoxuatban" aria-selected="true">Dánh sách bài bạn duyệt</a>
+          <a class="nav-link" id="v-pills-listpostdaxuatban-tab" data-toggle="pill"
+              href="#v-pills-listpost-daxuatban" role="tab" aria-controls="v-pills-listpost-daxuatban"
+              aria-selected="true">Danh sách bài bạn từ chối</a>
         </div>
-            <table class="table table-hover">
-            <thead>
-                <tr>
-                <th scope="col" class="text-center" hidden>NewsID</th>
-                <th scope="col" class="text-center">Avatar</th>
-                <th scope="col" class="text-center">Tiêu đề</th>
-                <th scope="col" class="text-center">Nội dung tóm tắt</th>
-                <th scope="col" class="text-center">Ngày đăng</th>
-                <th scope="col" class="text-center">Chuyên mục cha</th>
-                <th scope="col" class="text-center">Tác giả</th>
-                <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each this.LoadListPost}}
-                <tr>
-                    <td hidden>
-                        <input id="txtNewsID" class="form-control" type="text" value="{{NewsID}}" readonly>
-                    </td>
-                    <th>
-                      <img src="/images/{{Avatar}}" class="List_avatar">
-                    </th>
-                    <td>{{NewsTitle}}</td>
-                    <td>{{Abstract}}</td>
-                    <td>{{formatDate DatePost}}</td>
-                    <td>{{CatName}}</td>
-                    <td>{{Name}}</td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="/Editor/Review/{{NewsID}}" role="button">
-                        <i class="fa fa-eye" aria-hidden="true" title="Xem bài viết"></i>
-                        </a>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-            </table>
-        <div class="card-footer text-muted">
+    </div>
+    <div class="col-md-10">
+      <div class="tab-content" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="v-pills-listpost" role="tabpanel" aria-labelledby="v-pills-listpost-tab">
+          <h3 class="text-center" style="margin: 5px;">DANH SÁCH BÀI VIẾT DAFT DO WRITER ĐĂNG</h3>
+            <form method="POST">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h4>Danh sách các bài chờ duyệt</h4>
+                </div>
+                <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col" class="text-center" hidden>NewsID</th>
+                    <th scope="col" class="text-center">Avatar</th>
+                    <th scope="col" class="text-center">Tiêu đề</th>
+                    <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                    <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Chuyên mục cha</th>
+                    <th scope="col" class="text-center">Tác giả</th>
+                    <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each this.LoadListPost}}
+                    <tr>
+                        <td hidden>
+                            <input id="txtNewsID" class="form-control" type="text" value="{{NewsID}}" readonly>
+                        </td>
+                        <th>
+                          <img src="/images/{{Avatar}}" class="List_avatar">
+                        </th>
+                        <td>{{NewsTitle}}</td>
+                        <td>{{Abstract}}</td>
+                        <td>{{formatDate DatePost}}</td>
+                        <td>{{CatName}}</td>
+                        <td>{{Name}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="/Editor/Review/{{NewsID}}" role="button">
+                            <i class="fa fa-eye" aria-hidden="true" title="Xem bài viết"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                </table>
+              </div>
+            </form>
         </div>
+        <div class="tab-pane fade" id="v-pills-listpost-daduyetvachoxuatban" role="tabpanel"
+            aria-labelledby="v-pills-listpostdaduyetvachoxuatban-tab">
+            <h3 class="text-center" style="margin: 5px;">DANH SÁCH BÀI VIẾT BẠN ĐÃ DUYỆT</h3>
+            <form method="POST">
+              <div class="card">
+                <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col" class="text-center" hidden>NewsID</th>
+                    <th scope="col" class="text-center">Avatar</th>
+                    <th scope="col" class="text-center">Tiêu đề</th>
+                    <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                    <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Chuyên mục cha</th>
+                    <th scope="col" class="text-center">Tác giả</th>
+                    <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each this.LoadListPostApproved}}
+                    <tr>
+                        <td hidden>
+                            <input id="txtNewsID" class="form-control" type="text" value="{{NewsID}}" readonly>
+                        </td>
+                        <th>
+                          <img src="/images/{{Avatar}}" class="List_avatar">
+                        </th>
+                        <td>{{NewsTitle}}</td>
+                        <td>{{Abstract}}</td>
+                        <td>{{formatDate DatePost}}</td>
+                        <td>{{CatName}}</td>
+                        <td>{{Name}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="/Editor/Review/{{NewsID}}" role="button">
+                            <i class="fa fa-eye" aria-hidden="true" title="Xem bài viết"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                </table>
+              </div>
+            </form>
         </div>
-    </form>
+        <div class="tab-pane fade" id="v-pills-listpost-daxuatban" role="tabpanel"
+            aria-labelledby="v-pills-listpostdaxuatban-tab">
+            <h3 class="text-center" style="margin: 5px;">DANH SÁCH BÀI VIẾT BẠN ĐÃ TỪ CHỐI</h3>
+            <form method="POST">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h4>Danh sách các bài chờ duyệt</h4>
+                </div>
+                <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col" class="text-center" hidden>NewsID</th>
+                    <th scope="col" class="text-center">Avatar</th>
+                    <th scope="col" class="text-center">Tiêu đề</th>
+                    <th scope="col" class="text-center">Nội dung tóm tắt</th>
+                    <th scope="col" class="text-center">Ngày đăng</th>
+                    <th scope="col" class="text-center">Chuyên mục cha</th>
+                    <th scope="col" class="text-center">Tác giả</th>
+                    <th scope="col" class="text-center">Lý do TC</th>
+                    <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each this.LoadListPostDeny}}
+                    <tr>
+                        <td hidden>
+                            <input id="txtNewsID" class="form-control" type="text" value="{{NewsID}}" readonly>
+                        </td>
+                        <th>
+                          <img src="/images/{{Avatar}}" class="List_avatar">
+                        </th>
+                        <td>{{NewsTitle}}</td>
+                        <td>{{Abstract}}</td>
+                        <td>{{formatDate DatePost}}</td>
+                        <td>{{CatName}}</td>
+                        <td>{{Name}}</td>
+                        <td>{{Note}}</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" href="/Editor/Review/{{NewsID}}" role="button">
+                            <i class="fa fa-eye" aria-hidden="true" title="Xem bài viết"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                </table>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
