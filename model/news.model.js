@@ -32,10 +32,11 @@ module.exports = {
   },
   loadFiveRelatedPosts: function (NewsId, quantity) {
     return db.load(`SELECT n.NewsTitle, n.Abstract, n.Avatar, n.NewsID, n.IsPremium, n.DatePost, c.CatName, c.CatID FROM ${TBL_NEWS} n
-                    join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
-                    join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE c.CatID = (SELECT c2.CatID FROM ${TBL_NEWS} nn
-                      JOIN ${TBL_SUBCATEGORY} cc2 on nn.CatChild_ID = cc2.CatChild_ID
-                      JOIN ${TBL_CATEGORY} c2 on cc2.CatID = c2.CatID WHERE nn.NewsID = ${NewsId} and nn.IsDel = 0) and n.IsDel = 0 and n.DatePost < Now() and LIMIT ${quantity}`);
+    join ${TBL_SUBCATEGORY} cc on cc.CatChild_ID = n.CatChild_ID
+    join ${TBL_CATEGORY} c on c.CatID = cc.CatID WHERE c.CatID = (SELECT c2.CatID FROM ${TBL_NEWS} nn
+      JOIN ${TBL_SUBCATEGORY} cc2 on nn.CatChild_ID = cc2.CatChild_ID
+      JOIN ${TBL_CATEGORY} c2 on cc2.CatID = c2.CatID WHERE nn.NewsID = ${NewsId} and nn.IsDel = 0) and n.IsDel = 0 and n.DatePost < Now() LIMIT ${quantity}`);
+
   },
   loadViewestNewsByCatId: function (id, quantity) {
     return db.load(`SELECT n.NewsTitle, cc.CatChildName, c.CatName, n.DatePost, n.Avatar, n.IsPremium, c.CatID, cc.CatChild_ID, n.NewsID 
